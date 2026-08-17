@@ -22,8 +22,8 @@ export default function Home() {
 
   return (
     <>
-      <SEO title={t.metaTitle} description={t.hero.subtitle} lang={lang} />
-      {isFetchingCMS && <PageLoader minDuration={1000} />}
+      <SEO title={t.metaTitle} description={t.hero.subtitle} lang={lang} url="/" />
+      {isFetchingCMS && <PageLoader minDuration={300} />}
 
       <div className="relative min-h-screen text-[#0b0b10] editorial-theme">
         <AnimatedBackground />
@@ -47,7 +47,7 @@ export default function Home() {
           <Contact data={t.contact} lang={lang} />
         </main>
 
-        <Footer data={t.footer} lang={lang} />
+        <Footer data={t.footer} newsroom={t.newsroom} lang={lang} />
         <ScrollToTop />
       </div>
     </>
