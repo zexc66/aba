@@ -1,49 +1,97 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle, Home } from "lucide-react";
-import { useLocation } from "wouter";
+import { motion } from "framer-motion";
+import { Link } from "wouter";
+import { AlertTriangle, Home, ArrowLeft, RefreshCw, Layers } from "lucide-react";
+import SEO from "@/components/SEO";
 
 export default function NotFound() {
-  const [, setLocation] = useLocation();
-
-  const handleGoHome = () => {
-    setLocation("/");
-  };
-
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-      <Card className="w-full max-w-lg mx-4 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <CardContent className="pt-8 pb-8 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-red-100 rounded-full animate-pulse" />
-              <AlertCircle className="relative h-16 w-16 text-red-500" />
+    <div className="min-h-screen bg-[#0b0b10] text-[#fdfcfb] selection:bg-[#5a1f2e] selection:text-[#fdfcfb] overflow-hidden flex items-center justify-center p-8 relative">
+        <SEO title="Mandate Void | 404" description="Sovereign protocol error: nodal path not identified in the digital flagship." lang="en" />
+        
+        {/* ARCHITECTURAL UNDERLAY: The System Void */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="absolute top-0 left-0 w-full h-full bg-[url('/textures/grain.png')] opacity-[0.05] mix-blend-overlay" />
+            
+            {/* Massive Backdrop Specimen */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none">
+                <span className="text-[45vw] font-institutional italic font-black tracking-tightest leading-none">
+                    VOID_404
+                </span>
             </div>
-          </div>
 
-          <h1 className="text-4xl font-bold text-slate-900 mb-2">404</h1>
+            {/* Scanning Laser Detail */}
+            <motion.div 
+                animate={{ top: ["0%", "100%", "0%"] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="absolute left-0 w-full h-[1px] bg-[#5a1f2e]/10 shadow-[0_0_20px_rgba(194,94,48,0.5)] z-10"
+            />
+        </div>
 
-          <h2 className="text-xl font-semibold text-slate-700 mb-4">
-            Page Not Found
-          </h2>
-
-          <p className="text-slate-600 mb-8 leading-relaxed">
-            Sorry, the page you are looking for doesn't exist.
-            <br />
-            It may have been moved or deleted.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              onClick={handleGoHome}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+        <div className="relative z-10 w-full max-w-[1500px] flex flex-col items-center text-center">
+            {/* Institutional Error Header */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className="mb-12"
             >
-              <Home className="w-4 h-4 mr-2" />
-              Go Home
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+                <div className="flex items-center justify-center gap-12 mb-16">
+                    <span className="hud-label text-[#5a1f2e]">FAILURE_CODE_0x404</span>
+                    <div className="w-24 h-[1px] bg-white/10" />
+                    <span className="text-[12px] font-black tracking-[0.8em] uppercase text-white/30">NODAL_SYNC_FAILURE</span>
+                </div>
+                
+                <h1 className="text-9xl md:text-[18vw] font-institutional text-white leading-[0.7] tracking-tightest italic transform-gpu mb-8">
+                    Mandate Voids.
+                </h1>
+                
+                <p className="text-4xl md:text-5xl text-white/40 font-institutional italic max-w-4xl mx-auto leading-tight tracking-tight">
+                    "The requested nodal path has been de-indexed or does not belong to the sovereign institutional cluster."
+                </p>
+            </motion.div>
+
+            {/* Error Actions: Protocol Recovery */}
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.6 }}
+                className="flex flex-col md:flex-row items-center gap-12 mt-16"
+            >
+                <Link href="/">
+                    <button className="group relative px-16 py-8 bg-white text-black hover:bg-[#5a1f2e] hover:text-white transition-all shadow-premium-2xl rounded-sm overflow-hidden flex items-center gap-6">
+                        <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                        <Home size={18} className="relative z-10" />
+                        <span className="text-[12px] font-black tracking-[1em] uppercase relative z-10">REBOOT_TO_HOME</span>
+                    </button>
+                </Link>
+                
+                <div className="flex items-center gap-12 opacity-30 hover:opacity-100 transition-all cursor-pointer group">
+                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:rotate-180 transition-transform duration-1000 group-hover:bg-[#5a1f2e]/20">
+                         <RefreshCw size={14} className="text-white" />
+                    </div>
+                    <span className="text-[10px] font-black tracking-[0.5em] uppercase">INITIATE_PATH_RESCAN</span>
+                </div>
+            </motion.div>
+
+            {/* Technical Metadata Footer */}
+            <div className="mt-48 flex flex-col items-center gap-8">
+                <div className="flex items-center gap-24 opacity-10">
+                    <div className="h-[1px] w-32 bg-white" />
+                    <Layers size={20} strokeWidth={1} />
+                    <div className="h-[1px] w-32 bg-white" />
+                </div>
+                
+                <div className="hud-label opacity-10 tracking-[1.5em] uppercase text-[10px] max-w-lg leading-relaxed">
+                    SYSTEM_CORE_AUDIT: NO_LOG_ENTRY_FOR_CURRENT_ROUTE
+                    <br/>
+                    OVERSIGHT_STATUS: REDACTED_PATHWAY
+                </div>
+            </div>
+        </div>
+
+        {/* Global Peripheral HUD details */}
+        <div className="absolute top-12 left-12 hud-label opacity-10 tracking-[2em] hidden xl:block uppercase">ERROR_LOG_V.01</div>
+        <div className="absolute bottom-12 right-12 hud-label opacity-10 tracking-[2.5em] hidden xl:block uppercase">INSTITUTIONAL_CORE_PROTECT</div>
     </div>
   );
 }
