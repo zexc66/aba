@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { Linkedin, Twitter, Mail, ArrowUpRight, ArrowUp } from "lucide-react";
+import { Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
 import { useState, memo } from "react";
 
 interface FooterProps {
@@ -7,6 +6,13 @@ interface FooterProps {
         rights: string;
         privacy: string;
         terms: string;
+    };
+    newsroom: {
+        newsletterTitle: string;
+        newsletterPlaceholder: string;
+        newsletterCta: string;
+        newsletterSuccess: string;
+        newsletterError: string;
     };
     lang: string;
 }
@@ -18,16 +24,16 @@ const socialLinks = [
 ];
 
 const navigation = [
-    { 
-        title: "Navigation", 
+    {
+        title: "Navigation",
         links: [
             { label: "About AIABASD", href: "#about" },
             { label: "Country Coverage", href: "#countries" },
             { label: "Governance & Ethics", href: "#governance" }
         ]
     },
-    { 
-        title: "Engagement", 
+    {
+        title: "Engagement",
         links: [
             { label: "Partner Network", href: "#partners" },
             { label: "Press & Newsroom", href: "#news" },
@@ -36,15 +42,16 @@ const navigation = [
     }
 ];
 
-function FooterComponent({ data, lang }: FooterProps) {
+function FooterComponent({ data, newsroom, lang }: FooterProps) {
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email) return;
+        if (!email || submitting) return;
         setSubmitting(true);
+        setStatus("idle");
         try {
             const response = await fetch("/api/inquiry", {
                 method: "POST",
@@ -52,24 +59,27 @@ function FooterComponent({ data, lang }: FooterProps) {
                 body: JSON.stringify({ type: "NEWSLETTER", email })
             });
             if (response.ok) {
-                setSuccess(true);
+                setStatus("success");
                 setEmail("");
-                setTimeout(() => setSuccess(false), 4000);
+            } else {
+                setStatus("error");
             }
         } catch (error) {
             console.error("Newsletter error:", error);
+            setStatus("error");
         } finally {
             setSubmitting(false);
+            setTimeout(() => setStatus("idle"), 5000);
         }
     };
 
     return (
         <footer className="relative bg-[#0b0b10] text-[#fdfcfb] pt-20 pb-12 overflow-hidden border-t border-white/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                
+
                 {/* Main Footer Row */}
                 <div className="grid lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
-                    
+
                     {/* Brand Info */}
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-4">
@@ -85,7 +95,7 @@ function FooterComponent({ data, lang }: FooterProps) {
                                         ? "التحالف الدولي الأفريقي للأعمال والتنمية المستدامة"
                                         : lang === "fr"
                                         ? "Alliance Internationale Africaine pour les Affaires et le Développement Durable"
-                                        : "African International Business Alliance & Sustainable Development"}
+                                        : "African International Alliance for Business & Sustainable Development"}
                                 </span>
                             </div>
                         </div>
@@ -139,26 +149,32 @@ function FooterComponent({ data, lang }: FooterProps) {
                         {/* Newsletter Signup */}
                         <div className="space-y-4">
                             <h4 className="text-xs font-semibold uppercase tracking-wider text-[#f2a007]">
-                                Updates
+                                {newsroom.newsletterTitle}
                             </h4>
-                            <p className="text-xs text-white/60 leading-normal">
-                                Subscribe to institutional announcements.
-                            </p>
                             <form onSubmit={handleSubscribe} className="space-y-2">
                                 <input
                                     type="email"
+                                    required
+                                    aria-label={newsroom.newsletterTitle}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="your.email@org.com"
+                                    placeholder={newsroom.newsletterPlaceholder}
                                     className="w-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder:text-white/40 rounded-md outline-none focus:border-[#f2a007] transition-colors"
                                 />
                                 <button
                                     type="submit"
-                                    disabled={submitting || success}
-                                    className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs py-2 rounded-md transition-colors"
+                                    disabled={submitting || status === "success"}
+                                    className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs py-2 rounded-md transition-colors disabled:opacity-50"
                                 >
-                                    {submitting ? "Sending..." : success ? "Subscribed!" : "Subscribe"}
+                                    {status === "success"
+                                        ? newsroom.newsletterSuccess
+                                        : newsroom.newsletterCta}
                                 </button>
+                                {status === "error" && (
+                                    <p role="alert" className="text-[11px] text-red-400">
+                                        {newsroom.newsletterError}
+                                    </p>
+                                )}
                             </form>
                         </div>
                     </div>
@@ -168,18 +184,18 @@ function FooterComponent({ data, lang }: FooterProps) {
                 {/* Bottom Legal & Back to Top */}
                 <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
                     <div>
-                        © {new Date().getFullYear()} AIABASD. All Rights Reserved.
+                        © {new Date().getFullYear()} AIABASD. {data.rights}
                     </div>
 
                     <div className="flex items-center gap-6 font-medium">
-                        <a href="#" className="hover:text-white transition-colors">{data.privacy}</a>
-                        <a href="#" className="hover:text-white transition-colors">{data.terms}</a>
+                        <a href="/privacy" className="hover:text-white transition-colors">{data.privacy}</a>
+                        <a href="/terms" className="hover:text-white transition-colors">{data.terms}</a>
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            aria-label="Back to top"
                             className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors cursor-pointer"
                         >
-                            <span>Back to top</span>
-                            <ArrowUp size={14} />
+                            <ArrowUp size={14} className="rtl:rotate-180" />
                         </button>
                     </div>
                 </div>

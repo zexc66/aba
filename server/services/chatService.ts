@@ -49,7 +49,7 @@ export function generateChatResponse(message: string): string {
 
     // Partnership / Investor
     if (msg.includes("partner") || msg.includes("invest") || msg.includes("fund") || msg.includes("capital")) {
-        return "**Strategic Partnerships & Investment**\n\nAIABASD delivers targeted internal rates of return (IRR: 22–30%) by structuring bankable opportunities.\n\nWe continually seek strategic partners across:\n• Public Sector & Municipalities\n• Development Finance Institutions (DFIs)\n• Investors & Private Capital\n• EPCs and Operating Partners\n\nIf you want to access locked documents or financial analytics, you can navigate to our exclusive **Investor Portal** from the menu to request an access code.";
+        return "**Strategic Partnerships & Investment**\n\nAIABASD structures bankable, governance-gated opportunities for public and private partners. Program economics are shared only through formal engagement and documentation — nothing on this site constitutes an offer or a promise of returns.\n\nWe continually seek strategic partners across:\n• Public Sector & Municipalities\n• Development Finance Institutions (DFIs)\n• Investors & Private Capital\n• EPCs and Operating Partners\n\nIf you want to request access to institutional materials, you can navigate to our **Investor Portal** from the menu to submit an access request.";
     }
 
     // Contact

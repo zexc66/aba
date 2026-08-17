@@ -121,8 +121,12 @@ async function startServer() {
 
   app.use(express.static(staticPath));
 
-  // Handle client-side routing — serve index.html for all GET routes
-  app.get("/{*splat}", (_req, res) => {
+  // Handle client-side routing — serve index.html for all non-API GET routes
+  app.get("/{*splat}", (req, res) => {
+    if (req.path.startsWith("/api/")) {
+      res.status(404).json({ error: "Not found" });
+      return;
+    }
     res.sendFile(path.join(staticPath, "index.html"));
   });
 
