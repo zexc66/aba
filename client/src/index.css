@@ -33,6 +33,7 @@
   --font-institutional: "Inter", -apple-system, system-ui, sans-serif;
   --font-sans: "Inter", -apple-system, system-ui, sans-serif;
   --font-mono: "Space Grotesk", ui-monospace, monospace;
+  --font-arabic: "Noto Kufi Arabic", "Plus Jakarta Sans", -apple-system, system-ui, sans-serif;
 
   /* Typography Refinements */
   --tracking-tightest: -0.05em;

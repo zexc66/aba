@@ -155,6 +155,75 @@ const HAMA_CONTENT = {
             subtitle: "حافظ على الجسر بين الأزمة الإقليمية وسيادة المجتمع.",
             button: "بوابة المشاركة",
         }
+    },
+    fr: {
+        nav: {
+            back: "Retour au Phare",
+            title: "Fida'an pour Hama",
+        },
+        hero: {
+            eyebrow: "Commandement Humanitaire Régional",
+            title: "Restauration Fida'an pour Hama",
+            subtitle: "Construire l'Espoir par les Infrastructures Civiques",
+            description:
+                "Un mandat de réhabilitation d'excellence restaurant 50 écoles et 20 centres médicaux à Hama, en Syrie — établissant des environnements de qualité souveraine pour une croissance durable.",
+            ctaPrimary: "Soutenir le Mandat",
+            ctaSecondary: "Contact",
+        },
+        stats: [
+            { value: "50", number: 50, label: "Actifs Éducatifs", icon: School, id: "SCH_50" },
+            { value: "20", number: 20, label: "Pôles Médicaux", icon: Hospital, id: "MED_20" },
+            { value: "100K+", number: 100, suffix: "K+", label: "Vies Ancrées", icon: Users, id: "BNF_100" },
+            { value: "2025", number: 2025, label: "Année Opérationnelle", icon: Calendar, id: "MDT_25" },
+        ],
+        about: {
+            title: "Le Mandat",
+            subtitle: "La Dignité par la Souveraineté Architecturale",
+            text: "Le mandat « Fida'an pour Hama » est un effort structurel de précision pour sécuriser l'avenir régional. En réhabilitant les piliers de l'éducation et de la santé, nous ancrons la résilience communautaire pour des décennies.",
+            highlights: [
+                {
+                    title: "Précision Scolaire",
+                    desc: "Rénovation de 50 établissements selon des normes structurelles de classe A.",
+                },
+                {
+                    title: "Intégrité Clinique",
+                    desc: "Restauration de 20 pôles de santé à haute capacité avec résilience de maintien de vie.",
+                },
+                {
+                    title: "Héritage Souverain",
+                    desc: "Des ancres infrastructureles conçues pour traverser les mutations générationnelles.",
+                },
+            ],
+        },
+        phases: {
+            title: "Évolution",
+            subtitle: "Feuille de Route du Relèvement Opérationnel",
+            list: [
+                {
+                    phase: "01",
+                    title: "Audit & Stratégie",
+                    desc: "Évaluation de l'intégrité structurelle et sélection des nœuds prioritaires.",
+                    status: "Archivé",
+                },
+                {
+                    phase: "02",
+                    title: "Ressources & Conception",
+                    desc: "Spécifications architecturales et approvisionnement éthique en matériaux.",
+                    status: "Actif",
+                },
+                {
+                    phase: "03",
+                    title: "Exécution Physique",
+                    desc: "Restauration complexe mobilisant l'expertise d'ingénierie locale.",
+                    status: "En File",
+                },
+            ],
+        },
+        cta: {
+            title: "Rejoignez le Mandat",
+            subtitle: "Soutenir le pont entre la crise régionale et la souveraineté communautaire.",
+            button: "Portail d'Engagement",
+        }
     }
 };
 
@@ -184,9 +253,11 @@ export default function HamaProject() {
 
     return (
         <div ref={containerRef} className={`bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? 'font-arabic' : 'font-institutional'} overflow-hidden`}>
-            <SEO 
+            <SEO
                 title={`${t.nav.title} | AIABASD Flagship`}
                 description={t.hero.description}
+                lang={lang}
+                url="/hama-project"
             />
 
             <HamaHUD backLabel={t.nav.back} isRTL={isRTL} />

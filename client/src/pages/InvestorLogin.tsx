@@ -32,14 +32,14 @@ export default function InvestorLogin() {
       });
 
       if (response.ok) {
-        toast.success("Access request submitted.");
-        toast.info("Institutional verification queued for directorial review.");
+        toast.success(t.toastSuccess);
+        toast.info(t.toastQueued);
         setLocation("/");
       } else {
-        toast.error("Submission failed. Please try again.");
+        toast.error(t.toastFailed);
       }
     } catch {
-      toast.error("Network error during verification.");
+      toast.error(t.toastNetwork);
     } finally {
       setIsLoading(false);
     }
@@ -47,26 +47,27 @@ export default function InvestorLogin() {
 
   return (
     <div
-      className={`min-h-screen bg-[#0b0b10] text-[#fdfcfb] flex flex-col justify-between p-6 md:p-12 relative select-none ${isRTL ? "font-arabic" : "font-sans"}`}
+      className={`min-h-screen bg-[#0b0b10] text-[#fdfcfb] flex flex-col justify-between p-6 md:p-12 relative ${isRTL ? "font-arabic" : "font-sans"}`}
     >
       <SEO
         title={`${t.vaultTitle} | AIABASD`}
         description={t.subtitle}
         lang={lang}
+        url="/investor-portal"
       />
 
       {/* Top Bar */}
       <header className="w-full max-w-6xl mx-auto flex items-center justify-between z-10 py-4">
         <Link href="/">
           <div className="flex items-center gap-3 text-sm font-semibold text-white/70 hover:text-white transition-colors cursor-pointer">
-            <ArrowLeft size={18} className={isRTL ? "rotate-180" : ""} />
-            <span>Return to Main Site</span>
+            <ArrowLeft size={18} className={`${isRTL ? "rotate-180" : ""} rtl:-scale-x-100`} />
+            <span>{t.backLabel}</span>
           </div>
         </Link>
 
         <div className="flex items-center gap-2 text-xs font-semibold text-[#f2a007]">
           <ShieldCheck size={16} />
-          <span>Secure Investor Access</span>
+          <span>{t.secureLabel}</span>
         </div>
       </header>
 
@@ -116,7 +117,7 @@ export default function InvestorLogin() {
               disabled={isLoading}
               className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-sm py-3.5 rounded-lg uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
             >
-              <span>{isLoading ? "Verifying..." : t.cta}</span>
+              <span>{isLoading ? t.verifying : t.cta}</span>
               <ArrowRight size={16} />
             </button>
           </form>
@@ -131,7 +132,7 @@ export default function InvestorLogin() {
 
       {/* Footer Bar */}
       <footer className="w-full max-w-6xl mx-auto text-center text-xs text-white/40 z-10 py-4">
-        © {new Date().getFullYear()} AIABASD Executive Investor Network.
+        © {new Date().getFullYear()} {t.footerLine}
       </footer>
     </div>
   );

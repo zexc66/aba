@@ -18,6 +18,9 @@ export interface Content {
   gallery: {
     title: string;
     subtitle: string;
+    eyebrow: string;
+    emptyTitle: string;
+    emptyText: string;
   };
   hero: {
     eyebrow: string;
@@ -79,6 +82,13 @@ export interface Content {
     title: string;
     note: string;
     empty: string;
+    eyebrow: string;
+    newsletterTitle: string;
+    newsletterText: string;
+    newsletterPlaceholder: string;
+    newsletterCta: string;
+    newsletterSuccess: string;
+    newsletterError: string;
   };
   contact: {
     title: string;
@@ -89,6 +99,16 @@ export interface Content {
     msg: string;
     send: string;
     sent: string;
+    eyebrow: string;
+    formTitle: string;
+    hqTitle: string;
+    london: string;
+    uk: string;
+    dakar: string;
+    senegal: string;
+    submitting: string;
+    successNote: string;
+    error: string;
     placeholders: {
       name: string;
       email: string;
@@ -155,6 +175,14 @@ export interface Content {
     cta: string;
     requestKey: string;
     auditNote: string;
+    backLabel: string;
+    secureLabel: string;
+    verifying: string;
+    footerLine: string;
+    toastSuccess: string;
+    toastQueued: string;
+    toastFailed: string;
+    toastNetwork: string;
   };
   langLabel: string;
 }
@@ -178,6 +206,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     gallery: {
       title: "Gallery",
       subtitle: "A glimpse into our impact, events, and partnerships across Africa.",
+      eyebrow: "Media & Visual Gallery",
+      emptyTitle: "Our gallery is being curated",
+      emptyText: "Authentic photography from our programs, events, and field missions will be published here as it becomes available.",
     },
     nav: {
       about: "About",
@@ -341,7 +372,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     newsroom: {
       title: "News & updates",
       note: "Recent highlights and announcements.",
-      empty: "Add your latest MoUs, site visits, and awards here.",
+      empty: "Announcements, partnership protocols, and field updates will be published here.",
+      eyebrow: "Press & Insights",
+      newsletterTitle: "Subscribe to Institutional Disclosures",
+      newsletterText: "Receive executive updates, development reports, and partnership announcements directly.",
+      newsletterPlaceholder: "your.email@institution.org",
+      newsletterCta: "Subscribe",
+      newsletterSuccess: "Subscribed — thank you.",
+      newsletterError: "Subscription failed. Please try again.",
     },
     contact: {
       title: "Get in touch",
@@ -351,7 +389,17 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       org: "Organization",
       msg: "How can we collaborate?",
       send: "Send inquiry",
-      sent: "Sent! We'll reach out shortly.",
+      sent: "Inquiry Submitted",
+      eyebrow: "Executive Liaison",
+      formTitle: "Send Executive Inquiry",
+      hqTitle: "Global Headquarters & Contacts",
+      london: "London Headquarters",
+      uk: "United Kingdom",
+      dakar: "Dakar Regional Secretariat",
+      senegal: "Senegal",
+      submitting: "Submitting Inquiry…",
+      successNote: "Your message has been received securely. Reference: {ref}",
+      error: "Submission failed. Please try again or email contact@aiabasd.org",
       placeholders: {
         name: "e.g., Ziad Shneikat",
         email: "name@company.com",
@@ -431,7 +479,15 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       keyPlaceholder: "••••••••••••",
       cta: "INITIATE_AUTH_SESSION",
       requestKey: "REQUEST_KEY",
-      auditNote: "Access is monitored and audited in accordance with the sovereign institutional privacy mandate."
+      auditNote: "Access is monitored and audited in accordance with the sovereign institutional privacy mandate.",
+      backLabel: "Return to Main Site",
+      secureLabel: "Secure Investor Access",
+      verifying: "Verifying…",
+      footerLine: "AIABASD Executive Investor Network.",
+      toastSuccess: "Access request submitted.",
+      toastQueued: "Institutional verification queued for directorial review.",
+      toastFailed: "Submission failed. Please try again.",
+      toastNetwork: "Network error during verification."
     },
     langLabel: "العربية",
   },
@@ -440,6 +496,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     gallery: {
       title: "المعرض",
       subtitle: "لمحة عن تأثيرنا وفعالياتنا وشراكاتنا في جميع أنحاء إفريقيا.",
+      eyebrow: "معرض الوسائط",
+      emptyTitle: "المعرض قيد التجهيز",
+      emptyText: "سيتم نشر الصور الحقيقية من برامجنا وفعالياتنا ومهامنا الميدانية هنا فور توفرها.",
     },
     nav: {
       about: "من نحن",
@@ -603,7 +662,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     newsroom: {
       title: "الأخبار والتحديثات",
       note: "آخر المستجدات والإعلانات.",
-      empty: "أضِف مذكرات التفاهم والزيارات الميدانية والجوائز هنا.",
+      empty: "سيتم نشر الإعلانات وبروتوكولات الشراكة والمستجدات الميدانية هنا.",
+      eyebrow: "الصحافة والرؤى",
+      newsletterTitle: "الاشتراك في الإفصاحات المؤسسية",
+      newsletterText: "تلقّ التحديثات التنفيذية وتقارير التطوير وإعلانات الشراكات مباشرة.",
+      newsletterPlaceholder: "your.email@institution.org",
+      newsletterCta: "اشترك",
+      newsletterSuccess: "تم الاشتراك — شكرًا لك.",
+      newsletterError: "تعذّر الاشتراك. حاول مرة أخرى.",
     },
     contact: {
       title: "تواصل معنا",
@@ -613,7 +679,17 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       org: "الجهة/المؤسسة",
       msg: "كيف يمكن التعاون؟",
       send: "إرسال الاستفسار",
-      sent: "تم الإرسال! سنعاود التواصل قريبًا.",
+      sent: "تم إرسال الاستفسار",
+      eyebrow: "الترابط التنفيذي",
+      formTitle: "إرسال استفسار تنفيذي",
+      hqTitle: "المقرات العالمية ووسائل التواصل",
+      london: "المقر الرئيسي — لندن",
+      uk: "المملكة المتحدة",
+      dakar: "الأمانة الإقليمية — داكار",
+      senegal: "السنغال",
+      submitting: "جارٍ إرسال الاستفسار…",
+      successNote: "تم استلام رسالتك بأمان. الرقم المرجعي: {ref}",
+      error: "تعذّر الإرسال. حاول مرة أخرى أو راسلنا على contact@aiabasd.org",
       placeholders: {
         name: "مثال: زياد شنيكات",
         email: "name@company.com",
@@ -693,7 +769,15 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       keyPlaceholder: "••••••••••••",
       cta: "بدء_جلسة_التوثيق",
       requestKey: "طلب_مفتاح",
-      auditNote: "يتم مراقبة وتدقيق الوصول وفقاً لتفويض الخصوصية المؤسسي السيادي."
+      auditNote: "يتم مراقبة وتدقيق الوصول وفقاً لتفويض الخصوصية المؤسسي السيادي.",
+      backLabel: "العودة إلى الموقع الرئيسي",
+      secureLabel: "وصول آمن للمستثمرين",
+      verifying: "جارٍ التحقق…",
+      footerLine: "شبكة المستثمرين التنفيذيين — AIABASD.",
+      toastSuccess: "تم إرسال طلب الوصول.",
+      toastQueued: "تم إدراج التحقق المؤسسي للمراجعة الإدارية.",
+      toastFailed: "تعذّر الإرسال. حاول مرة أخرى.",
+      toastNetwork: "خطأ في الشبكة أثناء التحقق."
     },
     langLabel: "EN",
   },
@@ -702,6 +786,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     gallery: {
       title: "Galerie",
       subtitle: "Un aperçu de notre impact, nos événements et nos partenariats en Afrique.",
+      eyebrow: "Galerie Médias",
+      emptyTitle: "Notre galerie est en cours de préparation",
+      emptyText: "Les photographies authentiques de nos programmes, événements et missions de terrain seront publiées ici dès leur disponibilité.",
     },
     nav: {
       about: "À propos",
@@ -865,7 +952,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     newsroom: {
       title: "Actualités et mises à jour",
       note: "Derniers faits saillants et annonces.",
-      empty: "Ajoutez vos derniers protocoles d'accord, visites sur le terrain et prix ici.",
+      empty: "Les annonces, protocoles de partenariat et mises à jour terrain seront publiés ici.",
+      eyebrow: "Presse & Analyses",
+      newsletterTitle: "S'abonner aux Publications Institutionnelles",
+      newsletterText: "Recevez directement les mises à jour exécutives, rapports de développement et annonces de partenariat.",
+      newsletterPlaceholder: "votre.email@institution.org",
+      newsletterCta: "S'abonner",
+      newsletterSuccess: "Abonné — merci.",
+      newsletterError: "Échec de l'abonnement. Veuillez réessayer.",
     },
     contact: {
       title: "Contactez-nous",
@@ -875,7 +969,17 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       org: "Organisation",
       msg: "Comment pouvons-nous collaborer ?",
       send: "Envoyer la demande",
-      sent: "Envoyé ! Nous vous recontacterons bientôt.",
+      sent: "Demande Envoyée",
+      eyebrow: "Liaison Exécutive",
+      formTitle: "Envoyer une Demande Exécutive",
+      hqTitle: "Sièges Mondiaux & Contacts",
+      london: "Siège de Londres",
+      uk: "Royaume-Uni",
+      dakar: "Secrétariat Régional de Dakar",
+      senegal: "Sénégal",
+      submitting: "Envoi de la demande…",
+      successNote: "Votre message a été reçu en toute sécurité. Référence : {ref}",
+      error: "Échec de l'envoi. Réessayez ou écrivez à contact@aiabasd.org",
       placeholders: {
         name: "ex., Ziad Shneikat",
         email: "nom@entreprise.com",
@@ -955,7 +1059,15 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       keyPlaceholder: "••••••••••••",
       cta: "INITIER_SESSION_AUTH",
       requestKey: "DEMANDER_CLÉ",
-      auditNote: "L'accès est surveillé et audité conformément au mandat de confidentialité institutionnelle souveraine."
+      auditNote: "L'accès est surveillé et audité conformément au mandat de confidentialité institutionnelle souveraine.",
+      backLabel: "Retour au Site Principal",
+      secureLabel: "Accès Investisseur Sécurisé",
+      verifying: "Vérification…",
+      footerLine: "Réseau d'Investisseurs Exécutifs AIABASD.",
+      toastSuccess: "Demande d'accès envoyée.",
+      toastQueued: "Vérification institutionnelle en attente de la direction.",
+      toastFailed: "Échec de l'envoi. Veuillez réessayer.",
+      toastNetwork: "Erreur réseau lors de la vérification."
     },
     langLabel: "FR",
   },

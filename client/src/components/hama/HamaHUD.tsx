@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Globe } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 interface HamaHUDProps {
     backLabel: string;
@@ -9,6 +10,7 @@ interface HamaHUDProps {
 
 export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
     const [, setLocation] = useLocation();
+    const { langLabel, toggleLang } = useLanguageContext();
 
     return (
         <div className="fixed inset-0 pointer-events-none z-[100]">
@@ -25,6 +27,14 @@ export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
                     <div className="flex flex-col items-end gap-1">
                         <span className="text-[7px] font-black tracking-[0.8em] opacity-20 font-sans">SYS_NODE: 0x82_HAMA</span>
                         <span className="text-[7px] font-black tracking-[0.8em] text-[#5a1f2e] uppercase font-sans">CRYPTO_VERIFIED</span>
+                        <button
+                            onClick={toggleLang}
+                            aria-label="Switch language"
+                            className="pointer-events-auto mt-1 flex items-center gap-1.5 text-[8px] font-black tracking-[0.4em] uppercase font-sans text-black/40 hover:text-[#5a1f2e] transition-colors"
+                        >
+                            <Globe size={10} />
+                            <span>{langLabel}</span>
+                        </button>
                     </div>
                 </div>
                 
