@@ -50,7 +50,7 @@ function TeamComponent({ data, hud }: TeamProps) {
                                 {/* Portrait Container */}
                                 <div className="aspect-square rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 overflow-hidden relative">
                                     {member.image ? (
-                                        <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                                        <img loading="lazy" decoding="async" src={member.image} alt={member.name} className="w-full h-full object-cover" />
                                     ) : (
                                         <User size={64} className="text-white/20" strokeWidth={1} />
                                     )}

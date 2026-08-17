@@ -106,3 +106,10 @@ temp/
 *.sqlite3
 
 .vercel
+
+# Lead store (PII) — server runtime writes next to source in dev
+**/inquiries.json
+
+# Env — Vite envDir is repo root
+.env.*
+!.env.example

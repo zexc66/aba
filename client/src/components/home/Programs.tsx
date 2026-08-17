@@ -130,7 +130,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                             <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-between h-full gap-6">
                                 {featuredProgram.logo && (
                                     <div className="w-20 h-20 rounded-xl overflow-hidden border border-white/20 bg-white/10 p-1 shadow-lg">
-                                        <img src={featuredProgram.logo} alt="Project Logo" className="w-full h-full object-cover rounded-lg" />
+                                        <img loading="lazy" decoding="async" src={featuredProgram.logo} alt="Project Logo" className="w-full h-full object-cover rounded-lg" />
                                     </div>
                                 )}
 

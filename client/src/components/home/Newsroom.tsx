@@ -74,7 +74,7 @@ function NewsroomComponent({ data }: NewsroomProps) {
                     {/* Featured Article */}
                     <div className="lg:col-span-8 bg-white rounded-xl border border-black/5 shadow-sm overflow-hidden flex flex-col md:flex-row group hover:shadow-md transition-all duration-300">
                         <div className="md:w-1/2 h-64 md:h-auto overflow-hidden relative">
-                            <img 
+                            <img loading="lazy" decoding="async" 
                                 src={NEWS_MANDATES[0].image} 
                                 alt={NEWS_MANDATES[0].title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
@@ -143,7 +143,7 @@ function NewsroomComponent({ data }: NewsroomProps) {
                             className="bg-white p-6 rounded-xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col md:flex-row gap-6 items-center"
                         >
                             <div className="w-full md:w-36 h-36 rounded-lg overflow-hidden shrink-0">
-                                <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                <img loading="lazy" decoding="async" src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                             </div>
                             <div className="space-y-2 flex-1">
                                 <div className="flex items-center gap-2 text-xs font-semibold text-[#5a1f2e]">

@@ -1,4 +1,11 @@
-import { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+} from "react";
 import type { ReactNode } from "react";
 import { COPY } from "@/data";
 import { cms } from "@/services/cms";
@@ -7,75 +14,110 @@ import { cms } from "@/services/cms";
 export type Locale = "en" | "ar" | "fr";
 
 interface LanguageContextValue {
-    lang: Locale;
-    isRTL: boolean;
-    toggleLang: () => void;
-    setLang: (lang: Locale) => void;
-    content: typeof COPY["en"];
-    langLabel: string;
-    isFetchingCMS: boolean;
+  lang: Locale;
+  isRTL: boolean;
+  toggleLang: () => void;
+  setLang: (lang: Locale) => void;
+  content: (typeof COPY)["en"];
+  langLabel: string;
+  isFetchingCMS: boolean;
 }
 
 // ── Context ───────────────────────────────────────────────────────────────────
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 // ── Provider ──────────────────────────────────────────────────────────────────
+const LANG_STORAGE_KEY = "aiabasd-lang";
+
+function initialLang(): Locale {
+  try {
+    const stored = localStorage.getItem(LANG_STORAGE_KEY);
+    if (stored === "en" || stored === "ar" || stored === "fr") return stored;
+  } catch {
+    // localStorage unavailable (private mode) — fall back to English
+  }
+  return "en";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-    const [lang, setLangState] = useState<Locale>("en");
-    const [content, setContent] = useState<typeof COPY["en"]>(COPY["en"]);
-    const [isFetchingCMS, setIsFetchingCMS] = useState(true);
+  const [lang, setLangState] = useState<Locale>(initialLang);
+  const [content, setContent] = useState<(typeof COPY)["en"]>(COPY["en"]);
+  const [isFetchingCMS, setIsFetchingCMS] = useState(cms.configured);
 
-    const isRTL = lang === "ar";
+  const isRTL = lang === "ar";
 
-    // Sync document direction whenever language changes
-    useEffect(() => {
-        document.documentElement.dir = isRTL ? "rtl" : "ltr";
-        document.documentElement.lang = lang;
-    }, [isRTL, lang]);
+  // Sync document direction + persist choice whenever language changes
+  useEffect(() => {
+    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+    document.documentElement.lang = lang;
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch {
+      // storage unavailable — preference just won't persist
+    }
+  }, [isRTL, lang]);
 
-    // Fetch CMS content whenever language changes
-    useEffect(() => {
-        let mounted = true;
-        const fetchContent = async () => {
-            setIsFetchingCMS(true);
-            const data = await cms.getWebsiteContent(lang);
-            if (mounted) {
-                setContent(data);
-                setIsFetchingCMS(false);
-            }
-        };
-        fetchContent();
-        return () => { mounted = false; };
-    }, [lang]);
+  // Fetch CMS content whenever language changes; fall back to local copy
+  // instantly (no splash, no loading state) when Contentful isn't configured.
+  useEffect(() => {
+    if (!cms.configured) {
+      setContent(COPY[lang]);
+      setIsFetchingCMS(false);
+      return;
+    }
+    let mounted = true;
+    const fetchContent = async () => {
+      setIsFetchingCMS(true);
+      const data = await cms.getWebsiteContent(lang);
+      if (mounted) {
+        setContent(data);
+        setIsFetchingCMS(false);
+      }
+    };
+    fetchContent();
+    return () => {
+      mounted = false;
+    };
+  }, [lang]);
 
-    const setLang = useCallback((next: Locale) => {
-        setLangState(next);
-    }, []);
+  const setLang = useCallback((next: Locale) => {
+    setLangState(next);
+  }, []);
 
-    const toggleLang = useCallback(() => {
-        setLangState((prev) => (prev === "en" ? "ar" : prev === "ar" ? "fr" : "en"));
-    }, []);
+  const toggleLang = useCallback(() => {
+    setLangState(prev => (prev === "en" ? "ar" : prev === "ar" ? "fr" : "en"));
+  }, []);
 
-    // Derive the lang button label from the content
-    const langLabel = useMemo(() => content.langLabel, [content.langLabel]);
+  // Derive the lang button label from the content
+  const langLabel = useMemo(() => content.langLabel, [content.langLabel]);
 
-    const value: LanguageContextValue = useMemo(
-        () => ({ lang, isRTL, toggleLang, setLang, content, langLabel, isFetchingCMS }),
-        [lang, isRTL, toggleLang, setLang, content, langLabel, isFetchingCMS]
-    );
+  const value: LanguageContextValue = useMemo(
+    () => ({
+      lang,
+      isRTL,
+      toggleLang,
+      setLang,
+      content,
+      langLabel,
+      isFetchingCMS,
+    }),
+    [lang, isRTL, toggleLang, setLang, content, langLabel, isFetchingCMS]
+  );
 
-    return (
-        <LanguageContext.Provider value={value}>
-            {children}
-        </LanguageContext.Provider>
-    );
+  return (
+    <LanguageContext.Provider value={value}>
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 // ── Consumer hook ─────────────────────────────────────────────────────────────
 export function useLanguageContext(): LanguageContextValue {
-    const ctx = useContext(LanguageContext);
-    if (!ctx) {
-        throw new Error("useLanguageContext must be used inside <LanguageProvider>");
-    }
-    return ctx;
+  const ctx = useContext(LanguageContext);
+  if (!ctx) {
+    throw new Error(
+      "useLanguageContext must be used inside <LanguageProvider>"
+    );
+  }
+  return ctx;
 }

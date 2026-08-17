@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -17,43 +18,54 @@ export interface Inquiry {
   timestamp: string;
 }
 
-export async function saveInquiry(inquiry: Omit<Inquiry, "id" | "timestamp">) {
+export type InquiryInput = Omit<Inquiry, "id" | "timestamp">;
+
+// Serialize every read-modify-write cycle: concurrent requests queue instead of
+// racing on the file (last-write-wins previously dropped leads).
+let queue: Promise<unknown> = Promise.resolve();
+
+function enqueue<T>(task: () => Promise<T>): Promise<T> {
+  const run = queue.then(task, task);
+  queue = run.catch(() => {});
+  return run;
+}
+
+async function readAll(): Promise<Inquiry[]> {
+  let raw: string;
   try {
-    let inquiries: Inquiry[] = [];
-    
-    try {
-      const data = await fs.readFile(DB_PATH, "utf-8");
-      inquiries = JSON.parse(data);
-    } catch (e) {
-      // File doesn't exist yet, start with empty array
-    }
-
-    const newInquiry: Inquiry = {
-      ...inquiry,
-      id: Math.random().toString(36).substring(2, 11),
-      timestamp: new Date().toISOString()
-    };
-
-    inquiries.push(newInquiry);
-    
-    await fs.writeFile(DB_PATH, JSON.stringify(inquiries, null, 2));
-    
-    // PRODUCTION AUDIT FIX: Structured logging without PII leakage in standard logs
-    // We log that an inquiry was saved, but redirect full PII to the secure JSON store
-    console.log(`[STORAGE][SECURE_ARCHIVE] Inquiry ${newInquiry.id} of type ${newInquiry.type} stored.`);
-    
-    return newInquiry;
+    raw = await fs.readFile(DB_PATH, "utf-8");
   } catch (error) {
-    console.error("Storage Error:", error);
-    throw new Error("Critical storage failure: unable to persist institutional lead");
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+    throw error;
+  }
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) ? (parsed as Inquiry[]) : [];
+  } catch {
+    // Preserve the corrupt store for manual recovery instead of silently
+    // overwriting it with an empty array (which previously wiped all leads).
+    await fs.rename(DB_PATH, `${DB_PATH}.corrupt-${Date.now()}`);
+    return [];
   }
 }
 
-export async function getInquiries() {
-  try {
-    const data = await fs.readFile(DB_PATH, "utf-8");
-    return JSON.parse(data) as Inquiry[];
-  } catch (e) {
-    return [];
-  }
+async function writeAll(inquiries: Inquiry[]): Promise<void> {
+  // Atomic replace: a crash mid-write can never truncate the existing store.
+  const tmpPath = `${DB_PATH}.${randomUUID()}.tmp`;
+  await fs.writeFile(tmpPath, JSON.stringify(inquiries, null, 2));
+  await fs.rename(tmpPath, DB_PATH);
+}
+
+export function saveInquiry(inquiry: InquiryInput): Promise<Inquiry> {
+  return enqueue(async () => {
+    const inquiries = await readAll();
+    const newInquiry: Inquiry = {
+      ...inquiry,
+      id: randomUUID().slice(0, 8),
+      timestamp: new Date().toISOString(),
+    };
+    inquiries.push(newInquiry);
+    await writeAll(inquiries);
+    return newInquiry;
+  });
 }

@@ -22,23 +22,18 @@ export default function Home() {
 
   return (
     <>
-      <SEO
-        title={t.metaTitle}
-        description={t.hero.subtitle}
-        lang={lang}
-      />
+      <SEO title={t.metaTitle} description={t.hero.subtitle} lang={lang} />
       {isFetchingCMS && <PageLoader minDuration={1000} />}
-      {!isFetchingCMS && <PageLoader minDuration={500} />}
-      
+
       <div className="relative min-h-screen text-[#0b0b10] editorial-theme">
         <AnimatedBackground />
-        <Header 
-          nav={t.nav} 
-          langLabel={t.langLabel} 
-          toggleLang={toggleLang} 
-          currentLang={lang} 
+        <Header
+          nav={t.nav}
+          langLabel={t.langLabel}
+          toggleLang={toggleLang}
+          currentLang={lang}
         />
-        
+
         <main>
           <Hero data={t.hero} stats={t.stats} />
           <About data={t.about} />
