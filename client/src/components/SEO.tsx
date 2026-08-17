@@ -5,9 +5,25 @@ interface SEOProps {
     description: string;
     keywords?: string[];
     image?: string;
+    /** Path relative to the site root, e.g. "/gallery". Omit for the home page. */
     url?: string;
     lang?: string;
 }
+
+export const SITE_URL = "https://aiabasd.org";
+
+const ORG_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    name: "African International Alliance for Business & Sustainable Development",
+    alternateName: "AIABASD",
+    url: SITE_URL,
+    logo: `${SITE_URL}/logo-512.png`,
+    email: "contact@aiabasd.org",
+    description:
+        "Multi-country alliance orchestrating bankable PPP/BOT infrastructure and development programs across Africa and the Arab world, aligned with SDG 2030 and AU Agenda 2063.",
+    areaServed: ["Africa", "Middle East"],
+};
 
 export default function SEO({
     title,
@@ -17,16 +33,13 @@ export default function SEO({
     url,
     lang = "en"
 }: SEOProps) {
-    const siteUrl = "https://aiabasd.org"; // Replace with actual domain
-    const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
-    const fullImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
+    const fullUrl = url ? `${SITE_URL}${url}` : SITE_URL;
+    const fullImage = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
     return (
         <Helmet>
             {/* Standard Metadata */}
             <html lang={lang} />
-            <title>{title}</title>
-            <meta name="description" content={description} />
             {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
 
             {/* Open Graph / Facebook */}
@@ -36,6 +49,7 @@ export default function SEO({
             <meta property="og:description" content={description} />
             <meta property="og:image" content={fullImage} />
             <meta property="og:locale" content={lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US"} />
+            {/* og:locale:alternate tags are static in index.html — one URL serves all locales */}
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
@@ -44,8 +58,11 @@ export default function SEO({
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={fullImage} />
 
-            {/* Canonical */}
+            {/* Canonical — per route, not pinned to the root */}
             <link rel="canonical" href={fullUrl} />
+
+            {/* Organization structured data */}
+            <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>
         </Helmet>
     );
 }

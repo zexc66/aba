@@ -14,6 +14,8 @@ const Home = lazy(() => import("./pages/Home"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const HamaProject = lazy(() => import("./pages/HamaProject"));
 const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function Router() {
@@ -24,6 +26,8 @@ function Router() {
         <Route path={"/gallery"} component={Gallery} />
         <Route path={"/hama-project"} component={HamaProject} />
         <Route path={"/investor-portal"} component={InvestorLogin} />
+        <Route path={"/privacy"} component={Privacy} />
+        <Route path={"/terms"} component={Terms} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
