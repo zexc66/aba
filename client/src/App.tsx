@@ -13,6 +13,7 @@ import GlobalLayout from "./components/layout/GlobalLayout";
 const Home = lazy(() => import("./pages/Home"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const HamaProject = lazy(() => import("./pages/HamaProject"));
+const ProgramDetail = lazy(() => import("./pages/ProgramDetail"));
 const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -25,6 +26,7 @@ function Router() {
         <Route path={"/"} component={Home} />
         <Route path={"/gallery"} component={Gallery} />
         <Route path={"/hama-project"} component={HamaProject} />
+        <Route path={"/programs/:slug"} component={ProgramDetail} />
         <Route path={"/investor-portal"} component={InvestorLogin} />
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />

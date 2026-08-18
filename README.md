@@ -30,11 +30,20 @@ pnpm start     # NODE_ENV=production node dist/index.js (serves site + API on :5
 | Script | Purpose |
 |---|---|
 | `pnpm dev` | Vite dev server (:8080) |
-| `pnpm dev:server` | Express API (:5000) |
 | `pnpm build` | Production build (client + server) |
 | `pnpm start` | Run production server |
 | `pnpm check` | TypeScript check (`tsc --noEmit`) |
+| `pnpm check:i18n` | Locale parity check — EN/AR/FR key shapes and program slugs must match |
 | `pnpm format` | Prettier |
+
+## Docker
+
+```bash
+docker build -t aiabasd .
+docker run -p 5000:5000 -v aiabasd-leads:/app/dist aiabasd
+```
+
+Mount a volume over `/app/dist` so `inquiries.json` (leads) survives container restarts.
 
 ## Environment
 

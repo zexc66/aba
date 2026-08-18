@@ -2,7 +2,7 @@
   "name": "aiabasd-website",
   "version": "1.0.0",
   "type": "module",
-  "license": "MIT",
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "vite --host",
     "dev:server": "tsx server/index.ts",
@@ -10,6 +10,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "check:i18n": "esbuild scripts/check-i18n-parity.ts --bundle --platform=node --format=esm --jsx=automatic --outfile=node_modules/.parity.mjs --log-level=error && node node_modules/.parity.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {

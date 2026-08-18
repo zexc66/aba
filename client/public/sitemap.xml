@@ -11,6 +11,41 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://aiabasd.org/programs/hama-rehabilitation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/al-arish-hub</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/green-energy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/digital-africa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/integrated-cities</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/debris-recycling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/food-security</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aiabasd.org/gallery</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

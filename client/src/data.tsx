@@ -52,7 +52,23 @@ export interface Content {
       tags: string[];
       logo?: string;
       link?: string;
+      slug: string;
+      status: string;
+      detail: {
+        overview: string;
+        highlights: { title: string; desc: string }[];
+      };
     }[];
+  };
+  programDetail: {
+    backLabel: string;
+    eyebrow: string;
+    overviewLabel: string;
+    highlightsLabel: string;
+    statusLabel: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    ctaButton: string;
   };
   countries: {
     title: string;
@@ -280,6 +296,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           tags: ["Humanitarian", "Education", "Healthcare"],
           logo: "/projects/hama-logo.jpg",
           link: "/hama-project",
+          slug: "hama-rehabilitation",
+          status: "Active",
+          detail: {
+            overview: "The Fida'an for Hama initiative is AIABASD's flagship humanitarian mandate: the full structural rehabilitation of 50 schools and 20 health centers across Hama Governorate, Syria. The program anchors early recovery by restoring the civic infrastructure communities depend on, executed with independent engineering oversight and coordination with local and international partners.",
+            highlights: [
+              { title: "Educational assets", desc: "50 school campuses rebuilt to grade-A structural standards." },
+              { title: "Clinical network", desc: "20 health centers restored with resilient life-support systems." },
+              { title: "Community reach", desc: "An estimated 100,000+ lives anchored by restored services." },
+            ],
+          },
         },
         {
           icon: <Building2 className="w-6 h-6" />,
@@ -287,6 +313,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Regional humanitarian logistics hub serving Gaza reconstruction: warehousing (ambient/cold), kitting, fleet ops, customs facilitation, and NGO contracting.",
           tags: ["Humanitarian", "Warehousing", "Fleet"],
+          slug: "al-arish-hub",
+          status: "In development",
+          detail: {
+            overview: "A regional logistics and reconstruction hub in Al-Arish positioned to serve Gaza rebuilding efforts: ambient and cold-chain warehousing, kitting and fleet operations, customs facilitation, and contracting channels for NGOs and donors requiring dependable corridor capacity.",
+            highlights: [
+              { title: "Warehousing", desc: "Ambient and cold-storage capacity for humanitarian and reconstruction cargo." },
+              { title: "Corridor services", desc: "Customs facilitation, kitting, and fleet operations." },
+              { title: "NGO-ready", desc: "Contracting and servicing designed around humanitarian operators." },
+            ],
+          },
         },
         {
           icon: <Leaf className="w-6 h-6" />,
@@ -294,6 +330,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Bankable solar PV programs with grid integration, storage pilots, and local content enablement; EPC+F structures with independent monitoring.",
           tags: ["Energy", "Solar", "EPC+F"],
+          slug: "green-energy",
+          status: "Pipeline",
+          detail: {
+            overview: "A pipeline of utility-scale solar PV programs exceeding 150MW across target markets, structured as bankable EPC+F transactions with grid integration studies, storage pilots, and local-content participation. Independent engineers monitor delivery against contract milestones.",
+            highlights: [
+              { title: "Scale", desc: "150MW+ of planned utility-scale solar capacity." },
+              { title: "Bankable structure", desc: "EPC+F contracting with independent monitoring." },
+              { title: "Local content", desc: "Local manufacturing and workforce participation." },
+            ],
+          },
         },
         {
           icon: <Globe2 className="w-6 h-6" />,
@@ -301,6 +347,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Backbone fiber, data centers, and secure e‑gov platforms to unlock digital inclusion across education, health, and commerce.",
           tags: ["Digital", "Cyber", "Backbone"],
+          slug: "digital-africa",
+          status: "Pipeline",
+          detail: {
+            overview: "National and cross-border digital infrastructure: backbone fiber, data centers, and secure e-government platforms. The program targets digital inclusion in education, health, and commerce, with cybersecurity designed in from the start rather than added later.",
+            highlights: [
+              { title: "Connectivity", desc: "Backbone fiber linking underserved regions." },
+              { title: "Data infrastructure", desc: "Data centers with sovereign hosting options." },
+              { title: "Secure platforms", desc: "E-government services with embedded cyber standards." },
+            ],
+          },
         },
         {
           icon: <Building2 className="w-6 h-6" />,
@@ -308,6 +364,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "PPP/BOT industrial ecosystems with anchor tenants, skills/TVET hubs, and climate‑resilient utilities for export‑led growth.",
           tags: ["PPP", "Industrial", "Logistics"],
+          slug: "integrated-cities",
+          status: "Pipeline",
+          detail: {
+            overview: "Integrated industrial and logistics zones developed under PPP/BOT structures: anchor tenants, skills and TVET hubs, and climate-resilient utilities, designed to convert regional demand into export-led growth and durable employment.",
+            highlights: [
+              { title: "Anchor ecosystem", desc: "Anchor tenants secured before construction mobilizes." },
+              { title: "Skills pipeline", desc: "TVET hubs aligned to zone industries." },
+              { title: "Resilient utilities", desc: "Power, water, and waste built for climate stress." },
+            ],
+          },
         },
         {
           icon: <Recycle className="w-6 h-6" />,
@@ -315,6 +381,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Industrial rubble processing, concrete crushing, and eco-brick manufacturing plants across affected Syrian governorates to transform conflict rubble into certified sustainable building materials for urban recovery.",
           tags: ["Recycling", "Syria", "Circular Economy", "Environment"],
+          slug: "debris-recycling",
+          status: "In development",
+          detail: {
+            overview: "Industrial-scale circular recovery for Syria's reconstruction: rubble processing and concrete crushing plants that convert conflict debris into certified, sustainable building materials — reducing reconstruction input costs while creating local manufacturing jobs.",
+            highlights: [
+              { title: "Material recovery", desc: "Rubble processed into certified eco-bricks and aggregates." },
+              { title: "Local jobs", desc: "Processing plants staffed and managed locally." },
+              { title: "Circular supply", desc: "Reconstruction fed by sustainable domestic inputs." },
+            ],
+          },
         },
         {
           icon: <Leaf className="w-6 h-6" />,
@@ -322,8 +398,28 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "End‑to‑end value chains (feed, processing, cold chain, distribution) with traceability and HACCP/ISO compliance.",
           tags: ["Agro", "Cold Chain", "HACCP"],
+          slug: "food-security",
+          status: "Pipeline",
+          detail: {
+            overview: "End-to-end agro value chains — feed production, processing, cold-chain logistics, and distribution — with full traceability and HACCP/ISO compliance. The program reduces post-harvest loss and stabilizes regional food supply.",
+            highlights: [
+              { title: "Value chain", desc: "Feed, processing, cold chain, and distribution integrated." },
+              { title: "Compliance", desc: "HACCP/ISO-certified operations with traceability." },
+              { title: "Food resilience", desc: "Reduced post-harvest loss and stabilized supply." },
+            ],
+          },
         },
       ],
+    },
+    programDetail: {
+      backLabel: "All Programs",
+      eyebrow: "Flagship Program",
+      overviewLabel: "Program Overview",
+      highlightsLabel: "Key Elements",
+      statusLabel: "Status",
+      ctaTitle: "Partner on this program",
+      ctaSubtitle: "Discuss mandates, co-financing, or operating roles with our team.",
+      ctaButton: "Send an inquiry",
     },
     countries: {
       title: "Where we operate",
@@ -570,6 +666,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           tags: ["إنساني", "تعليم", "صحة"],
           logo: "/projects/hama-logo.jpg",
           link: "/hama-project",
+          slug: "hama-rehabilitation",
+          status: "نشط",
+          detail: {
+            overview: "مبادرة 'فداءً لحماة' هي التفويض الإنساني الرئيسي للتحالف: إعادة تأهيل إنشائي كاملة لـ 50 مدرسة و20 مركزاً صحياً في محافظة حماة، سوريا. يرسّخ البرنامج التعافي المبكر عبر استعادة البنية المدنية التي تعتمد عليها المجتمعات، بإشراف هندسي مستقل وتنسيق مع الشركاء المحليين والدوليين.",
+            highlights: [
+              { title: "أصول تعليمية", desc: "إعادة بناء 50 حرماً مدرسياً وفق معايير إنشائية من الفئة أ." },
+              { title: "شبكة صحية", desc: "ترميم 20 مركزاً صحياً مع أنظمة دعم حياة مرنة." },
+              { title: "الأثر المجتمعي", desc: "أكثر من 100 ألف حياة تستفيد من الخدمات المستعادة." },
+            ],
+          },
         },
         {
           icon: <Building2 className="w-6 h-6" />,
@@ -577,6 +683,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "مركز إقليمي للإغاثة وإعادة الإعمار: مستودعات (عادي/مبرد)، التجهيز والتعبئة، أسطول النقل، وتيسير الجمارك والتعاقد مع المنظمات.",
           tags: ["إغاثة", "مستودعات", "نقل"],
+          slug: "al-arish-hub",
+          status: "قيد التطوير",
+          detail: {
+            overview: "مركز لوجستي وإعماري إقليمي في العريش لخدمة جهود إعادة إعمار غزة: مستودعات عادية ومبردة، وخدمات تجهيز وأسطول نقل، وتيسير جمركي، وقنوات تعاقد للمنظمات الإنسانية والجهات المانحة التي تحتاج قدرة ممر موثوقة.",
+            highlights: [
+              { title: "التخزين", desc: "طاقة تخزين عادية ومبردة للشحنات الإنسانية والإعمارية." },
+              { title: "خدمات الممر", desc: "تيسير جمركي وتجهيز وعمليات أسطول." },
+              { title: "جاهز للمنظمات", desc: "تعاقد وخدمات مصممة حول المشغلين الإنسانيين." },
+            ],
+          },
         },
         {
           icon: <Leaf className="w-6 h-6" />,
@@ -584,6 +700,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "مشاريع طاقة شمسية قابلة للتمويل مع تكامل الشبكة وتجارب التخزين وتمكين المحتوى المحلي؛ هياكل EPC+F مع رقابة مستقلة.",
           tags: ["طاقة", "شمسية", "EPC+F"],
+          slug: "green-energy",
+          status: "قيد الإعداد",
+          detail: {
+            overview: "محفظة مشاريع طاقة شمسية بقدرة منافعة تتجاوز 150 ميجاوات في الأسواق المستهدفة، مهيكلة كمعاملات EPC+F قابلة للتمويل مع دراسات تكامل الشبكة وتجارب التخزين ومشاركة المحتوى المحلي، ويراقب مهندسون مستقلون التنفيذ مقابل معالم العقد.",
+            highlights: [
+              { title: "الحجم", desc: "أكثر من 150 ميجاوات من القدرة الشمسية المخططة." },
+              { title: "هيكل قابل للتمويل", desc: "تعاقد EPC+F مع رقابة مستقلة." },
+              { title: "المحتوى المحلي", desc: "مشاركة التصنيع وقوى العمل المحلية." },
+            ],
+          },
         },
         {
           icon: <Globe2 className="w-6 h-6" />,
@@ -591,6 +717,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "ألياف ضوئية ومحاور بيانات ومنصات حكومية رقمية آمنة لتعزيز الشمول الرقمي في التعليم والصحة والتجارة.",
           tags: ["رقمي", "سيبراني", "بنية"],
+          slug: "digital-africa",
+          status: "قيد الإعداد",
+          detail: {
+            overview: "بنية تحتية رقمية وطنية وعابرة للحدود: ألياف رئيسية، ومحاور بيانات، ومنصات حكومية رقمية آمنة. يستهدف البرنامج الشمول الرقمي في التعليم والصحة والتجارة، مع تصميم الأمن السيبراني منذ البداية لا كإضافة لاحقة.",
+            highlights: [
+              { title: "الاتصال", desc: "ألياف رئيسية تربط المناطق الأقل حظاً." },
+              { title: "بنية البيانات", desc: "محاور بيانات بخيارات استضافة سيادية." },
+              { title: "منصات آمنة", desc: "خدمات حكومية رقمية بمعايير سيبرانية مدمجة." },
+            ],
+          },
         },
         {
           icon: <Building2 className="w-6 h-6" />,
@@ -598,6 +734,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "منظومات صناعية ضمن شراكات PPP/BOT مع مستأجرين رئيسيين ومراكز تدريب مهني وبنية مراعية للمناخ.",
           tags: ["PPP", "صناعي", "لوجستي"],
+          slug: "integrated-cities",
+          status: "قيد الإعداد",
+          detail: {
+            overview: "مناطق صناعية ولوجستية متكاملة تُطوَّر ضمن هياكل PPP/BOT: مستأجرون رئيسيون، ومراكز مهارات وتدريب مهني، ومرافق مراعية للمناخ، مصممة لتحويل الطلب الإقليمي إلى نمو قائم على التصدير وتشغيل دائم.",
+            highlights: [
+              { title: "منظومة مرتكزة", desc: "تأمين المستأجرين الرئيسيين قبل بدء الإنشاء." },
+              { title: "خط المهارات", desc: "مراكز تدريب مهني متوائمة مع صناعات المنطقة." },
+              { title: "مرافق مرنة", desc: "كهرباء ومياه ونفايات مصممة لتحمل الإجهاد المناخي." },
+            ],
+          },
         },
         {
           icon: <Recycle className="w-6 h-6" />,
@@ -605,6 +751,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "معامل صناعية لمعالجة الأنقاض وسحق الخرسانة وتصنيع الطوب البيئي عبر المحافظات السورية المتأثرة لتحويل الردم إلى مواد بناء مستدامة ومؤهلة لإعادة الإعمار الحضري.",
           tags: ["إعادة تدوير", "سوريا", "اقتصاد دائر", "بيئة"],
+          slug: "debris-recycling",
+          status: "قيد التطوير",
+          detail: {
+            overview: "استعادة دائرية صناعية النطاق لإعادة إعمار سوريا: معامل معالجة أنقاض وسحق خرسانة تحوّل ردم النزاع إلى مواد بناء مستدامة ومؤهلة — مما يخفض تكاليف مدخلات الإعمار ويخلق فرص تصنيع محلية.",
+            highlights: [
+              { title: "استعادة المواد", desc: "تحويل الأنقاض إلى طوب بيئي وركام مؤهل." },
+              { title: "وظائف محلية", desc: "معامل يشغلها ويُدار بها كوادر محلية." },
+              { title: "توريد دائري", desc: "إعمار يتغذى بمدخلات محلية مستدامة." },
+            ],
+          },
         },
         {
           icon: <Leaf className="w-6 h-6" />,
@@ -612,8 +768,28 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "سلاسل قيمة متكاملة (الأعلاف، التصنيع، التبريد، التوزيع) مع التتبع والامتثال HACCP/ISO.",
           tags: ["زراعي", "تبريد", "HACCP"],
+          slug: "food-security",
+          status: "قيد الإعداد",
+          detail: {
+            overview: "سلاسل قيمة زراعية متكاملة — إنتاج الأعلاف والتصنيع ولوجستيات سلسلة التبريد والتوزيع — مع تتبع كامل وامتثال HACCP/ISO. يقلص البرنامج الفاقد بعد الحصاد ويعزز استقرار الإمداد الغذائي الإقليمي.",
+            highlights: [
+              { title: "سلسلة القيمة", desc: "أعلاف وتصنيع وتبريد وتوزيع متكاملة." },
+              { title: "الامتثال", desc: "عمليات معتمدة HACCP/ISO مع التتبع." },
+              { title: "صمود غذائي", desc: "تقليل الفاقد بعد الحصاد واستقرار الإمداد." },
+            ],
+          },
         },
       ],
+    },
+    programDetail: {
+      backLabel: "جميع البرامج",
+      eyebrow: "برنامج رئيسي",
+      overviewLabel: "نظرة عامة على البرنامج",
+      highlightsLabel: "العناصر الرئيسية",
+      statusLabel: "الحالة",
+      ctaTitle: "شارك في هذا البرنامج",
+      ctaSubtitle: "ناقش التفويضات أو التمويل المشترك أو أدوار التشغيل مع فريقنا.",
+      ctaButton: "إرسال استفسار",
     },
     countries: {
       title: "نطاق العمل",
@@ -860,13 +1036,33 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           tags: ["Humanitaire", "Éducation", "Santé"],
           logo: "/projects/hama-logo.jpg",
           link: "/hama-project",
+          slug: "hama-rehabilitation",
+          status: "Actif",
+          detail: {
+            overview: "L'initiative Fida'an pour Hama est le mandat humanitaire phare de l'AIABASD : la réhabilitation structurelle complète de 50 écoles et 20 centres de santé dans le gouvernorat de Hama, en Syrie. Le programme ancre le relèvement précoce en restaurant les infrastructures civiques dont dépendent les communautés, sous supervision d'ingénierie indépendante et en coordination avec les partenaires locaux et internationaux.",
+            highlights: [
+              { title: "Actifs éducatifs", desc: "50 établissements reconstruits selon des normes structurelles de classe A." },
+              { title: "Réseau clinique", desc: "20 centres de santé restaurés avec des systèmes de maintien de vie résilients." },
+              { title: "Portée communautaire", desc: "Plus de 100 000 vies ancrées par les services restaurés." },
+            ],
+          },
         },
         {
           icon: <Building2 className="w-6 h-6" />,
           name: "Hub logistique et de reconstruction — Al-Arich",
           desc:
             "Hub logistique humanitaire régional servant la reconstruction de Gaza : entreposage (ambiant/froid), assemblage, opérations de flotte, facilitation douanière et contrats ONG.",
-          tags: ["Humanitarian", "Entreposage", "Flotte"],
+          tags: ["Humanitaire", "Entreposage", "Flotte"],
+          slug: "al-arish-hub",
+          status: "En développement",
+          detail: {
+            overview: "Un hub logistique et de reconstruction régional à Al-Arich, positionné pour servir la reconstruction de Gaza : entreposage ambiant et froid, services d'assemblage et de flotte, facilitation douanière et canaux de contractualisation pour les ONG et bailleurs nécessitant une capacité de corridor fiable.",
+            highlights: [
+              { title: "Entreposage", desc: "Capacité ambiant et froid pour les cargaisons humanitaires." },
+              { title: "Services de corridor", desc: "Facilitation douanière, assemblage et opérations de flotte." },
+              { title: "Prêt pour les ONG", desc: "Contractualisation conçue pour les opérateurs humanitaires." },
+            ],
+          },
         },
         {
           icon: <Leaf className="w-6 h-6" />,
@@ -874,6 +1070,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Programmes solaires PV finançables avec intégration réseau, projets pilotes de stockage et activation du contenu local ; structures EPC+F avec suivi indépendant.",
           tags: ["Énergie", "Solaire", "EPC+F"],
+          slug: "green-energy",
+          status: "En préparation",
+          detail: {
+            overview: "Un portefeuille de programmes solaires PV de plus de 150 MW sur les marchés cibles, structurés en transactions EPC+F finançables avec études d'intégration réseau, projets pilotes de stockage et participation du contenu local. Des ingénieurs indépendants surveillent la réalisation par rapport aux jalons contractuels.",
+            highlights: [
+              { title: "Échelle", desc: "Plus de 150 MW de capacité solaire planifiée." },
+              { title: "Structure finançable", desc: "Contractualisation EPC+F avec suivi indépendant." },
+              { title: "Contenu local", desc: "Participation de la fabrication et de la main-d'œuvre locales." },
+            ],
+          },
         },
         {
           icon: <Globe2 className="w-6 h-6" />,
@@ -881,6 +1087,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Fibre dorsale, centres de données et plateformes e-gouvernement sécurisées pour débloquer l'inclusion numérique dans l'éducation, la santé et le commerce.",
           tags: ["Numérique", "Cyber", "Dorsale"],
+          slug: "digital-africa",
+          status: "En préparation",
+          detail: {
+            overview: "Infrastructures numériques nationales et transfrontalières : fibre dorsale, centres de données et plateformes e-gouvernement sécurisées. Le programme vise l'inclusion numérique dans l'éducation, la santé et le commerce, avec la cybersécurité conçue dès le départ plutôt qu'ajoutée a posteriori.",
+            highlights: [
+              { title: "Connectivité", desc: "Fibre dorsale reliant les régions mal desservies." },
+              { title: "Infrastructure de données", desc: "Centres de données avec options d'hébergement souverain." },
+              { title: "Plateformes sécurisées", desc: "Services e-gouvernementaux aux normes cyber intégrées." },
+            ],
+          },
         },
         {
           icon: <Building2 className="w-6 h-6" />,
@@ -888,6 +1104,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Écosystèmes industriels PPP/BOT avec locataires principaux, centres de compétences/EFTP et services publics résilients au climat pour la croissance axée sur l'exportation.",
           tags: ["PPP", "Industriel", "Logistique"],
+          slug: "integrated-cities",
+          status: "En préparation",
+          detail: {
+            overview: "Zones industrielles et logistiques intégrées développées en PPP/BOT : locataires principaux, centres de compétences et d'EFTP, et services publics résilients au climat, conçus pour convertir la demande régionale en croissance exportatrice et en emploi durable.",
+            highlights: [
+              { title: "Écosystème ancré", desc: "Locataires principaux sécurisés avant la mobilisation." },
+              { title: "Pipeline de compétences", desc: "Centres d'EFTP alignés sur les industries de la zone." },
+              { title: "Services résilients", desc: "Énergie, eau et déchets conçus pour le stress climatique." },
+            ],
+          },
         },
         {
           icon: <Recycle className="w-6 h-6" />,
@@ -895,6 +1121,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Usines industrielles de traitement des gravats, broyage de béton et fabrication d'éco-briques dans les gouvernorats syriens touchés pour transformer les débris en matériaux de construction durables et certifiés.",
           tags: ["Recyclage", "Syrie", "Économie Circulaire", "Environnement"],
+          slug: "debris-recycling",
+          status: "En développement",
+          detail: {
+            overview: "Récupération circulaire à l'échelle industrielle pour la reconstruction syrienne : usines de traitement de gravats et de broyage de béton qui transforment les décombres du conflit en matériaux de construction durables et certifiés — réduisant les coûts des intrants de reconstruction tout en créant des emplois manufacturiers locaux.",
+            highlights: [
+              { title: "Récupération de matériaux", desc: "Gravats transformés en éco-briques et agrégats certifiés." },
+              { title: "Emplois locaux", desc: "Usines staffées et gérées localement." },
+              { title: "Offre circulaire", desc: "Reconstruction alimentée par des intrants nationaux durables." },
+            ],
+          },
         },
         {
           icon: <Leaf className="w-6 h-6" />,
@@ -902,8 +1138,28 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
           desc:
             "Chaînes de valeur intégrées (aliments, transformation, chaîne frigorifique, distribution) avec traçabilité et conformité HACCP/ISO.",
           tags: ["Agro", "Chaîne frigorifique", "HACCP"],
+          slug: "food-security",
+          status: "En préparation",
+          detail: {
+            overview: "Chaînes de valeur agroalimentaires intégrées — production d'aliments, transformation, logistique frigorifique et distribution — avec traçabilité complète et conformité HACCP/ISO. Le programme réduit les pertes post-récolte et stabilise l'offre alimentaire régionale.",
+            highlights: [
+              { title: "Chaîne de valeur", desc: "Aliments, transformation, froid et distribution intégrés." },
+              { title: "Conformité", desc: "Opérations certifiées HACCP/ISO avec traçabilité." },
+              { title: "Résilience alimentaire", desc: "Pertes post-récolte réduites et offre stabilisée." },
+            ],
+          },
         },
       ],
+    },
+    programDetail: {
+      backLabel: "Tous les Programmes",
+      eyebrow: "Programme Phare",
+      overviewLabel: "Aperçu du Programme",
+      highlightsLabel: "Éléments Clés",
+      statusLabel: "Statut",
+      ctaTitle: "Partenariats pour ce Programme",
+      ctaSubtitle: "Discutez des mandats, du co-financement ou des rôles opérationnels avec notre équipe.",
+      ctaButton: "Envoyer une Demande",
     },
     countries: {
       title: "Où nous opérons",
