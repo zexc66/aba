@@ -62,7 +62,6 @@ function ContactComponent({ data }: ContactProps) {
             });
 
             if (!response.ok) {
-                // Server rejected the payload (400/429/500) — never claim success
                 throw new Error(`Submission failed: ${response.status}`);
             }
 
@@ -86,7 +85,6 @@ function ContactComponent({ data }: ContactProps) {
 
                 <div className="grid lg:grid-cols-12 gap-12 items-start">
 
-                    {/* Contact Info Column */}
                     <div className="lg:col-span-5 space-y-10">
                         <div>
                             <div className="flex items-center gap-3 mb-3">
@@ -135,7 +133,6 @@ function ContactComponent({ data }: ContactProps) {
                         </div>
                     </div>
 
-                    {/* Inquiry Form Column */}
                     <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-xl border border-black/5 shadow-sm">
                         <h3 className="text-xl font-bold text-[#0b0b10] mb-6 pb-4 border-b border-black/5">
                             {data.formTitle}

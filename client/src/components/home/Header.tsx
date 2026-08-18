@@ -20,8 +20,6 @@ interface HeaderProps {
     currentLang: string;
 }
 
-
-
 export default function Header({ nav, langLabel, toggleLang, currentLang }: HeaderProps) {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("#hero");
@@ -73,15 +71,12 @@ export default function Header({ nav, langLabel, toggleLang, currentLang }: Head
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
 
-
-                {/* Progress Narrative */}
                 <motion.div
                     className="absolute bottom-[-1px] left-0 h-[2px] bg-[#5a1f2e] origin-left"
                     style={{ scaleX: scrollYProgress }}
                 />
 
                 <div className="mx-auto flex max-w-[1700px] items-center justify-between px-8 lg:px-12 py-6">
-                    {/* Brand Signature */}
                     <a
                         href="/"
                         className="flex items-center gap-3.5 group"
@@ -105,7 +100,6 @@ export default function Header({ nav, langLabel, toggleLang, currentLang }: Head
                         </div>
                     </a>
 
-                    {/* Architectural Navigation */}
                     <nav className="hidden items-center gap-8 xl:flex">
                         {navLinks.map((link, i) => {
                             const isActive = activeSection === link.href;
@@ -124,7 +118,6 @@ export default function Header({ nav, langLabel, toggleLang, currentLang }: Head
                         })}
                     </nav>
 
-                    {/* Operational Actions */}
                     <div className="flex items-center gap-6 lg:gap-10">
                         <button
                             onClick={() => setSearchOpen(true)}
@@ -153,7 +146,6 @@ export default function Header({ nav, langLabel, toggleLang, currentLang }: Head
                             </a>
                         </div>
 
-                        {/* Mobile Menu Trigger */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -166,7 +158,6 @@ export default function Header({ nav, langLabel, toggleLang, currentLang }: Head
                     </div>
                 </div>
 
-                {/* Mobile Navigation Reveal */}
                 <AnimatePresence>
                     {mobileMenuOpen && (
                         <motion.div

@@ -10,7 +10,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { programStatusTone } from "@/lib/utils";
 
-/** Status pill styling per tone. */
 const TONE_CLASSES: Record<string, string> = {
   active: "text-emerald-700 bg-emerald-50 border-emerald-200",
   dev: "text-amber-700 bg-amber-50 border-amber-200",
@@ -52,7 +51,6 @@ export default function ProgramDetail() {
       <Header nav={content.nav} langLabel={langLabel} toggleLang={toggleLang} currentLang={lang} />
 
       <main className="pt-28 pb-24">
-        {/* Hero */}
         <Section className="py-16 border-b border-black/5 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <motion.div
@@ -105,7 +103,6 @@ export default function ProgramDetail() {
           </div>
         </Section>
 
-        {/* Overview + Highlights */}
         <Section className="py-16">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <div className="grid lg:grid-cols-12 gap-12">
@@ -153,7 +150,6 @@ export default function ProgramDetail() {
           </div>
         </Section>
 
-        {/* CTA */}
         <Section className="py-16">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <motion.div

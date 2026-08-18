@@ -77,10 +77,8 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
         <footer className="relative bg-[#0b0b10] text-[#fdfcfb] pt-20 pb-12 overflow-hidden border-t border-white/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                {/* Main Footer Row */}
                 <div className="grid lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
 
-                    {/* Brand Info */}
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-4">
                             <img
@@ -109,7 +107,6 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             }
                         </p>
 
-                        {/* Social Icons */}
                         <div className="flex items-center gap-3 pt-2">
                             {socialLinks.map((social, i) => (
                                 <a
@@ -124,7 +121,6 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                         </div>
                     </div>
 
-                    {/* Navigation Columns */}
                     <div className="lg:col-span-7 grid sm:grid-cols-3 gap-8">
                         {navigation.map((group, i) => (
                             <div key={i} className="space-y-4">
@@ -146,7 +142,6 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             </div>
                         ))}
 
-                        {/* Newsletter Signup */}
                         <div className="space-y-4">
                             <h4 className="text-xs font-semibold uppercase tracking-wider text-[#f2a007]">
                                 {newsroom.newsletterTitle}
@@ -181,7 +176,6 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
 
                 </div>
 
-                {/* Bottom Legal & Back to Top */}
                 <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
                     <div>
                         © {new Date().getFullYear()} AIABASD. {data.rights}

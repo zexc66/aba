@@ -7,10 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 
 export type ProgramStatusTone = "active" | "dev" | "pipeline";
 
-/**
- * Maps a localized program status (EN/AR/FR) to a UI tone.
- * Statuses come from data.tsx: Active / In development / Pipeline.
- */
 export function programStatusTone(status: string): ProgramStatusTone {
   const s = status.toLowerCase();
   if (s.includes("active") || s.includes("نشط") || s.includes("actif")) return "active";

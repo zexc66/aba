@@ -19,9 +19,6 @@ export default function InvestorLogin() {
     setIsLoading(true);
 
     try {
-      // Access-request flow: registers the email as an institutional
-      // inquiry. There is no client-side "login" — directorial review
-      // grants real access later.
       const response = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -56,7 +53,6 @@ export default function InvestorLogin() {
         url="/investor-portal"
       />
 
-      {/* Top Bar */}
       <header className="w-full max-w-6xl mx-auto flex items-center justify-between z-10 py-4">
         <Link href="/">
           <div className="flex items-center gap-3 text-sm font-semibold text-white/70 hover:text-white transition-colors cursor-pointer">
@@ -71,7 +67,6 @@ export default function InvestorLogin() {
         </div>
       </header>
 
-      {/* Main Portal Content */}
       <main className="w-full max-w-md mx-auto my-auto z-10 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -79,7 +74,6 @@ export default function InvestorLogin() {
           transition={{ duration: 0.6 }}
           className="bg-[#11111a] p-8 md:p-10 rounded-2xl border border-white/10 shadow-2xl space-y-8"
         >
-          {/* Header */}
           <div className="text-center space-y-3">
             <div className="w-14 h-14 rounded-full bg-[#5a1f2e]/20 text-[#f2a007] border border-[#5a1f2e]/40 flex items-center justify-center mx-auto">
               <Lock size={24} />
@@ -90,7 +84,6 @@ export default function InvestorLogin() {
             <p className="text-sm text-white/60">{t.vaultSubtitle}</p>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <label className="text-xs font-semibold text-white/70">
@@ -130,7 +123,6 @@ export default function InvestorLogin() {
         </motion.div>
       </main>
 
-      {/* Footer Bar */}
       <footer className="w-full max-w-6xl mx-auto text-center text-xs text-white/40 z-10 py-4">
         © {new Date().getFullYear()} {t.footerLine}
       </footer>

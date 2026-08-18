@@ -8,7 +8,6 @@ interface GlobalLayoutProps {
 export default function GlobalLayout({ children }: GlobalLayoutProps) {
     return (
         <div className="relative min-h-screen bg-[#fdfcfb] selection:bg-[#5a1f2e] selection:text-white overflow-x-hidden">
-            {/* PAGE TRANSITION FRAME */}
             <AnimatePresence mode="wait">
                 <motion.main
                     initial={{ opacity: 0 }}

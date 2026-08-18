@@ -12,7 +12,6 @@ interface HamaCTAProps {
 export default function HamaCTA({ t }: HamaCTAProps) {
     return (
         <section id="engagement" className="relative py-[40vh] px-8 lg:px-24 overflow-hidden bg-white text-center">
-            {/* Massive Architectural Letter Backdrop */}
             <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none italic text-black font-institutional text-[100vw] leading-none flex items-center justify-center font-black">
                 A
             </div>

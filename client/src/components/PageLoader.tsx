@@ -11,14 +11,12 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Simulate loading progress
         const progressInterval = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
                     clearInterval(progressInterval);
                     return 100;
                 }
-                // Accelerate towards the end
                 const increment = prev < 80 ? 3 : 1;
                 return Math.min(prev + increment, 100);
             });
@@ -43,7 +41,6 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                     className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white"
                 >
-                    {/* Animated background gradient */}
                     <div className="absolute inset-0 overflow-hidden">
                         <motion.div
                             className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl"
@@ -73,7 +70,6 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                         />
                     </div>
 
-                    {/* Logo */}
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -93,7 +89,6 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                                 ease: "easeInOut",
                             }}
                         />
-                        {/* Glow effect */}
                         <motion.div
                             className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl -z-10"
                             animate={{
@@ -107,7 +102,6 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                         />
                     </motion.div>
 
-                    {/* Brand name */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -122,7 +116,6 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                         </div>
                     </motion.div>
 
-                    {/* Progress bar */}
                     <motion.div
                         initial={{ opacity: 0, width: 0 }}
                         animate={{ opacity: 1, width: 200 }}
@@ -141,7 +134,6 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                         </div>
                     </motion.div>
 
-                    {/* Floating particles */}
                     {[...Array(5)].map((_, i) => (
                         <motion.div
                             key={i}

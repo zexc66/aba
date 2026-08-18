@@ -27,10 +27,8 @@ function AboutComponent({ data }: AboutProps) {
         <Section id="about" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 space-y-24">
                 
-                {/* Main Institutional Overview Grid */}
                 <div className="grid lg:grid-cols-12 gap-16 items-start">
                     
-                    {/* Left Column: Narrative & Pillars */}
                     <div className="lg:col-span-7 space-y-16">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +36,6 @@ function AboutComponent({ data }: AboutProps) {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                         >
-                            {/* Eyebrow / Section Title */}
                             <div className="flex items-center gap-3 mb-4">
                                 <div className="h-0.5 w-8 bg-[#5a1f2e]" />
                                 <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
@@ -46,18 +43,15 @@ function AboutComponent({ data }: AboutProps) {
                                 </span>
                             </div>
 
-                            {/* Section Heading */}
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0b0b10] mb-6 leading-tight">
                                 {data.title}
                             </h2>
 
-                            {/* Narrative Paragraph */}
                             <p className="text-lg md:text-xl text-black/70 leading-relaxed border-l-2 border-[#5a1f2e] pl-6 py-1">
                                 {data.text}
                             </p>
                         </motion.div>
 
-                        {/* Core Pillars Grid */}
                         <div className="grid sm:grid-cols-2 gap-8 pt-6">
                             {data.bullets.map((b, i) => (
                                 <motion.div
@@ -79,9 +73,7 @@ function AboutComponent({ data }: AboutProps) {
                         </div>
                     </div>
 
-                    {/* Right Column: Metrics & Execution Blueprint */}
                     <div className="lg:col-span-5 space-y-12">
-                        {/* Key Metrics Grid */}
                         <div className="grid grid-cols-2 gap-6 bg-white p-8 rounded-xl border border-black/5 shadow-sm">
                             {data.metrics.map((stat, i) => (
                                 <motion.div
@@ -105,7 +97,6 @@ function AboutComponent({ data }: AboutProps) {
                             ))}
                         </div>
 
-                        {/* Execution Blueprint Block */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +122,6 @@ function AboutComponent({ data }: AboutProps) {
                     </div>
                 </div>
 
-                {/* Flagship "Our Story" Showcase Block */}
                 {data.ourStoryTitle && (
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -143,7 +133,6 @@ function AboutComponent({ data }: AboutProps) {
                         <div className="absolute top-0 right-0 w-80 h-80 bg-[#5a1f2e]/5 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="grid lg:grid-cols-12 gap-12 items-center relative z-10">
-                            {/* Left Story Overview */}
                             <div className="lg:col-span-6 space-y-6">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl bg-[#5a1f2e] text-white flex items-center justify-center shadow-md">
@@ -179,7 +168,6 @@ function AboutComponent({ data }: AboutProps) {
                                 </div>
                             </div>
 
-                            {/* Right Story Milestones Timeline */}
                             <div className="lg:col-span-6 space-y-4">
                                 {data.ourStoryMilestones?.map((m, idx) => (
                                     <div 

@@ -14,7 +14,6 @@ export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
 
     return (
         <div className="fixed inset-0 pointer-events-none z-[100]">
-            {/* Global Precision Frame */}
             <div className="absolute inset-8 lg:inset-16 border border-black/[0.03] flex flex-col justify-between p-8">
                 <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-2">

@@ -90,7 +90,6 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
-  // Strip console/debugger from production bundles only
   esbuild:
     mode === "production" ? { drop: ["console", "debugger"] } : undefined,
   server: {

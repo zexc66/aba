@@ -5,7 +5,6 @@ interface SEOProps {
     description: string;
     keywords?: string[];
     image?: string;
-    /** Path relative to the site root, e.g. "/gallery". Omit for the home page. */
     url?: string;
     lang?: string;
 }
@@ -38,30 +37,24 @@ export default function SEO({
 
     return (
         <Helmet>
-            {/* Standard Metadata */}
             <html lang={lang} />
             {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
 
-            {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:url" content={fullUrl} />
             <meta property="og:title" content={title} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={fullImage} />
             <meta property="og:locale" content={lang === "ar" ? "ar_SA" : lang === "fr" ? "fr_FR" : "en_US"} />
-            {/* og:locale:alternate tags are static in index.html — one URL serves all locales */}
 
-            {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:url" content={fullUrl} />
             <meta name="twitter:title" content={title} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={fullImage} />
 
-            {/* Canonical — per route, not pinned to the root */}
             <link rel="canonical" href={fullUrl} />
 
-            {/* Organization structured data */}
             <script type="application/ld+json">{JSON.stringify(ORG_SCHEMA)}</script>
         </Helmet>
     );

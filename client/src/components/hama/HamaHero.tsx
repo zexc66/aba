@@ -86,7 +86,6 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                 </div>
             </motion.div>
 
-            {/* ARCHITECTURAL BACKGROUND LETTER */}
             <motion.div 
                 style={{ y: heroLetterY }}
                 className="absolute top-1/2 left-1/4 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none -z-10"
@@ -94,7 +93,6 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                 <div className="font-institutional text-[100vw] leading-none tracking-tightest italic text-black font-black">H</div>
             </motion.div>
             
-            {/* HUD Grid Data Overlay */}
             <div className="absolute bottom-24 right-24 hidden xl:grid grid-cols-1 gap-6 opacity-10 pointer-events-none text-right font-sans">
                 <div className="flex flex-col items-end">
                     <span className="text-[9px] font-black tracking-[1.5em] text-[#5a1f2e] border-b border-[#5a1f2e]/20 mb-2">GEOSPATIAL_DATALINK</span>

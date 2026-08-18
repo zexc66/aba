@@ -21,7 +21,6 @@ export interface Inquiry {
 export type InquiryInput = Omit<Inquiry, "id" | "timestamp">;
 
 // Serialize every read-modify-write cycle: concurrent requests queue instead of
-// racing on the file (last-write-wins previously dropped leads).
 let queue: Promise<unknown> = Promise.resolve();
 
 function enqueue<T>(task: () => Promise<T>): Promise<T> {
@@ -43,7 +42,6 @@ async function readAll(): Promise<Inquiry[]> {
     return Array.isArray(parsed) ? (parsed as Inquiry[]) : [];
   } catch {
     // Preserve the corrupt store for manual recovery instead of silently
-    // overwriting it with an empty array (which previously wiped all leads).
     await fs.rename(DB_PATH, `${DB_PATH}.corrupt-${Date.now()}`);
     return [];
   }

@@ -10,7 +10,6 @@ import type { ReactNode } from "react";
 import { COPY } from "@/data";
 import { cms } from "@/services/cms";
 
-// ── Types ────────────────────────────────────────────────────────────────────
 export type Locale = "en" | "ar" | "fr";
 
 interface LanguageContextValue {
@@ -23,10 +22,8 @@ interface LanguageContextValue {
   isFetchingCMS: boolean;
 }
 
-// ── Context ───────────────────────────────────────────────────────────────────
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-// ── Provider ──────────────────────────────────────────────────────────────────
 const LANG_STORAGE_KEY = "aiabasd-lang";
 
 function initialLang(): Locale {
@@ -34,7 +31,6 @@ function initialLang(): Locale {
     const stored = localStorage.getItem(LANG_STORAGE_KEY);
     if (stored === "en" || stored === "ar" || stored === "fr") return stored;
   } catch {
-    // localStorage unavailable (private mode) — fall back to English
   }
   return "en";
 }
@@ -46,19 +42,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const isRTL = lang === "ar";
 
-  // Sync document direction + persist choice whenever language changes
   useEffect(() => {
     document.documentElement.dir = isRTL ? "rtl" : "ltr";
     document.documentElement.lang = lang;
     try {
       localStorage.setItem(LANG_STORAGE_KEY, lang);
     } catch {
-      // storage unavailable — preference just won't persist
     }
   }, [isRTL, lang]);
 
-  // Fetch CMS content whenever language changes; fall back to local copy
-  // instantly (no splash, no loading state) when Contentful isn't configured.
   useEffect(() => {
     if (!cms.configured) {
       setContent(COPY[lang]);
@@ -88,7 +80,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLangState(prev => (prev === "en" ? "ar" : prev === "ar" ? "fr" : "en"));
   }, []);
 
-  // Derive the lang button label from the content
   const langLabel = useMemo(() => content.langLabel, [content.langLabel]);
 
   const value: LanguageContextValue = useMemo(
@@ -111,7 +102,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   );
 }
 
-// ── Consumer hook ─────────────────────────────────────────────────────────────
 export function useLanguageContext(): LanguageContextValue {
   const ctx = useContext(LanguageContext);
   if (!ctx) {

@@ -84,7 +84,6 @@ export default function Chatbot() {
 
     return (
         <>
-            {/* Chat Button */}
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
                 className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl transition-shadow"
@@ -117,7 +116,6 @@ export default function Chatbot() {
                 </AnimatePresence>
             </motion.button>
 
-            {/* Chat Window */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -127,7 +125,6 @@ export default function Chatbot() {
                         transition={{ duration: 0.2 }}
                         className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[500px] flex flex-col rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl"
                     >
-                        {/* Header */}
                         <div className="flex items-center justify-between border-b border-black/10 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 rounded-t-2xl">
                             <div className="flex items-center gap-2">
                                 <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
@@ -142,7 +139,6 @@ export default function Chatbot() {
                             </button>
                         </div>
 
-                        {/* Messages */}
                         <div className="flex-1 overflow-y-auto p-4 space-y-4">
                             {messages.map((message) => (
                                 <motion.div
@@ -190,7 +186,6 @@ export default function Chatbot() {
                             <div ref={messagesEndRef} />
                         </div>
 
-                        {/* Input */}
                         <div className="border-t border-black/10 p-4">
                             <div className="flex gap-2">
                                 <input

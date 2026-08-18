@@ -23,7 +23,6 @@ export default function Hero({ data, stats }: HeroProps) {
 
     return (
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#fdfcfb] py-24 px-6 md:px-12 lg:px-24 border-b border-black/5">
-            {/* Background Image Layer */}
             <div className="absolute inset-0 z-0 select-none pointer-events-none">
                 <div className="absolute inset-0 bg-[#fdfcfb]/85 z-10" />
                 <img 
@@ -36,9 +35,7 @@ export default function Hero({ data, stats }: HeroProps) {
             <div className={`relative w-full max-w-[1500px] mx-auto z-30 ${lang === 'ar' ? 'font-arabic' : ''}`} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
                 <div className="grid lg:grid-cols-12 gap-16 items-center">
                     
-                    {/* Main Content */}
                     <div className="lg:col-span-8 flex flex-col items-start text-left">
-                        {/* Eyebrow */}
                         <motion.div
                             initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -51,7 +48,6 @@ export default function Hero({ data, stats }: HeroProps) {
                             </span>
                         </motion.div>
 
-                        {/* Title */}
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -61,7 +57,6 @@ export default function Hero({ data, stats }: HeroProps) {
                             {data.title}
                         </motion.h1>
 
-                        {/* Subtitle */}
                         <motion.p
                             initial={{ opacity: 0, y: 25 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +66,6 @@ export default function Hero({ data, stats }: HeroProps) {
                             {data.subtitle}
                         </motion.p>
                         
-                        {/* Call to Actions */}
                         <motion.div 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -95,7 +89,6 @@ export default function Hero({ data, stats }: HeroProps) {
                         </motion.div>
                     </div>
 
-                    {/* Stats Display */}
                     <div className="lg:col-span-4 grid gap-8 lg:text-right">
                         {stats.slice(0, 3).map((s, i) => (
                             <motion.div

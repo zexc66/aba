@@ -1,7 +1,6 @@
 import * as contentful from "contentful";
 import { COPY } from "../data";
 
-// ── Types ─────────────────────────────────────────────────────────────────────
 export type Locale = "en" | "ar" | "fr";
 
 interface CMSConfig {
@@ -10,19 +9,10 @@ interface CMSConfig {
   environment: string;
 }
 
-/**
- * Typed interface for the Contentful "siteSettings" content type.
- * Replace with your Contentful-generated types once the schema is finalised.
- * This eliminates the unsafe `as any` cast (C-04 fix).
- */
 interface ContentfulSiteSettings {
   contentData: (typeof COPY)["en"];
 }
 
-/**
- * Type guard: validates that a raw Contentful entry fields object has the
- * expected `contentData` shape before casting.
- */
 function isSiteSettings(fields: unknown): fields is ContentfulSiteSettings {
   return (
     typeof fields === "object" &&
@@ -40,7 +30,6 @@ class CMSService {
     this.initClient();
   }
 
-  /** True when Contentful credentials are present and the client is usable. */
   get configured(): boolean {
     return this.isConfigured;
   }
@@ -57,7 +46,6 @@ class CMSService {
       });
       this.isConfigured = true;
     } else {
-      // Only log the warning in development — keeps production console clean (L-01 fix)
       if (import.meta.env.DEV) {
         console.warn(
           "CMS: Contentful keys not detected in environment. Falling back to local/mock data."
@@ -66,10 +54,6 @@ class CMSService {
     }
   }
 
-  /**
-   * Fetch the main website copy.
-   * Falls back gracefully to local static COPY when Contentful is not configured.
-   */
   async getWebsiteContent(locale: Locale = "en"): Promise<(typeof COPY)["en"]> {
     if (!this.isConfigured || !this.client) {
       return COPY[locale];
@@ -88,7 +72,6 @@ class CMSService {
       if (response.items && response.items.length > 0) {
         const fields = response.items[0].fields;
 
-        // Typed validation — no `as any` (C-04 fix)
         if (isSiteSettings(fields)) {
           return fields.contentData;
         }
@@ -108,10 +91,6 @@ class CMSService {
     }
   }
 
-  /**
-   * Fetch specific content types (Newsroom articles, Team members, etc.).
-   * Returns an empty array when Contentful is not configured.
-   */
   async getCollection(contentTypeId: string, locale: Locale = "en") {
     if (!this.isConfigured || !this.client) {
       return [];

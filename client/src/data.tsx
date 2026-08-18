@@ -1,7 +1,6 @@
 import { ShieldCheck, Handshake, Leaf, Building2, Globe2, Heart, Recycle } from "lucide-react";
 import { ReactNode } from "react";
 
-// ---- Types ----
 export interface Content {
   metaTitle: string;
   nav: {
@@ -203,7 +202,6 @@ export interface Content {
   langLabel: string;
 }
 
-// ---- Brand Tokens ----
 export const BRAND = {
   primaryFrom: "#5a1f2e", // burgundy from logo
   primaryTo: "#f2a007", // gold from logo
@@ -212,10 +210,8 @@ export const BRAND = {
   light: "#f8f7fc",
 };
 
-// Gradient helper
 export const gradient = `bg-[linear-gradient(135deg,${BRAND.primaryFrom},${BRAND.primaryTo})]`;
 
-// ---- Copy (EN/AR) ----
 export const COPY: Record<"en" | "ar" | "fr", Content> = {
   en: {
     metaTitle: "AIABASD — African International Alliance for Business & Sustainable Development",

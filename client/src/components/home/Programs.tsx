@@ -51,7 +51,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
         return data.list.filter(p => p.tags.includes(activeCategory));
     }, [data.list, activeCategory]);
 
-    // Separate featured program if available (e.g. Hama Project)
     const featuredProgram = useMemo(() => {
         return data.list.find(p => p.link === "/hama-project") || data.list[0];
     }, [data.list]);
@@ -60,7 +59,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
         <Section id="programs" className="relative py-28 bg-[#fdfcfb] border-b border-black/5">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                {/* Section Header */}
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/5">
                     <div>
                         <div className="flex items-center gap-3 mb-4">
@@ -77,7 +75,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
                         </p>
                     </div>
 
-                    {/* Category Filter Pills */}
                     <div className="flex flex-wrap items-center gap-2">
                         {categories.map((cat) => {
                             const isActive = activeCategory === cat;
@@ -98,7 +95,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     </div>
                 </div>
 
-                {/* Featured Program Banner (Flagship Showcase) */}
                 {featuredProgram && activeCategory === "All" && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -108,7 +104,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
                         className="mb-14 bg-[#0b0b10] rounded-2xl p-8 lg:p-12 text-white relative overflow-hidden border border-white/10 shadow-2xl group cursor-pointer"
                         onClick={() => featuredProgram.link && setLocation(featuredProgram.link)}
                     >
-                        {/* Subtle background glow */}
                         <div className="absolute -right-24 -top-24 w-96 h-96 bg-[#5a1f2e]/30 rounded-full blur-3xl pointer-events-none" />
                         <div className="absolute -left-24 -bottom-24 w-96 h-96 bg-[#f2a007]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -157,7 +152,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     </motion.div>
                 )}
 
-                {/* Programs Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <AnimatePresence mode="popLayout">
                         {filteredPrograms.map((program, i) => {
@@ -173,11 +167,9 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                     className="group bg-white rounded-2xl border border-black/10 p-8 flex flex-col justify-between hover:shadow-xl hover:border-[#5a1f2e]/40 transition-all duration-300 cursor-pointer relative overflow-hidden"
                                     onClick={() => setLocation(program.link ?? `/programs/${program.slug}`)}
                                 >
-                                    {/* Top Accent Bar */}
                                     <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5a1f2e] to-[#f2a007] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                                     <div>
-                                        {/* Icon & Status */}
                                         <div className="flex items-center justify-between mb-6 gap-2">
                                             <div className="w-12 h-12 rounded-xl bg-[#5a1f2e]/10 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
                                                 {program.icon || <Globe className="w-6 h-6" />}
@@ -188,7 +180,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                             </span>
                                         </div>
 
-                                        {/* Title & Description */}
                                         <h3 className="text-xl font-bold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors mb-3 leading-snug">
                                             {program.name}
                                         </h3>
@@ -197,7 +188,6 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                         </p>
                                     </div>
 
-                                    {/* Tags & Action Link */}
                                     <div className="pt-5 border-t border-black/5 flex items-center justify-between">
                                         <div className="flex flex-wrap gap-1.5">
                                             {program.tags.map((tag, j) => (

@@ -30,7 +30,6 @@ function PartnersComponent({ data, hud }: PartnersProps) {
         <Section id="partners" className="relative py-24 bg-white border-b border-black/5">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                 
-                {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/5">
                     <div>
                         <div className="flex items-center gap-3 mb-3">
@@ -51,7 +50,6 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                     </div>
                 </div>
 
-                {/* Partners Logo Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {ALLIANCE_SYNDICATE.map((partner, i) => (
                         <motion.div
@@ -77,7 +75,6 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                     ))}
                 </div>
 
-                {/* Footer Note */}
                 <div className="mt-16 pt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black/60 font-medium">
                     <div className="flex items-center gap-2">
                         <Handshake className="w-4 h-4 text-[#5a1f2e]" />

@@ -46,7 +46,6 @@ export default function HamaStats({ stats }: HamaStatsProps) {
                             <h3 className="text-[14px] font-black tracking-[0.8em] uppercase text-black/30 group-hover:text-black transition-all pl-2 font-sans">{stat.label}</h3>
                         </div>
                         
-                        {/* HUD Sub-Grid Detail */}
                         <div className="absolute bottom-12 left-12 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                             <stat.icon className="w-48 h-48 opacity-[0.02]" strokeWidth={0.1} />
                         </div>

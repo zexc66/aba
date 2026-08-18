@@ -21,7 +21,6 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
         <Section id="governance" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                 
-                {/* Header Section */}
                 <div className="max-w-3xl mx-auto text-center mb-16 space-y-4">
                     <div className="flex justify-center items-center gap-3">
                         <div className="h-0.5 w-8 bg-[#5a1f2e]" />
@@ -40,7 +39,6 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                     </p>
                 </div>
 
-                {/* Governance Pillars Grid */}
                 <div className="grid md:grid-cols-2 gap-8">
                     {data.pillars.map((pillar, i) => (
                         <motion.div
@@ -78,7 +76,6 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                     ))}
                 </div>
 
-                {/* Call to Action Footer */}
                 <div className="mt-16 text-center">
                     <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#5a1f2e] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#5a1f2e]/90 transition-colors shadow-sm">
                         <span>{hud.accessCharter}</span>

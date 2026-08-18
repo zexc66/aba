@@ -6,7 +6,6 @@ import { useLanguageContext } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { Camera } from "lucide-react";
 
-// Only verified, owned photography is published. No stock imagery.
 const GALLERY_ARTIFACTS = [
     { src: "/gallery/events/event-group.jpg", alt: "Sovereign Community Stakeholder Summit", category: "Summit & Convening" },
 ];
@@ -21,7 +20,6 @@ export default function Gallery() {
             <Header nav={content.nav} langLabel={langLabel} toggleLang={toggleLang} currentLang={lang} />
 
             <main className="pt-28 pb-24">
-                {/* Hero Section */}
                 <Section className="py-16 border-b border-black/5 bg-white">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                         <div className="max-w-3xl space-y-4">
@@ -41,7 +39,6 @@ export default function Gallery() {
                     </div>
                 </Section>
 
-                {/* Photo Gallery Grid */}
                 <Section className="py-16">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -77,7 +74,6 @@ export default function Gallery() {
                                 </motion.figure>
                             ))}
 
-                            {/* Honest curation notice — more photography is published as it is verified */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}

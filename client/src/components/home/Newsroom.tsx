@@ -20,7 +20,6 @@ interface NewsroomProps {
     lang: string;
 }
 
-/** Normalized article shape mapped defensively from a Contentful entry. */
 interface NewsArticle {
     title: string;
     excerpt: string;
@@ -68,8 +67,6 @@ function formatDate(iso: string): string {
 function NewsroomComponent({ data, lang }: NewsroomProps) {
     const [articles, setArticles] = useState<NewsArticle[]>([]);
 
-    // Articles come exclusively from Contentful (content type "newsArticle").
-    // No CMS configured / no entries → honest empty state. Nothing is fabricated.
     useEffect(() => {
         let cancelled = false;
         if (!cms.configured) {
@@ -101,7 +98,6 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
         <Section id="news" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                {/* Section Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/5">
                     <div>
                         <div className="flex items-center gap-3 mb-3">
@@ -123,7 +119,6 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                 </div>
 
                 {articles.length === 0 ? (
-                    /* Honest empty state — announcements are published once they exist */
                     <div className="bg-white rounded-xl border border-black/5 shadow-sm px-8 py-16 flex flex-col items-center text-center">
                         <div className="w-14 h-14 rounded-full bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-6">
                             <Newspaper size={24} />
@@ -134,7 +129,6 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                     </div>
                 ) : (
                     <>
-                        {/* Featured Article */}
                         {featured && (
                             <div className="grid lg:grid-cols-12 gap-8">
                                 <motion.article
@@ -191,7 +185,6 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                             </div>
                         )}
 
-                        {/* Secondary News Cards */}
                         {rest.length > 0 && (
                             <div className="grid md:grid-cols-2 gap-8 mt-8">
                                 {rest.map((news, i) => (

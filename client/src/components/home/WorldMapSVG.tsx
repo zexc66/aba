@@ -20,8 +20,6 @@ function WorldMapSVGComponent({ className, viewBox, activeIsoCode, hoveredIsoCod
      className={className || "w-full h-full"}
 >
 
-
-
 <g>
     <path id="_somaliland" 
                  onMouseEnter={() => onCountryHover?.("_somaliland")} 

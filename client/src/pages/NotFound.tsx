@@ -8,18 +8,15 @@ export default function NotFound() {
     <div className="min-h-screen bg-[#0b0b10] text-[#fdfcfb] selection:bg-[#5a1f2e] selection:text-[#fdfcfb] overflow-hidden flex items-center justify-center p-8 relative">
         <SEO title="Mandate Void | 404" description="Sovereign protocol error: nodal path not identified in the digital flagship." lang="en" />
         
-        {/* ARCHITECTURAL UNDERLAY: The System Void */}
         <div className="absolute inset-0 pointer-events-none z-0">
             <div className="absolute top-0 left-0 w-full h-full bg-[url('/textures/grain.png')] opacity-[0.05] mix-blend-overlay" />
             
-            {/* Massive Backdrop Specimen */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none">
                 <span className="text-[45vw] font-institutional italic font-black tracking-tightest leading-none">
                     VOID_404
                 </span>
             </div>
 
-            {/* Scanning Laser Detail */}
             <motion.div 
                 animate={{ top: ["0%", "100%", "0%"] }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -28,7 +25,6 @@ export default function NotFound() {
         </div>
 
         <div className="relative z-10 w-full max-w-[1500px] flex flex-col items-center text-center">
-            {/* Institutional Error Header */}
             <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -50,7 +46,6 @@ export default function NotFound() {
                 </p>
             </motion.div>
 
-            {/* Error Actions: Protocol Recovery */}
             <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -73,7 +68,6 @@ export default function NotFound() {
                 </div>
             </motion.div>
 
-            {/* Technical Metadata Footer */}
             <div className="mt-48 flex flex-col items-center gap-8">
                 <div className="flex items-center gap-24 opacity-10">
                     <div className="h-[1px] w-32 bg-white" />
@@ -89,7 +83,6 @@ export default function NotFound() {
             </div>
         </div>
 
-        {/* Global Peripheral HUD details */}
         <div className="absolute top-12 left-12 hud-label opacity-10 tracking-[2em] hidden xl:block uppercase">ERROR_LOG_V.01</div>
         <div className="absolute bottom-12 right-12 hud-label opacity-10 tracking-[2.5em] hidden xl:block uppercase">INSTITUTIONAL_CORE_PROTECT</div>
     </div>

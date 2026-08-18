@@ -40,7 +40,6 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                 
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
                     
-                    {/* Header Column */}
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-3">
                             <div className="h-0.5 w-8 bg-[#5a1f2e]" />
@@ -58,7 +57,6 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                             Direct perspectives from sovereign partners, institutional investors, and regional development directors.
                         </p>
 
-                        {/* Controls */}
                         <div className="flex items-center gap-4 pt-4">
                             <button 
                                 onClick={prev}
@@ -78,7 +76,6 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                         </div>
                     </div>
 
-                    {/* Quote Card */}
                     <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-2xl border border-black/5 shadow-md relative overflow-hidden min-h-[320px] flex flex-col justify-between">
                         <Quote className="w-12 h-12 text-[#5a1f2e]/10 absolute top-6 right-6" />
 
@@ -108,7 +105,6 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                             </motion.div>
                         </AnimatePresence>
 
-                        {/* Progress Indicators */}
                         <div className="flex gap-2 pt-6">
                             {data.list.map((_, i) => (
                                 <button

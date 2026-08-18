@@ -9,9 +9,7 @@ import { saveInquiry } from "./storage";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ── Validation ───────────────────────────────────────────────────────────────
 // `type` is sanitized (word chars only) rather than allow-listed: new client
-// senders keep working, while newlines/control chars stay out of the logs.
 const inquirySchema = z.object({
   type: z
     .string()
@@ -28,7 +26,6 @@ const chatSchema = z.object({
   message: z.string().trim().min(1).max(2000),
 });
 
-// ── Rate limiting (fixed window, per-IP, in-memory; single-instance deploy) ──
 function rateLimit({ windowMs, max }: { windowMs: number; max: number }) {
   const hits = new Map<string, { count: number; resetAt: number }>();
   return (
@@ -56,14 +53,12 @@ function rateLimit({ windowMs, max }: { windowMs: number; max: number }) {
   };
 }
 
-// ── Server ───────────────────────────────────────────────────────────────────
 async function startServer() {
   const app = express();
   const server = createServer(app);
 
   app.use(express.json({ limit: "64kb" }));
 
-  // Baseline security headers
   app.use((_req, res, next) => {
     res.setHeader("X-Content-Type-Options", "nosniff");
     res.setHeader("X-Frame-Options", "DENY");
@@ -78,7 +73,6 @@ async function startServer() {
   const chatLimiter = rateLimit({ windowMs: 60_000, max: 30 });
   const inquiryLimiter = rateLimit({ windowMs: 60_000, max: 10 });
 
-  // Chat endpoint
   app.post("/api/chat", chatLimiter, (req, res) => {
     const parsed = chatSchema.safeParse(req.body);
     if (!parsed.success) {
@@ -90,7 +84,6 @@ async function startServer() {
     res.json({ response: generateChatResponse(parsed.data.message) });
   });
 
-  // Inquiry endpoint (Contact/Newsletter/Investor Access)
   app.post("/api/inquiry", inquiryLimiter, async (req, res) => {
     const parsed = inquirySchema.safeParse(req.body);
     if (!parsed.success) {
@@ -98,7 +91,6 @@ async function startServer() {
       return;
     }
 
-    // Production-grade persistence of institutional inquiries
     const entry = await saveInquiry(parsed.data);
 
     // No PII in standard logs — full record lives in the secure JSON store only
@@ -113,7 +105,6 @@ async function startServer() {
     });
   });
 
-  // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === "production"
       ? path.resolve(__dirname, "public")
@@ -121,7 +112,6 @@ async function startServer() {
 
   app.use(express.static(staticPath));
 
-  // Handle client-side routing — serve index.html for all non-API GET routes
   app.get("/{*splat}", (req, res) => {
     if (req.path.startsWith("/api/")) {
       res.status(404).json({ error: "Not found" });
@@ -130,7 +120,6 @@ async function startServer() {
     res.sendFile(path.join(staticPath, "index.html"));
   });
 
-  // Error handler (express 5 forwards rejected async handlers and parser errors here)
   app.use(
     (
       err: unknown,

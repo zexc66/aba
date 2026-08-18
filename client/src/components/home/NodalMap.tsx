@@ -29,7 +29,6 @@ export const COUNTRIES: CountryNode[] = [
     { id: "Saudi Arabia", iso: "sa", cx: 519.81, cy: 458.02, status: "active", region: "Middle East", projects: 16, capital: "Riyadh", capitalAr: "الرياض" }
 ];
 
-// Geodesic corridor connections between SVG centroids
 const CORRIDOR_ARCS = [
     { from: "sa", to: "jo" },
     { from: "jo", to: "sy" },
@@ -48,7 +47,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
     const [selectedIso, setSelectedIso] = useState<string | null>("gh"); // Default focus on Ghana hub
     const [isGlobalView, setIsGlobalView] = useState<boolean>(false);
 
-    // Map activeCountry prop name to ISO code
     const activePropIso = useMemo(() => {
         if (!activeCountry) return null;
         const found = COUNTRIES.find(c => c.id.toLowerCase() === activeCountry.toLowerCase());
@@ -58,17 +56,14 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
     const currentIso = selectedIso || hoveredIso || activePropIso;
     const currentCountry = COUNTRIES.find(c => c.iso === currentIso);
 
-    // Precise SVG ViewBox
     const viewBox = isGlobalView ? "30.767 241.591 784.077 458.627" : "340 395 210 180";
 
-    // SVG Geodesic Arcs
     const arcs = useMemo(() => {
         return CORRIDOR_ARCS.map(arc => {
             const p1 = COUNTRIES.find(c => c.iso === arc.from);
             const p2 = COUNTRIES.find(c => c.iso === arc.to);
             if (!p1 || !p2) return null;
 
-            // Curved Quadratic Bezier Control Point
             const midX = (p1.cx + p2.cx) / 2;
             const midY = (p1.cy + p2.cy) / 2 - 12;
 
@@ -84,7 +79,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
     return (
         <div className="w-full h-full relative bg-[#fdfcfb] overflow-hidden select-none p-6 flex flex-col justify-between min-h-[620px] rounded-3xl border border-black/10 shadow-lg">
             
-            {/* Telemetry Header */}
             <div className="relative z-30 flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-black/5">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#5a1f2e] text-white flex items-center justify-center shadow-md">
@@ -125,7 +119,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                 </div>
             </div>
 
-            {/* Sovereign Territory Directory Pills */}
             <div className="relative z-30 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth border-b border-black/5">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-[#5a1f2e] shrink-0 mr-1">
                     Territory:
@@ -150,7 +143,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                 })}
             </div>
 
-            {/* SVG Canvas with Integrated Nodes & Arcs */}
             <div className="relative w-full h-[460px] my-2 flex items-center justify-center">
                 <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                     <WorldMapSVG 
@@ -164,7 +156,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                             if (match) setSelectedIso(prev => prev === iso ? null : iso);
                         }}
                     >
-                        {/* SVG Geodesic Trade Arcs */}
                         <g className="pointer-events-none">
                             {arcs.map(arc => {
                                 if (!arc) return null;
@@ -190,7 +181,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                             })}
                         </g>
 
-                        {/* SVG Node Pins & Hover Labels */}
                         <g>
                             {COUNTRIES.map((c) => {
                                 const isActive = currentIso === c.iso;
@@ -202,7 +192,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                         onMouseLeave={() => setHoveredIso(null)}
                                         className="cursor-pointer"
                                     >
-                                        {/* Outer Pulse Ring */}
                                         {isActive && (
                                             <circle
                                                 cx={c.cx}
@@ -216,7 +205,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                             </circle>
                                         )}
 
-                                        {/* Outer Circle */}
                                         <circle
                                             cx={c.cx}
                                             cy={c.cy}
@@ -227,7 +215,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                             className="transition-all duration-300"
                                         />
 
-                                        {/* Inner Center Dot */}
                                         <circle
                                             cx={c.cx}
                                             cy={c.cy}
@@ -235,7 +222,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                             fill={isActive ? "#f2a007" : "#ffffff"}
                                         />
 
-                                        {/* SVG Native Tooltip Label (Locked in coordinate space) */}
                                         {isActive && (
                                             <g transform={`translate(${c.cx}, ${c.cy - 9})`}>
                                                 <rect
@@ -268,7 +254,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                     </WorldMapSVG>
                 </div>
 
-                {/* Country Telemetry Overlay Card */}
                 <AnimatePresence>
                     {currentCountry && (
                         <motion.div
@@ -327,7 +312,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                 </AnimatePresence>
             </div>
 
-            {/* Bottom Subtitle Bar */}
             <div className="relative z-30 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-xs text-black/50">
                 <div>Hover or select a sovereign territory to inspect regional corridor operations.</div>
                 <div className="font-semibold text-[#5a1f2e]">African International Business Alliance and Sustainable Development</div>

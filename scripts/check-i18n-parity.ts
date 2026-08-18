@@ -1,4 +1,3 @@
-// Structural parity check: en/ar/fr Content objects must have identical key shapes.
 import { COPY } from "../client/src/data";
 
 type Shape = { [k: string]: Shape | "leaf" | "list" };
@@ -32,13 +31,11 @@ const problems: string[] = [];
 diffPaths(shape(COPY.en), shape(COPY.ar), "ar", problems);
 diffPaths(shape(COPY.en), shape(COPY.fr), "fr", problems);
 
-// Program slugs must be identical across locales (routing depends on it).
 const slugs = (l: "en" | "ar" | "fr") => COPY[l].programs.list.map((p) => p.slug);
 if (JSON.stringify(slugs("en")) !== JSON.stringify(slugs("ar")) || JSON.stringify(slugs("en")) !== JSON.stringify(slugs("fr"))) {
   problems.push(`slug mismatch: en=${slugs("en")} ar=${slugs("ar")} fr=${slugs("fr")}`);
 }
 
-// Every program needs non-empty detail fields.
 for (const l of ["en", "ar", "fr"] as const) {
   for (const p of COPY[l].programs.list) {
     if (!p.detail?.overview?.trim() || p.detail.highlights?.length < 3 || !p.status?.trim()) {

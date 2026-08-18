@@ -16,7 +16,6 @@ import AnimatedBackground from "@/components/ui/AnimatedBackground";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
 export default function Home() {
   const { lang, content: t, toggleLang, isFetchingCMS } = useLanguageContext();
 

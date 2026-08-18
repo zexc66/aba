@@ -41,7 +41,6 @@ export default function ScrollToTop() {
                     className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full ${gradient} text-white shadow-2xl hover:shadow-purple-500/50 transition-shadow duration-300 flex items-center justify-center group`}
                     aria-label="Scroll to top"
                 >
-                    {/* Progress circle */}
                     <svg
                         className="absolute inset-0 w-full h-full -rotate-90"
                         viewBox="0 0 100 100"
@@ -68,10 +67,8 @@ export default function ScrollToTop() {
                         />
                     </svg>
 
-                    {/* Arrow icon */}
                     <ArrowUp className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-y-1" />
 
-                    {/* Glow effect */}
                     <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
                 </motion.button>
             )}

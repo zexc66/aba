@@ -32,8 +32,6 @@ jobs:
       - name: Build
         run: pnpm build
 
-      # Advisory only — new advisories shouldn't break unrelated PRs,
-      # but the report keeps them visible on every run.
       - name: Audit production dependencies
         run: pnpm audit --prod
         continue-on-error: true

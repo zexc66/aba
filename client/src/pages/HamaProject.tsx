@@ -9,7 +9,6 @@ import {
 } from "lucide-react";
 import SEO from "@/components/SEO";
 
-// Decomposed Modular Components
 import HamaHUD from "@/components/hama/HamaHUD";
 import HamaHero from "@/components/hama/HamaHero";
 import HamaStats from "@/components/hama/HamaStats";
@@ -278,7 +277,6 @@ export default function HamaProject() {
 
             <HamaCTA t={t.cta} />
 
-            {/* Custom Architectural Styles */}
             <style dangerouslySetInnerHTML={{ __html: `
                 .text-8xl { font-size: clamp(4rem, 8vw, 15vw); }
                 .tracking-tightest { letter-spacing: -0.08em; }
