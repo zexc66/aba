@@ -59,9 +59,19 @@ See `.env.example`. Without Contentful variables the site uses the static trilin
 
 ## Leads (`/api/inquiry`)
 
-All contact-form, newsletter, and investor-access submissions are validated with Zod, rate-limited (10/min per IP), and appended atomically to `dist/inquiries.json` (serialized writes; corrupt stores are preserved as `*.corrupt-*` for recovery). Logs contain no PII — only a lead ID and type. The response returns a short `reference` ID that the UI surfaces to the user.
+All contact-form, newsletter, and investor-access submissions are validated with Zod, rate-limited (10/min per IP), and logged without PII (lead ID and type only). The response returns a short `reference` ID that the UI surfaces to the user.
 
-> **Ops note:** leads currently land only in `inquiries.json`. Email routing (e.g. Resend webhook on save) is the next planned improvement — check the file regularly until then.
+**Self-hosted (Express / Docker):** leads append atomically to `dist/inquiries.json` (serialized writes; corrupt stores are preserved as `*.corrupt-*`). Check the file regularly or wire a notification hook.
+
+**Vercel (serverless `api/inquiry.ts`):** there is no durable disk, so leads are emailed via Resend and the endpoint fails honestly (503) when no channel is configured — it never fakes success. Set these environment variables in the Vercel project:
+
+| Variable | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Resend API token for lead delivery |
+| `LEAD_NOTIFY_EMAIL` | Inbox that receives every lead |
+| `LEAD_FROM_EMAIL` | Optional verified sender (defaults to `onboarding@resend.dev`) |
+
+Without these, the deployed contact form shows its error state and directs visitors to `contact@aiabasd.org`.
 
 ## API
 

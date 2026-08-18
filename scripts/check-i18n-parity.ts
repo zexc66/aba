@@ -20,7 +20,8 @@ function diffPaths(a: Shape | "leaf" | "list", b: Shape | "leaf" | "list", path:
     if (a !== b) problems.push(`${path}: kind mismatch (${a} vs ${b})`);
     return;
   }
-  for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) {
+  const keys = [...Object.keys(a), ...Object.keys(b)].filter((k, i, arr) => arr.indexOf(k) === i);
+  for (const k of keys) {
     if (!(k in a)) problems.push(`${path}.${k}: missing in EN, present elsewhere`);
     else if (!(k in b)) problems.push(`${path}.${k}: missing in target`);
     else diffPaths(a[k], b[k], `${path}.${k}`, problems);
