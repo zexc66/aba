@@ -86,7 +86,7 @@ export default function Chatbot() {
         <>
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl transition-shadow"
+                className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#5a1f2e] text-white shadow-lg hover:shadow-xl transition-shadow"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Toggle chat"
@@ -125,7 +125,7 @@ export default function Chatbot() {
                         transition={{ duration: 0.2 }}
                         className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[500px] flex flex-col rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl"
                     >
-                        <div className="flex items-center justify-between border-b border-black/10 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-3 rounded-t-2xl">
+                        <div className="flex items-center justify-between border-b border-black/10 bg-[#5a1f2e] px-4 py-3 rounded-t-2xl">
                             <div className="flex items-center gap-2">
                                 <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
                                 <h3 className="font-semibold text-white">AIABASD Assistant</h3>
@@ -149,7 +149,7 @@ export default function Chatbot() {
                                 >
                                     <div
                                         className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.sender === "user"
-                                                ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                                                ? "bg-[#5a1f2e] text-white"
                                                 : "bg-black/5 text-black"
                                             }`}
                                     >
@@ -200,7 +200,7 @@ export default function Chatbot() {
                                 <button
                                     onClick={handleSend}
                                     disabled={!input.trim() || isTyping}
-                                    className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-white hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-xl bg-[#5a1f2e] px-4 py-2 text-white hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                                     aria-label="Send message"
                                 >
                                     {isTyping ? (

@@ -1,7 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo, memo } from "react";
-import { MapPin, CheckCircle2, Globe2, ShieldCheck, ArrowUpRight, Activity, Maximize2, ZoomIn } from "lucide-react";
+import { MapPin, CheckCircle2, Globe2, ShieldCheck, Activity, Maximize2, ZoomIn } from "lucide-react";
 import WorldMapSVG from "./WorldMapSVG";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { COPY } from "@/data";
 
 export interface CountryNode {
     id: string;
@@ -42,9 +44,19 @@ const CORRIDOR_ARCS = [
     { from: "sd", to: "ao" }
 ];
 
-function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) {
+const EN_LIST = COPY.en.countries.list;
+
+function localizedName(id: string, lang: "en" | "ar" | "fr"): string {
+    const idx = EN_LIST.findIndex((n) => n.toLowerCase() === id.toLowerCase());
+    return idx >= 0 ? COPY[lang].countries.list[idx] : id;
+}
+
+function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: string | null; compact?: boolean }) {
+    const { lang } = useLanguageContext();
+    const t = COPY[lang].countries;
+
     const [hoveredIso, setHoveredIso] = useState<string | null>(null);
-    const [selectedIso, setSelectedIso] = useState<string | null>("gh"); // Default focus on Ghana hub
+    const [selectedIso, setSelectedIso] = useState<string | null>("gh");
     const [isGlobalView, setIsGlobalView] = useState<boolean>(false);
 
     const activePropIso = useMemo(() => {
@@ -66,7 +78,6 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
 
             const midX = (p1.cx + p2.cx) / 2;
             const midY = (p1.cy + p2.cy) / 2 - 12;
-
             return {
                 id: `${arc.from}-${arc.to}`,
                 path: `M ${p1.cx} ${p1.cy} Q ${midX} ${midY} ${p2.cx} ${p2.cy}`,
@@ -77,7 +88,7 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
     }, []);
 
     return (
-        <div className="w-full h-full relative bg-[#fdfcfb] overflow-hidden select-none p-6 flex flex-col justify-between min-h-[620px] rounded-3xl border border-black/10 shadow-lg">
+        <div className={`w-full relative bg-[#fdfcfb] overflow-hidden select-none p-4 md:p-6 flex flex-col justify-between ${compact ? "h-full min-h-[320px]" : "h-full min-h-[560px]"} rounded-3xl border border-black/10 shadow-lg`}>
             
             <div className="relative z-30 flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-black/5">
                 <div className="flex items-center gap-3">
@@ -86,10 +97,10 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                     </div>
                     <div>
                         <div className="text-xs font-bold uppercase tracking-widest text-[#5a1f2e]">
-                            Sovereign Infrastructure Map
+                            {t.mapTitle}
                         </div>
                         <div className="text-sm font-bold text-[#0b0b10]">
-                            11 Sovereign Member Corridors
+                            {t.mapCorridors.replace("{n}", String(COUNTRIES.length))}
                         </div>
                     </div>
                 </div>
@@ -97,31 +108,32 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => setIsGlobalView(!isGlobalView)}
-                        className="flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white border border-black/10 hover:border-[#5a1f2e]/40 shadow-sm transition-all text-[#0b0b10]"
+                        aria-pressed={isGlobalView}
+                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-black/10 hover:border-[#5a1f2e]/40 shadow-sm transition-all text-[#0b0b10]"
                     >
                         {isGlobalView ? (
                             <>
                                 <ZoomIn size={14} className="text-[#5a1f2e]" />
-                                <span>Regional Focus</span>
+                                <span>{t.regionalViewLabel}</span>
                             </>
                         ) : (
                             <>
                                 <Maximize2 size={14} className="text-[#5a1f2e]" />
-                                <span>Global Map</span>
+                                <span>{t.globalViewLabel}</span>
                             </>
                         )}
                     </button>
 
-                    <div className="hidden md:flex items-center gap-1.5 text-xs text-[#5a1f2e] font-semibold bg-[#5a1f2e]/5 px-3 py-1.5 rounded-xl border border-[#5a1f2e]/10">
+                    <div className="hidden md:flex items-center gap-1.5 text-xs text-[#5a1f2e] font-semibold bg-[#5a1f2e]/5 px-3 py-2 rounded-xl border border-[#5a1f2e]/10">
                         <ShieldCheck size={14} className="text-[#f2a007]" />
-                        <span>Institutional Verification Active</span>
+                        <span>AIABASD</span>
                     </div>
                 </div>
             </div>
 
             <div className="relative z-30 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth border-b border-black/5">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#5a1f2e] shrink-0 mr-1">
-                    Territory:
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#5a1f2e] shrink-0 me-1">
+                    {t.territoryLabel}
                 </span>
                 {COUNTRIES.map((c) => {
                     const isSelected = currentIso === c.iso;
@@ -131,19 +143,20 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                             onClick={() => setSelectedIso(c.iso)}
                             onMouseEnter={() => setHoveredIso(c.iso)}
                             onMouseLeave={() => setHoveredIso(null)}
-                            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all shrink-0 border ${
+                            aria-pressed={isSelected}
+                            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 border ${
                                 isSelected
                                     ? "bg-[#5a1f2e] text-white border-[#5a1f2e] shadow-md scale-105"
                                     : "bg-white text-[#0b0b10]/80 border-black/10 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
                             }`}
                         >
-                            {c.id}
+                            {localizedName(c.id, lang)}
                         </button>
                     );
                 })}
             </div>
 
-            <div className="relative w-full h-[460px] my-2 flex items-center justify-center">
+            <div className={`relative w-full ${compact ? "flex-1 min-h-[240px]" : "flex-1 min-h-[300px]"} my-2 flex items-center justify-center`}>
                 <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                     <WorldMapSVG 
                         viewBox={viewBox}
@@ -166,7 +179,7 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                         <path
                                             d={arc.path}
                                             fill="none"
-                                            stroke={isHighlighted ? "#5a1f2e" : "#5a1f2e"}
+                                            stroke="#5a1f2e"
                                             strokeWidth={isHighlighted ? "1.5" : "0.8"}
                                             strokeDasharray={isHighlighted ? "none" : "2 2"}
                                             opacity={isHighlighted ? 0.95 : 0.3}
@@ -243,7 +256,7 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                                     fontWeight="bold"
                                                     fontFamily="sans-serif"
                                                 >
-                                                    {c.id}
+                                                    {localizedName(c.id, lang)}
                                                 </text>
                                             </g>
                                         )}
@@ -260,16 +273,16 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                             initial={{ opacity: 0, y: 15, scale: 0.96 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 15, scale: 0.96 }}
-                            className="absolute bottom-4 right-4 z-30 max-w-sm"
+                            className="absolute bottom-4 end-4 z-30 max-w-sm"
                         >
                             <div className="bg-[#0b0b10] border border-white/15 p-5 rounded-2xl text-white shadow-2xl backdrop-blur-md">
                                 <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-white/10">
                                     <div className="flex items-center gap-2.5">
-                                        <MapPin size={16} className="text-[#f2a007]" />
+                                        <MapPin size={16} className="text-[#f2a007] shrink-0" />
                                         <div>
                                             <div className="font-bold text-sm text-white flex items-center gap-2">
-                                                {currentCountry.id}
-                                                <span className="text-xs font-normal text-white/50">({currentCountry.capitalAr})</span>
+                                                {localizedName(currentCountry.id, lang)}
+                                                {lang === "ar" && <span className="text-xs font-normal text-white/50">({currentCountry.capital})</span>}
                                             </div>
                                             <div className="text-[11px] text-white/60">{currentCountry.region}</div>
                                         </div>
@@ -279,32 +292,29 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                                             ? "bg-[#5a1f2e] text-white border border-[#f2a007]/30"
                                             : "bg-white/10 text-white/70"
                                     }`}>
-                                        {currentCountry.status === "active" ? "Active Region" : "Pipeline"}
+                                        {currentCountry.status === "active" ? t.activeRegionLabel : t.pipelineLabel}
                                     </span>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3 text-xs">
                                     <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                                        <div className="text-white/50 text-[10px]">Capital City</div>
-                                        <div className="font-semibold text-white mt-0.5">{currentCountry.capital}</div>
+                                        <div className="text-white/50 text-[10px]">{t.capitalLabel}</div>
+                                        <div className="font-semibold text-white mt-0.5" dir="ltr">
+                                            <bdi>{lang === "ar" ? currentCountry.capitalAr : currentCountry.capital}</bdi>
+                                        </div>
                                     </div>
                                     <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                                        <div className="text-white/50 text-[10px]">Verified Programs</div>
+                                        <div className="text-white/50 text-[10px]">{t.projectsLabel}</div>
                                         <div className="font-semibold text-[#f2a007] mt-0.5 flex items-center gap-1">
                                             <Activity size={12} />
-                                            <span>{currentCountry.projects} Projects</span>
+                                            <span><bdi>{currentCountry.projects}</bdi></span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="mt-3 pt-2 text-[11px] text-white/60 flex items-center justify-between">
-                                    <span className="flex items-center gap-1 text-emerald-400">
-                                        <CheckCircle2 size={12} />
-                                        Institutional Presence
-                                    </span>
-                                    <span className="text-[#f2a007] font-medium flex items-center gap-0.5 cursor-pointer hover:underline">
-                                        View Specs <ArrowUpRight size={12} />
-                                    </span>
+                                <div className="mt-3 pt-2 text-[11px] text-white/60 flex items-center gap-1">
+                                    <CheckCircle2 size={12} className="text-emerald-400" />
+                                    <span>{t.presenceLabel}</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -312,9 +322,9 @@ function NodalMapComponent({ activeCountry }: { activeCountry: string | null }) 
                 </AnimatePresence>
             </div>
 
-            <div className="relative z-30 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-xs text-black/50">
-                <div>Hover or select a sovereign territory to inspect regional corridor operations.</div>
-                <div className="font-semibold text-[#5a1f2e]">African International Business Alliance and Sustainable Development</div>
+            <div className="relative z-30 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-xs text-black/55">
+                <div>{t.mapHint}</div>
+                <div className="font-semibold text-[#5a1f2e]">AIABASD</div>
             </div>
         </div>
     );

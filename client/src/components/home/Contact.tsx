@@ -22,6 +22,7 @@ interface ContactProps {
         submitting: string;
         successNote: string;
         error: string;
+        reassure: string;
         placeholders: {
             name: string;
             email: string;
@@ -69,7 +70,6 @@ function ContactComponent({ data }: ContactProps) {
             setReference(typeof body?.reference === "string" ? body.reference : null);
             setSent(true);
             setForm({ name: "", email: "", org: "", msg: "" });
-            setTimeout(() => setSent(false), 8000);
         } catch (err) {
             console.error("Submission error:", err);
             setError(true);
@@ -227,6 +227,10 @@ function ContactComponent({ data }: ContactProps) {
                                     </span>
                                 )}
                             </div>
+
+                            <p className="text-xs text-black/55 leading-relaxed pt-1">
+                                {data.reassure}
+                            </p>
 
                             {error && (
                                 <div

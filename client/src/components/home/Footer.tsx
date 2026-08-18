@@ -1,4 +1,4 @@
-import { Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp } from "lucide-react";
 import { useState, memo } from "react";
 
 interface FooterProps {
@@ -18,8 +18,6 @@ interface FooterProps {
 }
 
 const socialLinks = [
-    { icon: Linkedin, label: "LinkedIn", href: "#" },
-    { icon: Twitter, label: "Twitter", href: "#" },
     { icon: Mail, label: "Email", href: "mailto:contact@aiabasd.org" },
 ];
 
@@ -189,7 +187,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             aria-label="Back to top"
                             className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors cursor-pointer"
                         >
-                            <ArrowUp size={14} className="rtl:rotate-180" />
+                            <ArrowUp size={14} />
                         </button>
                     </div>
                 </div>

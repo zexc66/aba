@@ -44,6 +44,10 @@ export interface Content {
   };
   programs: {
     title: string;
+    sectionEyebrow: string;
+    sectionNote: string;
+    flagshipLabel: string;
+    exploreLabel: string;
     list: {
       icon: ReactNode;
       name: string;
@@ -73,6 +77,21 @@ export interface Content {
     title: string;
     note: string;
     list: string[];
+    eyebrow: string;
+    indexTitle: string;
+    corridorsLabel: string;
+    activeLabel: string;
+    pipelineLabel: string;
+    projectsLabel: string;
+    mapTitle: string;
+    mapCorridors: string;
+    territoryLabel: string;
+    globalViewLabel: string;
+    regionalViewLabel: string;
+    activeRegionLabel: string;
+    capitalLabel: string;
+    presenceLabel: string;
+    mapHint: string;
   };
   governance: {
     title: string;
@@ -82,6 +101,8 @@ export interface Content {
   partners: {
     title: string;
     note: string;
+    vettedLabel: string;
+    networkLabel: string;
   };
   team: {
     title: string;
@@ -124,6 +145,7 @@ export interface Content {
     submitting: string;
     successNote: string;
     error: string;
+    reassure: string;
     placeholders: {
       name: string;
       email: string;
@@ -135,7 +157,7 @@ export interface Content {
       channels: string;
     };
   };
-    footer: {
+  footer: {
     rights: string;
     privacy: string;
     terms: string;
@@ -144,6 +166,8 @@ export interface Content {
     title: { main: string; highlighted: string; partner: string };
     sectionRef: string;
     communique: string;
+    eyebrow: string;
+    subtitle: string;
     list: {
       quote: string;
       author: string;
@@ -244,7 +268,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     stats: [
       { label: "Projects in pipeline", value: "+$550M" },
       { label: "Jobs enabled", value: "10,000+" },
-      { label: "Countries engaged", value: "9+" },
+      { label: "Countries engaged", value: "11" },
       { label: "Target IRR", value: "22–30%" },
     ],
     about: {
@@ -259,9 +283,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       metricsTitle: "Institutional_Legacy",
       metrics: [
         { label: "Operational Hubs", value: "09", desc: "Strategic centers across major economic zones", id: "HUB_SEC" },
-        { label: "Deployment Valve", value: "550", desc: "USD Millions in directed financing", id: "VAL_FIN", suffix: "M" },
-        { label: "Civic Programs", value: "14", desc: "Flagship programs under institutional mandate", id: "PRG_CIV" },
-        { label: "Target Alpha", value: "28", desc: "Regional hurdle rate for resilience", id: "ALF_TRG", suffix: "%" },
+        { label: "Pipeline (USD M)", value: "550", desc: "USD Millions in directed financing", id: "VAL_FIN", suffix: "M" },
+        { label: "Civic Programs", value: "07", desc: "Flagship programs under institutional mandate", id: "PRG_CIV" },
+        { label: "Target program IRR", value: "22–30", desc: "Range targeted across bankable programs", id: "ALF_TRG", suffix: "%" },
       ],
       blueprintTitle: "Execution_Framework",
       blueprint: [
@@ -283,6 +307,11 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     programs: {
       title: "Flagship programs",
+      sectionEyebrow: "Sovereign & Institutional Initiatives",
+      sectionNote: "Bankable public-private partnership models (PPP/BOT/EPC+F) designed for long-term regional resilience and economic development.",
+      flagshipLabel: "Flagship Initiative",
+      exploreLabel: "Explore Project Blueprint",
+
       list: [
         {
           icon: <Heart className="w-6 h-6" />,
@@ -421,6 +450,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       title: "Where we operate",
       note: "Active & pipeline geographies",
       list: ["Ghana", "The Gambia", "Sierra Leone", "Burkina Faso", "Côte d'Ivoire", "Angola", "Jordan", "Egypt", "Syria", "Sudan", "Saudi Arabia"],
+      eyebrow: "Geographic Coverage",
+      mapTitle: "Sovereign Infrastructure Map",
+      mapCorridors: "{n} Sovereign Member Corridors",
+      territoryLabel: "Territory:",
+      globalViewLabel: "Global Map",
+      regionalViewLabel: "Regional Focus",
+      activeRegionLabel: "Active Region",
+      capitalLabel: "Capital City",
+      presenceLabel: "Institutional Presence",
+      mapHint: "Hover or select a sovereign territory to inspect regional corridor operations.",
+
+      indexTitle: "Member Countries & Corridors",
+      corridorsLabel: "Active Regional Corridors",
+      activeLabel: "Active",
+      pipelineLabel: "Pipeline",
+      projectsLabel: "Programs",
+
     },
     governance: {
       title: "Governance & compliance",
@@ -436,6 +482,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     partners: {
       title: "Strategic partners",
       note: "Public sector, DFIs, EPCs, investors, and operating partners.",
+      vettedLabel: "Vetted & Authorized Strategic Institutional Partners",
+      networkLabel: "AIABASD Global Consortium Network",
+
     },
     team: {
       title: "Our team",
@@ -491,6 +540,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       senegal: "Senegal",
       submitting: "Submitting Inquiry…",
       successNote: "Your message has been received securely. Reference: {ref}",
+      reassure: "Submissions reach our partnerships team directly; a partner typically responds within two business days.",
+
       error: "Submission failed. Please try again or email contact@aiabasd.org",
       placeholders: {
         name: "e.g., Ziad Shneikat",
@@ -510,6 +561,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "Voice of our", highlighted: "Institutional", partner: "Partners" },
+      eyebrow: "Endorsements & Leadership",
+      subtitle: "Direct perspectives from sovereign partners, institutional investors, and regional development directors.",
+
       sectionRef: "SECTION_07",
       communique: "COMMUNIQUE_V.01",
       list: [
@@ -614,7 +668,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     stats: [
       { label: "مشاريع قيد الإعداد", value: "+$550M" },
       { label: "وظائف مباشرة وغير مباشرة", value: "10,000+" },
-      { label: "الدول المستهدفة", value: "9+" },
+      { label: "الدول المستهدفة", value: "11" },
       { label: "العائد المستهدف", value: "22–30%" },
     ],
     about: {
@@ -629,9 +683,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       metricsTitle: "الإرث_المؤوسسي",
       metrics: [
         { label: "مراكز العمليات", value: "09", desc: "مراكز استراتيجية عبر المناطق الاقتصادية الرئيسية", id: "HUB_SEC" },
-        { label: "حجم النشر", value: "550", desc: "مليون دولار أمريكي في التمويل الموجه", id: "VAL_FIN", suffix: "M" },
-        { label: "البرامج المدنية", value: "14", desc: "برامج رائدة تحت التفويض المؤسسي", id: "PRG_CIV" },
-        { label: "الهدف ألفا", value: "28", desc: "معدل العائد الإقليمي للصمود", id: "ALF_TRG", suffix: "%" },
+        { label: "خط المشاريع (مليون $)", value: "550", desc: "مليون دولار أمريكي في التمويل الموجه", id: "VAL_FIN", suffix: "M" },
+        { label: "البرامج المدنية", value: "07", desc: "برامج رائدة تحت التفويض المؤسسي", id: "PRG_CIV" },
+        { label: "العائد المستهدف للبرامج", value: "22–30", desc: "النطاق المستهدف عبر البرامج القابلة للتمويل", id: "ALF_TRG", suffix: "%" },
       ],
       blueprintTitle: "إطار_التنفيذ",
       blueprint: [
@@ -653,6 +707,11 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     programs: {
       title: "البرامج الرئيسية",
+      sectionEyebrow: "مبادرات سيادية ومؤسسية",
+      sectionNote: "نماذج شراكة عامة-خاصة قابلة للتمويل (PPP/BOT/EPC+F) مصممة للصمود الإقليمي طويل المدى والتنمية الاقتصادية.",
+      flagshipLabel: "مبادرة رائدة",
+      exploreLabel: "استكشف مخطط المشروع",
+
       list: [
         {
           icon: <Heart className="w-6 h-6" />,
@@ -791,6 +850,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       title: "نطاق العمل",
       note: "دول نشطة ودول قيد الإعداد",
       list: ["غانا", "غامبيا", "سيراليون", "بوركينا فاسو", "ساحل العاج", "أنغولا", "الأردن", "مصر", "سوريا", "السودان", "السعودية"],
+      eyebrow: "التغطية الجغرافية",
+      mapTitle: "خريطة البنية السيادية",
+      mapCorridors: "{n} ممرات أعضاء سيادية",
+      territoryLabel: "الإقليم:",
+      globalViewLabel: "الخريطة العالمية",
+      regionalViewLabel: "تركيز إقليمي",
+      activeRegionLabel: "إقليم نشط",
+      capitalLabel: "العاصمة",
+      presenceLabel: "حضور مؤسسي",
+      mapHint: "مرّر أو اختر إقليماً سيادياً لفحص عمليات الممرات الإقليمية.",
+
+      indexTitle: "الدول الأعضاء والممرات",
+      corridorsLabel: "ممرات إقليمية نشطة",
+      activeLabel: "نشط",
+      pipelineLabel: "قيد الإعداد",
+      projectsLabel: "برامج",
+
     },
     governance: {
       title: "الحوكمة والامتثال",
@@ -806,6 +882,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     partners: {
       title: "الشركاء الاستراتيجيون",
       note: "القطاع العام، مؤسسات التمويل، شركات EPC، المستثمرون، وشركاء التشغيل.",
+      vettedLabel: "شركاء مؤسسيون استراتيجيون موثقون ومعتمدون",
+      networkLabel: "شبكة التحالف العالمية AIABASD",
+
     },
     team: {
       title: "فريقنا",
@@ -861,6 +940,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       senegal: "السنغال",
       submitting: "جارٍ إرسال الاستفسار…",
       successNote: "تم استلام رسالتك بأمان. الرقم المرجعي: {ref}",
+      reassure: "تصل الإرسالات فريق الشراكات مباشرة؛ وعادةً يرد أحد الشركاء خلال يومي عمل.",
+
       error: "تعذّر الإرسال. حاول مرة أخرى أو راسلنا على contact@aiabasd.org",
       placeholders: {
         name: "مثال: زياد شنيكات",
@@ -880,6 +961,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "صوت شركاءنا", highlighted: "المؤسسيين", partner: "الاستراتيجيين" },
+      eyebrow: "تأييدات وقيادة",
+      subtitle: "وجهات نظر مباشرة من شركاء سياديين ومستثمرين مؤسسيين ومديري تنمية إقليميين.",
+
       sectionRef: "القسم_07",
       communique: "بلاغ_V.01",
       list: [
@@ -984,7 +1068,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     stats: [
       { label: "Projets en pipeline", value: "+550M $" },
       { label: "Emplois créés", value: "10 000+" },
-      { label: "Pays engagés", value: "9+" },
+      { label: "Pays engagés", value: "11" },
       { label: "TRI cible", value: "22–30%" },
     ],
     about: {
@@ -999,9 +1083,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       metricsTitle: "Héritage_Institutionnel",
       metrics: [
         { label: "Hubs Opérationnels", value: "09", desc: "Centres stratégiques dans les zones économiques majeures", id: "HUB_SEC" },
-        { label: "Flux de Déploiement", value: "550", desc: "Millions USD en financement dirigé", id: "VAL_FIN", suffix: "M" },
-        { label: "Programmes Civiques", value: "14", desc: "Programmes phares sous mandat institutionnel", id: "PRG_CIV" },
-        { label: "Cible Alpha", value: "28", desc: "Taux critique régional pour la résilience", id: "ALF_TRG", suffix: "%" },
+        { label: "Pipeline (M USD)", value: "550", desc: "Millions USD en financement dirigé", id: "VAL_FIN", suffix: "M" },
+        { label: "Programmes Civiques", value: "07", desc: "Programmes phares sous mandat institutionnel", id: "PRG_CIV" },
+        { label: "TRI cible des programmes", value: "22–30", desc: "Plage ciblée sur les programmes finançables", id: "ALF_TRG", suffix: "%" },
       ],
       blueprintTitle: "Cadre_d_Exécution",
       blueprint: [
@@ -1023,6 +1107,11 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     programs: {
       title: "Programmes phares",
+      sectionEyebrow: "Initiatives Souveraines & Institutionnelles",
+      sectionNote: "Modèles de partenariat public-privé finançables (PPP/BOT/EPC+F) conçus pour la résilience régionale et le développement économique.",
+      flagshipLabel: "Initiative Phare",
+      exploreLabel: "Explorer le Plan du Projet",
+
       list: [
         {
           icon: <Heart className="w-6 h-6" />,
@@ -1161,6 +1250,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       title: "Où nous opérons",
       note: "Géographies actives et en pipeline",
       list: ["Ghana", "Gambie", "Sierra Leone", "Burkina Faso", "Côte d'Ivoire", "Angola", "Jordanie", "Égypte", "Syrie", "Soudan", "Arabie saoudite"],
+      eyebrow: "Couverture Géographique",
+      mapTitle: "Carte des Infrastructures Souveraines",
+      mapCorridors: "{n} Corridors Membres Souverains",
+      territoryLabel: "Territoire :",
+      globalViewLabel: "Carte Globale",
+      regionalViewLabel: "Focus Régional",
+      activeRegionLabel: "Région Active",
+      capitalLabel: "Capitale",
+      presenceLabel: "Présence Institutionnelle",
+      mapHint: "Survolez ou sélectionnez un territoire souverain pour inspecter les opérations des corridors régionaux.",
+
+      indexTitle: "Pays Membres & Corridors",
+      corridorsLabel: "Corridors Régionaux Actifs",
+      activeLabel: "Actif",
+      pipelineLabel: "En préparation",
+      projectsLabel: "Programmes",
+
     },
     governance: {
       title: "Gouvernance et conformité",
@@ -1200,11 +1306,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     partners: {
       title: "Partenaires stratégiques",
       note: "Secteur public, IFD, EPC, investisseurs et partenaires opérationnels.",
+      vettedLabel: "Partenaires Institutionnels Stratégiques Agréés et Autorisés",
+      networkLabel: "Réseau Mondial du Consortium AIABASD",
+
     },
     newsroom: {
       title: "Actualités et mises à jour",
       note: "Derniers faits saillants et annonces.",
-      empty: "Les annonces, protocoles de partenariat et mises à jour terrain seront publiés ici.",
+      empty: "Les annonces, protocoles de partenariat et mises à jour terrain seront publiées ici.",
       eyebrow: "Presse & Analyses",
       newsletterTitle: "S'abonner aux Publications Institutionnelles",
       newsletterText: "Recevez directement les mises à jour exécutives, rapports de développement et annonces de partenariat.",
@@ -1231,6 +1340,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       senegal: "Sénégal",
       submitting: "Envoi de la demande…",
       successNote: "Votre message a été reçu en toute sécurité. Référence : {ref}",
+      reassure: "Les envois parviennent directement à notre équipe partenariats ; un associé répond généralement sous deux jours ouvrés.",
+
       error: "Échec de l'envoi. Réessayez ou écrivez à contact@aiabasd.org",
       placeholders: {
         name: "ex., Ziad Shneikat",
@@ -1249,7 +1360,10 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       terms: "Conditions",
     },
     testimonials: {
-      title: { main: "La voix de nos", highlighted: "Institutionnel", partner: "Partenaires" },
+      title: { main: "La voix de nos", highlighted: "partenaires", partner: "institutionnels" },
+      eyebrow: "Appuis & Leadership",
+      subtitle: "Perspectives directes de partenaires souverains, d'investisseurs institutionnels et de directeurs du développement régional.",
+
       sectionRef: "SECTION_07",
       communique: "COMMUNIQUE_V.01",
       list: [

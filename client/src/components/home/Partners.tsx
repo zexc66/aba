@@ -78,9 +78,9 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                 <div className="mt-16 pt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black/60 font-medium">
                     <div className="flex items-center gap-2">
                         <Handshake className="w-4 h-4 text-[#5a1f2e]" />
-                        <span>Vetted & Authorized Strategic Institutional Partners</span>
+                        <span>{data.vettedLabel}</span>
                     </div>
-                    <span>AIABASD Global Consortium Network</span>
+                    <span>{data.networkLabel}</span>
                 </div>
 
             </div>

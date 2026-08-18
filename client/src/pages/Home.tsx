@@ -17,7 +17,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 
 export default function Home() {
-  const { lang, content: t, toggleLang, isFetchingCMS } = useLanguageContext();
+  const { lang, content: t, isFetchingCMS } = useLanguageContext();
 
   return (
     <>
@@ -26,12 +26,7 @@ export default function Home() {
 
       <div className="relative min-h-screen text-[#0b0b10] editorial-theme">
         <AnimatedBackground />
-        <Header
-          nav={t.nav}
-          langLabel={t.langLabel}
-          toggleLang={toggleLang}
-          currentLang={lang}
-        />
+        <Header nav={t.nav} />
 
         <main>
           <Hero data={t.hero} stats={t.stats} />

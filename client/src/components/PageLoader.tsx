@@ -43,7 +43,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                 >
                     <div className="absolute inset-0 overflow-hidden">
                         <motion.div
-                            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl"
+                            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-[#5a1f2e]/15 to-[#f2a007]/15 rounded-full blur-3xl"
                             animate={{
                                 scale: [1, 1.2, 1],
                                 x: [0, 50, 0],
@@ -56,7 +56,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                             }}
                         />
                         <motion.div
-                            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-blue-200/30 to-cyan-200/30 rounded-full blur-3xl"
+                            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-[#f2a007]/15 to-[#5a1f2e]/15 rounded-full blur-3xl"
                             animate={{
                                 scale: [1.2, 1, 1.2],
                                 x: [0, -50, 0],
@@ -90,7 +90,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                             }}
                         />
                         <motion.div
-                            className="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-xl -z-10"
+                            className="absolute -inset-2 bg-gradient-to-r from-[#5a1f2e]/20 to-[#f2a007]/20 rounded-2xl blur-xl -z-10"
                             animate={{
                                 opacity: [0.3, 0.6, 0.3],
                             }}
@@ -108,7 +108,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                         transition={{ delay: 0.3, duration: 0.5 }}
                         className="relative z-10 text-center mb-8"
                     >
-                        <div className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-gray-700 bg-clip-text text-transparent">
+                        <div className="text-2xl font-bold text-[#0b0b10]">
                             AIABASD
                         </div>
                         <div className="text-sm text-gray-500 mt-1">
@@ -137,7 +137,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                     {[...Array(5)].map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-purple-500/30 to-pink-500/30"
+                            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-[#5a1f2e]/30 to-[#f2a007]/30"
                             style={{
                                 left: `${20 + i * 15}%`,
                                 top: `${30 + i * 10}%`,

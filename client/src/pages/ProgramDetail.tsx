@@ -48,7 +48,7 @@ export default function ProgramDetail() {
         lang={lang}
         url={`/programs/${program.slug}`}
       />
-      <Header nav={content.nav} langLabel={langLabel} toggleLang={toggleLang} currentLang={lang} />
+      <Header nav={content.nav} />
 
       <main className="pt-28 pb-24">
         <Section className="py-16 border-b border-black/5 bg-white">

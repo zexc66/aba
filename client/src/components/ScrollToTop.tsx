@@ -69,7 +69,7 @@ export default function ScrollToTop() {
 
                     <ArrowUp className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-y-1" />
 
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#5a1f2e] to-[#f2a007] blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
                 </motion.button>
             )}
         </AnimatePresence>

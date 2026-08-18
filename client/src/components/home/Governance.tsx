@@ -1,7 +1,7 @@
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
 import { memo } from "react";
-import { Shield, Scale, Eye, FileText, ArrowRight } from "lucide-react";
+import { Shield, Scale, Eye, FileText } from "lucide-react";
 import { type Content } from "@/data";
 
 interface GovernanceProps {
@@ -54,7 +54,7 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                                     <div className="w-12 h-12 rounded-lg bg-[#5a1f2e]/10 text-[#5a1f2e] flex items-center justify-center">
                                         {pillarIcons[i % pillarIcons.length]}
                                     </div>
-                                    <span className="text-xs font-semibold text-black/40 uppercase tracking-wider">
+                                    <span className="text-xs font-semibold text-black/55 uppercase tracking-wider">
                                         Pillar 0{i + 1}
                                     </span>
                                 </div>
@@ -67,19 +67,8 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                                     {pillar.desc}
                                 </p>
                             </div>
-
-                            <div className="mt-8 pt-4 border-t border-black/5 flex items-center text-xs font-semibold text-[#5a1f2e] group cursor-pointer">
-                                <span>{hud.exploreProtocol}</span>
-                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                            </div>
                         </motion.div>
                     ))}
-                </div>
-
-                <div className="mt-16 text-center">
-                    <button className="inline-flex items-center gap-2 px-6 py-3 bg-[#5a1f2e] text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-[#5a1f2e]/90 transition-colors shadow-sm">
-                        <span>{hud.accessCharter}</span>
-                    </button>
                 </div>
 
             </div>

@@ -10,6 +10,7 @@ export default function GlobalLayout({ children }: GlobalLayoutProps) {
         <div className="relative min-h-screen bg-[#fdfcfb] selection:bg-[#5a1f2e] selection:text-white overflow-x-hidden">
             <AnimatePresence mode="wait">
                 <motion.main
+                    id="main-content"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

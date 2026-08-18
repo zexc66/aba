@@ -1,6 +1,6 @@
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
-import { User, Linkedin, ExternalLink } from "lucide-react";
+import { User } from "lucide-react";
 import { memo } from "react";
 import { type Content } from "@/data";
 
@@ -65,20 +65,8 @@ function TeamComponent({ data, hud }: TeamProps) {
                                     </p>
                                 </div>
                             </div>
-
-                            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-white/50 hover:text-white transition-colors cursor-pointer">
-                                <span className="font-medium">Leadership Profile</span>
-                                <Linkedin size={14} className="text-[#f2a007]" />
-                            </div>
                         </motion.div>
                     ))}
-                </div>
-
-                <div className="mt-16 text-center">
-                    <button className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 hover:border-white text-white text-xs font-semibold uppercase tracking-wider rounded-md hover:bg-white/5 transition-colors">
-                        <span>{hud.view_full_governance}</span>
-                        <ExternalLink size={14} />
-                    </button>
                 </div>
 
             </div>

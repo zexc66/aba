@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { Section } from "@/components/ui/section";
 import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ArrowLeft, ArrowRight } from "lucide-react";
@@ -13,6 +13,7 @@ interface TestimonialsProps {
 function TestimonialsComponent({ data }: TestimonialsProps) {
     const [current, setCurrent] = useState(0);
     const [autoPlay, setAutoPlay] = useState(true);
+    const resumeTimer = useRef<number | null>(null);
 
     useEffect(() => {
         if (!autoPlay) return;
@@ -22,13 +23,23 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
         return () => clearInterval(timer);
     }, [autoPlay, data.list.length]);
 
-    const next = () => {
+    useEffect(() => () => {
+        window.clearTimeout(resumeTimer.current ?? undefined);
+    }, []);
+
+    const pauseAndResume = () => {
         setAutoPlay(false);
+        window.clearTimeout(resumeTimer.current ?? undefined);
+        resumeTimer.current = window.setTimeout(() => setAutoPlay(true), 12000);
+    };
+
+    const next = () => {
+        pauseAndResume();
         setCurrent((prev) => (prev + 1) % data.list.length);
     };
 
     const prev = () => {
-        setAutoPlay(false);
+        pauseAndResume();
         setCurrent((prev) => (prev - 1 + data.list.length) % data.list.length);
     };
 
@@ -37,14 +48,14 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
     return (
         <Section id="testimonials" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                
+
                 <div className="grid lg:grid-cols-12 gap-12 items-center">
-                    
+
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-3">
                             <div className="h-0.5 w-8 bg-[#5a1f2e]" />
                             <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
-                                Endorsements & Leadership
+                                {data.eyebrow}
                             </span>
                         </div>
 
@@ -54,30 +65,32 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                         </h2>
 
                         <p className="text-sm text-black/60 leading-relaxed max-w-md">
-                            Direct perspectives from sovereign partners, institutional investors, and regional development directors.
+                            {data.subtitle}
                         </p>
 
                         <div className="flex items-center gap-4 pt-4">
-                            <button 
+                            <button
                                 onClick={prev}
+                                aria-label="Previous testimonial"
                                 className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-all shadow-sm"
                             >
-                                <ArrowLeft className="w-5 h-5" />
+                                <ArrowLeft className="w-5 h-5 rtl:rotate-180" />
                             </button>
-                            <button 
+                            <button
                                 onClick={next}
+                                aria-label="Next testimonial"
                                 className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-all shadow-sm"
                             >
-                                <ArrowRight className="w-5 h-5" />
+                                <ArrowRight className="w-5 h-5 rtl:rotate-180" />
                             </button>
-                            <span className="text-xs font-semibold text-black/40 ml-2">
-                                {(current + 1).toString().padStart(2, '0')} / {data.list.length.toString().padStart(2, '0')}
+                            <span className="text-xs font-semibold text-black/55 ms-2" aria-live="polite">
+                                {(current + 1).toString().padStart(2, "0")} / {data.list.length.toString().padStart(2, "0")}
                             </span>
                         </div>
                     </div>
 
                     <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-2xl border border-black/5 shadow-md relative overflow-hidden min-h-[320px] flex flex-col justify-between">
-                        <Quote className="w-12 h-12 text-[#5a1f2e]/10 absolute top-6 right-6" />
+                        <Quote className="w-12 h-12 text-[#5a1f2e]/10 absolute top-6 end-6" aria-hidden="true" />
 
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -111,11 +124,12 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                                     key={i}
                                     onClick={() => {
                                         setCurrent(i);
-                                        setAutoPlay(false);
+                                        pauseAndResume();
                                     }}
-                                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                                        i === current ? 'w-8 bg-[#5a1f2e]' : 'w-2 bg-black/10'
-                                    }`}
+                                    aria-label={`Testimonial ${i + 1}`}
+                                    aria-selected={i === current}
+                                    role="tab"
+                                    className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-8 bg-[#5a1f2e]" : "w-4 bg-black/15 hover:bg-black/30"}`}
                                 />
                             ))}
                         </div>

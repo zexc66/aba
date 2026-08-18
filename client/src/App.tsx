@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Route, Switch } from "wouter";
 import { lazy, Suspense } from "react";
+import { MotionConfig } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Chatbot from "./components/Chatbot";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -38,11 +39,18 @@ function Router() {
 
 function App() {
   return (
+    <MotionConfig reducedMotion="user">
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <LanguageProvider>
           <TooltipProvider>
             <Toaster />
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-[100] focus:bg-[#5a1f2e] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
+            >
+              Skip to content
+            </a>
             <GlobalLayout>
               <Router />
             </GlobalLayout>
@@ -51,6 +59,7 @@ function App() {
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>
+    </MotionConfig>
   );
 }
 
