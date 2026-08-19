@@ -6,6 +6,18 @@ interface FooterProps {
         rights: string;
         privacy: string;
         terms: string;
+        navTitle: string;
+        engagementTitle: string;
+        updatesTitle: string;
+        backToTopLabel: string;
+        links: {
+            about: string;
+            countries: string;
+            governance: string;
+            partners: string;
+            newsroom: string;
+            contact: string;
+        };
     };
     newsroom: {
         newsletterTitle: string;
@@ -21,26 +33,25 @@ const socialLinks = [
     { icon: Mail, label: "Email", href: "mailto:contact@aiabasd.org" },
 ];
 
-const navigation = [
-    {
-        title: "Navigation",
-        links: [
-            { label: "About AIABASD", href: "#about" },
-            { label: "Country Coverage", href: "#countries" },
-            { label: "Governance & Ethics", href: "#governance" }
-        ]
-    },
-    {
-        title: "Engagement",
-        links: [
-            { label: "Partner Network", href: "#partners" },
-            { label: "Press & Newsroom", href: "#news" },
-            { label: "Executive Contact", href: "#contact" }
-        ]
-    }
-];
-
 function FooterComponent({ data, newsroom, lang }: FooterProps) {
+    const navigation = [
+        {
+            title: data.navTitle,
+            links: [
+                { label: data.links.about, href: "#about" },
+                { label: data.links.countries, href: "#countries" },
+                { label: data.links.governance, href: "#governance" }
+            ]
+        },
+        {
+            title: data.engagementTitle,
+            links: [
+                { label: data.links.partners, href: "#partners" },
+                { label: data.links.newsroom, href: "#news" },
+                { label: data.links.contact, href: "#contact" }
+            ]
+        }
+    ];
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
@@ -184,7 +195,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                         <a href="/terms" className="hover:text-white transition-colors">{data.terms}</a>
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                            aria-label="Back to top"
+                            aria-label={data.backToTopLabel}
                             className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors cursor-pointer"
                         >
                             <ArrowUp size={14} />

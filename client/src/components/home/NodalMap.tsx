@@ -46,6 +46,14 @@ const CORRIDOR_ARCS = [
 
 const EN_LIST = COPY.en.countries.list;
 
+const REGION_LABELS: Record<string, Record<"en" | "ar" | "fr", string>> = {
+    "West Africa": { en: "West Africa", ar: "غرب إفريقيا", fr: "Afrique de l'Ouest" },
+    "Central Africa": { en: "Central Africa", ar: "وسط إفريقيا", fr: "Afrique Centrale" },
+    "North/East Africa": { en: "North/East Africa", ar: "شمال/شرق إفريقيا", fr: "Afrique du Nord/Est" },
+    "North Africa": { en: "North Africa", ar: "شمال إفريقيا", fr: "Afrique du Nord" },
+    "Middle East": { en: "Middle East", ar: "الشرق الأوسط", fr: "Moyen-Orient" },
+};
+
 function localizedName(id: string, lang: "en" | "ar" | "fr"): string {
     const idx = EN_LIST.findIndex((n) => n.toLowerCase() === id.toLowerCase());
     return idx >= 0 ? COPY[lang].countries.list[idx] : id;
@@ -284,7 +292,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                                 {localizedName(currentCountry.id, lang)}
                                                 {lang === "ar" && <span className="text-xs font-normal text-white/50">({currentCountry.capital})</span>}
                                             </div>
-                                            <div className="text-[11px] text-white/60">{currentCountry.region}</div>
+                                            <div className="text-[11px] text-white/60">{REGION_LABELS[currentCountry.region]?.[lang] ?? currentCountry.region}</div>
                                         </div>
                                     </div>
                                     <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${

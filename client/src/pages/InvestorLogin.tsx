@@ -115,9 +115,12 @@ export default function InvestorLogin() {
             </button>
           </form>
 
-          <div className="text-center pt-4 border-t border-white/10">
+          <div className="text-center pt-4 border-t border-white/10 space-y-2">
             <p className="text-xs text-white/50 leading-relaxed">
               {t.auditNote}
+            </p>
+            <p className="text-[11px] text-[#f2a007]/80 leading-relaxed" dir="ltr">
+              {t.rangeNote}
             </p>
           </div>
         </motion.div>

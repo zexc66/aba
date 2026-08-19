@@ -255,3 +255,13 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+html[lang="ar"] .tracking-wider,
+html[lang="ar"] .tracking-widest,
+html[lang="ar"] .tracking-wide,
+html[lang="ar"] .tracking-tight,
+html[lang="ar"] .tracking-tighter,
+html[lang="ar"] .tracking-tightest,
+html[lang="ar"] .hud-label {
+  letter-spacing: 0 !important;
+}

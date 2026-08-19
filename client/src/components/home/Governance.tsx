@@ -55,7 +55,7 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                                         {pillarIcons[i % pillarIcons.length]}
                                     </div>
                                     <span className="text-xs font-semibold text-black/55 uppercase tracking-wider">
-                                        Pillar 0{i + 1}
+                                        {data.pillarLabel} 0{i + 1}
                                     </span>
                                 </div>
 

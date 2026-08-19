@@ -18,8 +18,24 @@ interface CountriesProps {
         activeLabel: string;
         pipelineLabel: string;
         projectsLabel: string;
+        regions: {
+            westAfrica: string;
+            centralAfrica: string;
+            northEastAfrica: string;
+            northEastAfrica2?: string;
+            northAfrica: string;
+            middleEast: string;
+        };
     };
 }
+
+const REGION_KEY: Record<string, string> = {
+    "West Africa": "westAfrica",
+    "Central Africa": "centralAfrica",
+    "North/East Africa": "northEastAfrica",
+    "North Africa": "northAfrica",
+    "Middle East": "middleEast",
+};
 
 function CountriesComponent({ data }: CountriesProps) {
     const { lang } = useLanguageContext();
@@ -84,7 +100,7 @@ function CountriesComponent({ data }: CountriesProps) {
                                                 {name}
                                             </h4>
                                             <p className="text-xs text-black/55 mt-1">
-                                                {node?.region} · <bdi>{node?.projects ?? "—"}</bdi> {data.projectsLabel}
+                                                {(data.regions as Record<string, string>)[REGION_KEY[node?.region ?? ""] ?? node?.region ?? ""] ?? node?.region} · <bdi>{node?.projects ?? "—"}</bdi> {data.projectsLabel}
                                             </p>
                                         </div>
                                     </div>

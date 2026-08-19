@@ -92,9 +92,17 @@ export interface Content {
     capitalLabel: string;
     presenceLabel: string;
     mapHint: string;
+    regions: {
+      westAfrica: string;
+      centralAfrica: string;
+      northEastAfrica: string;
+      northAfrica: string;
+      middleEast: string;
+    };
   };
   governance: {
     title: string;
+    pillarLabel: string;
     text: string;
     pillars: { title: string; desc: string }[];
   };
@@ -161,6 +169,18 @@ export interface Content {
     rights: string;
     privacy: string;
     terms: string;
+    navTitle: string;
+    engagementTitle: string;
+    updatesTitle: string;
+    backToTopLabel: string;
+    links: {
+      about: string;
+      countries: string;
+      governance: string;
+      partners: string;
+      newsroom: string;
+      contact: string;
+    };
   };
   testimonials: {
     title: { main: string; highlighted: string; partner: string };
@@ -214,6 +234,7 @@ export interface Content {
     cta: string;
     requestKey: string;
     auditNote: string;
+    rangeNote: string;
     backLabel: string;
     secureLabel: string;
     verifying: string;
@@ -223,6 +244,7 @@ export interface Content {
     toastFailed: string;
     toastNetwork: string;
   };
+  skipToContent: string;
   langLabel: string;
 }
 
@@ -269,7 +291,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       { label: "Projects in pipeline", value: "+$550M" },
       { label: "Jobs enabled", value: "10,000+" },
       { label: "Countries engaged", value: "11" },
-      { label: "Target IRR", value: "22–30%" },
     ],
     about: {
       title: "Who we are",
@@ -285,7 +306,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "Operational Hubs", value: "09", desc: "Strategic centers across major economic zones", id: "HUB_SEC" },
         { label: "Pipeline (USD M)", value: "550", desc: "USD Millions in directed financing", id: "VAL_FIN", suffix: "M" },
         { label: "Civic Programs", value: "07", desc: "Flagship programs under institutional mandate", id: "PRG_CIV" },
-        { label: "Target program IRR", value: "22–30", desc: "Range targeted across bankable programs", id: "ALF_TRG", suffix: "%" },
       ],
       blueprintTitle: "Execution_Framework",
       blueprint: [
@@ -460,6 +480,13 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       capitalLabel: "Capital City",
       presenceLabel: "Institutional Presence",
       mapHint: "Hover or select a sovereign territory to inspect regional corridor operations.",
+      regions: {
+        westAfrica: "West Africa",
+        centralAfrica: "Central Africa",
+        northEastAfrica: "North/East Africa",
+        northAfrica: "North Africa",
+        middleEast: "Middle East",
+      },
 
       indexTitle: "Member Countries & Corridors",
       corridorsLabel: "Active Regional Corridors",
@@ -470,6 +497,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     governance: {
       title: "Governance & compliance",
+      pillarLabel: "Pillar",
       text:
         "Our delivery model embeds independent oversight and rigorous safeguards across the project lifecycle.",
       pillars: [
@@ -558,6 +586,18 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       rights: "All rights reserved.",
       privacy: "Privacy",
       terms: "Terms",
+      navTitle: "Navigation",
+      engagementTitle: "Engagement",
+      updatesTitle: "Updates",
+      backToTopLabel: "Back to top",
+      links: {
+        about: "About AIABASD",
+        countries: "Country Coverage",
+        governance: "Governance & Ethics",
+        partners: "Partner Network",
+        newsroom: "Press & Newsroom",
+        contact: "Executive Contact",
+      },
     },
     testimonials: {
       title: { main: "Voice of our", highlighted: "Institutional", partner: "Partners" },
@@ -626,6 +666,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       cta: "INITIATE_AUTH_SESSION",
       requestKey: "REQUEST_KEY",
       auditNote: "Access is monitored and audited in accordance with the sovereign institutional privacy mandate.",
+      rangeNote: "Targeted program IRR range: 22\u201330% \u2014 detailed economics are shared with verified institutions after directorial review.",
       backLabel: "Return to Main Site",
       secureLabel: "Secure Investor Access",
       verifying: "Verifying…",
@@ -635,6 +676,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastFailed: "Submission failed. Please try again.",
       toastNetwork: "Network error during verification."
     },
+    skipToContent: "Skip to content",
     langLabel: "العربية",
   },
   ar: {
@@ -669,7 +711,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       { label: "مشاريع قيد الإعداد", value: "+$550M" },
       { label: "وظائف مباشرة وغير مباشرة", value: "10,000+" },
       { label: "الدول المستهدفة", value: "11" },
-      { label: "العائد المستهدف", value: "22–30%" },
     ],
     about: {
       title: "من نحن",
@@ -685,7 +726,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "مراكز العمليات", value: "09", desc: "مراكز استراتيجية عبر المناطق الاقتصادية الرئيسية", id: "HUB_SEC" },
         { label: "خط المشاريع (مليون $)", value: "550", desc: "مليون دولار أمريكي في التمويل الموجه", id: "VAL_FIN", suffix: "M" },
         { label: "البرامج المدنية", value: "07", desc: "برامج رائدة تحت التفويض المؤسسي", id: "PRG_CIV" },
-        { label: "العائد المستهدف للبرامج", value: "22–30", desc: "النطاق المستهدف عبر البرامج القابلة للتمويل", id: "ALF_TRG", suffix: "%" },
       ],
       blueprintTitle: "إطار_التنفيذ",
       blueprint: [
@@ -860,6 +900,13 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       capitalLabel: "العاصمة",
       presenceLabel: "حضور مؤسسي",
       mapHint: "مرّر أو اختر إقليماً سيادياً لفحص عمليات الممرات الإقليمية.",
+      regions: {
+        westAfrica: "غرب إفريقيا",
+        centralAfrica: "وسط إفريقيا",
+        northEastAfrica: "شمال/شرق إفريقيا",
+        northAfrica: "شمال إفريقيا",
+        middleEast: "الشرق الأوسط",
+      },
 
       indexTitle: "الدول الأعضاء والممرات",
       corridorsLabel: "ممرات إقليمية نشطة",
@@ -870,6 +917,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     governance: {
       title: "الحوكمة والامتثال",
+      pillarLabel: "الركن",
       text:
         "نموذج التنفيذ يتضمن رقابة مستقلة وضمانات صارمة عبر دورة حياة المشروع.",
       pillars: [
@@ -958,6 +1006,18 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       rights: "جميع الحقوق محفوظة.",
       privacy: "الخصوصية",
       terms: "الشروط",
+      navTitle: "التنقل",
+      engagementTitle: "المشاركة",
+      updatesTitle: "التحديثات",
+      backToTopLabel: "العودة إلى الأعلى",
+      links: {
+        about: "عن AIABASD",
+        countries: "التغطية الجغرافية",
+        governance: "الحوكمة والأخلاقيات",
+        partners: "شبكة الشركاء",
+        newsroom: "الصحافة والأخبار",
+        contact: "التواصل التنفيذي",
+      },
     },
     testimonials: {
       title: { main: "صوت شركاءنا", highlighted: "المؤسسيين", partner: "الاستراتيجيين" },
@@ -1026,6 +1086,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       cta: "بدء_جلسة_التوثيق",
       requestKey: "طلب_مفتاح",
       auditNote: "يتم مراقبة وتدقيق الوصول وفقاً لتفويض الخصوصية المؤسسي السيادي.",
+      rangeNote: "النطاق المستهدف للعائد الداخلي للبرامج: 22\u201330% \u2014 تُشارك التفاصيل الاقتصادية مع المؤسسات الموثقة بعد المراجعة الإدارية.",
       backLabel: "العودة إلى الموقع الرئيسي",
       secureLabel: "وصول آمن للمستثمرين",
       verifying: "جارٍ التحقق…",
@@ -1035,6 +1096,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastFailed: "تعذّر الإرسال. حاول مرة أخرى.",
       toastNetwork: "خطأ في الشبكة أثناء التحقق."
     },
+    skipToContent: "تخطَّ إلى المحتوى",
     langLabel: "EN",
   },
   fr: {
@@ -1069,7 +1131,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       { label: "Projets en pipeline", value: "+550M $" },
       { label: "Emplois créés", value: "10 000+" },
       { label: "Pays engagés", value: "11" },
-      { label: "TRI cible", value: "22–30%" },
     ],
     about: {
       title: "Qui sommes-nous",
@@ -1085,7 +1146,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "Hubs Opérationnels", value: "09", desc: "Centres stratégiques dans les zones économiques majeures", id: "HUB_SEC" },
         { label: "Pipeline (M USD)", value: "550", desc: "Millions USD en financement dirigé", id: "VAL_FIN", suffix: "M" },
         { label: "Programmes Civiques", value: "07", desc: "Programmes phares sous mandat institutionnel", id: "PRG_CIV" },
-        { label: "TRI cible des programmes", value: "22–30", desc: "Plage ciblée sur les programmes finançables", id: "ALF_TRG", suffix: "%" },
       ],
       blueprintTitle: "Cadre_d_Exécution",
       blueprint: [
@@ -1260,6 +1320,13 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       capitalLabel: "Capitale",
       presenceLabel: "Présence Institutionnelle",
       mapHint: "Survolez ou sélectionnez un territoire souverain pour inspecter les opérations des corridors régionaux.",
+      regions: {
+        westAfrica: "Afrique de l'Ouest",
+        centralAfrica: "Afrique Centrale",
+        northEastAfrica: "Afrique du Nord/Est",
+        northAfrica: "Afrique du Nord",
+        middleEast: "Moyen-Orient",
+      },
 
       indexTitle: "Pays Membres & Corridors",
       corridorsLabel: "Corridors Régionaux Actifs",
@@ -1270,6 +1337,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     governance: {
       title: "Gouvernance et conformité",
+      pillarLabel: "Pilier",
       text:
         "Notre modèle de mise en œuvre intègre une surveillance indépendante et des garanties rigoureuses tout au long du cycle de vie du projet.",
       pillars: [
@@ -1358,6 +1426,18 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       rights: "Tous droits réservés.",
       privacy: "Confidentialité",
       terms: "Conditions",
+      navTitle: "Navigation",
+      engagementTitle: "Engagement",
+      updatesTitle: "Mises à jour",
+      backToTopLabel: "Retour en haut",
+      links: {
+        about: "À propos d'AIABASD",
+        countries: "Couverture par Pays",
+        governance: "Gouvernance & Éthique",
+        partners: "Réseau de Partenaires",
+        newsroom: "Presse & Actualités",
+        contact: "Contact Exécutif",
+      },
     },
     testimonials: {
       title: { main: "La voix de nos", highlighted: "partenaires", partner: "institutionnels" },
@@ -1426,6 +1506,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       cta: "INITIER_SESSION_AUTH",
       requestKey: "DEMANDER_CLÉ",
       auditNote: "L'accès est surveillé et audité conformément au mandat de confidentialité institutionnelle souveraine.",
+      rangeNote: "Plage de TRI programmatique ciblée : 22\u201330% \u2014 les détails économiques sont partagés avec les institutions vérifiées après revue directionnelle.",
       backLabel: "Retour au Site Principal",
       secureLabel: "Accès Investisseur Sécurisé",
       verifying: "Vérification…",
@@ -1435,6 +1516,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastFailed: "Échec de l'envoi. Veuillez réessayer.",
       toastNetwork: "Erreur réseau lors de la vérification."
     },
+    skipToContent: "Aller au contenu",
     langLabel: "FR",
   },
 };

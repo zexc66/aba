@@ -100,7 +100,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                 </motion.a>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {data.list.map((program, i) => {
+                    {data.list.filter((program) => program !== featuredProgram).map((program, i) => {
                         const tone = programStatusTone(program.status);
                         return (
                             <motion.a

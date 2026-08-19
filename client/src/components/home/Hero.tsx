@@ -89,7 +89,7 @@ export default function Hero({ data, stats }: HeroProps) {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="mt-14 pt-8 border-t border-black/5 grid grid-cols-2 lg:grid-cols-4 gap-8"
+                    className="mt-14 pt-8 border-t border-black/5 grid grid-cols-1 sm:grid-cols-3 gap-8"
                 >
                     {stats.map((s, i) => (
                         <div
