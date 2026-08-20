@@ -96,18 +96,18 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
     }, []);
 
     return (
-        <div className={`w-full relative bg-[#fdfcfb] overflow-hidden select-none p-4 md:p-6 flex flex-col justify-between ${compact ? "h-full min-h-[320px]" : "h-full min-h-[560px]"} rounded-3xl border border-black/10 shadow-lg`}>
+        <div className={`w-full relative bg-[#fdfcfb] overflow-hidden select-none p-4 md:p-6 flex flex-col justify-between ${compact ? "h-full min-h-[320px]" : "h-full min-h-[560px]"} border border-black/10`}>
             
             <div className="relative z-30 flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-black/5">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#5a1f2e] text-white flex items-center justify-center shadow-md">
+                    <div className="w-10 h-10 bg-[#5a1f2e] text-white flex items-center justify-center">
                         <Globe2 size={20} className="text-[#f2a007]" />
                     </div>
                     <div>
-                        <div className="text-xs font-bold uppercase tracking-widest text-[#5a1f2e]">
+                        <div className="t-meta text-[#5a1f2e]">
                             {t.mapTitle}
                         </div>
-                        <div className="text-sm font-bold text-[#0b0b10]">
+                        <div className="t-data text-sm font-semibold text-[#0b0b10]">
                             {t.mapCorridors.replace("{n}", String(COUNTRIES.length))}
                         </div>
                     </div>
@@ -139,8 +139,8 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                 </div>
             </div>
 
-            <div className="relative z-30 py-3 flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth border-b border-black/5">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#5a1f2e] shrink-0 me-1">
+            <div className="relative z-30 py-3 flex flex-wrap items-center gap-1.5 border-b border-black/5">
+                <span className="t-meta text-[#5a1f2e] shrink-0 me-1">
                     {t.territoryLabel}
                 </span>
                 {COUNTRIES.map((c) => {
@@ -152,7 +152,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                             onMouseEnter={() => setHoveredIso(c.iso)}
                             onMouseLeave={() => setHoveredIso(null)}
                             aria-pressed={isSelected}
-                            className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all shrink-0 border ${
+                            className={`px-3 py-2 text-xs font-semibold transition-colors shrink-0 border ${
                                 isSelected
                                     ? "bg-[#5a1f2e] text-white border-[#5a1f2e] shadow-md scale-105"
                                     : "bg-white text-[#0b0b10]/80 border-black/10 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
@@ -283,7 +283,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                             exit={{ opacity: 0, y: 15, scale: 0.96 }}
                             className="absolute bottom-4 end-4 z-30 max-w-sm"
                         >
-                            <div className="bg-[#0b0b10] border border-white/15 p-5 rounded-2xl text-white shadow-2xl backdrop-blur-md">
+                            <div className="bg-[#0b0b10]/95 border border-white/20 p-5 text-white shadow-2xl">
                                 <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-white/10">
                                     <div className="flex items-center gap-2.5">
                                         <MapPin size={16} className="text-[#f2a007] shrink-0" />
@@ -295,7 +295,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                             <div className="text-[11px] text-white/60">{REGION_LABELS[currentCountry.region]?.[lang] ?? currentCountry.region}</div>
                                         </div>
                                     </div>
-                                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full ${
+                                    <span className={`t-meta px-2.5 py-1.5 border ${
                                         currentCountry.status === "active"
                                             ? "bg-[#5a1f2e] text-white border border-[#f2a007]/30"
                                             : "bg-white/10 text-white/70"
@@ -306,13 +306,13 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
 
                                 <div className="grid grid-cols-2 gap-3 text-xs">
                                     <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                                        <div className="text-white/50 text-[10px]">{t.capitalLabel}</div>
+                                        <div className="t-meta text-white/45">{t.capitalLabel}</div>
                                         <div className="font-semibold text-white mt-0.5" dir="ltr">
                                             <bdi>{lang === "ar" ? currentCountry.capitalAr : currentCountry.capital}</bdi>
                                         </div>
                                     </div>
                                     <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
-                                        <div className="text-white/50 text-[10px]">{t.projectsLabel}</div>
+                                        <div className="t-meta text-white/45">{t.projectsLabel}</div>
                                         <div className="font-semibold text-[#f2a007] mt-0.5 flex items-center gap-1">
                                             <Activity size={12} />
                                             <span><bdi>{currentCountry.projects}</bdi></span>
@@ -320,7 +320,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                     </div>
                                 </div>
 
-                                <div className="mt-3 pt-2 text-[11px] text-white/60 flex items-center gap-1">
+                                <div className="mt-3 pt-2 t-meta text-white/55 flex items-center gap-1.5">
                                     <CheckCircle2 size={12} className="text-emerald-400" />
                                     <span>{t.presenceLabel}</span>
                                 </div>
@@ -330,7 +330,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                 </AnimatePresence>
             </div>
 
-            <div className="relative z-30 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 text-xs text-black/55">
+            <div className="relative z-30 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 t-meta text-black/50">
                 <div>{t.mapHint}</div>
                 <div className="font-semibold text-[#5a1f2e]">AIABASD</div>
             </div>

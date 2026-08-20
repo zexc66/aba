@@ -1,8 +1,8 @@
 import { Section } from "@/components/ui/section";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 import { type Content } from "@/data";
 import { memo } from "react";
-import { Handshake } from "lucide-react";
 
 interface PartnersProps {
     data: Content['partners'];
@@ -27,60 +27,45 @@ const ALLIANCE_SYNDICATE = [
 
 function PartnersComponent({ data, hud }: PartnersProps) {
     return (
-        <Section id="partners" className="relative py-24 bg-white border-b border-black/5">
+        <Section id="partners" className="relative py-24 bg-[#fdfcfb] border-t border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/5">
-                    <div>
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                            <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
-                                {hud.strategicConsortium}
-                            </span>
-                        </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0b0b10]">
-                            {data.title}
-                        </h2>
-                    </div>
 
-                    <div className="max-w-md">
-                        <p className="text-base text-black/70 italic leading-relaxed">
-                            "{data.note}"
-                        </p>
-                    </div>
-                </div>
+                <SectionHeader
+                    index="06"
+                    title={data.title}
+                    note={data.note}
+                    meta={hud.strategicConsortium}
+                />
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-black/10 border border-black/10">
                     {ALLIANCE_SYNDICATE.map((partner, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 15 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: (i % 4) * 0.05 }}
-                            className="bg-[#fdfcfb] rounded-xl border border-black/5 p-8 flex flex-col items-center justify-center text-center space-y-4 hover:border-[#5a1f2e]/30 hover:shadow-md transition-all duration-300 group"
+                            transition={{ duration: 0.35, delay: (i % 4) * 0.05 }}
+                            className="bg-[#fdfcfb] p-8 flex flex-col items-center justify-center text-center space-y-4 group"
                         >
                             <div className="h-16 w-full flex items-center justify-center">
                                 <img
                                     src={partner.logo}
                                     alt={partner.name}
-                                    className="max-h-14 max-w-[140px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                                    className="max-h-14 max-w-[140px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100"
                                     loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
-                            <span className="text-xs font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-tight">
+                            <span className="t-meta text-black/55 group-hover:text-[#5a1f2e] transition-colors leading-normal">
                                 {partner.name}
                             </span>
                         </motion.div>
                     ))}
                 </div>
 
-                <div className="mt-16 pt-8 border-t border-black/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-black/60 font-medium">
-                    <div className="flex items-center gap-2">
-                        <Handshake className="w-4 h-4 text-[#5a1f2e]" />
-                        <span>{data.vettedLabel}</span>
-                    </div>
-                    <span>{data.networkLabel}</span>
+                <div className="mt-10 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4 t-meta text-black/50">
+                    <span>{data.vettedLabel}</span>
+                    <span className="text-[#5a1f2e]">{data.networkLabel}</span>
                 </div>
 
             </div>

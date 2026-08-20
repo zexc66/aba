@@ -29,8 +29,7 @@ export default function Hero({ data, stats }: HeroProps) {
                             transition={{ duration: 0.8 }}
                             className="flex items-center gap-3 mb-6"
                         >
-                            <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                            <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
+                            <span className="t-meta text-[#5a1f2e]">
                                 {data.eyebrow}
                             </span>
                         </motion.div>
@@ -69,7 +68,7 @@ export default function Hero({ data, stats }: HeroProps) {
 
                             <a
                                 href="#contact"
-                                className="flex items-center gap-2 text-sm font-semibold text-[#0b0b10] hover:text-[#5a1f2e] transition-colors border border-black/10 px-6 py-3.5 rounded-lg bg-white shadow-sm"
+                                className="flex items-center gap-2 text-sm font-semibold text-[#0b0b10] hover:text-[#5a1f2e] hover:border-[#5a1f2e]/50 transition-colors border border-black/15 px-6 py-3.5 bg-white no-press"
                             >
                                 <span>{data.ctaSecondary}</span>
                             </a>
@@ -78,7 +77,7 @@ export default function Hero({ data, stats }: HeroProps) {
 
                     <motion.div
                         initial={{ opacity: 0, scale: 0.97 }}
-                        className="lg:col-span-7 relative h-[42vh] min-h-[320px] lg:h-auto lg:min-h-[560px] bg-white rounded-2xl shadow-md border border-black/5 overflow-hidden"
+                        className="lg:col-span-7 relative h-[42vh] min-h-[320px] lg:h-auto lg:min-h-[560px] bg-white border border-black/10 overflow-hidden"
                         transition={{ duration: 1.1, delay: 0.2 }}
                     >
                         <NodalMap activeCountry={null} compact />
@@ -96,10 +95,10 @@ export default function Hero({ data, stats }: HeroProps) {
                             key={i}
                             className="border-s-2 border-[#5a1f2e]/20 ps-4 py-1"
                         >
-                            <div className="text-xs font-semibold uppercase tracking-wider text-black/60 mb-1">
+                            <div className="t-meta text-black/55 mb-1.5">
                                 {s.label}
                             </div>
-                            <div className="text-3xl font-bold text-[#0b0b10] leading-none" dir="ltr">
+                            <div className="t-data text-3xl md:text-4xl font-semibold text-[#0b0b10] leading-none" dir="ltr">
                                 <bdi>{s.value}</bdi>
                             </div>
                         </div>

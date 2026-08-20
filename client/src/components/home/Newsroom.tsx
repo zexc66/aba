@@ -1,6 +1,7 @@
 import { useEffect, useState, memo } from "react";
-import { Calendar, Clock, Newspaper } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 import { cms, type Locale } from "@/services/cms";
 
@@ -95,34 +96,19 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
     const [featured, ...rest] = articles;
 
     return (
-        <Section id="news" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
+        <Section id="news" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/5">
-                    <div>
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                            <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
-                                {data.eyebrow}
-                            </span>
-                        </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0b0b10]">
-                            {data.title}
-                        </h2>
-                    </div>
-
-                    <div className="max-w-md">
-                        <p className="text-base text-black/70 italic leading-relaxed">
-                            "{data.note}"
-                        </p>
-                    </div>
-                </div>
+                <SectionHeader
+                    index="08"
+                    title={data.title}
+                    note={data.note}
+                    meta={data.eyebrow}
+                />
 
                 {articles.length === 0 ? (
-                    <div className="bg-white rounded-xl border border-black/5 shadow-sm px-8 py-16 flex flex-col items-center text-center">
-                        <div className="w-14 h-14 rounded-full bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-6">
-                            <Newspaper size={24} />
-                        </div>
+                    <div className="border border-black/10 bg-white/50 px-8 py-16 flex flex-col items-center text-center">
+                        <span className="t-meta text-[#5a1f2e] border border-[#5a1f2e]/25 px-3 py-1.5 mb-6">AWAITING FIRST ENTRY</span>
                         <p className="max-w-xl text-sm text-black/60 leading-relaxed">
                             {data.empty}
                         </p>
@@ -136,7 +122,7 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5 }}
-                                    className="lg:col-span-12 bg-white rounded-xl border border-black/5 shadow-sm overflow-hidden flex flex-col md:flex-row group hover:shadow-md transition-all duration-300"
+                                    className="lg:col-span-12 bg-white border border-black/10 overflow-hidden flex flex-col md:flex-row group transition-colors duration-300 hover:border-[#5a1f2e]/40"
                                 >
                                     {featured.image && (
                                         <div className="md:w-1/2 h-64 md:h-auto overflow-hidden relative">
@@ -194,7 +180,7 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: i * 0.05 }}
-                                        className="bg-white p-6 rounded-xl border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col md:flex-row gap-6 items-center"
+                                        className="bg-white p-6 border border-black/10 transition-colors duration-300 hover:border-[#5a1f2e]/40 group flex flex-col md:flex-row gap-6 items-center"
                                     >
                                         {news.image && (
                                             <div className="w-full md:w-36 h-36 rounded-lg overflow-hidden shrink-0">

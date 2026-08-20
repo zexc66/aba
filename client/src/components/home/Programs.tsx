@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Globe, CheckCircle2 } from "lucide-react";
 import { memo } from "react";
@@ -24,25 +25,15 @@ function ProgramsComponent({ data }: ProgramsProps) {
     const featuredProgram = data.list.find((p) => p.link === "/hama-project") || data.list[0];
 
     return (
-        <Section id="programs" className="relative py-28 bg-[#fdfcfb] border-b border-black/5">
+        <Section id="programs" className="relative py-28 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 pb-8 border-b border-black/5">
-                    <div>
-                        <div className="flex items-center gap-3 mb-4">
-                            <span className="h-0.5 w-10 bg-[#5a1f2e]" />
-                            <span className="text-xs font-bold uppercase tracking-widest text-[#5a1f2e]">
-                                {data.sectionEyebrow}
-                            </span>
-                        </div>
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[#0b0b10]">
-                            {data.title}
-                        </h2>
-                        <p className="mt-3 text-base text-black/60 max-w-2xl">
-                            {data.sectionNote}
-                        </p>
-                    </div>
-                </div>
+                <SectionHeader
+                    index="02"
+                    title={data.title}
+                    note={data.sectionNote}
+                    meta={`${data.list.length} PROGRAMS`}
+                />
 
                 <motion.a
                     initial={{ opacity: 0, y: 20 }}
@@ -50,18 +41,16 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     href={featuredProgram.link ?? `/programs/${featuredProgram.slug}`}
-                    className="mb-14 block bg-[#0b0b10] rounded-2xl p-8 lg:p-12 text-white relative overflow-hidden border border-white/10 shadow-2xl group"
+                    className="mb-14 block bg-[#0b0b10] p-8 lg:p-12 text-white relative overflow-hidden border border-black group"
                 >
-                    <div className="absolute -right-24 -top-24 w-96 h-96 bg-[#5a1f2e]/30 rounded-full blur-3xl pointer-events-none" />
-                    <div className="absolute -left-24 -bottom-24 w-96 h-96 bg-[#f2a007]/10 rounded-full blur-3xl pointer-events-none" />
 
                     <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                         <div className="lg:col-span-8 space-y-4">
                             <div className="flex items-center gap-3">
-                                <span className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider bg-[#5a1f2e] text-white rounded-full border border-[#f2a007]/30">
+                                <span className="t-meta bg-[#5a1f2e] text-white border border-[#f2a007]/40 px-3 py-1.5">
                                     {data.flagshipLabel}
                                 </span>
-                                <span className="text-xs text-white/60 flex items-center gap-1">
+                                <span className="t-meta text-white/60 flex items-center gap-1.5">
                                     <CheckCircle2 size={13} className="text-emerald-400" />
                                     {featuredProgram.status}
                                 </span>
@@ -75,13 +64,9 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                 {featuredProgram.desc}
                             </p>
 
-                            <div className="flex flex-wrap gap-2 pt-2">
-                                {featuredProgram.tags.map((tag, idx) => (
-                                    <span key={idx} className="text-xs text-white/80 bg-white/10 px-3 py-1 rounded-md border border-white/10">
-                                        #{tag}
-                                    </span>
-                                ))}
-                            </div>
+                            <p className="t-meta text-white/50 pt-2" dir="ltr">
+                                {featuredProgram.tags.join(" \u00b7 ")}
+                            </p>
                         </div>
 
                         <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-between h-full gap-6">
@@ -91,7 +76,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                 </div>
                             )}
 
-                            <span className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-xl transition-all shadow-lg group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
+                            <span className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 transition-colors group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
                                 <span>{data.exploreLabel}</span>
                                 <ArrowUpRight size={18} />
                             </span>
@@ -110,16 +95,16 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: (i % 3) * 0.05 }}
                                 href={program.link ?? `/programs/${program.slug}`}
-                                className="group block bg-white rounded-2xl border border-black/10 p-8 flex flex-col justify-between hover:shadow-xl hover:border-[#5a1f2e]/40 transition-all duration-300 relative overflow-hidden"
+                                className="group block bg-white border border-black/10 p-8 flex flex-col justify-between hover:border-[#5a1f2e]/50 transition-colors duration-300 relative overflow-hidden"
                             >
                                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5a1f2e] to-[#f2a007] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                                 <div>
                                     <div className="flex items-center justify-between mb-6 gap-2">
-                                        <div className="w-12 h-12 rounded-xl bg-[#5a1f2e]/10 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-all duration-300 shadow-sm shrink-0">
+                                        <div className="w-12 h-12 bg-[#5a1f2e]/10 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-colors duration-300 shrink-0 border border-[#5a1f2e]/15">
                                             {program.icon || <Globe className="w-6 h-6" />}
                                         </div>
-                                        <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full border ${STATUS_PILL[tone]}`}>
+                                        <span className={`inline-flex items-center gap-1.5 t-meta px-2.5 py-1.5 border ${STATUS_PILL[tone]}`}>
                                             <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[tone]}`} />
                                             {program.status}
                                         </span>
@@ -134,19 +119,12 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                 </div>
 
                                 <div className="pt-5 border-t border-black/5 flex items-center justify-between">
-                                    <div className="flex flex-wrap gap-1.5">
-                                        {program.tags.map((tag, j) => (
-                                            <span
-                                                key={j}
-                                                className="text-[11px] font-medium text-black/60 bg-black/5 px-2.5 py-1 rounded-md"
-                                            >
-                                                #{tag}
-                                            </span>
-                                        ))}
-                                    </div>
+                                    <p className="t-meta text-black/45 leading-relaxed" dir="ltr">
+                                        {program.tags.join(" \u00b7 ")}
+                                    </p>
 
-                                    <div className="w-9 h-9 rounded-full bg-black/5 group-hover:bg-[#5a1f2e] group-hover:text-white flex items-center justify-center transition-all shadow-sm shrink-0">
-                                        <ArrowUpRight className="w-4 h-4" />
+                                    <div className="w-9 h-9 bg-black/5 group-hover:bg-[#5a1f2e] group-hover:text-white flex items-center justify-center transition-colors shrink-0">
+                                        <ArrowUpRight className="w-4 h-4 rtl:-scale-x-100" strokeWidth={1.5} />
                                     </div>
                                 </div>
                             </motion.a>

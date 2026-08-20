@@ -79,7 +79,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                         <motion.img
                             src="/logo.png"
                             alt="AIABASD"
-                            className="h-24 w-auto rounded-2xl shadow-xl"
+                            className="h-24 w-auto rounded-sm"
                             animate={{
                                 y: [0, -5, 0],
                             }}
@@ -90,7 +90,7 @@ export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
                             }}
                         />
                         <motion.div
-                            className="absolute -inset-2 bg-gradient-to-r from-[#5a1f2e]/20 to-[#f2a007]/20 rounded-2xl blur-xl -z-10"
+                            className="absolute -inset-2 bg-gradient-to-r from-[#5a1f2e]/20 to-[#f2a007]/20 rounded-sm blur-xl -z-10"
                             animate={{
                                 opacity: [0.3, 0.6, 0.3],
                             }}

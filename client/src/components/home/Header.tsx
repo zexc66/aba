@@ -42,12 +42,8 @@ function HeaderComponent({ nav }: HeaderProps) {
     const navLinks = [
         { href: "#about", label: nav.about },
         { href: "#programs", label: nav.programs },
-        { href: "/gallery", label: nav.gallery },
         { href: "#countries", label: nav.countries },
         { href: "#governance", label: nav.governance },
-        { href: "#team", label: nav.team },
-        { href: "#partners", label: nav.partners },
-        { href: "#news", label: nav.newsroom },
         { href: "#contact", label: nav.contact },
     ];
 
@@ -152,7 +148,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                     <div className="flex items-center gap-4 lg:gap-6">
                         <button
                             onClick={() => setSearchOpen(true)}
-                            className="p-3 bg-black/5 hover:bg-black text-black hover:text-white rounded-full transition-all duration-500 group"
+                            className="p-3 bg-black/5 hover:bg-black text-black hover:text-white transition-colors duration-300 group no-press"
                             aria-label="Search"
                         >
                             <Search className="h-4 w-4 group-hover:scale-125 transition-transform" />
@@ -164,7 +160,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                                 aria-haspopup="menu"
                                 aria-expanded={langMenuOpen}
                                 aria-label="Change language"
-                                className="flex items-center gap-2 px-4 py-2.5 bg-black/[0.03] hover:bg-black/[0.08] rounded-full text-[10px] font-black tracking-widest uppercase transition-all"
+                                className="flex items-center gap-2 px-4 py-2.5 bg-black/[0.03] hover:bg-black/[0.08] text-[10px] font-black tracking-widest uppercase transition-colors no-press"
                             >
                                 <span className="text-[#0b0b10]">{LANG_OPTIONS.find((l) => l.code === lang)?.short ?? "EN"}</span>
                                 <Globe className="h-3 w-3 text-[#5a1f2e]" />
@@ -179,7 +175,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 8, scale: 0.97 }}
                                         transition={{ duration: 0.18 }}
-                                        className={`absolute top-[calc(100%+10px)] ${isRTL ? "left-0" : "right-0"} bg-white rounded-xl border border-black/10 shadow-xl p-1.5 min-w-[150px] z-50`}
+                                        className={`absolute top-[calc(100%+10px)] ${isRTL ? "left-0" : "right-0"} bg-white border border-black/15 shadow-xl p-1.5 min-w-[150px] z-50`}
                                     >
                                         {LANG_OPTIONS.map((option) => (
                                             <button
@@ -190,7 +186,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                                                     setLang(option.code);
                                                     setLangMenuOpen(false);
                                                 }}
-                                                className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-lg text-sm font-semibold text-[#0b0b10] hover:bg-black/5 transition-colors"
+                                                className="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-sm font-semibold text-[#0b0b10] hover:bg-black/5 transition-colors"
                                             >
                                                 <span>{option.label}</span>
                                                 {lang === option.code && <Check size={14} className="text-[#5a1f2e]" />}
@@ -203,7 +199,7 @@ function HeaderComponent({ nav }: HeaderProps) {
 
                         <a
                             href="/investor-portal"
-                            className="hidden lg:flex items-center gap-3 px-7 py-3 bg-[#5a1f2e] text-white text-[10px] font-black tracking-[0.3em] uppercase hover:bg-black transition-all duration-700 shadow-premium group"
+                            className="hidden lg:flex items-center gap-3 px-6 py-3 bg-[#5a1f2e] text-white text-[10px] font-black tracking-[0.25em] uppercase hover:bg-black transition-colors duration-300 group no-press"
                         >
                             <Lock className="h-3 w-3 shrink-0" />
                             <span>Investor Access</span>
@@ -215,7 +211,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={mobileMenuOpen}
                             aria-controls="mobile-nav"
-                            className="xl:hidden p-3 bg-black text-white hover:bg-[#5a1f2e] transition-colors rounded-full"
+                            className="xl:hidden p-3 bg-black text-white hover:bg-[#5a1f2e] transition-colors no-press"
                         >
                             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                         </button>

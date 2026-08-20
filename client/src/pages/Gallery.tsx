@@ -49,7 +49,7 @@ export default function Gallery() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: i * 0.05 }}
-                                    className="group bg-white rounded-xl border border-black/5 overflow-hidden shadow-sm hover:shadow-md hover:border-[#5a1f2e]/30 transition-all duration-300 flex flex-col justify-between"
+                                    className="group bg-white rounded-sm border border-black/5 overflow-hidden hover:shadow-md hover:border-[#5a1f2e]/30 transition-all duration-300 flex flex-col justify-between"
                                 >
                                     <div className="aspect-[4/3] overflow-hidden relative bg-black/5">
                                         <img
@@ -60,7 +60,7 @@ export default function Gallery() {
                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
                                         <div className="absolute top-4 left-4">
-                                            <span className="text-[11px] font-semibold text-white bg-[#5a1f2e] px-2.5 py-1 rounded-full shadow-sm">
+                                            <span className="text-[11px] font-semibold text-white bg-[#5a1f2e] px-2.5 py-1 rounded-full">
                                                 {item.category}
                                             </span>
                                         </div>
@@ -79,7 +79,7 @@ export default function Gallery() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: 0.1 }}
-                                className="border border-dashed border-black/15 rounded-xl px-8 py-12 flex flex-col items-center text-center bg-black/[0.015]"
+                                className="border border-dashed border-black/15 rounded-sm px-8 py-12 flex flex-col items-center text-center bg-black/[0.015]"
                             >
                                 <div className="w-12 h-12 rounded-full bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-5">
                                     <Camera size={20} />

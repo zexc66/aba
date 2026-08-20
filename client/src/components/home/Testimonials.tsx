@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, memo } from "react";
 import { Section } from "@/components/ui/section";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { Quote, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { type Content } from "@/data";
 
 interface TestimonialsProps {
@@ -10,7 +11,7 @@ interface TestimonialsProps {
     lang: string;
 }
 
-function TestimonialsComponent({ data }: TestimonialsProps) {
+function TestimonialsComponent({ data, hud }: TestimonialsProps) {
     const [current, setCurrent] = useState(0);
     const [autoPlay, setAutoPlay] = useState(true);
     const resumeTimer = useRef<number | null>(null);
@@ -19,7 +20,7 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
         if (!autoPlay) return;
         const timer = setInterval(() => {
             setCurrent((prev) => (prev + 1) % data.list.length);
-        }, 8000);
+        }, 9000);
         return () => clearInterval(timer);
     }, [autoPlay, data.list.length]);
 
@@ -30,7 +31,7 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
     const pauseAndResume = () => {
         setAutoPlay(false);
         window.clearTimeout(resumeTimer.current ?? undefined);
-        resumeTimer.current = window.setTimeout(() => setAutoPlay(true), 12000);
+        resumeTimer.current = window.setTimeout(() => setAutoPlay(true), 14000);
     };
 
     const next = () => {
@@ -46,79 +47,72 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
     const t = data.list[current];
 
     return (
-        <Section id="testimonials" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
+        <Section id="testimonials" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                <div className="grid lg:grid-cols-12 gap-12 items-center">
+                <SectionHeader
+                    index="07"
+                    title={`${data.title.main} ${data.title.highlighted}`}
+                    note={data.subtitle}
+                    meta={hud.voice}
+                />
 
-                    <div className="lg:col-span-5 space-y-6">
-                        <div className="flex items-center gap-3">
-                            <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                            <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
-                                {data.eyebrow}
-                            </span>
-                        </div>
+                <div className="grid lg:grid-cols-12 gap-12 items-end">
 
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0b0b10] leading-tight">
-                            {data.title.main}{" "}
-                            <span className="text-[#5a1f2e]">{data.title.highlighted}</span>
-                        </h2>
-
-                        <p className="text-sm text-black/60 leading-relaxed max-w-md">
-                            {data.subtitle}
-                        </p>
-
-                        <div className="flex items-center gap-4 pt-4">
-                            <button
-                                onClick={prev}
-                                aria-label="Previous testimonial"
-                                className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-all shadow-sm"
-                            >
-                                <ArrowLeft className="w-5 h-5 rtl:rotate-180" />
-                            </button>
-                            <button
-                                onClick={next}
-                                aria-label="Next testimonial"
-                                className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-all shadow-sm"
-                            >
-                                <ArrowRight className="w-5 h-5 rtl:rotate-180" />
-                            </button>
-                            <span className="text-xs font-semibold text-black/55 ms-2" aria-live="polite">
-                                {(current + 1).toString().padStart(2, "0")} / {data.list.length.toString().padStart(2, "0")}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-2xl border border-black/5 shadow-md relative overflow-hidden min-h-[320px] flex flex-col justify-between">
-                        <Quote className="w-12 h-12 text-[#5a1f2e]/10 absolute top-6 end-6" aria-hidden="true" />
-
+                    <div className="lg:col-span-9">
                         <AnimatePresence mode="wait">
-                            <motion.div
+                            <motion.blockquote
                                 key={current}
-                                initial={{ opacity: 0, y: 15 }}
+                                initial={{ opacity: 0, y: 14 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -15 }}
-                                transition={{ duration: 0.5 }}
-                                className="space-y-6 relative z-10"
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="space-y-8"
                             >
-                                <blockquote className="text-xl md:text-2xl font-medium text-[#0b0b10] leading-relaxed italic">
-                                    "{t.quote}"
-                                </blockquote>
+                                <p className="text-2xl md:text-3xl font-medium text-[#0b0b10] leading-snug tracking-tight">
+                                    {t.quote}
+                                </p>
 
-                                <div className="pt-6 border-t border-black/5 flex items-center justify-between">
+                                <footer className="flex items-center gap-4 pt-6 border-t border-black/10">
+                                    <span className="t-data text-xs text-[#5a1f2e]" aria-hidden="true">
+                                        {t.id}
+                                    </span>
                                     <div>
                                         <h4 className="text-base font-bold text-[#0b0b10]">
                                             {t.author}
                                         </h4>
-                                        <p className="text-xs font-semibold text-[#5a1f2e] uppercase tracking-wide mt-0.5">
+                                        <p className="t-meta text-black/50 mt-1">
                                             {t.position}
                                         </p>
                                     </div>
-                                </div>
-                            </motion.div>
+                                </footer>
+                            </motion.blockquote>
                         </AnimatePresence>
+                    </div>
 
-                        <div className="flex gap-2 pt-6">
+                    <div className="lg:col-span-3 flex lg:flex-col items-center lg:items-end justify-between gap-6">
+                        <span className="t-data text-sm text-black/45" aria-live="polite" dir="ltr">
+                            {`${(current + 1).toString().padStart(2, "0")} / ${data.list.length.toString().padStart(2, "0")}`}
+                        </span>
+
+                        <div className="flex items-center gap-3">
+                            <button
+                                onClick={prev}
+                                aria-label="Previous testimonial"
+                                className="w-12 h-12 border border-black/15 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
+                            >
+                                <ArrowLeft className="w-5 h-5 rtl:rotate-180" strokeWidth={1.5} />
+                            </button>
+                            <button
+                                onClick={next}
+                                aria-label="Next testimonial"
+                                className="w-12 h-12 border border-black/15 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
+                            >
+                                <ArrowRight className="w-5 h-5 rtl:rotate-180" strokeWidth={1.5} />
+                            </button>
+                        </div>
+
+                        <div className="hidden lg:flex flex-col gap-2.5 items-end">
                             {data.list.map((_, i) => (
                                 <button
                                     key={i}
@@ -129,7 +123,7 @@ function TestimonialsComponent({ data }: TestimonialsProps) {
                                     aria-label={`Testimonial ${i + 1}`}
                                     aria-selected={i === current}
                                     role="tab"
-                                    className={`h-2 rounded-full transition-all duration-300 ${i === current ? "w-8 bg-[#5a1f2e]" : "w-4 bg-black/15 hover:bg-black/30"}`}
+                                    className={`h-1 transition-all duration-300 ${i === current ? "w-10 bg-[#5a1f2e]" : "w-5 bg-black/20 hover:bg-black/40"}`}
                                 />
                             ))}
                         </div>

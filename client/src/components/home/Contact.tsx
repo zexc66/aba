@@ -1,6 +1,7 @@
 import { useState, memo } from "react";
 import { Mail, MapPin, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 interface ContactProps {
     data: {
@@ -80,29 +81,22 @@ function ContactComponent({ data }: ContactProps) {
     };
 
     return (
-        <Section id="contact" className="relative py-24 bg-[#fdfcfb] border-b border-black/5">
+        <Section id="contact" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
+
+                <SectionHeader
+                    index="09"
+                    title={data.title}
+                    note={data.subtitle}
+                    meta={data.eyebrow}
+                />
 
                 <div className="grid lg:grid-cols-12 gap-12 items-start">
 
                     <div className="lg:col-span-5 space-y-10">
-                        <div>
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                                <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
-                                    {data.eyebrow}
-                                </span>
-                            </div>
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#0b0b10] mb-4">
-                                {data.title}
-                            </h2>
-                            <p className="text-base text-black/70 leading-relaxed border-l-2 border-[#5a1f2e] pl-4 py-1">
-                                {data.subtitle}
-                            </p>
-                        </div>
 
-                        <div className="space-y-6 bg-white p-8 rounded-xl border border-black/5 shadow-sm">
-                            <h3 className="text-xs font-semibold uppercase tracking-wider text-black/40">
+                        <div className="border border-black/10 p-8 space-y-6">
+                            <h3 className="t-meta text-black/55 border-b border-black/10 pb-3">
                                 {data.hqTitle}
                             </h3>
 
@@ -133,15 +127,15 @@ function ContactComponent({ data }: ContactProps) {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-7 bg-white p-8 md:p-12 rounded-xl border border-black/5 shadow-sm">
-                        <h3 className="text-xl font-bold text-[#0b0b10] mb-6 pb-4 border-b border-black/5">
+                    <div className="lg:col-span-7 bg-white p-8 md:p-12 border border-black/10">
+                        <h3 className="t-meta text-[#5a1f2e] mb-8 pb-4 border-b-2 border-[#0b0b10]">
                             {data.formTitle}
                         </h3>
 
                         <form onSubmit={onSubmit} className="space-y-6">
                             <div className="grid sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label htmlFor="contact-name" className="text-xs font-semibold text-black/70">
+                                    <label htmlFor="contact-name" className="t-meta text-black/60">
                                         {data.name} *
                                     </label>
                                     <input
@@ -150,12 +144,12 @@ function ContactComponent({ data }: ContactProps) {
                                         value={form.name}
                                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                                         placeholder={data.placeholders.name}
-                                        className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-lg text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-all"
+                                        className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="contact-org" className="text-xs font-semibold text-black/70">
+                                    <label htmlFor="contact-org" className="t-meta text-black/60">
                                         {data.org}
                                     </label>
                                     <input
@@ -163,13 +157,13 @@ function ContactComponent({ data }: ContactProps) {
                                         value={form.org}
                                         onChange={(e) => setForm({ ...form, org: e.target.value })}
                                         placeholder={data.placeholders.org}
-                                        className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-lg text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-all"
+                                        className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="contact-email" className="text-xs font-semibold text-black/70">
+                                <label htmlFor="contact-email" className="t-meta text-black/60">
                                     {data.email} *
                                 </label>
                                 <input
@@ -179,12 +173,12 @@ function ContactComponent({ data }: ContactProps) {
                                     value={form.email}
                                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                                     placeholder={data.placeholders.email}
-                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-lg text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-all"
+                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="contact-msg" className="text-xs font-semibold text-black/70">
+                                <label htmlFor="contact-msg" className="t-meta text-black/60">
                                     {data.msg} *
                                 </label>
                                 <textarea
@@ -194,7 +188,7 @@ function ContactComponent({ data }: ContactProps) {
                                     value={form.msg}
                                     onChange={(e) => setForm({ ...form, msg: e.target.value })}
                                     placeholder={data.placeholders.msg}
-                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-lg text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-all resize-none"
+                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors resize-none"
                                 />
                             </div>
 
@@ -202,7 +196,7 @@ function ContactComponent({ data }: ContactProps) {
                                 <button
                                     type="submit"
                                     disabled={sending}
-                                    className="px-8 py-3.5 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-colors flex items-center gap-2 disabled:opacity-50"
+                                    className="px-8 py-3.5 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 disabled:opacity-50 no-press"
                                 >
                                     {sending ? (
                                         <span>{data.submitting}</span>

@@ -86,7 +86,7 @@ export default function Chatbot() {
         <>
             <motion.button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#5a1f2e] text-white shadow-lg hover:shadow-xl transition-shadow"
+                className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#5a1f2e] text-white hover:shadow-xl transition-shadow"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Toggle chat"
@@ -123,16 +123,16 @@ export default function Chatbot() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[500px] flex flex-col rounded-2xl border border-black/10 bg-white/95 backdrop-blur-xl shadow-2xl"
+                        className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] h-[500px] flex flex-col rounded-sm border border-black/10 bg-white/95 backdrop-blur-xl"
                     >
-                        <div className="flex items-center justify-between border-b border-black/10 bg-[#5a1f2e] px-4 py-3 rounded-t-2xl">
+                        <div className="flex items-center justify-between border-b border-black/10 bg-[#5a1f2e] px-4 py-3 rounded-t-sm">
                             <div className="flex items-center gap-2">
                                 <div className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
                                 <h3 className="font-semibold text-white">AIABASD Assistant</h3>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="rounded-lg p-1 text-white/80 hover:bg-white/20 transition"
+                                className="rounded-sm p-1 text-white/80 hover:bg-white/20 transition"
                                 aria-label="Close chat"
                             >
                                 <X className="h-5 w-5" />
@@ -148,7 +148,7 @@ export default function Chatbot() {
                                     className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                                 >
                                     <div
-                                        className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.sender === "user"
+                                        className={`max-w-[80%] rounded-sm px-4 py-2 ${message.sender === "user"
                                                 ? "bg-[#5a1f2e] text-white"
                                                 : "bg-black/5 text-black"
                                             }`}
@@ -173,7 +173,7 @@ export default function Chatbot() {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="flex justify-start"
                                 >
-                                    <div className="max-w-[80%] rounded-2xl bg-black/5 px-4 py-2">
+                                    <div className="max-w-[80%] rounded-sm bg-black/5 px-4 py-2">
                                         <div className="flex items-center gap-1">
                                             <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce" style={{ animationDelay: "0ms" }} />
                                             <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -194,13 +194,13 @@ export default function Chatbot() {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyPress={handleKeyPress}
                                     placeholder="Type your message..."
-                                    className="flex-1 rounded-xl border border-black/10 bg-white px-4 py-2 text-sm outline-none focus:border-blue-500 transition"
+                                    className="flex-1 rounded-sm border border-black/10 bg-white px-4 py-2 text-sm outline-none focus:border-blue-500 transition"
                                     disabled={isTyping}
                                 />
                                 <button
                                     onClick={handleSend}
                                     disabled={!input.trim() || isTyping}
-                                    className="rounded-xl bg-[#5a1f2e] px-4 py-2 text-white hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="rounded-sm bg-[#5a1f2e] px-4 py-2 text-white hover:shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                                     aria-label="Send message"
                                 >
                                     {isTyping ? (

@@ -81,7 +81,7 @@ export default function ProgramDetail() {
                   <img
                     src={program.logo}
                     alt=""
-                    className="w-16 h-16 rounded-xl object-cover border border-black/10"
+                    className="w-16 h-16 object-cover border border-black/10"
                     loading="lazy"
                     decoding="async"
                   />
@@ -89,15 +89,13 @@ export default function ProgramDetail() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
-                <span className={`inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full border ${TONE_CLASSES[tone]}`}>
+                <span className={`inline-flex items-center gap-2 t-meta px-2.5 py-1.5 border ${TONE_CLASSES[tone]}`}>
                   <span className={`w-1.5 h-1.5 rounded-full ${TONE_DOTS[tone]}`} />
                   {ui.statusLabel}: {program.status}
                 </span>
-                {program.tags.map((tag) => (
-                  <span key={tag} className="text-[11px] font-medium text-black/60 bg-black/5 px-2.5 py-1 rounded-md">
-                    #{tag}
-                  </span>
-                ))}
+                <p className="t-meta text-black/50" dir="ltr">
+                  {program.tags.join(" \u00b7 ")}
+                </p>
               </div>
             </motion.div>
           </div>
@@ -136,7 +134,7 @@ export default function ProgramDetail() {
                 </h2>
                 <div className="space-y-4">
                   {program.detail.highlights.map((h, i) => (
-                    <div key={i} className="bg-white rounded-xl border border-black/5 shadow-sm p-6 space-y-2">
+                    <div key={i} className="bg-white rounded-sm border border-black/5 p-6 space-y-2">
                       <div className="flex items-center gap-2.5">
                         <CheckCircle2 size={16} className="text-[#5a1f2e] shrink-0" />
                         <h3 className="text-sm font-bold text-[#0b0b10]">{h.title}</h3>
@@ -157,7 +155,7 @@ export default function ProgramDetail() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-[#0b0b10] rounded-2xl p-8 lg:p-12 text-white relative overflow-hidden"
+              className="bg-[#0b0b10] rounded-sm p-8 lg:p-12 text-white relative overflow-hidden"
             >
               <div className="absolute -right-24 -top-24 w-96 h-96 bg-[#5a1f2e]/30 rounded-full blur-3xl pointer-events-none" />
               <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
@@ -167,7 +165,7 @@ export default function ProgramDetail() {
                 </div>
                 <a
                   href="/#contact"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-xl transition-all shadow-lg shrink-0"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-sm transition-all shrink-0"
                 >
                   <span>{ui.ctaButton}</span>
                   <ArrowRight size={16} />

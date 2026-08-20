@@ -38,7 +38,7 @@ export default function ScrollToTop() {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={scrollToTop}
-                    className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full ${gradient} text-white shadow-2xl hover:shadow-purple-500/50 transition-shadow duration-300 flex items-center justify-center group`}
+                    className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-sm ${gradient} text-white hover:shadow-purple-500/50 transition-shadow duration-300 flex items-center justify-center group`}
                     aria-label="Scroll to top"
                 >
                     <svg
@@ -69,7 +69,7 @@ export default function ScrollToTop() {
 
                     <ArrowUp className="w-5 h-5 relative z-10 transition-transform group-hover:-translate-y-1" />
 
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#5a1f2e] to-[#f2a007] blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
+                    <div className="absolute inset-0 rounded-sm bg-gradient-to-r from-[#5a1f2e] to-[#f2a007] blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
                 </motion.button>
             )}
         </AnimatePresence>

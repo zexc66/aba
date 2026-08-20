@@ -133,7 +133,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                     <div className="lg:col-span-7 grid sm:grid-cols-3 gap-8">
                         {navigation.map((group, i) => (
                             <div key={i} className="space-y-4">
-                                <h4 className="text-xs font-semibold uppercase tracking-wider text-[#f2a007]">
+                                <h4 className="t-meta text-[#f2a007] pb-2 border-b border-white/10">
                                     {group.title}
                                 </h4>
                                 <ul className="space-y-2.5">
@@ -152,7 +152,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                         ))}
 
                         <div className="space-y-4">
-                            <h4 className="text-xs font-semibold uppercase tracking-wider text-[#f2a007]">
+                            <h4 className="t-meta text-[#f2a007] pb-2 border-b border-white/10">
                                 {newsroom.newsletterTitle}
                             </h4>
                             <form onSubmit={handleSubscribe} className="space-y-2">
