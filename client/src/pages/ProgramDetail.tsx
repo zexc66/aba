@@ -51,7 +51,7 @@ export default function ProgramDetail() {
       <Header nav={content.nav} />
 
       <main className="pt-28 pb-24">
-        <Section className="py-16 border-b border-black/5 bg-white">
+        <Section className="py-16 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ export default function ProgramDetail() {
 
               <div className="flex items-center gap-3">
                 <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
+                <span className="t-meta text-[#5a1f2e]">
                   {ui.eyebrow}
                 </span>
               </div>
@@ -111,7 +111,7 @@ export default function ProgramDetail() {
                 transition={{ duration: 0.5 }}
                 className="lg:col-span-7 space-y-6"
               >
-                <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-black/5">
+                <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-black/10">
                   {ui.overviewLabel}
                 </h2>
                 <p className="text-base text-black/70 leading-relaxed">
@@ -129,7 +129,7 @@ export default function ProgramDetail() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="lg:col-span-5 space-y-6"
               >
-                <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-black/5">
+                <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-black/10">
                   {ui.highlightsLabel}
                 </h2>
                 <div className="space-y-4">

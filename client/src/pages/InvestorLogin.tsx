@@ -72,7 +72,7 @@ export default function InvestorLogin() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-[#11111a] p-8 md:p-10 rounded-2xl border border-white/10 shadow-2xl space-y-8"
+          className="bg-[#11111a] p-8 md:p-10 border border-white/15 shadow-2xl space-y-8"
         >
           <div className="text-center space-y-3">
             <div className="w-14 h-14 rounded-full bg-[#5a1f2e]/20 text-[#f2a007] border border-[#5a1f2e]/40 flex items-center justify-center mx-auto">

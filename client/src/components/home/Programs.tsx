@@ -119,7 +119,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                 </div>
 
                                 <div className="pt-5 border-t border-black/5 flex items-center justify-between">
-                                    <p className="t-meta text-black/45 leading-relaxed" dir="ltr">
+                                    <p className="t-meta text-black/55 leading-relaxed" dir="ltr">
                                         {program.tags.join(" \u00b7 ")}
                                     </p>
 

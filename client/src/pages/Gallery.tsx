@@ -20,12 +20,12 @@ export default function Gallery() {
             <Header nav={content.nav} />
 
             <main className="pt-28 pb-24">
-                <Section className="py-16 border-b border-black/5 bg-white">
+                <Section className="py-16 border-b border-black/10 bg-white">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                         <div className="max-w-3xl space-y-4">
                             <div className="flex items-center gap-3">
                                 <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                                <span className="text-xs font-semibold uppercase tracking-wider text-[#5a1f2e]">
+                                <span className="t-meta text-[#5a1f2e]">
                                     {t.eyebrow}
                                 </span>
                             </div>

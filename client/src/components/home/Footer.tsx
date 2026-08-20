@@ -163,7 +163,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder={newsroom.newsletterPlaceholder}
-                                    className="w-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder:text-white/40 rounded-md outline-none focus:border-[#f2a007] transition-colors"
+                                    className="w-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder:text-white/50 rounded-md outline-none focus:border-[#f2a007] transition-colors"
                                 />
                                 <button
                                     type="submit"

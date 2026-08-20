@@ -29,7 +29,7 @@ export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
                         <button
                             onClick={toggleLang}
                             aria-label="Switch language"
-                            className="pointer-events-auto mt-1 flex items-center gap-1.5 text-[8px] font-black tracking-[0.4em] uppercase font-sans text-black/40 hover:text-[#5a1f2e] transition-colors"
+                            className="pointer-events-auto mt-1 flex items-center gap-1.5 text-[8px] font-black tracking-[0.4em] uppercase font-sans text-black/55 hover:text-[#5a1f2e] transition-colors"
                         >
                             <Globe size={10} />
                             <span>{langLabel}</span>
@@ -43,7 +43,7 @@ export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
                             <ArrowRight className={`w-8 h-8 transition-transform duration-700 ${isRTL ? 'rotate-0 group-hover:-translate-x-2' : 'rotate-180 group-hover:translate-x-2'} group-hover:text-white`} />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[10px] font-black tracking-[0.4em] text-black/40 group-hover:text-black transition-colors uppercase font-sans">{backLabel}</span>
+                            <span className="text-[10px] font-black tracking-[0.4em] text-black/55 group-hover:text-black transition-colors uppercase font-sans">{backLabel}</span>
                             <span className="text-[8px] font-black tracking-[0.8em] text-[#5a1f2e] opacity-0 group-hover:opacity-100 transition-opacity uppercase font-sans">SECURE_REENTRY</span>
                         </div>
                     </div>

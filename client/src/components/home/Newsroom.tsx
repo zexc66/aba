@@ -140,7 +140,7 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                                                 {featured.date && (
                                                     <>
                                                         {featured.category && <span>•</span>}
-                                                        <span className="text-black/40 flex items-center gap-1">
+                                                        <span className="text-black/55 flex items-center gap-1">
                                                             <Calendar size={12} /> {formatDate(featured.date)}
                                                         </span>
                                                     </>
@@ -193,7 +193,7 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                                                 {news.date && (
                                                     <>
                                                         {news.category && <span>•</span>}
-                                                        <span className="text-black/40 flex items-center gap-1">
+                                                        <span className="text-black/55 flex items-center gap-1">
                                                             <Calendar size={12} /> {formatDate(news.date)}
                                                         </span>
                                                     </>

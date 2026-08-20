@@ -43,7 +43,7 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                                 <span className="text-[#5a1f2e]">
                                     {pillarIcons[i % pillarIcons.length]}
                                 </span>
-                                <span className="t-meta text-black/45">
+                                <span className="t-meta text-black/55">
                                     {data.pillarLabel} 0{i + 1}
                                 </span>
                             </div>
