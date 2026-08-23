@@ -1,6 +1,7 @@
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { memo } from "react";
 import { COUNTRIES } from "./NodalMap";
 import { useLanguageContext } from "@/contexts/LanguageContext";
@@ -71,7 +72,9 @@ function CountriesComponent({ data }: CountriesProps) {
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.35, delay: (index % 6) * 0.04 }}
-                                    className="grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3rem_minmax(10rem,1fr)_1fr_auto_auto] items-center gap-x-4 md:gap-x-8 py-4 group"
+                                >
+                                <Link href={`/corridors/${node?.iso ?? ""}`}>
+                                <a className="grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3rem_minmax(10rem,1fr)_1fr_auto_auto] items-center gap-x-4 md:gap-x-8 py-4 group"
                                 >
                                     <span className="t-data text-xs text-black/50 font-medium" dir="ltr" aria-hidden="true">
                                         {(index + 1).toString().padStart(2, "0")}
@@ -95,6 +98,8 @@ function CountriesComponent({ data }: CountriesProps) {
                                         <span className={`w-1.5 h-1.5 ${status === "active" ? "bg-emerald-600" : "bg-black/40"}`} />
                                         {status === "active" ? data.activeLabel : data.pipelineLabel}
                                     </span>
+                                </a>
+                                </Link>
                                 </motion.li>
                             );
                         })}

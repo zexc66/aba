@@ -18,7 +18,35 @@ interface NewsroomProps {
         newsletterSuccess: string;
         newsletterError: string;
     };
+    engagements: {
+        title: string;
+        empty: string;
+        dateLabel: string;
+        typeLabel: string;
+        locationLabel: string;
+    };
     lang: string;
+}
+
+interface EngagementEntry {
+    title: string;
+    date: string;
+    type: string;
+    location: string;
+}
+
+function toEngagement(entry: unknown): EngagementEntry | null {
+    if (typeof entry !== "object" || entry === null) return null;
+    const f = (entry as { fields?: Record<string, unknown> }).fields ?? {};
+    const title = typeof f.title === "string" ? f.title.trim() : "";
+    if (!title) return null;
+    const sys = (entry as { sys?: { updatedAt?: string } }).sys;
+    return {
+        title,
+        date: typeof f.date === "string" ? f.date : (sys?.updatedAt ?? "").slice(0, 10),
+        type: typeof f.type === "string" ? f.type : "",
+        location: typeof f.location === "string" ? f.location : "",
+    };
 }
 
 interface NewsArticle {
@@ -65,8 +93,9 @@ function formatDate(iso: string): string {
     return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase();
 }
 
-function NewsroomComponent({ data, lang }: NewsroomProps) {
+function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
     const [articles, setArticles] = useState<NewsArticle[]>([]);
+    const [engagements, setEngagements] = useState<EngagementEntry[]>([]);
 
     useEffect(() => {
         let cancelled = false;
@@ -87,6 +116,20 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
             })
             .catch(() => {
                 if (!cancelled) setArticles([]);
+            });
+        cms
+            .getCollection("engagement", lang as Locale)
+            .then((items) => {
+                if (cancelled) return;
+                setEngagements(
+                    (items as unknown[])
+                        .map(toEngagement)
+                        .filter((e): e is EngagementEntry => e !== null)
+                        .sort((a, b) => (a.date < b.date ? 1 : -1))
+                );
+            })
+            .catch(() => {
+                if (!cancelled) setEngagements([]);
             });
         return () => {
             cancelled = true;
@@ -214,6 +257,30 @@ function NewsroomComponent({ data, lang }: NewsroomProps) {
                         )}
                     </>
                 )}
+
+                <div className="mt-16">
+                    <h3 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-0">
+                        {ui.title}
+                    </h3>
+                    {engagements.length === 0 ? (
+                        <p className="text-sm text-black/55 leading-relaxed pt-5 max-w-[65ch]">
+                            {ui.empty}
+                        </p>
+                    ) : (
+                        <ul className="divide-y divide-black/10 border-b border-black/10">
+                            {engagements.map((e, i) => (
+                                <li key={i} className="grid md:grid-cols-[8rem_7rem_1fr_8rem] gap-x-6 items-baseline py-4">
+                                    <span className="t-data text-xs text-[#5a1f2e]" dir="ltr">
+                                        <bdi>{formatDate(e.date)}</bdi>
+                                    </span>
+                                    <span className="t-meta text-black/55">{e.type}</span>
+                                    <h4 className="text-sm font-semibold text-[#0b0b10] leading-snug">{e.title}</h4>
+                                    <span className="t-meta text-black/55 md:text-end">{e.location}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
             </div>
         </Section>

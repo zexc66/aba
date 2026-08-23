@@ -83,6 +83,10 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
                             <Users className="h-4 w-4" />
                             <span>Team</span>
                         </Command.Item>
+                        <Command.Item onSelect={() => handleNavigate("/pipeline")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
+                            <Globe className="h-4 w-4" />
+                            <span>Program Intelligence</span>
+                        </Command.Item>
                         <Command.Item onSelect={() => handleNavigate("/gallery")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
                             <Image className="h-4 w-4" />
                             <span>Gallery</span>

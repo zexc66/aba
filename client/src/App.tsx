@@ -14,6 +14,10 @@ const Home = lazy(() => import("./pages/Home"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const HamaProject = lazy(() => import("./pages/HamaProject"));
 const ProgramDetail = lazy(() => import("./pages/ProgramDetail"));
+const Pipeline = lazy(() => import("./pages/Pipeline"));
+const Corridor = lazy(() => import("./pages/Corridor"));
+const TeamMember = lazy(() => import("./pages/TeamMember"));
+const GovernanceArticle = lazy(() => import("./pages/GovernanceArticle"));
 const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
@@ -39,6 +43,10 @@ function Router() {
         <Route path={"/gallery"} component={Gallery} />
         <Route path={"/hama-project"} component={HamaProject} />
         <Route path={"/programs/:slug"} component={ProgramDetail} />
+        <Route path={"/pipeline"} component={Pipeline} />
+        <Route path={"/corridors/:iso"} component={Corridor} />
+        <Route path={"/team/:slug"} component={TeamMember} />
+        <Route path={"/governance/:slug"} component={GovernanceArticle} />
         <Route path={"/investor-portal"} component={InvestorLogin} />
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />

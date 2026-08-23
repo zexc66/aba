@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import NodalMap from "./NodalMap";
+import { useLanguageContext } from "@/contexts/LanguageContext";
 
 interface HeroProps {
     data: {
@@ -18,6 +19,7 @@ interface HeroProps {
 }
 
 export default function Hero({ data, stats }: HeroProps) {
+    const { content } = useLanguageContext();
     return (
         <section className="relative bg-[#fdfcfb] pt-32 lg:pt-40 pb-16 px-6 md:px-12 lg:px-24 border-b border-black/5 overflow-hidden">
             <div className="relative w-full max-w-[1500px] mx-auto">
@@ -88,7 +90,7 @@ export default function Hero({ data, stats }: HeroProps) {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="mt-14 pt-8 border-t border-black/5 grid grid-cols-1 sm:grid-cols-3 gap-8"
+                    className="mt-14 pt-8 border-t border-black/10 grid grid-cols-1 sm:grid-cols-3 gap-8"
                 >
                     {stats.map((s, i) => (
                         <div
@@ -103,6 +105,7 @@ export default function Hero({ data, stats }: HeroProps) {
                             </div>
                         </div>
                     ))}
+                    <p className="t-meta text-black/40 pt-1">{content.corridor.verifiedLabel}</p>
                 </motion.div>
             </div>
         </section>

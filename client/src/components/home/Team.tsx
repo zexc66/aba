@@ -3,6 +3,16 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
 import { memo } from "react";
+import { Link } from "wouter";
+
+const SLUGS: Record<string, string> = {
+    "Dr. Mohammed Abdel Moneim": "mohammed-abdel-moneim",
+    "د. محمد عبد المنعم": "mohammed-abdel-moneim",
+    "Faris Safi": "faris-safi",
+    "فارس صافي": "faris-safi",
+    "Ziad Shneikat": "ziad-shneikat",
+    "زياد شنيكات": "ziad-shneikat",
+};
 import { type Content } from "@/data";
 
 interface TeamProps {
@@ -31,8 +41,8 @@ function TeamComponent({ data, hud }: TeamProps) {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.08 }}
-                            className="bg-[#0b0b10] p-6 flex flex-col"
                         >
+                        <Link href={`/team/${SLUGS[member.name] ?? ""}`} className="block bg-[#0b0b10] p-6 h-full flex flex-col group">
                             <div className="aspect-square bg-white/5 border border-white/10 flex items-center justify-center mb-6 overflow-hidden relative">
                                 {member.image ? (
                                     <img loading="lazy" decoding="async" src={member.image} alt={member.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
@@ -51,7 +61,11 @@ function TeamComponent({ data, hud }: TeamProps) {
                                 <p className="text-xs text-white/60 leading-relaxed pt-2">
                                     {member.bio}
                                 </p>
+                                <span className="t-meta text-[#f2a007] mt-4 pt-3 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    {data.note ? "PROFILE //" : "PROFILE //"}
+                                </span>
                             </div>
+                        </Link>
                         </motion.div>
                     ))}
                 </div>

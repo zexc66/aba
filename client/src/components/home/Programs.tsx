@@ -1,4 +1,5 @@
 import { Section } from "@/components/ui/section";
+import { Link } from "wouter";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Globe, CheckCircle2 } from "lucide-react";
@@ -34,6 +35,14 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     note={data.sectionNote}
                     meta={`${data.list.length} PROGRAMS`}
                 />
+
+                <div className="-mt-8 mb-10 flex justify-end">
+                    <Link href="/pipeline">
+                        <a className="t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors">
+                            {`PIPELINE // EXPLORER →`}
+                        </a>
+                    </Link>
+                </div>
 
                 <motion.a
                     initial={{ opacity: 0, y: 20 }}

@@ -244,6 +244,52 @@ export interface Content {
     toastFailed: string;
     toastNetwork: string;
   };
+
+  pipeline: {
+    title: string;
+    eyebrow: string;
+    note: string;
+    filterAll: string;
+    filterCountry: string;
+    filterSector: string;
+    filterStatus: string;
+    multiRegion: string;
+    stageTitle: string;
+    stages: [string, string, string];
+    sdgTitle: string;
+    sdgNote: string;
+    programsLabel: string;
+    corridorsLabel: string;
+  };
+  corridor: {
+    backLabel: string;
+    regionLabel: string;
+    statusLabel: string;
+    programsTitle: string;
+    regionalNote: string;
+    capitalLabel: string;
+    verifiedLabel: string;
+  };
+  teamDetail: {
+    backLabel: string;
+    roleLabel: string;
+    bioLabel: string;
+    contactCta: string;
+  };
+  governanceDetail: {
+    backLabel: string;
+    overviewLabel: string;
+    practicesLabel: string;
+    requestLabel: string;
+    requestNote: string;
+  };
+  engagements: {
+    title: string;
+    empty: string;
+    dateLabel: string;
+    typeLabel: string;
+    locationLabel: string;
+  };
   skipToContent: string;
   langLabel: string;
 }
@@ -676,6 +722,51 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastFailed: "Submission failed. Please try again.",
       toastNetwork: "Network error during verification."
     },
+    pipeline: {
+      title: "Program Intelligence",
+      eyebrow: "PIPELINE_EXPLORER",
+      note: "The Alliance's live program portfolio — filter by corridor, sector, and delivery stage. All figures are owner-verified.",
+      filterAll: "All",
+      filterCountry: "Corridor",
+      filterSector: "Sector",
+      filterStatus: "Stage",
+      multiRegion: "Multi-region",
+      stageTitle: "Delivery stage",
+      stages: ["Structuring", "Development", "Execution"],
+      sdgTitle: "SDG Alignment Matrix",
+      sdgNote: "Goals aligned per program mandate.",
+      programsLabel: "Programs",
+      corridorsLabel: "Corridors",
+    },
+    corridor: {
+      backLabel: "All Corridors",
+      regionLabel: "Region",
+      statusLabel: "Status",
+      programsTitle: "Programs in this corridor",
+      regionalNote: "Multi-regional programs are structured across several corridors; contact the Alliance for the country allocation of each mandate.",
+      capitalLabel: "Capital",
+      verifiedLabel: "VERIFIED 2026-08",
+    },
+    teamDetail: {
+      backLabel: "Leadership",
+      roleLabel: "Role",
+      bioLabel: "Profile",
+      contactCta: "Request a briefing",
+    },
+    governanceDetail: {
+      backLabel: "Governance Framework",
+      overviewLabel: "Framework Overview",
+      practicesLabel: "Operating Practices",
+      requestLabel: "Request documentation",
+      requestNote: "Full frameworks, templates, and audit trails are shared with verified counterparties under NDA.",
+    },
+    engagements: {
+      title: "Engagement Calendar",
+      empty: "Confirmed engagements, missions, and convenings are published here once scheduled.",
+      dateLabel: "Date",
+      typeLabel: "Type",
+      locationLabel: "Location",
+    },
     skipToContent: "Skip to content",
     langLabel: "العربية",
   },
@@ -1096,6 +1187,51 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastFailed: "تعذّر الإرسال. حاول مرة أخرى.",
       toastNetwork: "خطأ في الشبكة أثناء التحقق."
     },
+    pipeline: {
+      title: "استخبارات البرامج",
+      eyebrow: "مستكشف_المحفظة",
+      note: "محفظة برامج التحالف الحية — رشّح حسب الممر والقطاع ومرحلة التنفيذ. جميع الأرقام موثقة من المالك.",
+      filterAll: "الكل",
+      filterCountry: "الممر",
+      filterSector: "القطاع",
+      filterStatus: "المرحلة",
+      multiRegion: "متعدد المناطق",
+      stageTitle: "مرحلة التنفيذ",
+      stages: ["التهيئة", "التطوير", "التنفيذ"],
+      sdgTitle: "مصفوفة التوافق مع أهداف التنمية المستدامة",
+      sdgNote: "الأهداف المتوافقة مع تفويض كل برنامج.",
+      programsLabel: "برامج",
+      corridorsLabel: "ممرات",
+    },
+    corridor: {
+      backLabel: "جميع الممرات",
+      regionLabel: "المنطقة",
+      statusLabel: "الحالة",
+      programsTitle: "البرامج في هذا الممر",
+      regionalNote: "البرامج متعددة المناطق مهيكلة عبر عدة ممرات؛ تواصل مع التحالف لمعرفة توزيع كل تفويض على الدول.",
+      capitalLabel: "العاصمة",
+      verifiedLabel: "موثق 2026-08",
+    },
+    teamDetail: {
+      backLabel: "القيادة",
+      roleLabel: "الدور",
+      bioLabel: "الملف",
+      contactCta: "اطلب اجتماعاً تعريفياً",
+    },
+    governanceDetail: {
+      backLabel: "إطار الحوكمة",
+      overviewLabel: "نظرة عامة على الإطار",
+      practicesLabel: "الممارسات التشغيلية",
+      requestLabel: "اطلب الوثائق",
+      requestNote: "تُشارك الأطر والنماذج الكاملة ومسارات التدقيق مع الأطراف الموثقة بموجب اتفاقية سرية.",
+    },
+    engagements: {
+      title: "تقويم المشاركات",
+      empty: "تُنشر المشاركات والبعثات واللقاءات المؤكدة هنا فور جدولتها.",
+      dateLabel: "التاريخ",
+      typeLabel: "النوع",
+      locationLabel: "الموقع",
+    },
     skipToContent: "تخطَّ إلى المحتوى",
     langLabel: "EN",
   },
@@ -1515,6 +1651,51 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastQueued: "Vérification institutionnelle en attente de la direction.",
       toastFailed: "Échec de l'envoi. Veuillez réessayer.",
       toastNetwork: "Erreur réseau lors de la vérification."
+    },
+    pipeline: {
+      title: "Intelligence des Programmes",
+      eyebrow: "EXPLORATEUR_PIPELINE",
+      note: "Le portefeuille de programmes de l'Alliance — filtrez par corridor, secteur et étape de réalisation. Toutes les données sont vérifiées par le propriétaire.",
+      filterAll: "Tous",
+      filterCountry: "Corridor",
+      filterSector: "Secteur",
+      filterStatus: "Étape",
+      multiRegion: "Multirégional",
+      stageTitle: "Étape de réalisation",
+      stages: ["Structuration", "Développement", "Exécution"],
+      sdgTitle: "Matrice d'Alignement ODD",
+      sdgNote: "Objectifs alignés par mandat de programme.",
+      programsLabel: "Programmes",
+      corridorsLabel: "Corridors",
+    },
+    corridor: {
+      backLabel: "Tous les Corridors",
+      regionLabel: "Région",
+      statusLabel: "Statut",
+      programsTitle: "Programmes dans ce corridor",
+      regionalNote: "Les programmes multirégionaux sont structurés sur plusieurs corridors ; contactez l'Alliance pour l'allocation pays de chaque mandat.",
+      capitalLabel: "Capitale",
+      verifiedLabel: "VÉRIFIÉ 08/2026",
+    },
+    teamDetail: {
+      backLabel: "Leadership",
+      roleLabel: "Rôle",
+      bioLabel: "Profil",
+      contactCta: "Demander un entretien",
+    },
+    governanceDetail: {
+      backLabel: "Cadre de Gouvernance",
+      overviewLabel: "Aperçu du Cadre",
+      practicesLabel: "Pratiques Opérationnelles",
+      requestLabel: "Demander la documentation",
+      requestNote: "Les cadres complets, modèles et pistes d'audit sont partagés avec les contreparties vérifiées sous NDA.",
+    },
+    engagements: {
+      title: "Calendrier des Engagements",
+      empty: "Les engagements, missions et réunions confirmés sont publiés ici dès leur programmation.",
+      dateLabel: "Date",
+      typeLabel: "Type",
+      locationLabel: "Lieu",
     },
     skipToContent: "Aller au contenu",
     langLabel: "FR",

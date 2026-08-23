@@ -37,7 +37,7 @@ export default function Home() {
           <Team data={t.team} hud={t.hud} />
           <Partners data={t.partners} hud={t.hud} lang={lang} />
           <Testimonials data={t.testimonials} hud={t.hud} lang={lang} />
-          <Newsroom data={t.newsroom} lang={lang} />
+          <Newsroom data={t.newsroom} engagements={t.engagements} lang={lang} />
           <Contact data={t.contact} lang={lang} />
         </main>
 
