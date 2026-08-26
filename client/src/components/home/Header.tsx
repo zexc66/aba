@@ -185,7 +185,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                         </div>
                     </a>
 
-                    <nav className="hidden items-center gap-8 xl:flex" aria-label="Primary">
+                    <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
                         {navLinks.map((link) => {
                             const isActive = activeSection === link.href;
                             return (
@@ -268,7 +268,7 @@ function HeaderComponent({ nav }: HeaderProps) {
 
                         <a
                             href="/investor-portal"
-                            className="hidden lg:flex items-center gap-3 px-6 py-3 bg-[#5a1f2e] text-white text-[10px] font-black tracking-[0.25em] uppercase hover:bg-black transition-colors duration-300 group no-press"
+                            className="hidden xl:flex items-center gap-3 px-6 py-3 bg-[#5a1f2e] text-white text-[10px] font-black tracking-[0.25em] uppercase hover:bg-black transition-colors duration-300 group no-press"
                         >
                             <Lock className="h-3 w-3 shrink-0" />
                             <span>Investor Access</span>
@@ -281,7 +281,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={mobileMenuOpen}
                             aria-controls="mobile-nav"
-                            className="xl:hidden p-3 bg-black text-white hover:bg-[#5a1f2e] transition-colors no-press"
+                            className="lg:hidden p-3 bg-black text-white hover:bg-[#5a1f2e] transition-colors no-press"
                         >
                             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                         </button>
@@ -293,7 +293,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                         <motion.div
                             ref={mobileSheetRef}
                             id="mobile-nav"
-                            className="fixed inset-0 top-[84px] bg-[#F9F8F6] z-40 xl:hidden px-8 py-8 overflow-y-auto"
+                            className="fixed inset-0 top-[84px] bg-[#F9F8F6] z-40 lg:hidden px-8 py-8 overflow-y-auto"
                             initial={{ opacity: 0, x: "100%" }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: "100%" }}
