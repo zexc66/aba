@@ -9,6 +9,7 @@ import { Section } from "@/components/ui/section";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { programStatusTone } from "@/lib/utils";
+import { stageIndex } from "@/intelligence";
 
 const TONE_CLASSES: Record<string, string> = {
   active: "text-emerald-700 bg-emerald-50 border-emerald-200",
@@ -39,6 +40,8 @@ export default function ProgramDetail() {
   }
 
   const tone = programStatusTone(program.status);
+  const uiStages = content.pipeline.stages;
+  const stageIdx = stageIndex(tone);
 
   return (
     <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}>
@@ -96,6 +99,22 @@ export default function ProgramDetail() {
                 <p className="t-meta text-black/50" dir="ltr">
                   {program.tags.join(" \u00b7 ")}
                 </p>
+
+                <span className="inline-flex items-center gap-3 basis-full sm:basis-auto" aria-label={`${content.pipeline.stageTitle}: ${uiStages[stageIdx]}`}>
+                  <span className="t-meta text-black/45">{content.pipeline.stageTitle}</span>
+                  <span className="flex items-center gap-1">
+                    {uiStages.map((label, s) => (
+                      <span
+                        key={s}
+                        title={label}
+                        className={`w-4 h-4 border ${s <= stageIdx
+                          ? "bg-[#5a1f2e] border-[#5a1f2e]"
+                          : "bg-transparent border-black/20"}`}
+                      />
+                    ))}
+                  </span>
+                  <span className="t-meta text-[#5a1f2e]">{uiStages[stageIdx]}</span>
+                </span>
               </div>
             </motion.div>
           </div>

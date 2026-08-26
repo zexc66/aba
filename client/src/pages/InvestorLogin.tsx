@@ -115,7 +115,21 @@ export default function InvestorLogin() {
             </button>
           </form>
 
-          <div className="text-center pt-4 border-t border-white/10 space-y-2">
+          <div className="pt-4 border-t border-white/10 space-y-3">
+            <dl className="grid grid-cols-3 gap-px bg-white/10 border border-white/10 text-center">
+              <div className="bg-[#11111a] px-2 py-3">
+                <dt className="t-meta text-white/40">REVIEW</dt>
+                <dd className="t-data text-xs text-white mt-1">DIRECTORIAL</dd>
+              </div>
+              <div className="bg-[#11111a] px-2 py-3">
+                <dt className="t-meta text-white/40">RESPONSE</dt>
+                <dd className="t-data text-xs text-white mt-1">REF-ID</dd>
+              </div>
+              <div className="bg-[#11111a] px-2 py-3">
+                <dt className="t-meta text-white/40">DISCLOSURE</dt>
+                <dd className="t-data text-xs text-white mt-1">POST-VERIFY</dd>
+              </div>
+            </dl>
             <p className="text-xs text-white/50 leading-relaxed">
               {t.auditNote}
             </p>

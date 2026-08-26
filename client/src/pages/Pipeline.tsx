@@ -168,7 +168,26 @@ export default function Pipeline() {
                         {/* SDG matrix */}
                         <div className="mt-20">
                             <SectionHeader index="///" title={t.sdgTitle} note={t.sdgNote} />
-                            <div className="overflow-x-auto">
+                            <div className="md:hidden space-y-px bg-black/10 border border-black/10">
+                            {sdgNumbers.map((n) => (
+                                <div key={n} className="bg-[#fdfcfb] p-4">
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="t-data text-[#5a1f2e]" dir="ltr">{String(n).padStart(2, "0")}</span>
+                                        <span className="text-sm font-semibold text-[#0b0b10]">{SDG_NAMES[n]?.[lang] ?? `SDG ${n}`}</span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-1.5 mt-3">
+                                        {sdgPrograms.map((p2, pi) => (
+                                            PROGRAM_META[p2.slug].sdgs.includes(n) ? (
+                                                <span key={p2.slug} className="t-data text-[10px] bg-[#f2a007] border border-[#5a1f2e]/30 text-[#0b0b10] px-2 py-1" title={p2.name} dir="ltr">
+                                                    {String(pi + 1).padStart(2, "0")}
+                                                </span>
+                                            ) : null
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="hidden md:block overflow-x-auto">
                                 <table className="w-full border-collapse">
                                     <thead>
                                         <tr className="border-b-2 border-[#0b0b10]">
