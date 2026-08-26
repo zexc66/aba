@@ -346,7 +346,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     about: {
       title: "Who we are",
       text:
-        "AIABASD is a multi-country alliance orchestrating high-impact programs with robust governance (ESIA/ESMS, KYC/AML, Independent Engineer/Auditor) and transparent success-fee structures. We mobilize capital for scalable infrastructure and inclusive growth.",
+        "The UN estimates a $4 trillion annual financing gap between developing countries and the Sustainable Development Goals — and traditional aid alone cannot close it. AIABASD exists for exactly this gap: a multi-country alliance that connects governments, private capital, and operating partners into bankable PPP/BOT programs — energy, logistics, agriculture, digital infrastructure, and resilient cities — governed by ESIA/ESMS safeguards, KYC/AML screening, independent engineers and auditors, and success fees tied to verified milestones.",
       bullets: [
         { icon: <ShieldCheck className="w-5 h-5" />, text: "Strong governance & compliance (ESIA/ESMS, KYC/AML)." },
         { icon: <Handshake className="w-5 h-5" />, text: "Government partnerships & PPP/BOT delivery capacity." },
@@ -369,7 +369,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ourStoryTitle: "Our Story",
       ourStorySubtitle: "Bridging Continents through Bankable Alliances & Sustainable Development",
       ourStoryText:
-        "Founded on the strategic convergence of the United Nations SDG 2030 Agenda and African Union Agenda 2063, AIABASD was established to bridge the critical $100B+ annual infrastructure deficit across Africa and the Arab region. By uniting sovereign governments, institutional investors, and operating partners, we transform high-need regional corridors—from West Africa to the Middle East—into bankable, climate-resilient economic growth zones.",
+        "Africa invests roughly 4% of its GDP in infrastructure against 14% in China, and the African Development Bank estimates the continent\u2019s annual infrastructure financing gap at up to $170 billion — a shortfall the Bank calculates is costing an estimated 2 percentage points of GDP growth every year. Founded at the convergence of the UN SDG 2030 Agenda and African Union Agenda 2063, AIABASD was established to convert that deficit into mandate: uniting sovereign governments, institutional investors, and operating partners to turn high-need regional corridors — from West Africa to the Middle East — into bankable, climate-resilient growth zones.",
       ourStoryMilestones: [
         { year: "Origin", title: "Institutional Alliance Formation", desc: "Established multi-sovereign coalition bridging Arab capital with African growth markets under strict ESIA/ESMS governance." },
         { year: "Expansion", title: "11 Sovereign Corridors", desc: "Expanded operational presence across Ghana, Sierra Leone, Gambia, Ivory Coast, Burkina Faso, Angola, Sudan, Egypt, Jordan, Syria, and Saudi Arabia." },
@@ -816,7 +816,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     about: {
       title: "من نحن",
       text:
-        "التحالف منصة متعددة الدول لتنسيق برامج عالية الأثر بحوكمة صارمة (دراسات الأثر البيئي والاجتماعي، مكافحة غسل الأموال، مهندس ومدقق مستقل) وهياكل أتعاب شفافة. نُعبّئ التمويل للبنية التحتية والنمو الشامل.",
+        "تقدّر الأمم المتحدة فجوة تمويل قدرها 4 تريليونات دولار سنوياً بين الدول النامية وأهداف التنمية المستدامة — وهي فجوة لا يمكن للمساعدات التقليدية وحدها سدّها. وُجد التحالف تحديداً لهذه الفجوة: تحالف متعدد الدول يربط الحكومات ورؤوس الأموال والشركاء التشغيلين في برامج PPP/BOT قابلة للتمويل — طاقة ولوجستيات وزراعة وبنية رقمية ومدن مرنة — تحت حوكمة صارمة (ESIA/ESMS، KYC/AML، مهندس ومدقق مستقل) وأتعاب نجاح مرتبطة بمعامل موثقة.",
       bullets: [
         { icon: <ShieldCheck className="w-5 h-5" />, text: "حوكمة وامتثال قويان (ESIA/ESMS، KYC/AML)." },
         { icon: <Handshake className="w-5 h-5" />, text: "شراكات حكومية وقدرة تنفيذ ضمن صيغ PPP/BOT." },
@@ -839,7 +839,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ourStoryTitle: "قصتنا",
       ourStorySubtitle: "الربط بين القارات من خلال التحالفات القابلة للتمويل والتنمية المستدامة",
       ourStoryText:
-        "تأسست منظمة AIABASD بناءً على التوافق الاستراتيجي بين أهداف التنمية المستدامة للأمم المتحدة 2030 وأجندة الاتحاد الأفريقي 2063، لسد العجز السنوي الحرج في البنية التحتية البالغ +100 مليار دولار عبر المنطقة الأفريقية والعربية. من خلال توحيد الحكومات السيادية، والمستثمرين المؤسسيين، والشركاء التشغيليين، نحول الممرات الإقليمية ذات الاحتياجات العالية — من غرب إفريقيا إلى الشرق الأوسط — إلى مناطق نمو اقتصادي قابلة للتمويل ومقاومة للتغير المناخي.",
+        "تستثمر إفريقيا نحو 4% من ناتجها المحلي في البنية التحتية مقابل 14% في الصين، ويقدّر بنك التنمية الأفريقي فجوة التمويل السنوية للبنية التحتية في القارة بما يصل إلى 170 مليار دولار — عجزٌ يحرم الاقتصادات من نحو نقطتين مئويتين من النمو سنوياً بتقدير البنك نفسه. تأسس التحالف عند تقاطع أهداف التنمية المستدامة 2030 وأجندة الاتحاد الأفريقي 2063 ليحوّل هذا العجز إلى تفويض: بتوحيد الحكومات السيادية والمستثمرين المؤسسيين والشركاء التشغيليين لتحويل الممرات الإقليمية عالية الاحتياج — من غرب إفريقيا إلى الشرق الأوسط — إلى مناطق نمو قابلة للتمويل ومرنة مناخياً.",
       ourStoryMilestones: [
         { year: "النشأة", title: "تأسيس التحالف المؤسسي", desc: "إنشاء تحالف متعدد السيادات يربط رأس المال العربي بأسواق النمو الإفريقية تحت حوكمة صارمة ESIA/ESMS." },
         { year: "التوسع", title: "11 ممر سيادي", desc: "توسيع التواجد التشغيلي عبر غانا، سيراليون، غامبيا، ساحل العاج، بوركينا فاسو، أنغولا، السودان، مصر، الأردن، سوريا، والسعودية." },
@@ -1286,7 +1286,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     about: {
       title: "Qui sommes-nous",
       text:
-        "L'AIABASD est une alliance multi-pays orchestrant des programmes à fort impact avec une gouvernance robuste (EISE/SGES, KYC/AML, Ingénieur/Auditeur indépendant) et des structures de frais de succès transparentes. Nous mobilisons le capital pour les infrastructures évolutives et la croissance inclusive.",
+        "L'ONU estime à 4 000 milliards de dollars par an l'écart de financement entre les pays en développement et les Objectifs de développement durable — un écart que l'aide traditionnelle seule ne peut combler. L'AIABASD existe précisément pour cet écart : une alliance multi-pays qui relie gouvernements, capitaux privés et partenaires opérationnels au sein de programmes PPP/BOT finançables — énergie, logistique, agriculture, infrastructures numériques et villes résilientes — sous gouvernance stricte (EISE/SGES, KYC/AML, ingénieur et auditeur indépendants) et frais de succès liés à des jalons vérifiés.",
       bullets: [
         { icon: <ShieldCheck className="w-5 h-5" />, text: "Gouvernance et conformité solides (EISE/SGES, KYC/AML)." },
         { icon: <Handshake className="w-5 h-5" />, text: "Partenariats gouvernementaux et capacité de mise en œuvre PPP/BOT." },
@@ -1309,7 +1309,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ourStoryTitle: "Notre Histoire",
       ourStorySubtitle: "Rapprocher les Continents grâce à des Alliances Financables & le Développement Durable",
       ourStoryText:
-        "Fondée sur la convergence stratégique des ODD 2030 des Nations Unies et de l'Agenda 2063 de l'Union Africaine, l'AIABASD a été créée pour combler le déficit annuel d'infrastructures de plus de 100 milliards de dollars en Afrique et dans la région arabe. En unissant gouvernements souverains, investisseurs institutionnels et partenaires opérationnels, nous transformons les corridors régionaux stratégiques en zones de croissance banquables et résilientes au climat.",
+        "L'Afrique n'investit qu'environ 4% de son PIB dans les infrastructures contre 14% pour la Chine, et la Banque Africaine de Développement estime le déficit annuel de financement des infrastructures du continent jusqu'à 170 milliards de dollars — un manque à gagner évalué par la Banque à 2 points de croissance du PIB par an. Fondée à la convergence des ODD 2030 des Nations Unies et de l'Agenda 2063 de l'Union Africaine, l'AIABASD a été créée pour transformer ce déficit en mandat : unir gouvernements souverains, investisseurs institutionnels et partenaires opérationnels pour convertir les corridors régionaux à fort besoin — de l'Afrique de l'Ouest au Moyen-Orient — en zones de croissance finançables et résilientes au climat.",
       ourStoryMilestones: [
         { year: "Origine", title: "Formation de l'Alliance Institutionnelle", desc: "Création d'une coalition multi-souveraine reliant le capital arabe aux marchés de croissance africains sous une gouvernance rigoureuse EISE/SGES." },
         { year: "Expansion", title: "11 Corridors Souverains", desc: "Expansion de la présence opérationnelle au Ghana, en Sierra Leone, en Gambie, en Côte d'Ivoire, au Burkina Faso, en Angola, au Soudan, en Égypte, en Jordanie, en Syrie et en Arabie Saoudite." },
