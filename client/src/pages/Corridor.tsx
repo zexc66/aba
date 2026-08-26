@@ -62,7 +62,7 @@ export default function Corridor() {
         <Section className="py-12 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <Link href="/#countries">
-              <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mb-6">
+              <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mb-6 py-2">
                 <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                 <span>{t.backLabel}</span>
               </a>

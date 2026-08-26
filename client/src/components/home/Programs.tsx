@@ -38,7 +38,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
 
                 <div className="-mt-8 mb-10 flex justify-end">
                     <Link href="/pipeline">
-                        <a className="t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors">
+                        <a className="inline-flex items-center t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] py-3 transition-colors no-press">
                             {`PIPELINE // EXPLORER →`}
                         </a>
                     </Link>

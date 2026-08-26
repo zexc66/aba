@@ -63,7 +63,7 @@ export default function ProgramDetail() {
               className="max-w-4xl space-y-6"
             >
               <Link href="/#programs">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#5a1f2e] hover:text-[#0b0b10] transition-colors cursor-pointer">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#5a1f2e] hover:text-[#0b0b10] transition-colors cursor-pointer py-2">
                   <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                   <span>{ui.backLabel}</span>
                 </div>

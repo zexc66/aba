@@ -45,7 +45,7 @@ export default function TeamMember() {
         <Section className="py-16">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <Link href="/#team">
-              <a className="inline-flex items-center gap-2 t-meta text-[#f2a007] hover:text-white transition-colors mb-10">
+              <a className="inline-flex items-center gap-2 t-meta text-[#f2a007] hover:text-white transition-colors mb-10 py-2">
                 <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                 <span>{t.backLabel}</span>
               </a>

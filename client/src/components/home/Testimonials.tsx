@@ -142,8 +142,10 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                                     aria-label={`Testimonial ${i + 1}`}
                                     aria-selected={i === current}
                                     role="tab"
-                                    className={`h-1 transition-[color,background-color,border-color,transform] duration-300 ${i === current ? "w-10 bg-[#5a1f2e]" : "w-5 bg-black/20 hover:bg-black/40"}`}
-                                />
+                                    className="py-2.5"
+                                >
+                                    <span className={`block h-1 transition-[color,background-color,border-color,transform] duration-300 ${i === current ? "w-10 bg-[#5a1f2e]" : "w-5 bg-black/20 hover:bg-black/40"}`} />
+                                </button>
                             ))}
                         </div>
                     </div>

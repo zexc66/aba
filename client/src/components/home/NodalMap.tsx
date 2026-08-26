@@ -153,10 +153,10 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                             onMouseEnter={() => setHoveredIso(c.iso)}
                             onMouseLeave={() => setHoveredIso(null)}
                             aria-pressed={isSelected}
-                            className={`px-3 py-2 text-xs font-semibold transition-colors shrink-0 border ${
+                            className={`px-3 py-2.5 text-xs font-semibold transition-colors shrink-0 border ${
                                 isSelected
                                     ? "bg-[#5a1f2e] text-white border-[#5a1f2e] shadow-md scale-105"
-                                    : "bg-white text-[#0b0b10]/80 border-black/10 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
+                                    : "bg-white text-[#0b0b10]/90 border-black/10 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
                             }`}
                         >
                             {localizedName(c.id, lang)}
