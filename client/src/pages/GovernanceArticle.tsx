@@ -54,7 +54,7 @@ export default function GovernanceArticle() {
               </a>
             </Link>
 
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="max-w-3xl">
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-3xl">
               <span className="t-data text-[#5a1f2e] block mb-4" aria-hidden="true">
                 {`GOV/${String(idx + 1).padStart(2, "0")}`}
               </span>
@@ -70,7 +70,7 @@ export default function GovernanceArticle() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
+              transition={{ duration: 0.45, delay: 0.15 }}
               className="lg:col-span-7 space-y-12"
             >
               <div>
@@ -98,7 +98,7 @@ export default function GovernanceArticle() {
             <motion.aside
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.25 }}
+              transition={{ duration: 0.45, delay: 0.25 }}
               className="lg:col-span-5"
             >
               <div className="bg-[#0b0b10] text-white p-8 border border-black sticky top-28">

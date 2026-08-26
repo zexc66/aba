@@ -63,7 +63,7 @@ export default function HamaPhases({ t }: HamaPhasesProps) {
                                 </span>
                             </div>
                             <h4 className="text-6xl font-institutional italic text-white mb-12 relative z-10 leading-none group-hover:text-[#5a1f2e] transition-colors duration-700">{phase.title}</h4>
-                            <p className="text-2xl text-white/40 leading-tight font-institutional italic max-w-lg group-hover:text-white/80 transition-all duration-700">
+                            <p className="text-2xl text-white/40 leading-tight font-institutional italic max-w-lg group-hover:text-white/80 transition-[color,background-color,border-color,transform] duration-700">
                                 {phase.desc}
                             </p>
                         </motion.div>

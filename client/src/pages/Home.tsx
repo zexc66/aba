@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <SEO title={t.metaTitle} description={t.hero.subtitle} lang={lang} url="/" />
-      {isFetchingCMS && <PageLoader minDuration={300} />}
+      {isFetchingCMS && <PageLoader />}
 
       <div className="relative min-h-screen text-[#0b0b10] editorial-theme">
         <AnimatedBackground />

@@ -39,7 +39,7 @@ export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
                 
                 <div className="flex justify-between items-end">
                     <div className="flex items-center gap-12 group pointer-events-auto cursor-pointer" onClick={() => setLocation('/')}>
-                        <div className="w-20 h-20 rounded-full border border-black/5 flex items-center justify-center bg-white shadow-premium group-hover:bg-[#0b0b10] transition-all duration-700">
+                        <div className="w-20 h-20 rounded-full border border-black/5 flex items-center justify-center bg-white shadow-premium group-hover:bg-[#0b0b10] transition-[color,background-color,border-color,transform] duration-700">
                             <ArrowRight className={`w-8 h-8 transition-transform duration-700 ${isRTL ? 'rotate-0 group-hover:-translate-x-2' : 'rotate-180 group-hover:translate-x-2'} group-hover:text-white`} />
                         </div>
                         <div className="flex flex-col">

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, memo } from "react";
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
 import { type Content } from "@/data";
 
 interface TestimonialsProps {
@@ -14,6 +14,7 @@ interface TestimonialsProps {
 function TestimonialsComponent({ data, hud }: TestimonialsProps) {
     const [current, setCurrent] = useState(0);
     const [autoPlay, setAutoPlay] = useState(true);
+    const [pausedByUser, setPausedByUser] = useState(false);
     const resumeTimer = useRef<number | null>(null);
 
     useEffect(() => {
@@ -29,9 +30,19 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
     }, []);
 
     const pauseAndResume = () => {
+        if (pausedByUser) return;
         setAutoPlay(false);
         window.clearTimeout(resumeTimer.current ?? undefined);
         resumeTimer.current = window.setTimeout(() => setAutoPlay(true), 14000);
+    };
+
+    const toggleUserPause = () => {
+        const next = !pausedByUser;
+        setPausedByUser(next);
+        if (next) {
+            window.clearTimeout(resumeTimer.current ?? undefined);
+            setAutoPlay(false);
+        }
     };
 
     const next = () => {
@@ -78,9 +89,9 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                                         {t.id}
                                     </span>
                                     <div>
-                                        <h4 className="text-base font-bold text-[#0b0b10]">
+                                        <h3 className="text-base font-bold text-[#0b0b10]">
                                             {t.author}
-                                        </h4>
+                                        </h3>
                                         <p className="t-meta text-black/50 mt-1">
                                             {t.position}
                                         </p>
@@ -95,6 +106,14 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                             {`${(current + 1).toString().padStart(2, "0")} / ${data.list.length.toString().padStart(2, "0")}`}
                         </span>
 
+                        <button
+                            onClick={toggleUserPause}
+                            aria-pressed={pausedByUser}
+                            aria-label={pausedByUser ? "Resume testimonial rotation" : "Pause testimonial rotation"}
+                            className="w-12 h-12 border border-black/15 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
+                        >
+                            {pausedByUser ? <Play className="w-5 h-5 rtl:rotate-180" strokeWidth={1.5} /> : <Pause strokeWidth={1.5} className="w-5 h-5" />}
+                        </button>
                         <div className="flex items-center gap-3">
                             <button
                                 onClick={prev}
@@ -123,7 +142,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                                     aria-label={`Testimonial ${i + 1}`}
                                     aria-selected={i === current}
                                     role="tab"
-                                    className={`h-1 transition-all duration-300 ${i === current ? "w-10 bg-[#5a1f2e]" : "w-5 bg-black/20 hover:bg-black/40"}`}
+                                    className={`h-1 transition-[color,background-color,border-color,transform] duration-300 ${i === current ? "w-10 bg-[#5a1f2e]" : "w-5 bg-black/20 hover:bg-black/40"}`}
                                 />
                             ))}
                         </div>

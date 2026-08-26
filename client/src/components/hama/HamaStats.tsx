@@ -33,7 +33,7 @@ export default function HamaStats({ stats }: HamaStatsProps) {
                                 <span className="text-[10px] font-black tracking-[1em] uppercase text-black/10 group-hover:text-[#5a1f2e] transition-colors">{stat.id}</span>
                                 <div className="w-12 h-[1px] bg-black/5 group-hover:bg-[#5a1f2e]/30 transition-colors" />
                             </div>
-                            <div className="w-16 h-16 rounded-sm border border-black/[0.05] flex items-center justify-center text-black/10 group-hover:text-black group-hover:border-black/10 transition-all bg-white shadow-premium">
+                            <div className="w-16 h-16 rounded-sm border border-black/[0.05] flex items-center justify-center text-black/10 group-hover:text-black group-hover:border-black/10 transition-[color,background-color,border-color,transform] bg-white shadow-premium">
                                 <stat.icon size={28} strokeWidth={0.5} />
                             </div>
                         </div>
@@ -43,7 +43,7 @@ export default function HamaStats({ stats }: HamaStatsProps) {
                                 <AnimatedCounter value={stat.number} />
                                 <span className="text-4xl not-italic ml-4 text-[#5a1f2e] font-black">{stat.suffix}</span>
                             </div>
-                            <h3 className="text-[14px] font-black tracking-[0.8em] uppercase text-black/30 group-hover:text-black transition-all pl-2 font-sans">{stat.label}</h3>
+                            <h3 className="text-[14px] font-black tracking-[0.8em] uppercase text-black/30 group-hover:text-black transition-[color,background-color,border-color,transform] pl-2 font-sans">{stat.label}</h3>
                         </div>
                         
                         <div className="absolute bottom-12 left-12 opacity-[0.05] group-hover:opacity-10 transition-opacity">

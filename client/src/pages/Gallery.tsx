@@ -49,7 +49,7 @@ export default function Gallery() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: i * 0.05 }}
-                                    className="group bg-white rounded-sm border border-black/5 overflow-hidden hover:shadow-md hover:border-[#5a1f2e]/30 transition-all duration-300 flex flex-col justify-between"
+                                    className="group bg-white rounded-sm border border-black/5 overflow-hidden hover:shadow-md hover:border-[#5a1f2e]/30 transition-[color,background-color,border-color,transform] duration-300 flex flex-col justify-between"
                                 >
                                     <div className="aspect-[4/3] overflow-hidden relative bg-black/5">
                                         <img
@@ -78,7 +78,7 @@ export default function Gallery() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.1 }}
+                                transition={{ duration: 0.4, delay: 0.1 }}
                                 className="border border-dashed border-black/15 rounded-sm px-8 py-12 flex flex-col items-center text-center bg-black/[0.015]"
                             >
                                 <div className="w-12 h-12 rounded-full bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-5">

@@ -53,14 +53,14 @@ export default function NotFound() {
                 className="flex flex-col md:flex-row items-center gap-12 mt-16"
             >
                 <Link href="/">
-                    <button className="group relative px-16 py-8 bg-white text-black hover:bg-[#5a1f2e] hover:text-white transition-all shadow-premium-2xl rounded-sm overflow-hidden flex items-center gap-6">
+                    <button className="group relative px-16 py-8 bg-white text-black hover:bg-[#5a1f2e] hover:text-white transition-[color,background-color,border-color,transform] shadow-premium-2xl rounded-sm overflow-hidden flex items-center gap-6">
                         <div className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                         <Home size={18} className="relative z-10" />
                         <span className="text-[12px] font-black tracking-[1em] uppercase relative z-10">REBOOT_TO_HOME</span>
                     </button>
                 </Link>
                 
-                <div className="flex items-center gap-12 opacity-30 hover:opacity-100 transition-all cursor-pointer group">
+                <div className="flex items-center gap-12 opacity-30 hover:opacity-100 transition-[color,background-color,border-color,transform] cursor-pointer group">
                     <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:rotate-180 transition-transform duration-1000 group-hover:bg-[#5a1f2e]/20">
                          <RefreshCw size={14} className="text-white" />
                     </div>

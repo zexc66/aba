@@ -132,7 +132,7 @@ function AboutComponent({ data }: AboutProps) {
                                     <li key={i} className="grid grid-cols-[6rem_1fr] gap-6 py-6">
                                         <span className="t-meta text-[#5a1f2e] pt-1">{m.year}</span>
                                         <div>
-                                            <h4 className="text-base font-semibold text-[#0b0b10]">{m.title}</h4>
+                                            <h3 className="text-base font-semibold text-[#0b0b10]">{m.title}</h3>
                                             <p className="text-sm text-black/60 leading-relaxed mt-1">{m.desc}</p>
                                         </div>
                                     </li>

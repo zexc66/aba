@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { Search, Menu, X, Lock, ArrowUpRight, Globe, Check } from "lucide-react";
 import SearchCommand from "@/components/SearchCommand";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
@@ -37,6 +37,10 @@ function HeaderComponent({ nav }: HeaderProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [langMenuOpen, setLangMenuOpen] = useState(false);
+    const langButtonRef = useRef<HTMLButtonElement>(null);
+    const langMenuRef = useRef<HTMLDivElement>(null);
+    const mobileButtonRef = useRef<HTMLButtonElement>(null);
+    const mobileSheetRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll();
 
     const navLinks = [
@@ -71,13 +75,67 @@ function HeaderComponent({ nav }: HeaderProps) {
         if (!mobileMenuOpen && !langMenuOpen) return;
         const onKey = (e: KeyboardEvent) => {
             if (e.key === "Escape") {
+                const wasLang = langMenuOpen;
                 setMobileMenuOpen(false);
                 setLangMenuOpen(false);
+                requestAnimationFrame(() => {
+                    (wasLang ? langButtonRef.current : mobileButtonRef.current)?.focus();
+                });
+            }
+            if (langMenuOpen && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+                e.preventDefault();
+                const items = Array.from(langMenuRef.current?.querySelectorAll<HTMLButtonElement>("button[role^=menuitem") ?? []);
+                if (items.length === 0) return;
+                const current = items.findIndex((b) => b === document.activeElement);
+                const nextIndex = e.key === "ArrowDown"
+                    ? (current + 1 + items.length) % items.length
+                    : (current - 1 + items.length) % items.length;
+                items[nextIndex].focus();
+            }
+            if (mobileMenuOpen && e.key === "Tab") {
+                const sheet = mobileSheetRef.current;
+                if (!sheet) return;
+                const focusables = Array.from(sheet.querySelectorAll<HTMLElement>("a[href], button:not([disabled])"));
+                if (focusables.length === 0) return;
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                } else if (!sheet.contains(document.activeElement)) {
+                    e.preventDefault();
+                    first.focus();
+                }
             }
         };
         document.addEventListener("keydown", onKey);
         return () => document.removeEventListener("keydown", onKey);
     }, [mobileMenuOpen, langMenuOpen]);
+
+    useEffect(() => {
+        if (!langMenuOpen) return;
+        const onPointer = (e: PointerEvent) => {
+            if (
+                langMenuRef.current && !langMenuRef.current.contains(e.target as Node) &&
+                langButtonRef.current && !langButtonRef.current.contains(e.target as Node)
+            ) {
+                setLangMenuOpen(false);
+            }
+        };
+        document.addEventListener("pointerdown", onPointer);
+        return () => document.removeEventListener("pointerdown", onPointer);
+    }, [langMenuOpen]);
+
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            requestAnimationFrame(() => {
+                mobileSheetRef.current?.querySelector<HTMLElement>("a[href]")?.focus();
+            });
+        }
+    }, [mobileMenuOpen]);
 
     useEffect(() => {
         document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
@@ -93,13 +151,13 @@ function HeaderComponent({ nav }: HeaderProps) {
     return (
         <>
             <motion.header
-                className={`fixed top-0 inset-x-0 z-50 transition-all duration-700 ${scrolled
+                className={`fixed top-0 inset-x-0 z-50 transition-[color,background-color,border-color,transform] duration-700 ${scrolled
                     ? "bg-[#F9F8F6]/90 backdrop-blur-2xl border-b border-black/5"
                     : "bg-transparent border-b border-white/5"
                     }`}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] as [number, number, number, number] }}
             >
 
                 <motion.div
@@ -139,7 +197,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                                     }`}
                                 >
                                     <span>{link.label}</span>
-                                    <div className={`absolute bottom-0 left-0 h-0.5 bg-[#5a1f2e] transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+                                    <div className={`absolute bottom-0 left-0 h-0.5 bg-[#5a1f2e] transition-[color,background-color,border-color,transform] duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
                                 </a>
                             );
                         })}
@@ -148,14 +206,23 @@ function HeaderComponent({ nav }: HeaderProps) {
                     <div className="flex items-center gap-4 lg:gap-6">
                         <button
                             onClick={() => setSearchOpen(true)}
-                            className="p-3 bg-black/5 hover:bg-black text-black hover:text-white transition-colors duration-300 group no-press"
+                            className="hidden sm:flex items-center gap-2 px-3 py-2.5 bg-black/[0.03] hover:bg-black hover:text-white transition-colors duration-300 no-press t-meta"
                             aria-label="Search"
                         >
-                            <Search className="h-4 w-4 group-hover:scale-125 transition-transform" />
+                            <Search className="h-3.5 w-3.5" strokeWidth={1.5} />
+                            <span className="t-data text-[10px] border border-black/15 px-1.5 py-0.5">Ctrl K</span>
+                        </button>
+                        <button
+                            onClick={() => setSearchOpen(true)}
+                            className="sm:hidden p-3 bg-black/5 hover:bg-black text-black hover:text-white transition-colors duration-300 no-press"
+                            aria-label="Search"
+                        >
+                            <Search className="h-4 w-4" strokeWidth={1.5} />
                         </button>
 
                         <div className="relative">
                             <button
+                                ref={langButtonRef}
                                 onClick={() => setLangMenuOpen((v) => !v)}
                                 aria-haspopup="menu"
                                 aria-expanded={langMenuOpen}
@@ -169,12 +236,14 @@ function HeaderComponent({ nav }: HeaderProps) {
                             <AnimatePresence>
                                 {langMenuOpen && (
                                     <motion.div
+                                        ref={langMenuRef}
                                         role="menu"
                                         aria-label="Language"
-                                        initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                                        initial={{ opacity: 0, y: -4, scale: 0.97 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                                        transition={{ duration: 0.18 }}
+                                        exit={{ opacity: 0, y: -4, scale: 0.97 }}
+                                        transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{ transformOrigin: isRTL ? "top left" : "top right" }}
                                         className={`absolute top-[calc(100%+10px)] ${isRTL ? "left-0" : "right-0"} bg-white border border-black/15 shadow-xl p-1.5 min-w-[150px] z-50`}
                                     >
                                         {LANG_OPTIONS.map((option) => (
@@ -207,6 +276,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                         </a>
 
                         <button
+                            ref={mobileButtonRef}
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={mobileMenuOpen}
@@ -221,41 +291,53 @@ function HeaderComponent({ nav }: HeaderProps) {
                 <AnimatePresence>
                     {mobileMenuOpen && (
                         <motion.div
+                            ref={mobileSheetRef}
                             id="mobile-nav"
                             className="fixed inset-0 top-[84px] bg-[#F9F8F6] z-40 xl:hidden px-8 py-8 overflow-y-auto"
                             initial={{ opacity: 0, x: "100%" }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: "100%" }}
-                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                            transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] as [number, number, number, number] }}
                         >
                             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
                                  style={{ backgroundImage: 'linear-gradient(black 1px, transparent 1px), linear-gradient(90deg, black 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
                             
                             <nav className="flex flex-col gap-5 relative z-10 pb-12" aria-label="Mobile">
-                                {navLinks.map((link, i) => (
+                                <motion.a
+                                    href="#contact"
+                                    className="flex items-center justify-between py-4 px-5 bg-[#5a1f2e] text-white t-meta"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.1 }}
+                                >
+                                    <span>{nav.contact}</span>
+                                    <ArrowUpRight className="w-4 h-4 rtl:-scale-x-100" strokeWidth={1.5} />
+                                </motion.a>
+                                <motion.a
+                                    href="/investor-portal"
+                                    className="flex items-center justify-between group py-5 border-b border-black/10"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.15 }}
+                                >
+                                    <span className="text-[12px] font-black tracking-[0.4em] uppercase text-[#5a1f2e]">Investor Access</span>
+                                    <Lock className="h-5 w-5 text-black" strokeWidth={1.5} />
+                                </motion.a>
+                                {navLinks.filter((l) => l.href !== "#contact").map((link, i) => (
                                     <motion.a
                                         key={link.href}
                                         href={link.href}
-                                        className="text-3xl font-institutional text-black italic hover:not-italic transition-all border-b border-black/5 pb-4 flex items-center justify-between group overflow-hidden"
+                                        className="text-3xl font-institutional text-black italic hover:not-italic transition-[color,background-color,border-color,transform] border-b border-black/5 pb-4 flex items-center justify-between group overflow-hidden"
                                         onClick={() => setMobileMenuOpen(false)}
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: i * 0.04 + 0.15 }}
                                     >
                                         <span className="transform transition-transform duration-700 group-hover:translate-x-4 italic">{link.label}</span>
-                                        <ArrowUpRight className="w-8 h-8 text-[#5a1f2e] opacity-0 group-hover:opacity-100 transition-all -translate-x-6 group-hover:translate-x-0" />
+                                        <ArrowUpRight className="w-8 h-8 text-[#5a1f2e] opacity-0 group-hover:opacity-100 transition-[color,background-color,border-color,transform] -translate-x-6 group-hover:translate-x-0" />
                                     </motion.a>
                                 ))}
-                                <motion.a
-                                    href="/investor-portal"
-                                    className="flex items-center justify-between group py-6 border-b border-black/5"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 0.55 }}
-                                >
-                                    <span className="text-[12px] font-black tracking-[0.4em] uppercase text-[#5a1f2e]">Investor Access</span>
-                                    <Lock className="h-5 w-5 text-black" />
-                                </motion.a>
                             </nav>
                         </motion.div>
                     )}

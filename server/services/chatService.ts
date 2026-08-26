@@ -43,7 +43,7 @@ export function generateChatResponse(message: string): string {
     }
 
     if (msg.includes("contact") || msg.includes("email") || msg.includes("reach") || msg.includes("join")) {
-        return "**Get in Touch**\n\nTo discuss mandates, funding opportunities, or project operation, you can reach out via the Contact form at the bottom of the page.\n\nPlease provide your Full Name, Work Email, Organization, and a brief message regarding how we can collaborate. We actively monitor these channels and a Partner will respond swiftly.";
+        return "**Get in Touch**\n\nTo discuss mandates, funding opportunities, or project operation, you can reach out via the Contact form at the bottom of the page.\n\nPlease provide your Full Name, Work Email, Organization, and a brief message regarding how we can collaborate. You can also write to us directly: contact@aiabasd.org (general), gs@aiabasd.org (General Secretariat), or fo@aiabasd.org (Field Operations). We actively monitor these channels and a Partner will respond swiftly.";
     }
 
     if (msg.includes("sdg") || msg.includes("sustainable")) {

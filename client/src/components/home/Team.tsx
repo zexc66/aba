@@ -45,7 +45,7 @@ function TeamComponent({ data, hud }: TeamProps) {
                         <Link href={`/team/${SLUGS[member.name] ?? ""}`} className="block bg-[#0b0b10] p-6 h-full flex flex-col group">
                             <div className="aspect-square bg-white/5 border border-white/10 flex items-center justify-center mb-6 overflow-hidden relative">
                                 {member.image ? (
-                                    <img loading="lazy" decoding="async" src={member.image} alt={member.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+                                    <img loading="lazy" decoding="async" src={member.image} alt={member.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[color,background-color,border-color,transform] duration-700" />
                                 ) : (
                                     <User size={64} className="text-white/20" strokeWidth={1} />
                                 )}

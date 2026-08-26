@@ -6,7 +6,7 @@ interface PageLoaderProps {
     minDuration?: number;
 }
 
-export default function PageLoader({ minDuration = 1500 }: PageLoaderProps) {
+export default function PageLoader({ minDuration = 0 }: PageLoaderProps) {
     const [isLoading, setIsLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 

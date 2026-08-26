@@ -55,7 +55,7 @@ export default function TeamMember() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.45 }}
                 className="lg:col-span-4"
               >
                 <div className="aspect-square bg-white/5 border border-white/10 overflow-hidden">
@@ -72,7 +72,7 @@ export default function TeamMember() {
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.15 }}
+                transition={{ duration: 0.45, delay: 0.15 }}
                 className="lg:col-span-8 space-y-10"
               >
                 <div>

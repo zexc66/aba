@@ -28,7 +28,7 @@ export default function Hero({ data, stats }: HeroProps) {
                         <motion.div
                             initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 0.5 }}
                             className="flex items-center gap-3 mb-6"
                         >
                             <span className="t-meta text-[#5a1f2e]">
@@ -39,7 +39,7 @@ export default function Hero({ data, stats }: HeroProps) {
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.1 }}
+                            transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
                             className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-[#0b0b10] mb-8 leading-tight"
                         >
                             {data.title}
@@ -48,7 +48,7 @@ export default function Hero({ data, stats }: HeroProps) {
                         <motion.p
                             initial={{ opacity: 0, y: 25 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.2 }}
+                            transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
                             className="text-lg md:text-xl text-black/70 mb-10 leading-relaxed max-w-2xl"
                         >
                             {data.subtitle}
@@ -57,12 +57,12 @@ export default function Hero({ data, stats }: HeroProps) {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.3 }}
+                            transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
                             className="flex flex-wrap gap-8 items-center"
                         >
                             <a
                                 href="#programs"
-                                className="group flex items-center gap-3 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white px-7 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 shadow-md"
+                                className="group flex items-center gap-3 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white px-7 py-3.5 rounded-lg font-semibold text-sm transition-[color,background-color,border-color,transform] duration-300 shadow-md"
                             >
                                 <span>{data.ctaPrimary}</span>
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300 rtl:rotate-180 rtl:group-hover:-translate-x-1.5" />
@@ -80,7 +80,7 @@ export default function Hero({ data, stats }: HeroProps) {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.97 }}
                         className="lg:col-span-7 relative h-[42vh] min-h-[320px] lg:h-auto lg:min-h-[560px] bg-white border border-black/10 overflow-hidden"
-                        transition={{ duration: 1.1, delay: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.1 }}
                     >
                         <NodalMap activeCountry={null} compact />
                     </motion.div>
@@ -89,7 +89,7 @@ export default function Hero({ data, stats }: HeroProps) {
                 <motion.div
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
                     className="mt-14 pt-8 border-t border-black/10 grid grid-cols-1 sm:grid-cols-3 gap-8"
                 >
                     {stats.map((s, i) => (

@@ -71,7 +71,7 @@ export default function InvestorLogin() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.45 }}
           className="bg-[#11111a] p-8 md:p-10 border border-white/15 shadow-2xl space-y-8"
         >
           <div className="text-center space-y-3">

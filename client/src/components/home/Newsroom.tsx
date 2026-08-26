@@ -164,7 +164,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.5 }}
+                                    transition={{ duration: 0.4 }}
                                     className="lg:col-span-12 bg-white border border-black/10 overflow-hidden flex flex-col md:flex-row group transition-colors duration-300 hover:border-[#5a1f2e]/40"
                                 >
                                     {featured.image && (

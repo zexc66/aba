@@ -24,6 +24,8 @@ interface ContactProps {
         successNote: string;
         error: string;
         reassure: string;
+        audienceLabel: string;
+        audienceOptions: string[];
         placeholders: {
             name: string;
             email: string;
@@ -33,6 +35,9 @@ interface ContactProps {
         sidebar: {
             hq: string;
             channels: string;
+            emailGeneralLabel: string;
+            emailSecretariatLabel: string;
+            emailFieldOpsLabel: string;
         };
     };
     lang: string;
@@ -44,6 +49,12 @@ function ContactComponent({ data }: ContactProps) {
     const [sent, setSent] = useState(false);
     const [reference, setReference] = useState<string | null>(null);
     const [error, setError] = useState(false);
+    const [emailInvalid, setEmailInvalid] = useState(false);
+    const [audience, setAudience] = useState(-1);
+
+    const AUDIENCE_TYPE = ["GOVERNMENT", "INVESTOR", "EPC", "NGO", "PRESS"];
+
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -55,7 +66,7 @@ function ContactComponent({ data }: ContactProps) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    type: "CONTACT",
+                    type: audience >= 0 ? `CONTACT_${AUDIENCE_TYPE[audience]}` : "CONTACT",
                     name: form.name,
                     email: form.email,
                     organization: form.org,
@@ -117,11 +128,26 @@ function ContactComponent({ data }: ContactProps) {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-4 text-sm text-[#0b0b10] pt-2 border-t border-black/5">
-                                    <Mail className="w-5 h-5 text-[#5a1f2e] shrink-0" />
-                                    <a href="mailto:contact@aiabasd.org" className="font-semibold hover:text-[#5a1f2e] transition-colors">
-                                        contact@aiabasd.org
-                                    </a>
+                                <div className="pt-2 border-t border-black/10 space-y-1">
+                                    {[
+                                        { label: data.sidebar.emailGeneralLabel, address: "contact@aiabasd.org" },
+                                        { label: data.sidebar.emailSecretariatLabel, address: "gs@aiabasd.org" },
+                                        { label: data.sidebar.emailFieldOpsLabel, address: "fo@aiabasd.org" },
+                                    ].map(({ label, address }) => (
+                                        <a
+                                            key={address}
+                                            href={`mailto:${address}`}
+                                            className="flex items-center justify-between gap-4 py-2 text-sm text-[#0b0b10] hover:text-[#5a1f2e] transition-colors group"
+                                        >
+                                            <span className="flex items-center gap-3 min-w-0">
+                                                <Mail className="w-4 h-4 text-[#5a1f2e] shrink-0" strokeWidth={1.5} />
+                                                <span className="font-medium truncate">{label}</span>
+                                            </span>
+                                            <span className="t-data text-xs text-black/55 group-hover:text-[#5a1f2e] transition-colors shrink-0" dir="ltr">
+                                                {address}
+                                            </span>
+                                        </a>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -133,6 +159,23 @@ function ContactComponent({ data }: ContactProps) {
                         </h3>
 
                         <form onSubmit={onSubmit} className="space-y-6">
+                            <div className="space-y-2">
+                                <label htmlFor="contact-audience" className="t-meta text-black/60">
+                                    {data.audienceLabel}
+                                </label>
+                                <select
+                                    id="contact-audience"
+                                    value={audience}
+                                    onChange={(e) => setAudience(Number(e.target.value))}
+                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors cursor-pointer"
+                                >
+                                    <option value={-1}>—</option>
+                                    {data.audienceOptions.map((option, i) => (
+                                        <option key={i} value={i}>{option}</option>
+                                    ))}
+                                </select>
+                            </div>
+
                             <div className="grid sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label htmlFor="contact-name" className="t-meta text-black/60">
@@ -166,12 +209,23 @@ function ContactComponent({ data }: ContactProps) {
                                 <label htmlFor="contact-email" className="t-meta text-black/60">
                                     {data.email} *
                                 </label>
+                                <p id="contact-email-note" aria-live="polite" className={emailInvalid ? "text-xs text-red-700" : "sr-only"}>
+                                    {emailInvalid ? "Enter a valid email address, e.g. name@institution.org." : ""}
+                                </p>
                                 <input
                                     id="contact-email"
                                     type="email"
                                     required
+                                    aria-invalid={emailInvalid}
+                                    aria-describedby="contact-email-note"
                                     value={form.email}
-                                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                                    onChange={(e) => {
+                                        setForm({ ...form, email: e.target.value });
+                                        if (emailInvalid) setEmailInvalid(false);
+                                    }}
+                                    onBlur={() => {
+                                        if (form.email.length > 0) setEmailInvalid(!EMAIL_RE.test(form.email));
+                                    }}
                                     placeholder={data.placeholders.email}
                                     className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
                                 />

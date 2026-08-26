@@ -154,6 +154,8 @@ export interface Content {
     successNote: string;
     error: string;
     reassure: string;
+    audienceLabel: string;
+    audienceOptions: string[];
     placeholders: {
       name: string;
       email: string;
@@ -163,6 +165,9 @@ export interface Content {
     sidebar: {
       hq: string;
       channels: string;
+      emailGeneralLabel: string;
+      emailSecretariatLabel: string;
+      emailFieldOpsLabel: string;
     };
   };
   footer: {
@@ -617,6 +622,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       reassure: "Submissions reach our partnerships team directly; a partner typically responds within two business days.",
 
       error: "Submission failed. Please try again or email contact@aiabasd.org",
+      audienceLabel: "I am enquiring as",
+      audienceOptions: ["Government / Municipal", "Investor / DFI", "EPC / Operating partner", "NGO / Development agency", "Press / Research"],
       placeholders: {
         name: "e.g., Ziad Shneikat",
         email: "name@company.com",
@@ -626,6 +633,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       sidebar: {
         hq: "Alliance Headquarters",
         channels: "Channels",
+        emailGeneralLabel: "General inquiries",
+        emailSecretariatLabel: "General Secretariat",
+        emailFieldOpsLabel: "Field Operations",
       },
     },
     footer: {
@@ -1082,6 +1092,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       reassure: "تصل الإرسالات فريق الشراكات مباشرة؛ وعادةً يرد أحد الشركاء خلال يومي عمل.",
 
       error: "تعذّر الإرسال. حاول مرة أخرى أو راسلنا على contact@aiabasd.org",
+      audienceLabel: "أستفسر بصفتي",
+      audienceOptions: ["حكومة / بلدية", "مستثمر / مؤسسة تمويل", "شركة EPC / شريك تشغيلي", "منظمة / وكالة تنموية", "صحافة / بحث"],
       placeholders: {
         name: "مثال: زياد شنيكات",
         email: "name@company.com",
@@ -1091,6 +1103,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       sidebar: {
         hq: "المقر",
         channels: "القنوات",
+        emailGeneralLabel: "الاستفسارات العامة",
+        emailSecretariatLabel: "الأمانة العامة",
+        emailFieldOpsLabel: "العمليات الميدانية",
       },
     },
     footer: {
@@ -1547,6 +1562,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       reassure: "Les envois parviennent directement à notre équipe partenariats ; un associé répond généralement sous deux jours ouvrés.",
 
       error: "Échec de l'envoi. Réessayez ou écrivez à contact@aiabasd.org",
+      audienceLabel: "Je me renseigne en tant que",
+      audienceOptions: ["Gouvernement / Municipalité", "Investisseur / IFD", "EPC / Partenaire opérationnel", "ONG / Agence de développement", "Presse / Recherche"],
       placeholders: {
         name: "ex., Ziad Shneikat",
         email: "nom@entreprise.com",
@@ -1556,6 +1573,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       sidebar: {
         hq: "Siège de l'Alliance",
         channels: "Canaux",
+        emailGeneralLabel: "Demandes générales",
+        emailSecretariatLabel: "Secrétariat Général",
+        emailFieldOpsLabel: "Opérations de terrain",
       },
     },
     footer: {

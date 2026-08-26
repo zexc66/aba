@@ -51,7 +51,7 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                                 <img
                                     src={partner.logo}
                                     alt={partner.name}
-                                    className="max-h-14 max-w-[140px] w-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100"
+                                    className="max-h-14 max-w-[140px] w-auto object-contain grayscale group-hover:grayscale-0 transition-[color,background-color,border-color,transform] duration-500 opacity-70 group-hover:opacity-100"
                                     loading="lazy"
                                     decoding="async"
                                 />

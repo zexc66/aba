@@ -22,7 +22,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.4 }}
                     className={`t-meta t-data ${idxColor}`}
                     aria-hidden="true"
                 >
@@ -44,7 +44,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.15 }}
+                            transition={{ duration: 0.45, delay: 0.15 }}
                             className={`mt-4 max-w-[65ch] text-sm md:text-base leading-relaxed ${noteColor}`}
                         >
                             {note}

@@ -322,7 +322,23 @@ body::after {
   --ease-institutional: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+a[href]:not(.no-press),
+button:not(:disabled):not(.no-press) {
+  transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 a[href]:active:not(.no-press),
 button:active:not(:disabled):not(.no-press) {
   transform: scale(0.98);
+}
+
+@media not ((hover: hover) and (pointer: fine)) {
+  [class*="group-hover:translate"],
+  [class*="group-hover:scale"],
+  [class*="group-hover:-translate"],
+  [class*="hover:scale"],
+  [class*="hover:translate"],
+  [class*="hover:-translate"] {
+    transform: none !important;
+  }
 }

@@ -49,7 +49,7 @@ export default function HamaCTA({ t }: HamaCTAProps) {
                     >
                         <div className="relative">
                             <div className="absolute inset-0 bg-[#5a1f2e] rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
-                            <div className="w-56 h-56 rounded-full bg-black flex items-center justify-center shadow-premium-3xl group-hover:bg-[#5a1f2e] transition-all duration-1000 relative z-10 overflow-hidden">
+                            <div className="w-56 h-56 rounded-full bg-black flex items-center justify-center shadow-premium-3xl group-hover:bg-[#5a1f2e] transition-[color,background-color,border-color,transform] duration-1000 relative z-10 overflow-hidden">
                                  <motion.div 
                                     className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10"
                                     animate={{ scale: [1, 1.5], opacity: [0, 0.1, 0] }}

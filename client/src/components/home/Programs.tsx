@@ -48,7 +48,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.45 }}
                     href={featuredProgram.link ?? `/programs/${featuredProgram.slug}`}
                     className="mb-14 block bg-[#0b0b10] p-8 lg:p-12 text-white relative overflow-hidden border border-black group"
                 >

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState, useMemo, memo } from "react";
 import { MapPin, CheckCircle2, Globe2, ShieldCheck, Activity, Maximize2, ZoomIn } from "lucide-react";
 import WorldMapSVG from "./WorldMapSVG";
@@ -62,6 +62,7 @@ function localizedName(id: string, lang: "en" | "ar" | "fr"): string {
 function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: string | null; compact?: boolean }) {
     const { lang } = useLanguageContext();
     const t = COPY[lang].countries;
+    const reduceMotion = useReducedMotion();
 
     const [hoveredIso, setHoveredIso] = useState<string | null>(null);
     const [selectedIso, setSelectedIso] = useState<string | null>("gh");
@@ -117,7 +118,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                     <button
                         onClick={() => setIsGlobalView(!isGlobalView)}
                         aria-pressed={isGlobalView}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-black/10 hover:border-[#5a1f2e]/40 shadow-sm transition-all text-[#0b0b10]"
+                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-black/10 hover:border-[#5a1f2e]/40 shadow-sm transition-[color,background-color,border-color,transform] text-[#0b0b10]"
                     >
                         {isGlobalView ? (
                             <>
@@ -168,7 +169,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                 <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                     <WorldMapSVG 
                         viewBox={viewBox}
-                        className="w-full h-full drop-shadow-sm transition-all duration-500" 
+                        className="w-full h-full drop-shadow-sm transition-[color,background-color,border-color,transform] duration-500" 
                         activeIsoCode={currentIso}
                         hoveredIsoCode={hoveredIso}
                         onCountryHover={(iso) => setHoveredIso(iso)}
@@ -192,7 +193,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                             strokeDasharray={isHighlighted ? "none" : "2 2"}
                                             opacity={isHighlighted ? 0.95 : 0.3}
                                         />
-                                        {isHighlighted && (
+                                        {isHighlighted && !reduceMotion && (
                                             <circle r="2.2" fill="#f2a007">
                                                 <animateMotion path={arc.path} dur="2.5s" repeatCount="indefinite" />
                                             </circle>
@@ -217,12 +218,17 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                             <circle
                                                 cx={c.cx}
                                                 cy={c.cy}
-                                                r="7"
+                                                r={reduceMotion ? "7" : "4"}
                                                 fill="#5a1f2e"
                                                 fillOpacity="0.25"
+                                                style={reduceMotion ? undefined : { animation: "none" }}
                                             >
-                                                <animate attributeName="r" values="4;12;4" dur="2s" repeatCount="indefinite" />
-                                                <animate attributeName="fill-opacity" values="0.4;0.05;0.4" dur="2s" repeatCount="indefinite" />
+                                                {!reduceMotion && (
+                                                    <>
+                                                        <animate attributeName="r" values="4;12;4" dur="2s" repeatCount="indefinite" />
+                                                        <animate attributeName="fill-opacity" values="0.4;0.05;0.4" dur="2s" repeatCount="indefinite" />
+                                                    </>
+                                                )}
                                             </circle>
                                         )}
 
@@ -233,7 +239,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                             fill={isActive ? "#5a1f2e" : c.status === "active" ? "#0b0b10" : "#6b7280"}
                                             stroke="#ffffff"
                                             strokeWidth="1"
-                                            className="transition-all duration-300"
+                                            className="transition-[color,background-color,border-color,transform] duration-300"
                                         />
 
                                         <circle

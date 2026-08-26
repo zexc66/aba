@@ -56,7 +56,7 @@ export default function ProgramDetail() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               className="max-w-4xl space-y-6"
             >
               <Link href="/#programs">
@@ -108,7 +108,7 @@ export default function ProgramDetail() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
                 className="lg:col-span-7 space-y-6"
               >
                 <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-black/10">
@@ -126,7 +126,7 @@ export default function ProgramDetail() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
                 className="lg:col-span-5 space-y-6"
               >
                 <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-black/10">
@@ -154,7 +154,7 @@ export default function ProgramDetail() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
               className="bg-[#0b0b10] rounded-sm p-8 lg:p-12 text-white relative overflow-hidden"
             >
               <div className="absolute -right-24 -top-24 w-96 h-96 bg-[#5a1f2e]/30 rounded-full blur-3xl pointer-events-none" />
@@ -165,7 +165,7 @@ export default function ProgramDetail() {
                 </div>
                 <a
                   href="/#contact"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-sm transition-all shrink-0"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-sm transition-[color,background-color,border-color,transform] shrink-0"
                 >
                   <span>{ui.ctaButton}</span>
                   <ArrowRight size={16} />

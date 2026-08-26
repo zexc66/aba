@@ -63,7 +63,7 @@ export default function ScrollToTop() {
                             strokeLinecap="round"
                             strokeDasharray={`${2 * Math.PI * 45}`}
                             strokeDashoffset={`${2 * Math.PI * 45 * (1 - scrollProgress / 100)}`}
-                            className="transition-all duration-150"
+                            className="transition-[color,background-color,border-color,transform] duration-150"
                         />
                     </svg>
 
