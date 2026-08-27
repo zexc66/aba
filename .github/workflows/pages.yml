@@ -51,6 +51,10 @@ jobs:
           </body></html>
           EOF
 
+      - name: Create SPA 404 fallback
+        run: |
+          cp dist/public/index.html dist/public/404.html
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
