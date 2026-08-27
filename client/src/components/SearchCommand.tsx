@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
-import { Search, Home, Image, Mail, Globe, FileText, Users, Building2, Briefcase, X } from "lucide-react";
+import { Search, Home, Image, Mail, Globe, FileText, Users, Building2, Briefcase, X, Eye } from "lucide-react";
 import { useLocation } from "wouter";
 
 interface SearchCommandProps {
@@ -82,6 +82,10 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
                         <Command.Item onSelect={() => handleNavigate("/#team")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
                             <Users className="h-4 w-4" />
                             <span>Team</span>
+                        </Command.Item>
+                        <Command.Item onSelect={() => handleNavigate("/visions")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
+                            <Eye className="h-4 w-4" />
+                            <span>Visions</span>
                         </Command.Item>
                         <Command.Item onSelect={() => handleNavigate("/pipeline")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
                             <Globe className="h-4 w-4" />

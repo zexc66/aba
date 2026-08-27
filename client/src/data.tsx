@@ -7,6 +7,7 @@ export interface Content {
     about: string;
     programs: string;
     gallery: string;
+    visions: string;
     countries: string;
     governance: string;
     team: string;
@@ -295,6 +296,26 @@ export interface Content {
     typeLabel: string;
     locationLabel: string;
   };
+  visions: {
+    title: string;
+    eyebrow: string;
+    heroStatement: string;
+    heroNote: string;
+    missionTitle: string;
+    missionStatement: string;
+    pillarsTitle: string;
+    pillars: { title: string; desc: string; code: string }[];
+    alignmentTitle: string;
+    alignmentNote: string;
+    sdgFrame: string;
+    agendaFrame: string;
+    horizonsTitle: string;
+    horizonsNote: string;
+    horizons: { sector: string; vision: string }[];
+    leadershipTitle: string;
+    leadershipNote: string;
+    leadershipCta: string;
+  };
   skipToContent: string;
   langLabel: string;
 }
@@ -323,6 +344,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       about: "About",
       programs: "Programs",
       gallery: "Gallery",
+      visions: "Visions",
       countries: "Countries",
       governance: "Governance",
       team: "Team",
@@ -777,6 +799,68 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       typeLabel: "Type",
       locationLabel: "Location",
     },
+    visions: {
+      title: "Visions",
+      eyebrow: "STRATEGIC_HORIZON",
+      heroStatement: "A continent where infrastructure serves dignity, capital serves development, and governance serves people.",
+      heroNote: "The Alliance's strategic horizon through 2030 and beyond — aligned with UN SDG 2030 and African Union Agenda 2063.",
+      missionTitle: "Mission",
+      missionStatement: "To orchestrate bankable public-private partnerships that close Africa's infrastructure financing gap — currently estimated at up to $170 billion annually by the African Development Bank — through rigorous governance, verified delivery, and transparent success-fee structures that protect both investors and communities.",
+      pillarsTitle: "Strategic Pillars",
+      pillars:       [
+            {
+                  "title": "Bankable Origination",
+                  "desc": "Every program is structured for financial close before mobilization — risk allocated to the party best able to carry it.",
+                  "code": "PILLAR_01"
+            },
+            {
+                  "title": "Governance as Infrastructure",
+                  "desc": "ESIA/ESMS, KYC/AML, independent engineers and auditors are not overhead; they are the delivery mechanism.",
+                  "code": "PILLAR_02"
+            },
+            {
+                  "title": "Sovereign Partnership",
+                  "desc": "Governments are counterparties, not beneficiaries. Municipalities co-own delivery from mandate to maintenance.",
+                  "code": "PILLAR_03"
+            },
+            {
+                  "title": "Verified Impact",
+                  "desc": "Success fees release only against independently verified milestones — never against projections.",
+                  "code": "PILLAR_04"
+            }
+      ],
+      alignmentTitle: "Global Framework Alignment",
+      alignmentNote: "Every program mandate maps to the international development frameworks the Alliance operates within.",
+      sdgFrame: "The 17 UN Sustainable Development Goals define the impact taxonomy for the Alliance's pipeline. Each program declares its aligned goals at mandate entry and reports against them through MRV monitoring.",
+      agendaFrame: "African Union Agenda 2063 — The Africa We Want — frames the Alliance's continental integration mandate: connecting corridors, enabling intra-African trade infrastructure, and building the industrial base for the continent's demographic century.",
+      horizonsTitle: "Future Horizons",
+      horizonsNote: "Sector-level aspirations the Alliance is structuring toward.",
+      horizons:       [
+            {
+                  "sector": "Energy",
+                  "vision": "Utility-scale renewable capacity exceeding 150MW across target corridors, with storage integration and grid modernization enabling industrial growth without carbon lock-in."
+            },
+            {
+                  "sector": "Digital",
+                  "vision": "Backbone fiber and data-center infrastructure that brings African content to African servers, reducing latency and dependency on offshore hosting."
+            },
+            {
+                  "sector": "Circular Economy",
+                  "vision": "Industrial-scale debris and material recovery facilities that transform conflict rubble into certified building inputs — reconstruction fed by its own waste stream."
+            },
+            {
+                  "sector": "Agriculture",
+                  "vision": "End-to-end cold-chain and agro-processing corridors that cut post-harvest loss from 40% to under 15%, stabilizing regional food supply."
+            },
+            {
+                  "sector": "Cities",
+                  "vision": "PPP/BOT industrial zones with anchor tenants secured before ground-break, TVET hubs producing the workforce the zones will hire, and climate-resilient utilities."
+            }
+      ],
+      leadershipTitle: "Leadership Perspectives",
+      leadershipNote: "The Alliance's direction as articulated by its leadership.",
+      leadershipCta: "Request a leadership briefing",
+    },
     skipToContent: "Skip to content",
     langLabel: "العربية",
   },
@@ -793,6 +877,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       about: "من نحن",
       programs: "البرامج",
       gallery: "المعرض",
+      visions: "الرؤى",
       countries: "الدول",
       governance: "الحوكمة",
       team: "الفريق",
@@ -1247,6 +1332,68 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       typeLabel: "النوع",
       locationLabel: "الموقع",
     },
+    visions: {
+      title: "الرؤى",
+      eyebrow: "الأفق_الاستراتيجي",
+      heroStatement: "قارةٌ تخدم فيها البنية التحتية الكرامة، ويخدم فيها رأس المال التنمية، وتخدم فيها الحوكمة الإنسان.",
+      heroNote: "الأفق الاستراتيجي للتحالف حتى 2030 وما بعده — بما يتوافق مع أهداف التنمية المستدامة 2030 وأجندة الاتحاد الأفريقي 2063.",
+      missionTitle: "المهمة",
+      missionStatement: "تهيئة شراكات عامة-خاصة قابلة للتمويل تسد فجوة تمويل البنية التحتية في إفريقيا — التي يقدّرها بنك التنمية الأفريقي بما يصل إلى 170 مليار دولار سنوياً — عبر حوكمة صارمة، وتنفيذ موثق، وهياكل أتعاب نجاح شفافة تحمي المستثمرين والمجتمعات معاً.",
+      pillarsTitle: "الركائز الاستراتيجية",
+      pillars:       [
+            {
+                  "title": "تهيئة قابلة للتمويل",
+                  "desc": "كل برنامج مهيكل للإغلاق المالي قبل التعبئة — المخاطر موزعة على الطرف الأقدر على تحملها.",
+                  "code": "PILLAR_01"
+            },
+            {
+                  "title": "الحوكمة كبنية تحتية",
+                  "desc": "دراسات الأثر، ومكافحة غسل الأموال، والمهندس والمدقق المستقل ليست تكاليف عامة — بل هي آلية التنفيذ ذاتها.",
+                  "code": "PILLAR_02"
+            },
+            {
+                  "title": "الشراكة السيادية",
+                  "desc": "الحكومات شركاء لا متلقون. البلديات تشارك في الملكية من التفويض إلى الصيانة.",
+                  "code": "PILLAR_03"
+            },
+            {
+                  "title": "أثر موثق",
+                  "desc": "تتحرر أتعاب النجاح فقط مقابل معامل موثقة بشكل مستقل — أبداً مقابل توقعات.",
+                  "code": "PILLAR_04"
+            }
+      ],
+      alignmentTitle: "التوافق مع الأطر العالمية",
+      alignmentNote: "كل تفويض برنامج يرتبط بالأطر التنموية الدولية التي يعمل التحالف ضمنها.",
+      sdgFrame: "أهداف التنمية المستدامة السبعة عشر تحدد تصنيف الأثر لمحفظة التحالف. كل برنامج يعلن أهدافه المتوافقة عند دخول التفويض ويقدم تقارير ضدها عبر مراقبة وقياس وإبلاغ وتحقق.",
+      agendaFrame: "أجندة 2063 للاتحاد الأفريقي — إفريقيا التي نريدها — تؤطر تفويض التكامل القاري للتحالف: ربط الممرات، وتمكين بنية التجارة البينية الإفريقية، وبناء القاعدة الصناعية لقرن القارة الديموغرافي.",
+      horizonsTitle: "آفاق المستقبل",
+      horizonsNote: "تطلعات قطاعية يعمل التحالف على تهيئتها.",
+      horizons:       [
+            {
+                  "sector": "الطاقة",
+                  "vision": "قدرة متجددة على نطاق المرافق تتجاوز 150 ميجاوات عبر الممرات المستهدفة، مع تكامل التخزين وتحديث الشبكة."
+            },
+            {
+                  "sector": "الرقمية",
+                  "vision": "بنية ألياف ضوئية ومراكز بيانات تنقل المحتوى الإفريقي إلى خوادم إفريقية."
+            },
+            {
+                  "sector": "الاقتصاد الدائري",
+                  "vision": "مرافق صناعية لاستعادة الأنقاض والمواد تحوّل ردم النزاع إلى مدخلات بناء مؤهلة."
+            },
+            {
+                  "sector": "الزراعة",
+                  "vision": "ممرات سلاسل تبريد وتصنيع زراعي متكاملة تخفض الفاقد بعد الحصاد من 40% إلى أقل من 15%."
+            },
+            {
+                  "sector": "المدن",
+                  "vision": "مناطق صناعية ضمن شراكات مع مستأجرين رئيسيين مؤمَّنين، ومراكز تدريب مهني، ومرافق مراعية للمناخ."
+            }
+      ],
+      leadershipTitle: "رؤى القيادة",
+      leadershipNote: "توجه التحالف كما تصوغه قيادته.",
+      leadershipCta: "اطلب اجتماعاً مع القيادة",
+    },
     skipToContent: "تخطَّ إلى المحتوى",
     langLabel: "EN",
   },
@@ -1263,6 +1410,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       about: "À propos",
       programs: "Programmes",
       gallery: "Galerie",
+      visions: "Visions",
       countries: "Pays",
       governance: "Gouvernance",
       team: "Équipe",
@@ -1716,6 +1864,68 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       dateLabel: "Date",
       typeLabel: "Type",
       locationLabel: "Lieu",
+    },
+    visions: {
+      title: "Visions",
+      eyebrow: "HORIZON_STRATÉGIQUE",
+      heroStatement: "Un continent où les infrastructures servent la dignité, le capital sert le développement, et la gouvernance sert les populations.",
+      heroNote: "L'horizon stratégique de l'Alliance jusqu'en 2030 et au-delà — aligné sur les ODD 2030 et l'Agenda 2063 de l'Union Africaine.",
+      missionTitle: "Mission",
+      missionStatement: "Orchestrer des partenariats public-privé finançables qui comblent le déficit de financement des infrastructures africaines — estimé jusqu'à 170 milliards de dollars par an par la BAD — grâce à une gouvernance rigoureuse, une réalisation vérifiée, et des structures de frais de succès transparentes.",
+      pillarsTitle: "Piliers Stratégiques",
+      pillars:       [
+            {
+                  "title": "Origination Finançable",
+                  "desc": "Chaque programme est structuré pour la clôture financière avant mobilisation.",
+                  "code": "PILLAR_01"
+            },
+            {
+                  "title": "Gouvernance comme Infrastructure",
+                  "desc": "EISE/SGES, KYC/AML, ingénieurs et auditeurs indépendants ne sont pas des frais généraux — ils sont le mécanisme de réalisation.",
+                  "code": "PILLAR_02"
+            },
+            {
+                  "title": "Partenariat Souverain",
+                  "desc": "Les gouvernements sont des contreparties. Les municipalités co-détiennent la réalisation.",
+                  "code": "PILLAR_03"
+            },
+            {
+                  "title": "Impact Vérifié",
+                  "desc": "Les frais de succès ne se libèrent que contre des jalons vérifiés indépendamment.",
+                  "code": "PILLAR_04"
+            }
+      ],
+      alignmentTitle: "Alignement sur les Cadres Mondiaux",
+      alignmentNote: "Chaque mandat s'aligne sur les cadres de développement internationaux.",
+      sdgFrame: "Les 17 ODD définissent la taxonomie d'impact du portefeuille de l'Alliance. Chaque programme déclare ses objectifs alignés à l'entrée du mandat.",
+      agendaFrame: "L'Agenda 2063 de l'Union Africaine encadre le mandat d'intégration continentale : connecter les corridors, bâtir la base industrielle.",
+      horizonsTitle: "Horizons Futurs",
+      horizonsNote: "Aspirations sectorielles vers lesquelles l'Alliance structure.",
+      horizons:       [
+            {
+                  "sector": "Énergie",
+                  "vision": "Capacité renouvelable dépassant 150 MW, avec stockage et modernisation du réseau."
+            },
+            {
+                  "sector": "Numérique",
+                  "vision": "Fibre dorsale et centres de données ramenant le contenu africain sur des serveurs africains."
+            },
+            {
+                  "sector": "Économie Circulaire",
+                  "vision": "Récupération industrielle des gravats transformant les décombres en intrants certifiés."
+            },
+            {
+                  "sector": "Agriculture",
+                  "vision": "Corridors de chaîne du froid réduisant les pertes post-récolte à moins de 15%."
+            },
+            {
+                  "sector": "Villes",
+                  "vision": "Zones industrielles PPP avec locataires sécurisés, centres EFTP, et services résilients."
+            }
+      ],
+      leadershipTitle: "Perspectives de la Direction",
+      leadershipNote: "La direction de l'Alliance telle qu'articulée par son leadership.",
+      leadershipCta: "Demander un entretien de direction",
     },
     skipToContent: "Aller au contenu",
     langLabel: "FR",

@@ -21,6 +21,7 @@ const GovernanceArticle = lazy(() => import("./pages/GovernanceArticle"));
 const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
+const Visions = lazy(() => import("./pages/Visions"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function SkipLink() {
@@ -50,6 +51,7 @@ function Router() {
         <Route path={"/investor-portal"} component={InvestorLogin} />
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />
+        <Route path={"/visions"} component={Visions} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

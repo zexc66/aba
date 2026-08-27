@@ -9,6 +9,7 @@ interface HeaderProps {
         about: string;
         programs: string;
         gallery: string;
+        visions: string;
         countries: string;
         governance: string;
         team: string;
@@ -47,6 +48,7 @@ function HeaderComponent({ nav }: HeaderProps) {
         { href: "#about", label: nav.about },
         { href: "#programs", label: nav.programs },
         { href: "#countries", label: nav.countries },
+        { href: "/visions", label: nav.visions },
         { href: "#governance", label: nav.governance },
         { href: "#contact", label: nav.contact },
     ];
