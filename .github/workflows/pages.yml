@@ -34,6 +34,7 @@ jobs:
         run: pnpm build
         env:
           CI: false
+          VITE_BASE: /aba/
 
       - name: Copy API fallback page
         run: |

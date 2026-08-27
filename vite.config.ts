@@ -68,6 +68,7 @@ const plugins = [
 ];
 
 export default defineConfig(({ mode }) => ({
+  base: process.env.VITE_BASE || "/",
   plugins,
   resolve: {
     alias: {
