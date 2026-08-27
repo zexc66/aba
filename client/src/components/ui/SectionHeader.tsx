@@ -7,9 +7,13 @@ interface SectionHeaderProps {
     meta?: string;
     dark?: boolean;
     id?: string;
+    titleAs?: "h1" | "h2";
 }
 
-export default function SectionHeader({ index, title, note, meta, dark = false, id }: SectionHeaderProps) {
+const MotionTitle = { h1: motion.h1, h2: motion.h2 } as const;
+
+export default function SectionHeader({ index, title, note, meta, dark = false, id, titleAs = "h2" }: SectionHeaderProps) {
+    const Title = MotionTitle[titleAs];
     const rule = dark ? "bg-white/15" : "bg-black/10";
     const idxColor = dark ? "text-[#f2a007]" : "text-[#5a1f2e]";
     const titleColor = dark ? "text-white" : "text-[#0b0b10]";
@@ -30,7 +34,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
                 </motion.span>
 
                 <div className="min-w-0">
-                    <motion.h2
+                    <Title
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -38,7 +42,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
                         className={`text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight ${titleColor} leading-tight`}
                     >
                         {title}
-                    </motion.h2>
+                    </Title>
                     {note && (
                         <motion.p
                             initial={{ opacity: 0 }}

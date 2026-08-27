@@ -60,7 +60,7 @@ export default function Pipeline() {
             <main className="pt-28 pb-24">
                 <Section className="py-12 border-b border-black/10 bg-white">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                        <SectionHeader index="//" title={t.title} note={t.note} meta={t.eyebrow} />
+                        <SectionHeader index="//" title={t.title} note={t.note} meta={t.eyebrow} titleAs="h1" />
                     </div>
                 </Section>
 
@@ -132,9 +132,9 @@ export default function Pipeline() {
                                         <Link href={p.link ?? `/programs/${p.slug}`}>
                                             <a className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_8rem_8rem_7rem] gap-x-6 items-center py-4 group">
                                                 <div className="min-w-0">
-                                                    <h3 className="text-sm md:text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
+                                                    <h2 className="text-sm md:text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
                                                         {p.name}
-                                                    </h3>
+                                                    </h2>
                                                     <p className="t-meta text-black/45 mt-1" dir="ltr">
                                                         {p.tags.join(" · ")}
                                                     </p>
