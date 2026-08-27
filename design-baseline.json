@@ -1,0 +1,27 @@
+{
+  "generated": "2026-08-21",
+  "tool": "design-review (gstack v2.0.0, vendored; computed-style audit — vision model unavailable this session)",
+  "routes": 9,
+  "categories": {
+    "heading_outline": { "grade": "A", "detail": "0 skips on all 9 routes; h1 present on all (Pipeline now h1 via SectionHeader titleAs)" },
+    "overflow": { "grade": "A", "detail": "0 horizontal overflow across all routes at 1440px; mobile matrix (320-375) verified in prior sessions" },
+    "touch_targets": { "grade": "A-", "detail": "Chips 37-39px, pipeline link 40px, tab indicators 24px (from 4px). Footer links ~28px text-height (acceptable list density); map view toggle 33px" },
+    "contrast": { "grade": "A", "detail": "All text >=4.5:1 after /80->/90 chip fix; dark surfaces (gold on #0b0b10) verified 9.2:1" },
+    "design_system": { "grade": "A", "detail": "2 display fonts + mono (IBM Plex); radius locked 0-4px + dots; section rhythm 96/96 uniform with hero exception; content max-width consistent" },
+    "heading_semantics": { "grade": "A", "detail": "Footer group titles demoted from h4 to p (outline pollution removed); Gallery/Pipeline h3->h2 promotion fixes h1->h3 skips" },
+    "images": { "grade": "A", "detail": "0 missing alt on all routes; program logo aria-hidden (decorative)" },
+    "interaction": { "grade": "A-", "detail": "Focus trap/return in mobile menu + lang menu; Esc everywhere; carousel pause; press feedback 160ms. Map SVG nodes click-only (chips provide keyboard path — partial)" }
+  },
+  "fixed_this_session": [
+    "FINDING-001: footer h4 group titles -> p (h2->h4 outline skip on all routes)",
+    "FINDING-002: Pipeline page had no h1; SectionHeader titleAs prop added",
+    "FINDING-003: ProgramDetail logo img alt=\"\" without aria-hidden",
+    "FINDING-004: Gallery h1->h3 skip (photo captions promoted to h2)",
+    "FINDING-005: Pipeline h1->h3 skip (program rows promoted to h2)"
+  ],
+  "remaining": [
+    "Map SVG nodes not keyboard-focusable (territory chips provide equivalent path)",
+    "Footer link tap height ~28px (information-density tradeoff, acceptable)",
+    "Vision-model screenshot review not performed this session"
+  ]
+}
