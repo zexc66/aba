@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm build
+        env:
+          CI: false
+
+      - name: Copy API fallback page
+        run: |
+          cat > dist/public/api-fallback.html << 'EOF'
+          <!doctype html>
+          <html><body style="font-family:IBM Plex Mono,monospace;background:#0b0b10;color:#fdfcfb;padding:3rem;display:flex;align-items:center;justify-content:center;min-height:100vh">
+          <div style="text-align:center;max-width:32rem">
+            <p style="color:#f2a007;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem">SYSTEM_NOTICE</p>
+            <h1 style="font-size:1.5rem;margin-bottom:1rem">API Unavailable on Static Preview</h1>
+            <p style="color:rgba(253,252,251,0.6);font-size:0.875rem;line-height:1.6">This is a static preview on GitHub Pages. The inquiry form, chatbot, and newsletter require serverless functions. Contact us directly at:</p>
+            <p style="margin-top:1.5rem">
+              <a href="mailto:contact@aiabasd.org" style="color:#f2a007">contact@aiabasd.org</a>
+            </p>
+          </div>
+          </body></html>
+          EOF
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
