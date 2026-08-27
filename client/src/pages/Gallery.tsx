@@ -67,9 +67,9 @@ export default function Gallery() {
                                     </div>
 
                                     <figcaption className="p-6">
-                                        <h3 className="text-base font-bold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
+                                        <h2 className="text-base font-bold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
                                             {item.alt}
-                                        </h3>
+                                        </h2>
                                     </figcaption>
                                 </motion.figure>
                             ))}
@@ -84,9 +84,9 @@ export default function Gallery() {
                                 <div className="w-12 h-12 rounded-full bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-5">
                                     <Camera size={20} />
                                 </div>
-                                <h3 className="text-base font-bold text-[#0b0b10] mb-2">
+                                <h2 className="text-base font-bold text-[#0b0b10] mb-2">
                                     {t.emptyTitle}
-                                </h3>
+                                </h2>
                                 <p className="text-xs text-black/60 leading-relaxed max-w-xs">
                                     {t.emptyText}
                                 </p>
