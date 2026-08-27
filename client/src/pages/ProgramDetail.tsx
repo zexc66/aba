@@ -84,6 +84,7 @@ export default function ProgramDetail() {
                   <img
                     src={program.logo}
                     alt=""
+                    aria-hidden="true"
                     className="w-16 h-16 object-cover border border-black/10"
                     loading="lazy"
                     decoding="async"
