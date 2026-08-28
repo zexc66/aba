@@ -22,7 +22,7 @@ export default function Hero({ data, stats }: HeroProps) {
     const { content } = useLanguageContext();
 
     return (
-        <section className="relative bg-[#0b0b10] pt-32 lg:pt-40 pb-16 px-6 md:px-12 lg:px-24 border-b border-black overflow-hidden">
+        <section className="relative bg-[#0b0b10] pt-28 lg:pt-32 pb-14 px-6 md:px-12 lg:px-24 border-b border-black overflow-hidden">
             {/* Background: real event photograph, burgundy-scrimmed */}
             <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
                 <img
@@ -37,7 +37,7 @@ export default function Hero({ data, stats }: HeroProps) {
             </div>
 
             <div className="relative z-10 w-full max-w-[1500px] mx-auto">
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                     <div className="lg:col-span-5 flex flex-col items-start text-start">
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -54,7 +54,7 @@ export default function Hero({ data, stats }: HeroProps) {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-8 leading-[1.1]"
+                            className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]"
                         >
                             {data.title}
                         </motion.h1>
@@ -63,7 +63,7 @@ export default function Hero({ data, stats }: HeroProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-lg md:text-xl text-white/70 mb-10 leading-relaxed max-w-2xl"
+                            className="text-base md:text-lg text-white/70 mb-8 leading-relaxed max-w-2xl"
                         >
                             {data.subtitle}
                         </motion.p>
@@ -72,11 +72,11 @@ export default function Hero({ data, stats }: HeroProps) {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex flex-wrap gap-6 items-center"
+                            className="flex flex-wrap gap-5 items-center"
                         >
                             <a
                                 href="#programs"
-                                className="group flex items-center gap-3 bg-[#5a1f2e] hover:bg-[#f2a007] hover:text-[#0b0b10] text-white px-7 py-3.5 font-semibold text-sm transition-colors no-press"
+                                className="group flex items-center gap-3 bg-[#5a1f2e] hover:bg-[#f2a007] hover:text-[#0b0b10] text-white px-6 py-3 font-semibold text-sm transition-colors no-press"
                             >
                                 <span>{data.ctaPrimary}</span>
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl:rotate-180 rtl:group-hover:-translate-x-1" strokeWidth={1.5} />
@@ -84,7 +84,7 @@ export default function Hero({ data, stats }: HeroProps) {
 
                             <a
                                 href="#contact"
-                                className="flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-colors border border-white/25 hover:border-white px-6 py-3.5 no-press"
+                                className="flex items-center gap-2 text-sm font-semibold text-white/80 hover:text-white transition-colors border border-white/25 hover:border-white px-5 py-3 no-press"
                             >
                                 <span>{data.ctaSecondary}</span>
                             </a>
@@ -105,17 +105,17 @@ export default function Hero({ data, stats }: HeroProps) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.24 }}
-                    className="mt-14 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-8"
+                    className="mt-12 pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6"
                 >
                     {stats.map((s, i) => (
                         <div
                             key={i}
-                            className="border-s-2 border-[#f2a007]/30 ps-4 py-1"
+                            className="border-s-2 border-[#f2a007]/30 ps-3 py-0.5"
                         >
                             <div className="t-meta text-white/50 mb-1.5">
                                 {s.label}
                             </div>
-                            <div className="t-data text-3xl md:text-4xl font-semibold text-white leading-none" dir="ltr">
+                            <div className="t-data text-2xl md:text-3xl font-semibold text-white leading-none" dir="ltr">
                                 <bdi>{s.value}</bdi>
                             </div>
                         </div>
