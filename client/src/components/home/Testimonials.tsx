@@ -58,7 +58,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
     const t = data.list[current];
 
     return (
-        <Section id="testimonials" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="testimonials" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader

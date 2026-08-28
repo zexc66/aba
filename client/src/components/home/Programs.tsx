@@ -26,7 +26,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
     const featuredProgram = data.list.find((p) => p.link === "/hama-project") || data.list[0];
 
     return (
-        <Section id="programs" className="relative py-28 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="programs" className="relative py-20 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
@@ -50,7 +50,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.45 }}
                     href={featuredProgram.link ?? `/programs/${featuredProgram.slug}`}
-                    className="mb-14 block bg-[#0b0b10] p-8 lg:p-12 text-white relative overflow-hidden border border-black group"
+                    className="mb-14 block bg-[#0b0b10] p-6 lg:p-10 text-white relative overflow-hidden border border-black group"
                 >
 
                     <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">

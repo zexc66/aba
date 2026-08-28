@@ -22,7 +22,7 @@ export default function Hero({ data, stats }: HeroProps) {
     const { content } = useLanguageContext();
 
     return (
-        <section className="relative bg-[#0b0b10] pt-28 lg:pt-32 pb-14 px-6 md:px-12 lg:px-24 border-b border-black overflow-hidden">
+        <section className="relative bg-[#0b0b10] pt-24 lg:pt-28 pb-12 px-6 md:px-12 lg:px-24 border-b border-black overflow-hidden">
             {/* Background: real event photograph, burgundy-scrimmed */}
             <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
                 <img
@@ -37,7 +37,7 @@ export default function Hero({ data, stats }: HeroProps) {
             </div>
 
             <div className="relative z-10 w-full max-w-[1500px] mx-auto">
-                <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                     <div className="lg:col-span-5 flex flex-col items-start text-start">
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -54,7 +54,7 @@ export default function Hero({ data, stats }: HeroProps) {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-4xl md:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.05]"
+                            className="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight text-white mb-5 leading-[1.05]"
                         >
                             {data.title}
                         </motion.h1>
@@ -95,7 +95,7 @@ export default function Hero({ data, stats }: HeroProps) {
                         initial={{ opacity: 0, scale: 0.97 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-7 relative h-[42vh] min-h-[320px] lg:h-auto lg:min-h-[560px] border border-white/15 overflow-hidden"
+                        className="lg:col-span-7 relative h-[42vh] min-h-[280px] lg:h-auto lg:min-h-[480px] border border-white/15 overflow-hidden"
                     >
                         <NodalMap activeCountry={null} compact />
                     </motion.div>
@@ -105,7 +105,7 @@ export default function Hero({ data, stats }: HeroProps) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.24 }}
-                    className="mt-12 pt-6 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-6"
+                    className="mt-10 pt-5 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-5"
                 >
                     {stats.map((s, i) => (
                         <div
@@ -115,7 +115,7 @@ export default function Hero({ data, stats }: HeroProps) {
                             <div className="t-meta text-white/50 mb-1.5">
                                 {s.label}
                             </div>
-                            <div className="t-data text-2xl md:text-3xl font-semibold text-white leading-none" dir="ltr">
+                            <div className="t-data text-xl md:text-2xl font-semibold text-white leading-none" dir="ltr">
                                 <bdi>{s.value}</bdi>
                             </div>
                         </div>

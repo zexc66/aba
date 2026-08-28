@@ -92,7 +92,7 @@ function ContactComponent({ data }: ContactProps) {
     };
 
     return (
-        <Section id="contact" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="contact" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
@@ -153,7 +153,7 @@ function ContactComponent({ data }: ContactProps) {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-7 bg-white p-8 md:p-12 border border-black/10">
+                    <div className="lg:col-span-7 bg-white p-6 md:p-10 border border-black/10">
                         <h3 className="t-meta text-[#5a1f2e] mb-8 pb-4 border-b-2 border-[#0b0b10]">
                             {data.formTitle}
                         </h3>

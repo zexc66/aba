@@ -22,7 +22,7 @@ interface TeamProps {
 
 function TeamComponent({ data, hud }: TeamProps) {
     return (
-        <Section id="team" className="relative py-24 bg-[#0b0b10] text-[#fdfcfb]">
+        <Section id="team" className="relative py-16 bg-[#0b0b10] text-[#fdfcfb]">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader

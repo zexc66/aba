@@ -22,7 +22,7 @@ const pillarIcons = [
 
 function GovernanceComponent({ data, hud }: GovernanceProps) {
     return (
-        <Section id="governance" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="governance" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
@@ -41,7 +41,7 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.08 }}
                         >
-                        <Link href={`/governance/${PILLAR_SLUGS[i]}`} className="block bg-[#fdfcfb] p-8 lg:p-10 h-full group">
+                        <Link href={`/governance/${PILLAR_SLUGS[i]}`} className="block bg-[#fdfcfb] p-6 lg:p-8 h-full group">
                         <span className="sr-only">{pillar.title}</span>
                             <div className="flex items-center justify-between mb-6">
                                 <span className="text-[#5a1f2e]">

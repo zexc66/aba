@@ -25,7 +25,7 @@ interface AboutProps {
 
 function AboutComponent({ data }: AboutProps) {
     return (
-        <Section id="about" className="relative py-24 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="about" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 space-y-24">
 
                 <div className="grid lg:grid-cols-12 gap-16 items-start">
@@ -68,7 +68,7 @@ function AboutComponent({ data }: AboutProps) {
                                     transition={{ duration: 0.5, delay: i * 0.08 }}
                                     className={`p-6 space-y-1.5 ${i % 2 === 0 ? "border-e border-black/10" : ""} ${i < 2 ? "border-b border-black/10" : ""}`}
                                 >
-                                    <div className="t-data text-3xl md:text-4xl font-semibold text-[#0b0b10]" dir="ltr">
+                                    <div className="t-data text-2xl md:text-3xl font-semibold text-[#0b0b10]" dir="ltr">
                                         <bdi>{stat.value}{stat.suffix ?? ""}</bdi>
                                     </div>
                                     <div className="t-meta text-[#5a1f2e]">

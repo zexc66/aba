@@ -39,7 +39,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className={`text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight ${titleColor} leading-tight`}
+                        className={`text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight ${titleColor} leading-tight`}
                     >
                         {title}
                     </Title>
