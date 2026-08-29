@@ -20,7 +20,7 @@ export default function HamaPhases({ t }: HamaPhasesProps) {
                 <div className="w-full h-full" style={{ backgroundImage: 'linear-gradient(#fdfcfb 1px, transparent 1px), linear-gradient(90deg, #fdfcfb 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
             </div>
             
-            <div className="grid lg:grid-cols-2 gap-72 items-start relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-72 items-start relative z-10">
                 <div className="sticky top-120">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}

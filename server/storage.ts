@@ -14,6 +14,11 @@ export interface Inquiry {
   email: string;
   name?: string;
   organization?: string;
+  sector?: string;
+  region?: string;
+  ticket?: string;
+  timeline?: string;
+  locale?: string;
   message?: string;
   timestamp: string;
 }
@@ -66,4 +71,8 @@ export function saveInquiry(inquiry: InquiryInput): Promise<Inquiry> {
     await writeAll(inquiries);
     return newInquiry;
   });
+}
+
+export function listInquiries(): Promise<Inquiry[]> {
+  return readAll();
 }

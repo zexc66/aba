@@ -66,7 +66,7 @@ export default function GovernanceArticle() {
         </Section>
 
         <Section className="py-16">
-          <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 grid lg:grid-cols-12 gap-16">
+          <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 grid grid-cols-1 lg:grid-cols-12 gap-16">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

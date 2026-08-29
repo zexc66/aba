@@ -65,7 +65,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
             const response = await fetch("/api/inquiry", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ type: "NEWSLETTER", email })
+                body: JSON.stringify({ type: "NEWSLETTER", email, locale: lang })
             });
             if (response.ok) {
                 setStatus("success");
@@ -86,7 +86,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
         <footer className="relative bg-[#0b0b10] text-[#fdfcfb] pt-20 pb-12 overflow-hidden border-t border-white/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                <div className="grid lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
 
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-4">
@@ -95,7 +95,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                 alt="AIABASD"
                                 className="h-14 w-auto object-contain"
                             />
-                            <div className="border-l border-white/15 pl-3.5 ml-0.5">
+                            <div className="border-s border-white/15 ps-3.5 ms-0.5">
                                 <span className="font-extrabold text-xl text-white block leading-none">AIABASD</span>
                                 <span className="text-[11px] font-semibold text-[#f2a007] block max-w-[280px] leading-snug mt-1">
                                     {lang === "ar"

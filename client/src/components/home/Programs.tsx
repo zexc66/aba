@@ -33,13 +33,13 @@ function ProgramsComponent({ data }: ProgramsProps) {
                     index="02"
                     title={data.title}
                     note={data.sectionNote}
-                    meta={`${data.list.length} PROGRAMS`}
+                    meta={`${data.list.length} ${data.countLabel}`}
                 />
 
                 <div className="-mt-8 mb-10 flex justify-end">
                     <Link href="/pipeline">
                         <a className="inline-flex items-center t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] py-3 transition-colors no-press">
-                            {`PIPELINE // EXPLORER →`}
+                            {`${data.pipelineCta} →`}
                         </a>
                     </Link>
                 </div>
@@ -60,7 +60,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                     {data.flagshipLabel}
                                 </span>
                                 <span className="t-meta text-white/60 flex items-center gap-1.5">
-                                    <CheckCircle2 size={13} className="text-emerald-400" />
+                                    <CheckCircle2 size={13} className="text-[#f2a007]" />
                                     {featuredProgram.status}
                                 </span>
                             </div>
@@ -80,8 +80,8 @@ function ProgramsComponent({ data }: ProgramsProps) {
 
                         <div className="lg:col-span-4 flex flex-col items-start lg:items-end justify-between h-full gap-6">
                             {featuredProgram.logo && (
-                                <div className="w-20 h-20 rounded-xl overflow-hidden border border-white/20 bg-white/10 p-1 shadow-lg">
-                                    <img loading="lazy" decoding="async" src={featuredProgram.logo} alt="Project Logo" className="w-full h-full object-cover rounded-lg" />
+                                <div className="w-20 h-20 overflow-hidden border border-white/20 bg-white/10 p-1 shadow-lg">
+                                    <img loading="lazy" decoding="async" src={featuredProgram.logo} alt="Project Logo" className="w-full h-full object-cover" />
                                 </div>
                             )}
 

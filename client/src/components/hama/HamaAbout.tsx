@@ -15,7 +15,7 @@ interface HamaAboutProps {
 export default function HamaAbout({ t, isRTL }: HamaAboutProps) {
     return (
         <section className="relative py-120 px-8 lg:px-24">
-            <div className="grid lg:grid-cols-12 gap-64 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-64 items-center">
                 <div className="lg:col-span-5 relative group">
                     <motion.div
                         initial={{ clipPath: 'inset(100% 0 0 0)' }}

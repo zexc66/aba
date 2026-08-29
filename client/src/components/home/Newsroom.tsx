@@ -86,11 +86,13 @@ function toArticle(entry: unknown): NewsArticle | null {
     return { title, excerpt, date, category, image: assetUrl(f.image), readTime, author };
 }
 
-function formatDate(iso: string): string {
+const DATE_LOCALES: Record<string, string> = { en: "en-GB", ar: "ar", fr: "fr-FR" };
+
+function formatDate(iso: string, lang: string = "en"): string {
     if (!iso) return "";
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return iso;
-    return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase();
+    return d.toLocaleDateString(DATE_LOCALES[lang] ?? "en-GB", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase();
 }
 
 function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
@@ -159,7 +161,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                 ) : (
                     <>
                         {featured && (
-                            <div className="grid lg:grid-cols-12 gap-8">
+                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                                 <motion.article
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
@@ -184,7 +186,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                                     <>
                                                         {featured.category && <span>•</span>}
                                                         <span className="text-black/55 flex items-center gap-1">
-                                                            <Calendar size={12} /> {formatDate(featured.date)}
+                                                            <Calendar size={12} /> {formatDate(featured.date, lang)}
                                                         </span>
                                                     </>
                                                 )}
@@ -215,7 +217,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                         )}
 
                         {rest.length > 0 && (
-                            <div className="grid md:grid-cols-2 gap-8 mt-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                                 {rest.map((news, i) => (
                                     <motion.article
                                         key={`${news.title}-${i}`}
@@ -237,7 +239,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                                     <>
                                                         {news.category && <span>•</span>}
                                                         <span className="text-black/55 flex items-center gap-1">
-                                                            <Calendar size={12} /> {formatDate(news.date)}
+                                                            <Calendar size={12} /> {formatDate(news.date, lang)}
                                                         </span>
                                                     </>
                                                 )}
@@ -269,9 +271,9 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                     ) : (
                         <ul className="divide-y divide-black/10 border-b border-black/10">
                             {engagements.map((e, i) => (
-                                <li key={i} className="grid md:grid-cols-[8rem_7rem_1fr_8rem] gap-x-6 items-baseline py-4">
+                                <li key={i} className="grid grid-cols-1 md:grid-cols-[8rem_7rem_1fr_8rem] gap-x-6 items-baseline py-4">
                                     <span className="t-data text-xs text-[#5a1f2e]" dir="ltr">
-                                        <bdi>{formatDate(e.date)}</bdi>
+                                        <bdi>{formatDate(e.date, lang)}</bdi>
                                     </span>
                                     <span className="t-meta text-black/55">{e.type}</span>
                                     <h4 className="text-sm font-semibold text-[#0b0b10] leading-snug">{e.title}</h4>

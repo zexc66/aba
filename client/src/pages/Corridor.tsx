@@ -111,7 +111,7 @@ export default function Corridor() {
                 {anchored.map((p) => (
                   <li key={p.slug}>
                     <Link href={p.link ?? `/programs/${p.slug}`}>
-                      <a className="grid md:grid-cols-[1fr_auto] gap-4 items-center py-5 group">
+                      <a className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center py-5 group">
                         <div>
                           <h3 className="text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors">{p.name}</h3>
                           <p className="t-meta text-black/45 mt-1.5" dir="ltr">{p.tags.join(" · ")}</p>

@@ -3,6 +3,9 @@ import { Mail, MapPin, ArrowRight, CheckCircle2, AlertCircle } from "lucide-reac
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 
+// Booking link renders only when configured — honest absence otherwise.
+const BOOKING_URL = (import.meta.env.VITE_BOOKING_URL as string | undefined)?.trim() || "";
+
 interface ContactProps {
     data: {
         title: string;
@@ -24,8 +27,18 @@ interface ContactProps {
         successNote: string;
         error: string;
         reassure: string;
+        anotherLabel: string;
+        bookingTitle: string;
+        bookingNote: string;
+        bookingCta: string;
         audienceLabel: string;
         audienceOptions: string[];
+        sectorLabel: string;
+        regionLabel: string;
+        ticketLabel: string;
+        sectorOptions: string[];
+        regionOptions: string[];
+        ticketOptions: string[];
         placeholders: {
             name: string;
             email: string;
@@ -43,7 +56,7 @@ interface ContactProps {
     lang: string;
 }
 
-function ContactComponent({ data }: ContactProps) {
+function ContactComponent({ data, lang }: ContactProps) {
     const [form, setForm] = useState({ name: "", email: "", org: "", msg: "" });
     const [sending, setSending] = useState(false);
     const [sent, setSent] = useState(false);
@@ -51,8 +64,31 @@ function ContactComponent({ data }: ContactProps) {
     const [error, setError] = useState(false);
     const [emailInvalid, setEmailInvalid] = useState(false);
     const [audience, setAudience] = useState(-1);
+    const [sector, setSector] = useState("");
+    const [region, setRegion] = useState("");
+    const [ticket, setTicket] = useState("");
 
     const AUDIENCE_TYPE = ["GOVERNMENT", "INVESTOR", "EPC", "NGO", "PRESS"];
+
+    // Structured intake: which detail fields each audience is offered
+    const FIELDS_BY_AUDIENCE: Record<number, { key: "sector" | "region" | "ticket"; label: string; options: string[]; value: string; set: (v: string) => void }[]> = {
+        0: [
+            { key: "sector", label: data.sectorLabel, options: data.sectorOptions, value: sector, set: setSector },
+            { key: "region", label: data.regionLabel, options: data.regionOptions, value: region, set: setRegion },
+        ],
+        1: [
+            { key: "ticket", label: data.ticketLabel, options: data.ticketOptions, value: ticket, set: setTicket },
+            { key: "region", label: data.regionLabel, options: data.regionOptions, value: region, set: setRegion },
+        ],
+        2: [
+            { key: "sector", label: data.sectorLabel, options: data.sectorOptions, value: sector, set: setSector },
+            { key: "region", label: data.regionLabel, options: data.regionOptions, value: region, set: setRegion },
+        ],
+        3: [
+            { key: "sector", label: data.sectorLabel, options: data.sectorOptions, value: sector, set: setSector },
+        ],
+        4: [],
+    };
 
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -60,6 +96,12 @@ function ContactComponent({ data }: ContactProps) {
         e.preventDefault();
         setSending(true);
         setError(false);
+
+        const detailFields = audience >= 0 ? FIELDS_BY_AUDIENCE[audience] ?? [] : [];
+        const details: Record<string, string> = {};
+        for (const field of detailFields) {
+            if (field.value) details[field.key] = field.value;
+        }
 
         try {
             const response = await fetch("/api/inquiry", {
@@ -70,7 +112,9 @@ function ContactComponent({ data }: ContactProps) {
                     name: form.name,
                     email: form.email,
                     organization: form.org,
-                    message: form.msg
+                    ...details,
+                    message: form.msg,
+                    locale: lang
                 })
             });
 
@@ -82,6 +126,9 @@ function ContactComponent({ data }: ContactProps) {
             setReference(typeof body?.reference === "string" ? body.reference : null);
             setSent(true);
             setForm({ name: "", email: "", org: "", msg: "" });
+            setSector("");
+            setRegion("");
+            setTicket("");
         } catch (err) {
             console.error("Submission error:", err);
             setError(true);
@@ -102,7 +149,7 @@ function ContactComponent({ data }: ContactProps) {
                     meta={data.eyebrow}
                 />
 
-                <div className="grid lg:grid-cols-12 gap-12 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                     <div className="lg:col-span-5 space-y-10">
 
@@ -149,6 +196,25 @@ function ContactComponent({ data }: ContactProps) {
                                         </a>
                                     ))}
                                 </div>
+
+                                {BOOKING_URL && (
+                                    <a
+                                        href={BOOKING_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block bg-[#0b0b10] text-white p-5 hover:bg-[#5a1f2e] transition-colors group"
+                                    >
+                                        <div className="t-meta text-[#f2a007] group-hover:text-white">
+                                            {data.bookingTitle}
+                                        </div>
+                                        <p className="text-xs text-white/70 group-hover:text-white/85 leading-relaxed mt-1.5">
+                                            {data.bookingNote}
+                                        </p>
+                                        <span className="t-meta text-[#f2a007] text-[10px] inline-block mt-3 border-b border-[#f2a007]/40 group-hover:border-white pb-0.5">
+                                            {data.bookingCta} →
+                                        </span>
+                                    </a>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -166,7 +232,13 @@ function ContactComponent({ data }: ContactProps) {
                                 <select
                                     id="contact-audience"
                                     value={audience}
-                                    onChange={(e) => setAudience(Number(e.target.value))}
+                                    onChange={(e) => {
+                                        const next = Number(e.target.value);
+                                        setAudience(next);
+                                        setSector("");
+                                        setRegion("");
+                                        setTicket("");
+                                    }}
                                     className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors cursor-pointer"
                                 >
                                     <option value={-1}>—</option>
@@ -175,6 +247,29 @@ function ContactComponent({ data }: ContactProps) {
                                     ))}
                                 </select>
                             </div>
+
+                            {audience >= 0 && (FIELDS_BY_AUDIENCE[audience] ?? []).length > 0 && (
+                                <div className="grid sm:grid-cols-2 gap-6" data-testid="contact-details">
+                                    {(FIELDS_BY_AUDIENCE[audience] ?? []).map((field) => (
+                                        <div key={field.key} className="space-y-2">
+                                            <label htmlFor={`contact-${field.key}`} className="t-meta text-black/60">
+                                                {field.label}
+                                            </label>
+                                            <select
+                                                id={`contact-${field.key}`}
+                                                value={field.value}
+                                                onChange={(e) => field.set(e.target.value)}
+                                                className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors cursor-pointer"
+                                            >
+                                                <option value="">—</option>
+                                                {field.options.map((option, i) => (
+                                                    <option key={i} value={option}>{option}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
 
                             <div className="grid sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
@@ -246,49 +341,71 @@ function ContactComponent({ data }: ContactProps) {
                                 />
                             </div>
 
-                            <div className="pt-4 flex items-center justify-between gap-4">
-                                <button
-                                    type="submit"
-                                    disabled={sending}
-                                    className="px-8 py-3.5 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 disabled:opacity-50 no-press"
-                                >
-                                    {sending ? (
-                                        <span>{data.submitting}</span>
-                                    ) : sent ? (
-                                        <>
-                                            <CheckCircle2 size={16} className="text-green-400" />
-                                            <span>{data.sent}</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span>{data.send}</span>
-                                            <ArrowRight size={14} />
-                                        </>
-                                    )}
-                                </button>
-
-                                {sent && (
-                                    <span className="text-xs font-semibold text-emerald-600" data-testid="contact-reference">
-                                        {reference
-                                            ? data.successNote.replace("{ref}", reference)
-                                            : data.successNote.replace(/\s*(Reference|الرقم المرجعي|Référence)\s*[:：]\s*\{ref\}/, "")}
-                                    </span>
-                                )}
-                            </div>
-
-                            <p className="text-xs text-black/55 leading-relaxed pt-1">
-                                {data.reassure}
-                            </p>
-
-                            {error && (
+                            {sent ? (
                                 <div
-                                    role="alert"
-                                    data-testid="contact-error"
-                                    className="flex items-start gap-2.5 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3"
+                                    role="status"
+                                    data-testid="contact-success-panel"
+                                    className="border border-emerald-200 bg-emerald-50 p-6 space-y-4"
                                 >
-                                    <AlertCircle size={16} className="shrink-0 mt-0.5" />
-                                    <span>{data.error}</span>
+                                    <div className="flex items-center gap-2.5 text-emerald-700">
+                                        <CheckCircle2 size={18} className="shrink-0" />
+                                        <p className="text-sm font-semibold">
+                                            {data.sent}
+                                        </p>
+                                    </div>
+                                    {reference && (
+                                        <p className="text-xs text-black/70" data-testid="contact-reference">
+                                            {data.successNote.replace("{ref}", reference)}
+                                        </p>
+                                    )}
+                                    <p className="text-xs text-black/55 leading-relaxed">
+                                        {data.reassure}
+                                    </p>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setSent(false);
+                                            setReference(null);
+                                        }}
+                                        className="t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors cursor-pointer"
+                                    >
+                                        {data.anotherLabel}
+                                    </button>
                                 </div>
+                            ) : (
+                                <>
+                                    <div className="pt-4 flex items-center justify-between gap-4">
+                                        <button
+                                            type="submit"
+                                            disabled={sending}
+                                            className="px-8 py-3.5 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 disabled:opacity-50 no-press"
+                                        >
+                                            {sending ? (
+                                                <span>{data.submitting}</span>
+                                            ) : (
+                                                <>
+                                                    <span>{data.send}</span>
+                                                    <ArrowRight size={14} />
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+
+                                    <p className="text-xs text-black/55 leading-relaxed pt-1">
+                                        {data.reassure}
+                                    </p>
+
+                                    {error && (
+                                        <div
+                                            role="alert"
+                                            data-testid="contact-error"
+                                            className="flex items-start gap-2.5 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3"
+                                        >
+                                            <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                                            <span>{data.error}</span>
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </form>
                     </div>

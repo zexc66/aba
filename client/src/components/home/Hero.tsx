@@ -11,16 +11,9 @@ interface HeroProps {
         ctaPrimary: string;
         ctaSecondary: string;
     };
-    stats: {
-        label: string;
-        value: string;
-        id?: string;
-    }[];
 }
 
-export default function Hero({ data, stats }: HeroProps) {
-    const { content } = useLanguageContext();
-
+export default function Hero({ data }: HeroProps) {
     return (
         <section className="relative bg-[#0b0b10] pt-24 lg:pt-28 pb-12 px-6 md:px-12 lg:px-24 border-b border-black overflow-hidden">
             {/* Background: real event photograph, burgundy-scrimmed */}
@@ -28,16 +21,16 @@ export default function Hero({ data, stats }: HeroProps) {
                 <img
                     src="/gallery/events/event-group.jpg"
                     alt=""
-                    className="w-full h-full object-cover opacity-40"
+                    className="w-full h-full object-cover opacity-60"
                     loading="eager"
                     decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b10]/70 via-[#0b0b10]/50 to-[#0b0b10]" />
-                <div className="absolute inset-0 bg-[#5a1f2e]/20 mix-blend-multiply" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b10]/75 via-[#0b0b10]/55 to-[#0b0b10]" />
+                <div className="absolute inset-0 bg-[#5a1f2e]/25 mix-blend-multiply" />
             </div>
 
             <div className="relative z-10 w-full max-w-[1500px] mx-auto">
-                <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                     <div className="lg:col-span-5 flex flex-col items-start text-start">
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -95,33 +88,11 @@ export default function Hero({ data, stats }: HeroProps) {
                         initial={{ opacity: 0, scale: 0.97 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-7 relative h-[42vh] min-h-[280px] lg:h-auto lg:min-h-[480px] border border-white/15 overflow-hidden"
+                        className="lg:col-span-7 relative min-h-[280px] lg:min-h-[480px] border border-white/15 overflow-hidden"
                     >
                         <NodalMap activeCountry={null} compact />
                     </motion.div>
                 </div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.24 }}
-                    className="mt-10 pt-5 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-5"
-                >
-                    {stats.map((s, i) => (
-                        <div
-                            key={i}
-                            className="border-s-2 border-[#f2a007]/30 ps-3 py-0.5"
-                        >
-                            <div className="t-meta text-white/50 mb-1.5">
-                                {s.label}
-                            </div>
-                            <div className="t-data text-xl md:text-2xl font-semibold text-white leading-none" dir="ltr">
-                                <bdi>{s.value}</bdi>
-                            </div>
-                        </div>
-                    ))}
-                    <p className="t-meta text-white/35 pt-1">{content.corridor.verifiedLabel}</p>
-                </motion.div>
             </div>
         </section>
     );

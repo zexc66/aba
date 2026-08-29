@@ -4,12 +4,26 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { z } from "zod";
 import { generateChatResponse } from "./services/chatService";
-import { saveInquiry } from "./storage";
+import { aiConfigured, generateAiResponse } from "./services/aiChat";
+import { saveInquiry, listInquiries } from "./storage";
+import { notifyLead, acknowledgeLead } from "./notify";
+import { recordPageview, readAnalytics } from "./analytics";
+import { registerVaultRoutes } from "./vault";
+import { registerRssRoute } from "./rss";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // `type` is sanitized (word chars only) rather than allow-listed: new client
+// audiences keep working without a server deploy. Structured intake fields are
+// single-line labels (no control chars) chosen from client-side selects.
+const label = z
+  .string()
+  .trim()
+  .max(60)
+  .regex(/^[^<>{};$`\\]*$/)
+  .optional();
+
 const inquirySchema = z.object({
   type: z
     .string()
@@ -19,6 +33,11 @@ const inquirySchema = z.object({
   email: z.email().max(254),
   name: z.string().trim().max(120).optional(),
   organization: z.string().trim().max(160).optional(),
+  sector: label,
+  region: label,
+  ticket: label,
+  timeline: label,
+  locale: z.enum(["en", "ar", "fr"]).optional(),
   message: z.string().trim().max(4000).optional(),
 });
 
@@ -73,7 +92,7 @@ async function startServer() {
   const chatLimiter = rateLimit({ windowMs: 60_000, max: 30 });
   const inquiryLimiter = rateLimit({ windowMs: 60_000, max: 10 });
 
-  app.post("/api/chat", chatLimiter, (req, res) => {
+  app.post("/api/chat", chatLimiter, async (req, res) => {
     const parsed = chatSchema.safeParse(req.body);
     if (!parsed.success) {
       res
@@ -81,7 +100,18 @@ async function startServer() {
         .json({ error: "Invalid message. Maximum 2000 characters." });
       return;
     }
-    res.json({ response: generateChatResponse(parsed.data.message) });
+    // Grounded assistant when configured; honest fallback to the rule-based
+    // service on any failure so the visitor always gets an answer.
+    if (aiConfigured()) {
+      try {
+        const aiResponse = await generateAiResponse(parsed.data.message);
+        res.json({ response: aiResponse, source: "grounded" });
+        return;
+      } catch (error) {
+        console.error("[CHAT][WARN] Grounded assistant failed, falling back:", error instanceof Error ? error.message : error);
+      }
+    }
+    res.json({ response: generateChatResponse(parsed.data.message), source: "rules" });
   });
 
   app.post("/api/inquiry", inquiryLimiter, async (req, res) => {
@@ -98,12 +128,62 @@ async function startServer() {
       `[PROTOCOL][SUCCESS] Lead ${entry.id} captured via ${entry.type}`
     );
 
+    notifyLead(entry);
+    acknowledgeLead(entry);
+
     res.status(200).json({
       success: true,
       message: "Institutional inquiry archived",
       reference: entry.id,
     });
   });
+
+  const trackSchema = z.object({
+    path: z.string().trim().max(200).regex(/^\/[A-Za-z0-9\-._~!$&'()*+,;=:@%/?]*$/),
+  });
+
+  app.post("/api/track", rateLimit({ windowMs: 60_000, max: 120 }), (req, res) => {
+    const parsed = trackSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ error: "Invalid payload." });
+      return;
+    }
+    // Anonymous daily pageview buckets only — no IP, no UA, no identifiers
+    recordPageview(parsed.data.path)
+      .then(() => res.status(204).end())
+      .catch(() => res.status(500).json({ error: "Internal server error" }));
+  });
+
+  app.get("/api/admin/stats", (req, res) => {
+    const token = req.headers["x-admin-token"];
+    const expected = process.env.ADMIN_TOKEN;
+    if (!expected || typeof token !== "string" || token !== expected) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+    readAnalytics()
+      .then((stats) => res.status(200).json(stats))
+      .catch(() => res.status(500).json({ error: "Internal server error" }));
+  });
+
+  app.get("/api/admin/leads", (req, res) => {
+    const token = req.headers["x-admin-token"];
+    const expected = process.env.ADMIN_TOKEN;
+    if (!expected || typeof token !== "string" || token !== expected) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+    listInquiries()
+      .then((leads) =>
+        res
+          .status(200)
+          .json({ leads: leads.slice().reverse() })
+      )
+      .catch(() => res.status(500).json({ error: "Internal server error" }));
+  });
+
+  registerVaultRoutes(app);
+  registerRssRoute(app);
 
   const staticPath =
     process.env.NODE_ENV === "production"

@@ -29,7 +29,7 @@ export default function Home() {
         <Header nav={t.nav} />
 
         <main>
-          <Hero data={t.hero} stats={t.stats} />
+          <Hero data={t.hero} />
           <About data={t.about} />
           <Programs data={t.programs} />
           <Countries data={t.countries} />

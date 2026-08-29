@@ -16,7 +16,7 @@ interface HamaStatsProps {
 export default function HamaStats({ stats }: HamaStatsProps) {
     return (
         <section className="relative py-80 px-8 lg:px-24 bg-white border-y border-black/[0.08]">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-1px bg-black/[0.08] shadow-premium-2xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1px bg-black/[0.08] shadow-premium-2xl">
                 {stats.map((stat, i) => (
                     <motion.div 
                         key={stat.id}

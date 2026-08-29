@@ -68,7 +68,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                     meta={hud.voice}
                 />
 
-                <div className="grid lg:grid-cols-12 gap-12 items-end">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
 
                     <div className="lg:col-span-9">
                         <AnimatePresence mode="wait">

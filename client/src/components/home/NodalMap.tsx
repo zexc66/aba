@@ -118,7 +118,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                     <button
                         onClick={() => setIsGlobalView(!isGlobalView)}
                         aria-pressed={isGlobalView}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-white border border-black/10 hover:border-[#5a1f2e]/40 shadow-sm transition-[color,background-color,border-color,transform] text-[#0b0b10]"
+                        className="flex items-center gap-2 px-3 py-2 text-xs font-semibold bg-white border border-black/10 hover:border-[#5a1f2e]/40 shadow-sm transition-[color,background-color,border-color,transform] text-[#0b0b10]"
                     >
                         {isGlobalView ? (
                             <>
@@ -133,39 +133,43 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                         )}
                     </button>
 
-                    <div className="hidden md:flex items-center gap-1.5 text-xs text-[#5a1f2e] font-semibold bg-[#5a1f2e]/5 px-3 py-2 rounded-xl border border-[#5a1f2e]/10">
+                    <div className="hidden md:flex items-center gap-1.5 text-xs text-[#5a1f2e] font-semibold bg-[#5a1f2e]/5 px-3 py-2 border border-[#5a1f2e]/10">
                         <ShieldCheck size={14} className="text-[#f2a007]" />
                         <span>AIABASD</span>
                     </div>
                 </div>
             </div>
 
-            <div className="relative z-30 py-3 flex flex-wrap items-center gap-1.5 border-b border-black/5">
-                <span className="t-meta text-[#5a1f2e] shrink-0 me-1">
+            <div className="relative z-30 py-3 border-b border-black/5">
+                <span className="t-meta text-[#5a1f2e] block md:inline md:shrink-0 md:me-1 mb-2 md:mb-0">
                     {t.territoryLabel}
                 </span>
-                {COUNTRIES.map((c) => {
-                    const isSelected = currentIso === c.iso;
-                    return (
-                        <button
-                            key={c.iso}
-                            onClick={() => setSelectedIso(c.iso)}
-                            onMouseEnter={() => setHoveredIso(c.iso)}
-                            onMouseLeave={() => setHoveredIso(null)}
-                            aria-pressed={isSelected}
-                            className={`px-3 py-2.5 text-xs font-semibold transition-colors shrink-0 border ${
-                                isSelected
-                                    ? "bg-[#5a1f2e] text-white border-[#5a1f2e] shadow-md scale-105"
-                                    : "bg-white text-[#0b0b10]/90 border-black/10 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
-                            }`}
-                        >
-                            {localizedName(c.id, lang)}
-                        </button>
-                    );
-                })}
+                {/* Mobile: one scroll-snapped row with full-width bleed; md+: wrap */}
+                <div className="flex md:flex-wrap items-center gap-1.5 overflow-x-auto md:overflow-x-visible md:overflow-y-visible -mx-4 px-4 md:mx-0 md:px-0 snap-x md:snap-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                    {COUNTRIES.map((c) => {
+                        const isSelected = currentIso === c.iso;
+                        return (
+                            <button
+                                key={c.iso}
+                                onClick={() => setSelectedIso(c.iso)}
+                                onMouseEnter={() => setHoveredIso(c.iso)}
+                                onMouseLeave={() => setHoveredIso(null)}
+                                aria-pressed={isSelected}
+                                className={`px-3.5 min-h-[44px] text-xs font-semibold transition-colors shrink-0 snap-start inline-flex items-center border ${
+                                    isSelected
+                                        ? "bg-[#5a1f2e] text-white border-[#5a1f2e] shadow-md scale-105"
+                                        : "bg-white text-[#0b0b10]/90 border-black/10 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
+                                }`}
+                            >
+                                {localizedName(c.id, lang)}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
 
-            <div className={`relative w-full ${compact ? "flex-1 min-h-[240px]" : "flex-1 min-h-[300px]"} my-2 flex items-center justify-center`}>
+            <div className={`relative w-full ${compact ? "flex-1 min-h-[300px]" : "flex-1 min-h-[380px]"} my-2 flex flex-col`}>
+                <div className={`relative w-full flex-1 ${compact ? "min-h-[240px]" : "min-h-[300px]"} flex items-center justify-center`}>
                 <div className="absolute inset-0 w-full h-full flex items-center justify-center">
                     <WorldMapSVG 
                         viewBox={viewBox}
@@ -249,45 +253,53 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                             fill={isActive ? "#f2a007" : "#ffffff"}
                                         />
 
-                                        {isActive && (
-                                            <g transform={`translate(${c.cx}, ${c.cy - 9})`}>
-                                                <rect
-                                                    x="-30"
-                                                    y="-11"
-                                                    width="60"
-                                                    height="12"
-                                                    rx="3"
-                                                    fill="#0b0b10"
-                                                    stroke="#f2a007"
-                                                    strokeWidth="0.5"
-                                                />
-                                                <text
-                                                    x="0"
-                                                    y="-3"
-                                                    textAnchor="middle"
-                                                    fill="#ffffff"
-                                                    fontSize="6"
-                                                    fontWeight="bold"
-                                                    fontFamily="sans-serif"
-                                                >
-                                                    {localizedName(c.id, lang)}
-                                                </text>
-                                            </g>
-                                        )}
+                                        {isActive && (() => {
+                                            const label = localizedName(c.id, lang);
+                                            // Width adapts to the name (Arabic/French run long)
+                                            const tw = Math.min(130, Math.max(60, label.length * 3.8 + 12));
+                                            return (
+                                                <g transform={`translate(${c.cx}, ${c.cy - 9})`}>
+                                                    <rect
+                                                        x={-tw / 2}
+                                                        y="-11"
+                                                        width={tw}
+                                                        height="12"
+                                                        fill="#0b0b10"
+                                                        stroke="#f2a007"
+                                                        strokeWidth="0.5"
+                                                    />
+                                                    <text
+                                                        x="0"
+                                                        y="-3"
+                                                        textAnchor="middle"
+                                                        fill="#ffffff"
+                                                        fontSize="6"
+                                                        fontWeight="bold"
+                                                        fontFamily="sans-serif"
+                                                    >
+                                                        {label}
+                                                    </text>
+                                                </g>
+                                            );
+                                        })()}
                                     </g>
                                 );
                             })}
                         </g>
                     </WorldMapSVG>
                 </div>
+            </div>
 
+                {/* Detail card: in flow below the map on mobile (no map overlay),
+                    docked bottom-start from md up so the densest proof nodes
+                    (Saudi Arabia, Egypt) stay visible in the default view */}
                 <AnimatePresence>
                     {currentCountry && (
                         <motion.div
                             initial={{ opacity: 0, y: 15, scale: 0.96 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 15, scale: 0.96 }}
-                            className="absolute bottom-4 end-4 z-30 max-w-sm"
+                            className="static md:absolute md:bottom-4 md:start-4 z-30 w-full md:w-auto md:max-w-sm mt-3 md:mt-0"
                         >
                             <div className="bg-[#0b0b10]/95 border border-white/20 p-5 text-white shadow-2xl">
                                 <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-white/10">
@@ -311,13 +323,13 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3 text-xs">
-                                    <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                                    <div className="bg-white/5 p-2.5 border border-white/5">
                                         <div className="t-meta text-white/45">{t.capitalLabel}</div>
                                         <div className="font-semibold text-white mt-0.5" dir="ltr">
                                             <bdi>{lang === "ar" ? currentCountry.capitalAr : currentCountry.capital}</bdi>
                                         </div>
                                     </div>
-                                    <div className="bg-white/5 p-2.5 rounded-xl border border-white/5">
+                                    <div className="bg-white/5 p-2.5 border border-white/5">
                                         <div className="t-meta text-white/45">{t.projectsLabel}</div>
                                         <div className="font-semibold text-[#f2a007] mt-0.5 flex items-center gap-1">
                                             <Activity size={12} />
@@ -327,7 +339,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                 </div>
 
                                 <div className="mt-3 pt-2 t-meta text-white/55 flex items-center gap-1.5">
-                                    <CheckCircle2 size={12} className="text-emerald-400" />
+                                    <CheckCircle2 size={12} className="text-[#f2a007]" />
                                     <span>{t.presenceLabel}</span>
                                 </div>
                             </div>

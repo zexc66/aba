@@ -110,6 +110,13 @@ temp/
 # Lead store (PII) — server runtime writes next to source in dev
 **/inquiries.json
 
+# First-party analytics store
+**/analytics.json
+
+# Investor data room contents (confidential) — README stays under version control
+data-room/*
+!data-room/README.md
+
 # Env — Vite envDir is repo root
 .env.*
 !.env.example

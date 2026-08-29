@@ -33,7 +33,7 @@ function TeamComponent({ data, hud }: TeamProps) {
                     dark
                 />
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
                     {data.list.map((member, i) => (
                         <motion.div
                             key={i}
@@ -62,7 +62,7 @@ function TeamComponent({ data, hud }: TeamProps) {
                                     {member.bio}
                                 </p>
                                 <span className="t-meta text-[#f2a007] mt-4 pt-3 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    {data.note ? "PROFILE //" : "PROFILE //"}
+                                    {data.profileLabel}
                                 </span>
                             </div>
                         </Link>

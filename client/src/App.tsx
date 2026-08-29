@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import { MotionConfig } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Chatbot from "./components/Chatbot";
+import ConsentBanner from "./components/ConsentBanner";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider, useLanguageContext } from "./contexts/LanguageContext";
 import PageLoader from "./components/PageLoader";
@@ -19,6 +20,8 @@ const Corridor = lazy(() => import("./pages/Corridor"));
 const TeamMember = lazy(() => import("./pages/TeamMember"));
 const GovernanceArticle = lazy(() => import("./pages/GovernanceArticle"));
 const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
+const Vault = lazy(() => import("./pages/Vault"));
+const Admin = lazy(() => import("./pages/Admin"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Visions = lazy(() => import("./pages/Visions"));
@@ -49,6 +52,8 @@ function Router() {
         <Route path={"/team/:slug"} component={TeamMember} />
         <Route path={"/governance/:slug"} component={GovernanceArticle} />
         <Route path={"/investor-portal"} component={InvestorLogin} />
+        <Route path={"/investor-portal/vault"} component={Vault} />
+        <Route path={"/admin"} component={Admin} />
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />
         <Route path={"/visions"} component={Visions} />
@@ -72,6 +77,7 @@ function App() {
               <Router />
             </GlobalLayout>
             <Chatbot />
+            <ConsentBanner />
           </TooltipProvider>
         </LanguageProvider>
       </ThemeProvider>

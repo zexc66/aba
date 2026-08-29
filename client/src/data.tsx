@@ -29,7 +29,6 @@ export interface Content {
     ctaPrimary: string;
     ctaSecondary: string;
   };
-  stats: { label: string; value: string }[];
   about: {
     title: string;
     text: string;
@@ -49,6 +48,8 @@ export interface Content {
     sectionNote: string;
     flagshipLabel: string;
     exploreLabel: string;
+    countLabel: string;
+    pipelineCta: string;
     list: {
       icon: ReactNode;
       name: string;
@@ -104,6 +105,7 @@ export interface Content {
   governance: {
     title: string;
     pillarLabel: string;
+    frameworkLabel: string;
     text: string;
     pillars: { title: string; desc: string }[];
   };
@@ -116,6 +118,7 @@ export interface Content {
   team: {
     title: string;
     note: string;
+    profileLabel: string;
     list: {
       name: string;
       title: string;
@@ -155,8 +158,18 @@ export interface Content {
     successNote: string;
     error: string;
     reassure: string;
+    anotherLabel: string;
+    bookingTitle: string;
+    bookingNote: string;
+    bookingCta: string;
     audienceLabel: string;
     audienceOptions: string[];
+    sectorLabel: string;
+    regionLabel: string;
+    ticketLabel: string;
+    sectorOptions: string[];
+    regionOptions: string[];
+    ticketOptions: string[];
     placeholders: {
       name: string;
       email: string;
@@ -249,6 +262,31 @@ export interface Content {
     toastQueued: string;
     toastFailed: string;
     toastNetwork: string;
+    authFailed: string;
+    authNetwork: string;
+    requestAccessTitle: string;
+    requestAccessNote: string;
+    requestCta: string;
+  };
+
+  vault: {
+    title: string;
+    subtitle: string;
+    eyebrow: string;
+    docLabel: string;
+    empty: string;
+    emptyNote: string;
+    logout: string;
+    backLabel: string;
+    sessionNote: string;
+    restrictedNote: string;
+    fetchFailed: string;
+  };
+
+  consent: {
+    message: string;
+    accept: string;
+    decline: string;
   };
 
   pipeline: {
@@ -360,11 +398,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ctaPrimary: "Explore Programs",
       ctaSecondary: "Partner with us",
     },
-    stats: [
-      { label: "Projects in pipeline", value: "+$550M" },
-      { label: "Jobs enabled", value: "10,000+" },
-      { label: "Countries engaged", value: "11" },
-    ],
     about: {
       title: "Who we are",
       text:
@@ -379,6 +412,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "Operational Hubs", value: "09", desc: "Strategic centers across major economic zones", id: "HUB_SEC" },
         { label: "Pipeline (USD M)", value: "550", desc: "USD Millions in directed financing", id: "VAL_FIN", suffix: "M" },
         { label: "Civic Programs", value: "07", desc: "Flagship programs under institutional mandate", id: "PRG_CIV" },
+        { label: "Jobs Enabled", value: "10,000+", desc: "Employment across active delivery corridors", id: "EMP_ENG" },
       ],
       blueprintTitle: "Execution_Framework",
       blueprint: [
@@ -404,6 +438,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       sectionNote: "Bankable public-private partnership models (PPP/BOT/EPC+F) designed for long-term regional resilience and economic development.",
       flagshipLabel: "Flagship Initiative",
       exploreLabel: "Explore Project Blueprint",
+      countLabel: "PROGRAMS",
+      pipelineCta: "PIPELINE // EXPLORER",
 
       list: [
         {
@@ -571,6 +607,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     governance: {
       title: "Governance & compliance",
       pillarLabel: "Pillar",
+      frameworkLabel: "FRAMEWORK //",
       text:
         "Our delivery model embeds independent oversight and rigorous safeguards across the project lifecycle.",
       pillars: [
@@ -590,6 +627,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     team: {
       title: "Our team",
       note: "Leadership driving impact across Africa.",
+      profileLabel: "PROFILE //",
       list: [
         {
           name: "Dr. Mohammed Abdel Moneim",
@@ -642,10 +680,20 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       submitting: "Submitting Inquiry…",
       successNote: "Your message has been received securely. Reference: {ref}",
       reassure: "Submissions reach our partnerships team directly; a partner typically responds within two business days.",
+      anotherLabel: "SEND ANOTHER INQUIRY",
+      bookingTitle: "Book a direct meeting",
+      bookingNote: "Skip the queue — pick a slot with the partnerships team.",
+      bookingCta: "OPEN CALENDAR",
 
       error: "Submission failed. Please try again or email contact@aiabasd.org",
       audienceLabel: "I am enquiring as",
       audienceOptions: ["Government / Municipal", "Investor / DFI", "EPC / Operating partner", "NGO / Development agency", "Press / Research"],
+      sectorLabel: "Sector of interest",
+      regionLabel: "Region of interest",
+      ticketLabel: "Indicative engagement scale",
+      sectorOptions: ["Energy", "Logistics & corridors", "Agriculture & food security", "Digital infrastructure", "Urban development", "Circular economy", "Humanitarian facilities"],
+      regionOptions: ["West Africa", "East Africa", "North Africa", "Levant", "Gulf", "Multi-region"],
+      ticketOptions: ["Under USD 10M", "USD 10M–50M", "USD 50M–250M", "Above USD 250M", "To be defined"],
       placeholders: {
         name: "e.g., Ziad Shneikat",
         email: "name@company.com",
@@ -752,7 +800,30 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastSuccess: "Access request submitted.",
       toastQueued: "Institutional verification queued for directorial review.",
       toastFailed: "Submission failed. Please try again.",
-      toastNetwork: "Network error during verification."
+      toastNetwork: "Network error during verification.",
+      authFailed: "Invalid email or access key.",
+      authNetwork: "Network error during authentication.",
+      requestAccessTitle: "No access key?",
+      requestAccessNote: "Verified institutions may request vault credentials. Access is issued after directorial review — never self-serve.",
+      requestCta: "REQUEST ACCESS"
+    },
+    vault: {
+      title: "Investor Data Room",
+      subtitle: "Documents released to verified institutions under confidentiality.",
+      eyebrow: "RESTRICTED_ARCHIVE",
+      docLabel: "DOCUMENTS_ON_FILE",
+      empty: "No documents published yet.",
+      emptyNote: "The vault is provisioned. Documents appear here as they are released by the General Secretariat.",
+      logout: "END SESSION",
+      backLabel: "Return to authentication",
+      sessionNote: "Session valid for 8 hours. Access is monitored and audited.",
+      restrictedNote: "Materials are confidential. Redistribution without written authorization is prohibited.",
+      fetchFailed: "Could not load the document index. Please try again."
+    },
+    consent: {
+      message: "This site measures anonymous, aggregate pageviews — no cookies, no identifiers, no personal data. May we count your visit?",
+      accept: "ACCEPT",
+      decline: "DECLINE"
     },
     pipeline: {
       title: "Program Intelligence",
@@ -893,11 +964,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ctaPrimary: "استكشاف البرامج",
       ctaSecondary: "انضم كشريك",
     },
-    stats: [
-      { label: "مشاريع قيد الإعداد", value: "+$550M" },
-      { label: "وظائف مباشرة وغير مباشرة", value: "10,000+" },
-      { label: "الدول المستهدفة", value: "11" },
-    ],
     about: {
       title: "من نحن",
       text:
@@ -912,6 +978,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "مراكز العمليات", value: "09", desc: "مراكز استراتيجية عبر المناطق الاقتصادية الرئيسية", id: "HUB_SEC" },
         { label: "خط المشاريع (مليون $)", value: "550", desc: "مليون دولار أمريكي في التمويل الموجه", id: "VAL_FIN", suffix: "M" },
         { label: "البرامج المدنية", value: "07", desc: "برامج رائدة تحت التفويض المؤسسي", id: "PRG_CIV" },
+        { label: "الوظائف الممكنة", value: "10,000+", desc: "فرص عمل عبر ممرات التنفيذ النشطة", id: "EMP_ENG" },
       ],
       blueprintTitle: "إطار_التنفيذ",
       blueprint: [
@@ -937,6 +1004,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       sectionNote: "نماذج شراكة عامة-خاصة قابلة للتمويل (PPP/BOT/EPC+F) مصممة للصمود الإقليمي طويل المدى والتنمية الاقتصادية.",
       flagshipLabel: "مبادرة رائدة",
       exploreLabel: "استكشف مخطط المشروع",
+      countLabel: "برامج",
+      pipelineCta: "محفظة // المستكشف",
 
       list: [
         {
@@ -1104,6 +1173,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     governance: {
       title: "الحوكمة والامتثال",
       pillarLabel: "الركن",
+      frameworkLabel: "إطار //",
       text:
         "نموذج التنفيذ يتضمن رقابة مستقلة وضمانات صارمة عبر دورة حياة المشروع.",
       pillars: [
@@ -1123,6 +1193,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     team: {
       title: "فريقنا",
       note: "القيادة التي تقود التأثير عبر إفريقيا.",
+      profileLabel: "ملف //",
       list: [
         {
           name: "د. محمد عبد المنعم",
@@ -1175,10 +1246,20 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       submitting: "جارٍ إرسال الاستفسار…",
       successNote: "تم استلام رسالتك بأمان. الرقم المرجعي: {ref}",
       reassure: "تصل الإرسالات فريق الشراكات مباشرة؛ وعادةً يرد أحد الشركاء خلال يومي عمل.",
+      anotherLabel: "إرسال استفسار آخر",
+      bookingTitle: "احجز اجتماعاً مباشراً",
+      bookingNote: "تجاوز الانتظار — اختر موعداً مع فريق الشراكات.",
+      bookingCta: "فتح التقويم",
 
       error: "تعذّر الإرسال. حاول مرة أخرى أو راسلنا على contact@aiabasd.org",
       audienceLabel: "أستفسر بصفتي",
       audienceOptions: ["حكومة / بلدية", "مستثمر / مؤسسة تمويل", "شركة EPC / شريك تشغيلي", "منظمة / وكالة تنموية", "صحافة / بحث"],
+      sectorLabel: "قطاع الاهتمام",
+      regionLabel: "الإقليم محل الاهتمام",
+      ticketLabel: "حجم التعاون التقديري",
+      sectorOptions: ["الطاقة", "اللوجستيات والممرات", "الزراعة والأمن الغذائي", "البنية التحتية الرقمية", "التطوير الحضري", "الاقتصاد الدائري", "المرافق الإنسانية"],
+      regionOptions: ["غرب أفريقيا", "شرق أفريقيا", "شمال أفريقيا", "المشرق", "الخليج", "متعدد الأقاليم"],
+      ticketOptions: ["أقل من 10 مليون دولار", "10–50 مليون دولار", "50–250 مليون دولار", "أكثر من 250 مليون دولار", "يُحدد لاحقاً"],
       placeholders: {
         name: "مثال: زياد شنيكات",
         email: "name@company.com",
@@ -1285,7 +1366,30 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastSuccess: "تم إرسال طلب الوصول.",
       toastQueued: "تم إدراج التحقق المؤسسي للمراجعة الإدارية.",
       toastFailed: "تعذّر الإرسال. حاول مرة أخرى.",
-      toastNetwork: "خطأ في الشبكة أثناء التحقق."
+      toastNetwork: "خطأ في الشبكة أثناء التحقق.",
+      authFailed: "البريد الإلكتروني أو مفتاح الدخول غير صحيح.",
+      authNetwork: "خطأ في الشبكة أثناء المصادقة.",
+      requestAccessTitle: "لا تملك مفتاح دخول؟",
+      requestAccessNote: "يمكن للمؤسسات الموثقة طلب بيانات اعتماد المخزن. يُمنح الدخول بعد المراجعة الإدارية — وليس بالتسجيل الذاتي.",
+      requestCta: "طلب الدخول"
+    },
+    vault: {
+      title: "غرفة بيانات المستثمرين",
+      subtitle: "وثائق تُتاح للمؤسسات الموثقة في إطار السرية.",
+      eyebrow: "الأرشيف_المقيد",
+      docLabel: "الوثائق_المتوفرة",
+      empty: "لا توجد وثائق منشورة بعد.",
+      emptyNote: "المخزن جاهز. ستظهر الوثائق هنا فور إصدارها من الأمانة العامة.",
+      logout: "إنهاء الجلسة",
+      backLabel: "العودة إلى المصادقة",
+      sessionNote: "الجلسة صالحة لمدة 8 ساعات. يتم رصد الدخول وتدقيقه.",
+      restrictedNote: "المواد سرية. يُحظر إعادة توزيعها دون إذن كتابي.",
+      fetchFailed: "تعذّر تحميل فهرس الوثائق. حاول مرة أخرى."
+    },
+    consent: {
+      message: "يقيس هذا الموقع مشاهدات الصفحات مجهولة ومجمعة — بدون ملفات تعريف ارتباط أو معرّفات أو بيانات شخصية. هل تسمح لنا بإحصاء زيارتك؟",
+      accept: "موافق",
+      decline: "أرفض"
     },
     pipeline: {
       title: "استخبارات البرامج",
@@ -1426,11 +1530,6 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ctaPrimary: "Explorer les programmes",
       ctaSecondary: "Devenez partenaire",
     },
-    stats: [
-      { label: "Projets en pipeline", value: "+550M $" },
-      { label: "Emplois créés", value: "10 000+" },
-      { label: "Pays engagés", value: "11" },
-    ],
     about: {
       title: "Qui sommes-nous",
       text:
@@ -1445,6 +1544,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "Hubs Opérationnels", value: "09", desc: "Centres stratégiques dans les zones économiques majeures", id: "HUB_SEC" },
         { label: "Pipeline (M USD)", value: "550", desc: "Millions USD en financement dirigé", id: "VAL_FIN", suffix: "M" },
         { label: "Programmes Civiques", value: "07", desc: "Programmes phares sous mandat institutionnel", id: "PRG_CIV" },
+        { label: "Emplois Activés", value: "10 000+", desc: "Emplois le long des corridors de réalisation actifs", id: "EMP_ENG" },
       ],
       blueprintTitle: "Cadre_d_Exécution",
       blueprint: [
@@ -1470,6 +1570,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       sectionNote: "Modèles de partenariat public-privé finançables (PPP/BOT/EPC+F) conçus pour la résilience régionale et le développement économique.",
       flagshipLabel: "Initiative Phare",
       exploreLabel: "Explorer le Plan du Projet",
+      countLabel: "PROGRAMMES",
+      pipelineCta: "PIPELINE // EXPLORATEUR",
 
       list: [
         {
@@ -1637,6 +1739,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     governance: {
       title: "Gouvernance et conformité",
       pillarLabel: "Pilier",
+      frameworkLabel: "CADRE //",
       text:
         "Notre modèle de mise en œuvre intègre une surveillance indépendante et des garanties rigoureuses tout au long du cycle de vie du projet.",
       pillars: [
@@ -1649,6 +1752,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     team: {
       title: "Notre équipe",
       note: "Leadership et experts créant un impact en Afrique.",
+      profileLabel: "PROFIL //",
       list: [
         {
           name: "Dr. Mohammed Abdel Moneim",
@@ -1708,10 +1812,20 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       submitting: "Envoi de la demande…",
       successNote: "Votre message a été reçu en toute sécurité. Référence : {ref}",
       reassure: "Les envois parviennent directement à notre équipe partenariats ; un associé répond généralement sous deux jours ouvrés.",
+      anotherLabel: "ENVOYER UNE AUTRE DEMANDE",
+      bookingTitle: "Réserver une réunion directe",
+      bookingNote: "Passez devant la file — choisissez un créneau avec l'équipe partenariats.",
+      bookingCta: "OUVRIR LE CALENDRIER",
 
       error: "Échec de l'envoi. Réessayez ou écrivez à contact@aiabasd.org",
       audienceLabel: "Je me renseigne en tant que",
       audienceOptions: ["Gouvernement / Municipalité", "Investisseur / IFD", "EPC / Partenaire opérationnel", "ONG / Agence de développement", "Presse / Recherche"],
+      sectorLabel: "Secteur d'intérêt",
+      regionLabel: "Région d'intérêt",
+      ticketLabel: "Échelle d'engagement indicative",
+      sectorOptions: ["Énergie", "Logistique & corridors", "Agriculture & sécurité alimentaire", "Infrastructure numérique", "Développement urbain", "Économie circulaire", "Installations humanitaires"],
+      regionOptions: ["Afrique de l'Ouest", "Afrique de l'Est", "Afrique du Nord", "Levant", "Golfe", "Multi-régions"],
+      ticketOptions: ["Moins de 10 M USD", "10–50 M USD", "50–250 M USD", "Plus de 250 M USD", "À définir"],
       placeholders: {
         name: "ex., Ziad Shneikat",
         email: "nom@entreprise.com",
@@ -1818,7 +1932,30 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       toastSuccess: "Demande d'accès envoyée.",
       toastQueued: "Vérification institutionnelle en attente de la direction.",
       toastFailed: "Échec de l'envoi. Veuillez réessayer.",
-      toastNetwork: "Erreur réseau lors de la vérification."
+      toastNetwork: "Erreur réseau lors de la vérification.",
+      authFailed: "Email ou clé d'accès invalide.",
+      authNetwork: "Erreur réseau lors de l'authentification.",
+      requestAccessTitle: "Pas de clé d'accès ?",
+      requestAccessNote: "Les institutions vérifiées peuvent demander des identifiants. L'accès est délivré après revue de la direction — jamais en libre-service.",
+      requestCta: "DEMANDER L'ACCÈS"
+    },
+    vault: {
+      title: "Salle des Données Investisseurs",
+      subtitle: "Documents mis à disposition des institutions vérifiées sous confidentialité.",
+      eyebrow: "ARCHIVE_RESTREINTE",
+      docLabel: "DOCUMENTS_DISPONIBLES",
+      empty: "Aucun document publié pour l'instant.",
+      emptyNote: "La salle est opérationnelle. Les documents apparaîtront ici dès leur publication par le Secrétariat Général.",
+      logout: "TERMINER LA SESSION",
+      backLabel: "Retour à l'authentification",
+      sessionNote: "Session valable 8 heures. L'accès est surveillé et audité.",
+      restrictedNote: "Les documents sont confidentiels. Toute redistribution sans autorisation écrite est interdite.",
+      fetchFailed: "Impossible de charger l'index des documents. Veuillez réessayer."
+    },
+    consent: {
+      message: "Ce site mesure des consultations de pages anonymes et agrégées — aucun cookie, aucun identifiant, aucune donnée personnelle. Pouvons-nous compter votre visite ?",
+      accept: "ACCEPTER",
+      decline: "REFUSER"
     },
     pipeline: {
       title: "Intelligence des Programmes",

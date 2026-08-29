@@ -1,20 +1,62 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Lock, Mail, ArrowRight, ShieldCheck, ArrowLeft } from "lucide-react";
+import { Lock, Mail, KeyRound, ArrowRight, ShieldCheck, ArrowLeft, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+
+const VAULT_TOKEN_KEY = "aiabasd-vault-token";
 
 export default function InvestorLogin() {
   const [, setLocation] = useLocation();
   const { lang, content, isRTL } = useLanguageContext();
   const t = content.investor;
 
+  const [mode, setMode] = useState<"auth" | "request">("auth");
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [key, setKey] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/vault/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, key }),
+      });
+
+      if (response.ok) {
+        const body = (await response.json()) as { token?: string };
+        if (typeof body.token === "string" && body.token) {
+          try {
+            sessionStorage.setItem(VAULT_TOKEN_KEY, body.token);
+          } catch {
+            // Storage unavailable — token kept in memory is not enough for the
+            // next page; surface it honestly.
+            toast.error(t.authNetwork);
+            return;
+          }
+          setLocation("/investor-portal/vault");
+          return;
+        }
+        toast.error(t.authFailed);
+      } else if (response.status === 401 || response.status === 400) {
+        toast.error(t.authFailed);
+      } else {
+        toast.error(t.authNetwork);
+      }
+    } catch {
+      toast.error(t.authNetwork);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRequest = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -25,6 +67,7 @@ export default function InvestorLogin() {
         body: JSON.stringify({
           type: "INVESTOR_ACCESS",
           email,
+          locale: lang,
         }),
       });
 
@@ -76,44 +119,116 @@ export default function InvestorLogin() {
         >
           <div className="text-center space-y-3">
             <div className="w-14 h-14 rounded-full bg-[#5a1f2e]/20 text-[#f2a007] border border-[#5a1f2e]/40 flex items-center justify-center mx-auto">
-              <Lock size={24} />
+              {mode === "auth" ? <Lock size={24} /> : <UserPlus size={24} />}
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
-              {t.vaultTitle}
+              {mode === "auth" ? t.vaultTitle : t.requestAccessTitle}
             </h1>
-            <p className="text-sm text-white/60">{t.vaultSubtitle}</p>
+            <p className="text-sm text-white/60">
+              {mode === "auth" ? t.vaultSubtitle : t.requestAccessNote}
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <label className="text-xs font-semibold text-white/70">
-                {t.emailLabel}
-              </label>
-              <div className="relative">
-                <Mail
-                  size={18}
-                  className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
-                />
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder={t.emailPlaceholder}
-                  className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
-                />
+          {mode === "auth" ? (
+            <form onSubmit={handleAuth} className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-white/70">
+                  {t.emailLabel}
+                </label>
+                <div className="relative">
+                  <Mail
+                    size={18}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
+                  />
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder={t.emailPlaceholder}
+                    className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
+                  />
+                </div>
               </div>
-            </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-sm py-3.5 rounded-lg uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
-            >
-              <span>{isLoading ? t.verifying : t.cta}</span>
-              <ArrowRight size={16} />
-            </button>
-          </form>
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-white/70">
+                  {t.keyLabel}
+                </label>
+                <div className="relative">
+                  <KeyRound
+                    size={18}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
+                  />
+                  <input
+                    type="password"
+                    required
+                    value={key}
+                    onChange={e => setKey(e.target.value)}
+                    placeholder={t.keyPlaceholder}
+                    autoComplete="off"
+                    className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-sm py-3.5 rounded-lg uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+              >
+                <span>{isLoading ? t.verifying : t.cta}</span>
+                <ArrowRight size={16} className={isRTL ? "rotate-180" : ""} />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setMode("request")}
+                className="w-full text-center text-xs font-semibold text-[#f2a007]/90 hover:text-[#f2a007] transition-colors cursor-pointer"
+              >
+                {t.requestCta}
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleRequest} className="space-y-5">
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-white/70">
+                  {t.emailLabel}
+                </label>
+                <div className="relative">
+                  <Mail
+                    size={18}
+                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
+                  />
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder={t.emailPlaceholder}
+                    className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-sm py-3.5 rounded-lg uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+              >
+                <span>{isLoading ? t.verifying : t.requestCta}</span>
+                <ArrowRight size={16} className={isRTL ? "rotate-180" : ""} />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setMode("auth")}
+                className="w-full text-center text-xs font-semibold text-[#f2a007]/90 hover:text-[#f2a007] transition-colors cursor-pointer"
+              >
+                {t.backLabel}
+              </button>
+            </form>
+          )}
 
           <div className="pt-4 border-t border-white/10 space-y-3">
             <dl className="grid grid-cols-3 gap-px bg-white/10 border border-white/10 text-center">

@@ -70,7 +70,7 @@ export default function Visions() {
         <Section className="py-20 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <SectionHeader index="02" title={t.pillarsTitle} meta="4_FRAMEWORKS" />
-            <div className="grid md:grid-cols-2 gap-px bg-black/10 border border-black/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10">
               {t.pillars.map((pillar: { title: string; desc: string; code: string }, i: number) => (
                 <motion.div
                   key={pillar.code}
@@ -96,7 +96,7 @@ export default function Visions() {
         <Section className="py-20 border-b border-black/10">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <SectionHeader index="03" title={t.alignmentTitle} note={t.alignmentNote} meta="SDG_2030 // AU_2063" />
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ export default function Visions() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.05 }}
-                  className="grid md:grid-cols-[10rem_1fr] gap-x-8 py-8"
+                  className="grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-x-8 py-8"
                 >
                   <div className="flex items-baseline gap-3">
                     <span className="t-data text-xs text-black/40" dir="ltr">

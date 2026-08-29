@@ -51,7 +51,7 @@ export default function TeamMember() {
               </a>
             </Link>
 
-            <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

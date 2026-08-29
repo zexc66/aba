@@ -61,35 +61,76 @@ See `.env.example`. Without Contentful variables the site uses the static trilin
 
 All contact-form, newsletter, and investor-access submissions are validated with Zod, rate-limited (10/min per IP), and logged without PII (lead ID and type only). The response returns a short `reference` ID that the UI surfaces to the user.
 
-**Self-hosted (Express / Docker):** leads append atomically to `dist/inquiries.json` (serialized writes; corrupt stores are preserved as `*.corrupt-*`). Check the file regularly or wire a notification hook.
+**Self-hosted (Express / Docker):** leads append atomically to `dist/inquiries.json` (serialized writes; corrupt stores are preserved as `*.corrupt-*`). Optional notification channels: Resend email (`RESEND_API_KEY` + `LEAD_NOTIFY_EMAIL`) and/or a Slack-compatible JSON webhook (`LEAD_WEBHOOK_URL`) — see `server/notify.ts`. Check the file regularly.
 
-**Vercel (serverless `api/inquiry.ts`):** there is no durable disk, so leads are emailed via Resend and the endpoint fails honestly (503) when no channel is configured — it never fakes success. Set these environment variables in the Vercel project:
+**Vercel (serverless `api/inquiry.ts`):** there is no durable disk, so leads are emailed via Resend (and optionally the webhook) and the endpoint fails honestly (503) when no channel is configured — it never fakes success. Set these environment variables in the Vercel project:
 
 | Variable | Purpose |
 |---|---|
 | `RESEND_API_KEY` | Resend API token for lead delivery |
 | `LEAD_NOTIFY_EMAIL` | Inbox that receives every lead |
 | `LEAD_FROM_EMAIL` | Optional verified sender (defaults to `onboarding@resend.dev`) |
+| `LEAD_WEBHOOK_URL` | Optional JSON webhook (posted on every lead) |
 
-Without these, the deployed contact form shows its error state and directs visitors to `contact@aiabasd.org`.
+## Investor data room (`/investor-portal`)
+
+Authenticated document vault for verified institutions. Access is **director-issued, never self-serve**: an invited investor authenticates with institutional email + access key and receives an HMAC-signed 8-hour session token; the vault lists and serves files from `data-room/` (see `data-room/README.md`). Without `VAULT_ACCESS_KEYS` / `VAULT_SESSION_SECRET` the auth endpoint fails honestly with 503.
+
+| Variable | Purpose |
+|---|---|
+| `VAULT_ACCESS_KEYS` | `"email:KEY"` pairs, comma-separated |
+| `VAULT_SESSION_SECRET` | Random 32+ char HMAC secret |
+
+| Endpoint | Notes |
+|---|---|
+| `POST /api/vault/auth` | `{ email, key }` → `{ token }` (constant-time compare, 10 attempts / 15 min) |
+| `GET /api/vault/documents` | Bearer token → document index |
+| `GET /api/vault/documents/:name` | Bearer token → file download (path-traversal safe) |
+
+## First-party analytics & consent
+
+`GlobalLayout` sends an anonymous pageview beacon (`path` only — no IP, UA, or identifiers) to `POST /api/track` on route change, **only after the visitor accepts the consent banner** (choice persisted in `localStorage`). Self-hosted: daily buckets persist to `server/analytics.json` (90-day retention). Inspect via the Operations Console or:
+
+```bash
+curl -H "x-admin-token: $ADMIN_TOKEN" http://localhost:5000/api/admin/stats
+```
+
+Serverless has no durable disk, so analytics only exists on the self-hosted path.
+
+## Operations console (`/admin`)
+
+Token-gated internal page (session-only token in `sessionStorage`; requests authenticated with the `ADMIN_TOKEN` env): total leads, pageview summary, and the full lead list (newest first) with all structured-intake fields. Not linked from public navigation, trilingual parity not required (operator tooling).
+
+## Lead auto-response & RSS
+
+When Resend is configured, every inquiry gets an **auto-acknowledgment email** in the visitor's locale (reference ID + two-business-day expectation, no promises), and `NEWSLETTER` submissions get a **welcome email** instead. `GET /rss.xml` serves the newsroom feed from Contentful when server env is configured — an honest empty channel otherwise.
+
+## Grounded assistant
+
+`/api/chat` uses Gemini (`GEMINI_API_KEY`, model via `GEMINI_MODEL`, default `gemini-2.0-flash`) grounded on a compact owner-approved facts base in `server/services/aiChat.ts` — statuses, figures, and conversion paths only; the system prompt forbids invented content and financial-return claims. Any failure falls back to the rule-based `chatService`; the response's `source` field reports which ran.
 
 ## API
 
 | Endpoint | Method | Notes |
 |---|---|---|
-| `/api/inquiry` | POST | `{ type, email, name?, organization?, message? }` → `{ success, reference }` |
-| `/api/chat` | POST | `{ message }` → `{ response }` (rule-based assistant, 30/min rate limit) |
+| `/api/inquiry` | POST | `{ type, email, name?, organization?, sector?, region?, ticket?, timeline?, locale?, message? }` → `{ success, reference }` |
+| `/api/chat` | POST | `{ message }` → `{ response, source }` — grounded Gemini assistant when `GEMINI_API_KEY` is set, rule-based fallback otherwise |
+| `/api/track` | POST | `{ path }` — anonymous pageview beacon, consent-gated (self-hosted only) |
+| `/api/admin/stats` | GET | `x-admin-token` header → pageview buckets |
+| `/api/admin/leads` | GET | `x-admin-token` header → all leads, newest first |
+| `/api/vault/*` | — | See [Investor data room](#investor-data-room-investor-portal) |
+| `/rss.xml` | GET | Newsroom feed (Contentful when server env configured; honest empty channel otherwise) |
 | `/api/*` (other) | GET | 404 JSON — never the SPA shell |
 
 ## Structure
 
 ```
 client/src
-  pages/          Home, Gallery, HamaProject, InvestorLogin, Privacy, Terms, NotFound
+  pages/          Home, Gallery, HamaProject, InvestorLogin, Vault, Privacy, Terms, NotFound
   components/
     home/         Home page sections (Hero, About, Programs, …, Contact, Footer)
     hama/         Hama project page modules
-    layout/       GlobalLayout (page transitions)
+    layout/       GlobalLayout (page transitions + analytics beacon)
     ui/           Shared primitives
   contexts/       LanguageContext (locale + CMS fetch + RTL), ThemeContext
   services/       cms.ts (Contentful client with static fallback)
@@ -98,6 +139,10 @@ server
   index.ts        Express app: validation, rate limits, security headers, static serving
   services/       chatService.ts (rule-based assistant)
   storage.ts      Atomic JSON lead store
+  notify.ts       Optional lead notifications (Resend + webhook)
+  analytics.ts    First-party pageview store (daily buckets, 90-day retention)
+  vault.ts        Investor data room: auth, session tokens, document serving
+data-room/        Confidential vault documents (gitignored — see README.md inside)
 ```
 
 ## Conventions

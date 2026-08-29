@@ -28,7 +28,7 @@ function AboutComponent({ data }: AboutProps) {
         <Section id="about" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 space-y-24">
 
-                <div className="grid lg:grid-cols-12 gap-16 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
                     <div className="lg:col-span-7 space-y-16">
                         <SectionHeader
@@ -77,9 +77,6 @@ function AboutComponent({ data }: AboutProps) {
                                     <p className="text-xs text-black/55 leading-normal">
                                         {stat.desc}
                                     </p>
-                                    <span className="t-meta text-black/35 block pt-1" aria-hidden="true">
-                                        {stat.id}
-                                    </span>
                                 </motion.div>
                             ))}
                         </div>
@@ -123,7 +120,7 @@ function AboutComponent({ data }: AboutProps) {
                             title={data.ourStoryTitle}
                             note={data.ourStorySubtitle}
                         />
-                        <div className="grid lg:grid-cols-12 gap-12">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                             <p className="lg:col-span-5 text-base text-black/70 leading-relaxed border-s-2 border-[#5a1f2e] ps-6">
                                 {data.ourStoryText}
                             </p>

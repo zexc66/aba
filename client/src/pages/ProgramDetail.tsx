@@ -123,7 +123,7 @@ export default function ProgramDetail() {
 
         <Section className="py-16">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <div className="grid lg:grid-cols-12 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}

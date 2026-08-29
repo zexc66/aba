@@ -32,7 +32,7 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                     meta={hud.institutionalIntegrity}
                 />
 
-                <div className="grid md:grid-cols-2 gap-px bg-black/10 border border-black/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10">
                     {data.pillars.map((pillar, i) => (
                         <motion.div
                             key={i}
@@ -60,7 +60,7 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                                 {pillar.desc}
                             </p>
                             <span className="t-meta text-[#5a1f2e] mt-6 pt-4 border-t border-black/10 inline-block opacity-0 group-hover:opacity-100 transition-opacity">
-                                FRAMEWORK //
+                                {data.frameworkLabel}
                             </span>
                         </Link>
                         </motion.div>

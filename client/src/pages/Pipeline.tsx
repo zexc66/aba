@@ -67,7 +67,7 @@ export default function Pipeline() {
                 <Section className="py-12">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                         {/* Filters */}
-                        <div className="grid md:grid-cols-3 gap-px bg-black/10 border border-black/10 mb-10">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black/10 border border-black/10 mb-10">
                             <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
                                 <span className="t-meta text-black/55">{t.filterSector}</span>
                                 <select
