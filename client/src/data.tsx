@@ -203,6 +203,7 @@ export interface Content {
   };
   testimonials: {
     title: { main: string; highlighted: string; partner: string };
+    controls: { prev: string; next: string; pause: string; resume: string };
     sectionRef: string;
     communique: string;
     eyebrow: string;
@@ -284,6 +285,7 @@ export interface Content {
   };
 
   consent: {
+    label: string;
     message: string;
     accept: string;
     decline: string;
@@ -410,7 +412,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       metricsTitle: "Institutional_Legacy",
       metrics: [
         { label: "Operational Hubs", value: "09", desc: "Strategic centers across major economic zones", id: "HUB_SEC" },
-        { label: "Pipeline (USD M)", value: "550", desc: "USD Millions in directed financing", id: "VAL_FIN", suffix: "M" },
+        { label: "Directed Pipeline", value: "550", desc: "USD Millions in directed financing", id: "VAL_FIN", suffix: "M" },
         { label: "Civic Programs", value: "07", desc: "Flagship programs under institutional mandate", id: "PRG_CIV" },
         { label: "Jobs Enabled", value: "10,000+", desc: "Employment across active delivery corridors", id: "EMP_ENG" },
       ],
@@ -727,6 +729,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "Voice of our", highlighted: "Institutional", partner: "Partners" },
+      controls: { prev: "Previous testimonial", next: "Next testimonial", pause: "Pause testimonial rotation", resume: "Resume testimonial rotation" },
       eyebrow: "Endorsements & Leadership",
       subtitle: "Direct perspectives from sovereign partners, institutional investors, and regional development directors.",
 
@@ -821,6 +824,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       fetchFailed: "Could not load the document index. Please try again."
     },
     consent: {
+      label: "Analytics consent",
       message: "This site measures anonymous, aggregate pageviews — no cookies, no identifiers, no personal data. May we count your visit?",
       accept: "ACCEPT",
       decline: "DECLINE"
@@ -976,7 +980,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       metricsTitle: "الإرث_المؤوسسي",
       metrics: [
         { label: "مراكز العمليات", value: "09", desc: "مراكز استراتيجية عبر المناطق الاقتصادية الرئيسية", id: "HUB_SEC" },
-        { label: "خط المشاريع (مليون $)", value: "550", desc: "مليون دولار أمريكي في التمويل الموجه", id: "VAL_FIN", suffix: "M" },
+        { label: "خط المشاريع الموجه", value: "550", desc: "مليون دولار أمريكي في التمويل الموجه", id: "VAL_FIN", suffix: "M" },
         { label: "البرامج المدنية", value: "07", desc: "برامج رائدة تحت التفويض المؤسسي", id: "PRG_CIV" },
         { label: "الوظائف الممكنة", value: "10,000+", desc: "فرص عمل عبر ممرات التنفيذ النشطة", id: "EMP_ENG" },
       ],
@@ -1293,6 +1297,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "صوت شركاءنا", highlighted: "المؤسسيين", partner: "الاستراتيجيين" },
+      controls: { prev: "الشهادة السابقة", next: "الشهادة التالية", pause: "إيقاف تدوير الشهادات", resume: "استئناف تدوير الشهادات" },
       eyebrow: "تأييدات وقيادة",
       subtitle: "وجهات نظر مباشرة من شركاء سياديين ومستثمرين مؤسسيين ومديري تنمية إقليميين.",
 
@@ -1389,7 +1394,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     consent: {
       message: "يقيس هذا الموقع مشاهدات الصفحات مجهولة ومجمعة — بدون ملفات تعريف ارتباط أو معرّفات أو بيانات شخصية. هل تسمح لنا بإحصاء زيارتك؟",
       accept: "موافق",
-      decline: "أرفض"
+      decline: "أرفض",
+      label: "الموافقة على التحليلات"
     },
     pipeline: {
       title: "استخبارات البرامج",
@@ -1542,7 +1548,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       metricsTitle: "Héritage_Institutionnel",
       metrics: [
         { label: "Hubs Opérationnels", value: "09", desc: "Centres stratégiques dans les zones économiques majeures", id: "HUB_SEC" },
-        { label: "Pipeline (M USD)", value: "550", desc: "Millions USD en financement dirigé", id: "VAL_FIN", suffix: "M" },
+        { label: "Pipeline dirigé", value: "550", desc: "Millions USD en financement dirigé", id: "VAL_FIN", suffix: "M" },
         { label: "Programmes Civiques", value: "07", desc: "Programmes phares sous mandat institutionnel", id: "PRG_CIV" },
         { label: "Emplois Activés", value: "10 000+", desc: "Emplois le long des corridors de réalisation actifs", id: "EMP_ENG" },
       ],
@@ -1859,6 +1865,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "La voix de nos", highlighted: "partenaires", partner: "institutionnels" },
+      controls: { prev: "Témoignage précédent", next: "Témoignage suivant", pause: "Mettre en pause la rotation", resume: "Reprendre la rotation" },
       eyebrow: "Appuis & Leadership",
       subtitle: "Perspectives directes de partenaires souverains, d'investisseurs institutionnels et de directeurs du développement régional.",
 
@@ -1955,7 +1962,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     consent: {
       message: "Ce site mesure des consultations de pages anonymes et agrégées — aucun cookie, aucun identifiant, aucune donnée personnelle. Pouvons-nous compter votre visite ?",
       accept: "ACCEPTER",
-      decline: "REFUSER"
+      decline: "REFUSER",
+      label: "Consentement analytique"
     },
     pipeline: {
       title: "Intelligence des Programmes",

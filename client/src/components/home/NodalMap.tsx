@@ -287,7 +287,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                             initial={{ opacity: 0, y: 15, scale: 0.96 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 15, scale: 0.96 }}
-                            className="static md:absolute md:bottom-4 md:start-4 z-30 w-full md:w-auto md:max-w-sm mt-3 md:mt-0"
+                            className="static md:absolute md:bottom-4 ltr:md:left-4 rtl:md:right-4 z-30 w-full md:w-auto md:max-w-sm mt-3 md:mt-0"
                         >
                             <div className="bg-[#0b0b10]/95 border border-white/20 p-5 text-white shadow-2xl">
                                 <div className="flex items-center justify-between gap-4 mb-3 pb-2 border-b border-white/10">
@@ -338,7 +338,6 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
 
             <div className="relative z-30 pt-3 border-t border-black/5 flex flex-wrap items-center justify-between gap-2 t-meta text-black/50">
                 <div>{t.mapHint}</div>
-                <div className="font-semibold text-[#5a1f2e]">AIABASD</div>
             </div>
         </div>
     );

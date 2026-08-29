@@ -38,7 +38,7 @@ export default function ConsentBanner() {
   return (
     <div
       role="region"
-      aria-label={t.message}
+      aria-label={t.label}
       className={`fixed bottom-0 inset-x-0 z-[90] bg-[#0b0b10] text-white border-t border-white/15 ${isRTL ? "font-arabic" : "font-sans"}`}
     >
       <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">

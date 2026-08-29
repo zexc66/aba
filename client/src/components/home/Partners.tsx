@@ -37,8 +37,7 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                     meta={hud.strategicConsortium}
                 />
 
-                <div className="t-meta text-black/50 flex items-center justify-between pb-3 border-b-2 border-[#0b0b10] mb-0">
-                    <span>{hud.strategicConsortium}</span>
+                <div className="t-meta text-black/50 flex items-center justify-end pb-3 border-b-2 border-[#0b0b10] mb-0">
                     <span className="text-[#5a1f2e]" dir="ltr">
                         {`${String(ALLIANCE_SYNDICATE.length).padStart(2, "0")} ENTITIES`}
                     </span>

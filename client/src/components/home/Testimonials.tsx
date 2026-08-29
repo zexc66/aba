@@ -129,7 +129,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                         <button
                             onClick={toggleUserPause}
                             aria-pressed={pausedByUser}
-                            aria-label={pausedByUser ? "Resume testimonial rotation" : "Pause testimonial rotation"}
+                            aria-label={pausedByUser ? data.controls.resume : data.controls.pause}
                             className="w-12 h-12 border border-black/15 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
                         >
                             {pausedByUser ? <Play className="w-5 h-5 rtl:rotate-180" strokeWidth={1.5} /> : <Pause strokeWidth={1.5} className="w-5 h-5" />}
@@ -137,14 +137,14 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                         <div className="flex items-center gap-3">
                             <button
                                 onClick={prev}
-                                aria-label="Previous testimonial"
+                                aria-label={data.controls.prev}
                                 className="w-12 h-12 border border-black/15 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
                             >
                                 <ArrowLeft className="w-5 h-5 rtl:rotate-180" strokeWidth={1.5} />
                             </button>
                             <button
                                 onClick={next}
-                                aria-label="Next testimonial"
+                                aria-label={data.controls.next}
                                 className="w-12 h-12 border border-black/15 flex items-center justify-center text-black/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
                             >
                                 <ArrowRight className="w-5 h-5 rtl:rotate-180" strokeWidth={1.5} />
@@ -159,7 +159,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                                         setCurrent(i);
                                         pauseAndResume();
                                     }}
-                                    aria-label={`Testimonial ${i + 1}`}
+                                    aria-label={String(i + 1)}
                                     aria-current={i === current}
                                     className="py-2.5"
                                 >

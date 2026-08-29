@@ -70,6 +70,9 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
             if (response.ok) {
                 setStatus("success");
                 setEmail("");
+                // Restore the button label after a beat; the error state
+                // persists until the visitor edits the address instead.
+                setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 5000);
             } else {
                 setStatus("error");
             }
@@ -78,7 +81,6 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
             setStatus("error");
         } finally {
             setSubmitting(false);
-            setTimeout(() => setStatus("idle"), 5000);
         }
     };
 
@@ -161,7 +163,10 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                     required
                                     aria-label={newsroom.newsletterTitle}
                                     value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value);
+                                        setStatus((s) => (s === "error" ? "idle" : s));
+                                    }}
                                     placeholder={newsroom.newsletterPlaceholder}
                                     className="w-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder:text-white/50 rounded-md outline-none focus:border-[#f2a007] transition-colors"
                                 />

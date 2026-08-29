@@ -131,8 +131,9 @@ function ContactComponent({ data, lang }: ContactProps) {
             setTicket("");
         } catch (err) {
             console.error("Submission error:", err);
+            // Error persists until the visitor edits the form or retries —
+            // no timed self-destruct while they are mid-copy-paste.
             setError(true);
-            setTimeout(() => setError(false), 8000);
         } finally {
             setSending(false);
         }
@@ -188,7 +189,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         >
                                             <span className="flex items-center gap-3 min-w-0">
                                                 <Mail className="w-4 h-4 text-[#5a1f2e] shrink-0" strokeWidth={1.5} />
-                                                <span className="font-medium truncate">{label}</span>
+                                                <span className="font-medium min-w-0 leading-snug">{label}</span>
                                             </span>
                                             <span className="t-data text-xs text-black/55 group-hover:text-[#5a1f2e] transition-colors shrink-0" dir="ltr">
                                                 {address}
@@ -280,7 +281,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         id="contact-name"
                                         required
                                         value={form.name}
-                                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                        onChange={(e) => { setForm({ ...form, name: e.target.value }); setError(false); }}
                                         placeholder={data.placeholders.name}
                                         className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
                                     />
@@ -293,7 +294,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     <input
                                         id="contact-org"
                                         value={form.org}
-                                        onChange={(e) => setForm({ ...form, org: e.target.value })}
+                                        onChange={(e) => { setForm({ ...form, org: e.target.value }); setError(false); }}
                                         placeholder={data.placeholders.org}
                                         className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
                                     />
@@ -317,6 +318,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     onChange={(e) => {
                                         setForm({ ...form, email: e.target.value });
                                         if (emailInvalid) setEmailInvalid(false);
+                                        setError(false);
                                     }}
                                     onBlur={() => {
                                         if (form.email.length > 0) setEmailInvalid(!EMAIL_RE.test(form.email));
@@ -335,7 +337,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     required
                                     rows={4}
                                     value={form.msg}
-                                    onChange={(e) => setForm({ ...form, msg: e.target.value })}
+                                    onChange={(e) => { setForm({ ...form, msg: e.target.value }); setError(false); }}
                                     placeholder={data.placeholders.msg}
                                     className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors resize-none"
                                 />
