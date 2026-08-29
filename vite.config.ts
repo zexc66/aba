@@ -33,7 +33,19 @@ const plugins = [
     },
     workbox: {
       globPatterns: ["**/*.{js,css,html,ico,png,svg,jpg,jpeg,webmanifest}"],
+      // Content imagery (team, partners, gallery) is heavy — cache at runtime
+      // instead of paying ~3MB on the very first visit.
+      globIgnores: ["partners/**", "team/**", "gallery/**"],
       runtimeCaching: [
+        {
+          urlPattern: /\/(partners|team|gallery)\//,
+          handler: "CacheFirst",
+          options: {
+            cacheName: "content-images",
+            expiration: { maxEntries: 80, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            cacheableResponse: { statuses: [0, 200] },
+          },
+        },
         {
           urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
           handler: "CacheFirst",
