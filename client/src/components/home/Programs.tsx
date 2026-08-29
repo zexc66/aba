@@ -104,14 +104,22 @@ function ProgramsComponent({ data }: ProgramsProps) {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: (i % 3) * 0.05 }}
                                 href={program.link ?? `/programs/${program.slug}`}
-                                className="group block bg-white border border-black/10 p-8 flex flex-col justify-between hover:border-[#5a1f2e]/50 transition-colors duration-300 relative overflow-hidden"
+                                className="group block bg-white border border-black/10 p-8 flex flex-col justify-between hover:border-[#5a1f2e]/50 transition-colors duration-300 relative"
                             >
-                                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#5a1f2e] to-[#f2a007] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <span
+                                    aria-hidden="true"
+                                    className="absolute top-0 left-0 h-[2px] w-0 bg-[#f2a007] group-hover:w-full transition-all duration-500"
+                                />
 
                                 <div>
                                     <div className="flex items-center justify-between mb-6 gap-2">
-                                        <div className="w-12 h-12 bg-[#5a1f2e]/10 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-colors duration-300 shrink-0 border border-[#5a1f2e]/15">
-                                            {program.icon || <Globe className="w-6 h-6" />}
+                                        <div className="flex items-center gap-3 min-w-0">
+                                            <div className="w-12 h-12 bg-[#5a1f2e]/10 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-colors duration-300 shrink-0 border border-[#5a1f2e]/15">
+                                                {program.icon || <Globe className="w-6 h-6" />}
+                                            </div>
+                                            <span className="t-data text-xs text-black/40" aria-hidden="true" dir="ltr">
+                                                {String(i + 1).padStart(2, "0")}
+                                            </span>
                                         </div>
                                         <span className={`inline-flex items-center gap-1.5 t-meta px-2.5 py-1.5 border ${STATUS_PILL[tone]}`}>
                                             <span className={`w-1.5 h-1.5 rounded-full ${STATUS_DOT[tone]}`} />

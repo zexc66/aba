@@ -37,6 +37,13 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                     meta={hud.strategicConsortium}
                 />
 
+                <div className="t-meta text-black/50 flex items-center justify-between pb-3 border-b-2 border-[#0b0b10] mb-0">
+                    <span>{hud.strategicConsortium}</span>
+                    <span className="text-[#5a1f2e]" dir="ltr">
+                        {`${String(ALLIANCE_SYNDICATE.length).padStart(2, "0")} ENTITIES`}
+                    </span>
+                </div>
+
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-black/10 border border-black/10">
                     {ALLIANCE_SYNDICATE.map((partner, i) => (
                         <motion.div
@@ -45,8 +52,15 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.35, delay: (i % 4) * 0.05 }}
-                            className="bg-[#fdfcfb] p-8 flex flex-col items-center justify-center text-center space-y-4 group"
+                            className="bg-[#fdfcfb] p-8 flex flex-col items-center justify-center text-center space-y-4 group relative"
                         >
+                            <span
+                                className="t-data text-[10px] text-black/35 absolute top-3 left-3 group-hover:text-[#5a1f2e] transition-colors"
+                                aria-hidden="true"
+                                dir="ltr"
+                            >
+                                {String(i + 1).padStart(2, "0")}
+                            </span>
                             <div className="h-16 w-full flex items-center justify-center">
                                 <img
                                     src={partner.logo}

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, memo } from "react";
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight, Pause, Play, Quote } from "lucide-react";
 import { type Content } from "@/data";
 
 interface TestimonialsProps {
@@ -71,34 +71,54 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
 
                     <div className="lg:col-span-9">
-                        <AnimatePresence mode="wait">
-                            <motion.blockquote
-                                key={current}
-                                initial={{ opacity: 0, y: 14 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                className="space-y-8"
-                            >
-                                <p className="text-2xl md:text-3xl font-medium text-[#0b0b10] leading-snug tracking-tight">
-                                    {t.quote}
-                                </p>
+                        <div className="border border-black/10 bg-white relative">
+                            <div className="t-meta text-[#5a1f2e] flex items-center justify-between px-6 md:px-10 py-4 border-b border-black/10">
+                                <span>{data.sectionRef}</span>
+                                <span className="t-data text-xs text-black/45" aria-hidden="true" dir="ltr">{t.id}</span>
+                            </div>
 
-                                <footer className="flex items-center gap-4 pt-6 border-t border-black/10">
-                                    <span className="t-data text-xs text-[#5a1f2e]" aria-hidden="true">
-                                        {t.id}
+                            <AnimatePresence mode="wait">
+                                <motion.blockquote
+                                    key={current}
+                                    initial={{ opacity: 0, y: 14 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                    className="px-6 md:px-10 py-8 md:py-10 space-y-8 relative"
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        className="absolute top-2 md:top-4 start-4 md:start-6 t-data text-6xl md:text-7xl text-[#5a1f2e]/15 leading-none select-none"
+                                    >
+                                        &ldquo;
                                     </span>
-                                    <div>
-                                        <h3 className="text-base font-bold text-[#0b0b10]">
-                                            {t.author}
-                                        </h3>
-                                        <p className="t-meta text-black/50 mt-1">
-                                            {t.position}
-                                        </p>
-                                    </div>
-                                </footer>
-                            </motion.blockquote>
-                        </AnimatePresence>
+
+                                    <p className="text-2xl md:text-3xl font-medium text-[#0b0b10] leading-snug tracking-tight relative">
+                                        {t.quote}
+                                    </p>
+
+                                    <footer className="flex items-center gap-4 pt-6 border-t border-black/10 relative">
+                                        {/[\u0600-\u06FF]/.test(t.author) ? (
+                                            <span className="w-10 h-10 bg-[#5a1f2e] text-[#f2a007] flex items-center justify-center shrink-0" aria-hidden="true">
+                                                <Quote size={16} strokeWidth={1.5} />
+                                            </span>
+                                        ) : (
+                                            <span className="w-10 h-10 bg-[#5a1f2e] text-[#f2a007] flex items-center justify-center t-data text-xs shrink-0" aria-hidden="true">
+                                                {t.author.split(" ").map((w) => w[0]).slice(0, 2).join("")}
+                                            </span>
+                                        )}
+                                        <div>
+                                            <h3 className="text-base font-bold text-[#0b0b10]">
+                                                {t.author}
+                                            </h3>
+                                            <p className="t-meta text-black/50 mt-1">
+                                                {t.position}
+                                            </p>
+                                        </div>
+                                    </footer>
+                                </motion.blockquote>
+                            </AnimatePresence>
+                        </div>
                     </div>
 
                     <div className="lg:col-span-3 flex lg:flex-col items-center lg:items-end justify-between gap-6">
@@ -140,8 +160,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                                         pauseAndResume();
                                     }}
                                     aria-label={`Testimonial ${i + 1}`}
-                                    aria-selected={i === current}
-                                    role="tab"
+                                    aria-current={i === current}
                                     className="py-2.5"
                                 >
                                     <span className={`block h-1 transition-[color,background-color,border-color,transform] duration-300 ${i === current ? "w-10 bg-[#5a1f2e]" : "w-5 bg-black/20 hover:bg-black/40"}`} />

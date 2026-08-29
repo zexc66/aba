@@ -183,19 +183,28 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                         }}
                     >
                         <g className="pointer-events-none">
-                            {arcs.map(arc => {
+                            {arcs.map((arc, i) => {
                                 if (!arc) return null;
                                 const isHighlighted = currentIso === arc.fromIso || currentIso === arc.toIso;
 
                                 return (
                                     <g key={arc.id}>
-                                        <path
+                                        {/* Authored entrance: corridors draw themselves in,
+                                            staggered along the route chain. Solid strokes so
+                                            pathLength animates cleanly. */}
+                                        <motion.path
                                             d={arc.path}
                                             fill="none"
                                             stroke="#5a1f2e"
                                             strokeWidth={isHighlighted ? "1.5" : "0.8"}
-                                            strokeDasharray={isHighlighted ? "none" : "2 2"}
+                                            strokeLinecap="round"
                                             opacity={isHighlighted ? 0.95 : 0.3}
+                                            initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+                                            animate={{ pathLength: 1, opacity: isHighlighted ? 0.95 : 0.3 }}
+                                            transition={{
+                                                pathLength: { duration: 0.9, delay: 0.4 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+                                                opacity: { duration: 0.3, delay: 0.4 + i * 0.12 },
+                                            }}
                                         />
                                         {isHighlighted && !reduceMotion && (
                                             <circle r="2.2" fill="#f2a007">
