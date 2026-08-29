@@ -63,7 +63,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
 
                 <SectionHeader
                     index="07"
-                    title={`${data.title.main} ${data.title.highlighted}`}
+                    title={`${data.title.main} ${data.title.highlighted} ${data.title.partner}`}
                     note={data.subtitle}
                     meta={hud.voice}
                 />
