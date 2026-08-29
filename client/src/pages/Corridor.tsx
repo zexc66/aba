@@ -7,7 +7,7 @@ import Footer from "@/components/home/Footer";
 import { Section } from "@/components/ui/section";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { COUNTRIES, type CountryNode } from "@/components/home/NodalMap";
+import { COUNTRIES, type CountryNode } from "@/countries";
 import { PROGRAM_META } from "@/intelligence";
 
 const EN_LIST_INDEX: Record<string, number> = {};

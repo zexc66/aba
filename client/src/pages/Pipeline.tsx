@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { COUNTRIES } from "@/components/home/NodalMap";
+import { COUNTRIES } from "@/countries";
 import { programStatusTone } from "@/lib/utils";
 import { PROGRAM_META, SECTORS, SDG_NAMES, stageIndex, type SectorKey } from "@/intelligence";
 

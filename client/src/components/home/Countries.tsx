@@ -3,7 +3,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { Link } from "wouter";
 import { memo } from "react";
 import { MapPin } from "lucide-react";
-import { COUNTRIES } from "./NodalMap";
+import { COUNTRIES } from "@/countries";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { COPY } from "@/data";
 

@@ -8,7 +8,7 @@ import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { COUNTRIES } from "@/components/home/NodalMap";
+import { COUNTRIES } from "@/countries";
 import { COPY } from "@/data";
 
 const EN_LIST = COPY.en.countries.list;
