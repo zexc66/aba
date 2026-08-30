@@ -102,7 +102,7 @@ const total = ROUTES.length * LOCALES.length;
 for (const locale of LOCALES) {
   for (const route of ROUTES) {
     try {
-      const { html } = await renderRoute(route, locale.code, locale.prefix);
+      const { html } = await renderRoute(route, locale.code);
       const { title, description } = routeMeta(route, locale.code);
       const publicPath = publicPathFor(route, locale.prefix);
       const url = `${SITE_URL}${publicPath === "/" ? "/" : publicPath}`;
