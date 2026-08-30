@@ -26,17 +26,33 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 const LANG_STORAGE_KEY = "aiabasd-lang";
 
+/** Locale implied by a /ar or /fr path prefix (prerendered locale URLs). */
+function pathLocale(): Locale | null {
+  try {
+    const m = window.location.pathname.match(/^\/(ar|fr)(?=\/|$)/);
+    return m ? (m[1] as Locale) : null;
+  } catch {
+    return null;
+  }
+}
+
 function initialLang(): Locale {
   try {
     const stored = localStorage.getItem(LANG_STORAGE_KEY);
     if (stored === "en" || stored === "ar" || stored === "fr") return stored;
   } catch {
   }
-  return "en";
+  return pathLocale() ?? "en";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Locale>(initialLang);
+export function LanguageProvider({
+  children,
+  initialLocale,
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [lang, setLangState] = useState<Locale>(initialLocale ?? initialLang);
   const [content, setContent] = useState<(typeof COPY)["en"]>(COPY["en"]);
   const [isFetchingCMS, setIsFetchingCMS] = useState(cms.configured);
 

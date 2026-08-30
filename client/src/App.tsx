@@ -1,6 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Router as WouterRouter } from "wouter";
 import { lazy, Suspense } from "react";
 import { MotionConfig } from "framer-motion";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -39,7 +39,7 @@ function SkipLink() {
   );
 }
 
-function Router() {
+function RouterSwitch() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Switch>
@@ -60,6 +60,27 @@ function Router() {
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
+    </Suspense>
+  );
+}
+
+/** Locale path prefix (/ar, /fr) for prerendered locale URLs — stripped from
+ *  client routing so /ar/pipeline matches the /pipeline route. */
+function pathPrefix(): string | undefined {
+  try {
+    const m = window.location.pathname.match(/^\/(ar|fr)(?=\/|$)/);
+    return m ? m[1] : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function Router() {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <WouterRouter base={pathPrefix()}>
+        <RouterSwitch />
+      </WouterRouter>
     </Suspense>
   );
 }

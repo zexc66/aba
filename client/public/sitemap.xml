@@ -1,168 +1,795 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aiabasd.org/</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/"/>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aiabasd.org/hama-project</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://aiabasd.org/ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/"/>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aiabasd.org/programs/hama-rehabilitation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/programs/al-arish-hub</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/programs/green-energy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/programs/digital-africa</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/programs/integrated-cities</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/programs/debris-recycling</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/programs/food-security</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/gallery</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/investor-portal</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/privacy</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/terms</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://aiabasd.org/fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/"/>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/pipeline</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/pipeline"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/pipeline</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/pipeline"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/pipeline</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/pipeline"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/visions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/visions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/visions"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/visions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/visions"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/visions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/visions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/visions"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/visions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/visions"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/visions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/visions"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/visions"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/visions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/visions"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/gallery</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/gallery"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/gallery"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/gallery"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/gallery"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/gallery</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/gallery"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/gallery"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/gallery"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/gallery"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/gallery</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/gallery"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/gallery"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/gallery"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/gallery"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/hama-project</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/hama-project"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/hama-project</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/hama-project"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/hama-project</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/hama-project"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/hama-project"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/hama-rehabilitation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/hama-rehabilitation"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/hama-rehabilitation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/hama-rehabilitation"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/hama-rehabilitation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/hama-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/hama-rehabilitation"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/al-arish-hub</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/al-arish-hub"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/al-arish-hub</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/al-arish-hub"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/al-arish-hub</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/al-arish-hub"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/al-arish-hub"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/green-energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/green-energy"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/green-energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/green-energy"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/green-energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/green-energy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/green-energy"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/digital-africa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/digital-africa"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/digital-africa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/digital-africa"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/digital-africa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/digital-africa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/digital-africa"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/integrated-cities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/integrated-cities"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/integrated-cities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/integrated-cities"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/integrated-cities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/integrated-cities"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/integrated-cities"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/debris-recycling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/debris-recycling"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/debris-recycling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/debris-recycling"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/debris-recycling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/debris-recycling"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/programs/food-security</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/food-security"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/programs/food-security</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/food-security"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/programs/food-security</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/programs/food-security"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/programs/food-security"/>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/gm</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/gm"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/gm</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/gm"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/gm</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/gm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/gm"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/sl</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sl"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/sl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sl"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/sl</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sl"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sl"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/ci</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/ci"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/ci</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/ci"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/ci</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/ci"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/ci"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/bf</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/bf"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/bf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/bf"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/bf</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/bf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/bf"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/gh</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/gh"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/gh</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/gh"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/gh</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/gh"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/gh"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/ao</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/ao"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/ao</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/ao"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/ao</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/ao"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/ao"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/sd</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sd"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/sd</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sd"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/sd</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sd"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sd"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/eg</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/eg"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/eg</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/eg"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/eg</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/eg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/eg"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/jo</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/jo"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/jo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/jo"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/jo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/jo"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/jo"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/sy</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sy"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/sy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sy"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/sy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sy"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/corridors/sa</loc>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sa"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/corridors/sa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sa"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/corridors/sa</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/corridors/sa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/corridors/sa"/>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/team/mohammed-abdel-moneim</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/mohammed-abdel-moneim"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/team/mohammed-abdel-moneim</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/mohammed-abdel-moneim"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/team/mohammed-abdel-moneim</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/mohammed-abdel-moneim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/mohammed-abdel-moneim"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/team/faris-safi</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/faris-safi"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/team/faris-safi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/faris-safi"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/team/faris-safi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/faris-safi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/faris-safi"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/team/ziad-shneikat</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/ziad-shneikat"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/team/ziad-shneikat</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/ziad-shneikat"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/team/ziad-shneikat</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/team/ziad-shneikat"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/team/ziad-shneikat"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/governance/esia-esms</loc>
-    <changefreq>yearly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/esia-esms"/>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/governance/esia-esms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/esia-esms"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/governance/esia-esms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/esia-esms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/esia-esms"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/governance/kyc-aml</loc>
-    <changefreq>yearly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/kyc-aml"/>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/governance/kyc-aml</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/kyc-aml"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/governance/kyc-aml</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/kyc-aml"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/kyc-aml"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/governance/independent-oversight</loc>
-    <changefreq>yearly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/independent-oversight"/>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/governance/independent-oversight</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/independent-oversight"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/governance/independent-oversight</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/independent-oversight"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/independent-oversight"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/governance/contracts</loc>
-    <changefreq>yearly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/contracts"/>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://aiabasd.org/visions</loc>
-    <changefreq>quarterly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://aiabasd.org/ar/governance/contracts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/contracts"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/governance/contracts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/governance/contracts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/governance/contracts"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/privacy"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/privacy"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/privacy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/privacy"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/terms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/terms"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/terms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/terms"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/terms</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/terms"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/terms"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/investor-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/investor-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/investor-portal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/investor-portal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
+    <priority>0.5</priority>
   </url>
 </urlset>

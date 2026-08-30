@@ -32,7 +32,14 @@ export default function SEO({
     url,
     lang = "en"
 }: SEOProps) {
-    const fullUrl = url ? `${SITE_URL}${url}` : SITE_URL;
+    // Locale path prefix (/ar, /fr) for prerendered locale URLs
+    let prefix = "";
+    try {
+        const m = window.location.pathname.match(/^\/(ar|fr)(?=\/|$)/);
+        if (m) prefix = `/${m[1]}`;
+    } catch {
+    }
+    const fullUrl = url ? `${SITE_URL}${prefix}${url}` : `${SITE_URL}${prefix}/`;
     const fullImage = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
     return (
