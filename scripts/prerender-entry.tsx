@@ -16,6 +16,8 @@ import Home from "../client/src/pages/Home";
 import Pipeline from "../client/src/pages/Pipeline";
 import Projects from "../client/src/pages/Projects";
 import ProjectDetail from "../client/src/pages/ProjectDetail";
+import SectorPage from "../client/src/pages/SectorPage";
+import Impact from "../client/src/pages/Impact";
 import Gallery from "../client/src/pages/Gallery";
 import HamaProject from "../client/src/pages/HamaProject";
 import Visions from "../client/src/pages/Visions";
@@ -27,7 +29,7 @@ import Corridor from "../client/src/pages/Corridor";
 import TeamMember from "../client/src/pages/TeamMember";
 import GovernanceArticle from "../client/src/pages/GovernanceArticle";
 import { COPY } from "../client/src/data";
-import { PROJECTS, PROJECTS_UI, projectBySlug } from "../client/src/projects";
+import { PROJECTS, PROJECTS_UI, SECTORS, projectBySlug } from "../client/src/projects";
 
 export const SITE_URL = "https://aiabasd.org";
 export type PrerenderLocale = "en" | "ar" | "fr";
@@ -52,6 +54,18 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
     if (!seg[1]) return { title: ui.pageTitle, description: ui.headerNote };
     const p = projectBySlug(seg[1]);
     if (p) return { title: `${p.title[locale]} | AIABASD`, description: p.description[locale] };
+  }
+  if (seg[0] === "sectors" && seg[1]) {
+    const sectorName = SECTORS[seg[1] as keyof typeof SECTORS];
+    if (sectorName) return { title: `${sectorName[locale]} | AIABASD`, description: PROJECTS_UI[locale].headerNote };
+  }
+  if (seg[0] === "impact") {
+    const ui = {
+      en: { title: "Measurement Framework", desc: "Published indicators reference the indicative scope of portfolio projects. Measured output is added only after independent verification." },
+      ar: { title: "إطار القياس", desc: "تشير المؤشرات المنشورة إلى النطاق الاسترشادي لمشاريع المحفظة. وتُضاف المخرجات المقاسة فقط بعد التحقق المستقل." },
+      fr: { title: "Cadre de mesure", desc: "Les indicateurs publiés renvoient au périmètre indicatif des projets du portefeuille. Les résultats mesurés sont ajoutés uniquement après vérification indépendante." },
+    };
+    return { title: `${ui[locale].title} | AIABASD`, description: ui[locale].desc };
   }
   if (seg[0] === "corridors" && seg[1]) {
     return { title: `${t.countries.title} | AIABASD`, description: t.countries.note };
@@ -123,6 +137,8 @@ export function renderRoute(
                                 createElement(Route, { path: "/programs/:slug", component: ProgramDetail }),
                                 createElement(Route, { path: "/projects", component: Projects }),
                                 createElement(Route, { path: "/projects/:slug", component: ProjectDetail }),
+                                createElement(Route, { path: "/sectors/:sector", component: SectorPage }),
+                                createElement(Route, { path: "/impact", component: Impact }),
                                 createElement(Route, { path: "/corridors/:iso", component: Corridor }),
                                 createElement(Route, { path: "/team/:slug", component: TeamMember }),
                                 createElement(Route, { path: "/governance/:slug", component: GovernanceArticle }),

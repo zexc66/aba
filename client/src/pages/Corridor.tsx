@@ -7,6 +7,8 @@ import Footer from "@/components/home/Footer";
 import { Section } from "@/components/ui/section";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { PROJECTS, PROJECTS_UI, type CountryKey, type Locale3 } from "@/projects";
 import { COUNTRIES, type CountryNode } from "@/countries";
 import { PROGRAM_META } from "@/intelligence";
 
@@ -47,6 +49,11 @@ export default function Corridor() {
     return meta && meta.corridors !== "regional" && meta.corridors.includes(node.iso);
   });
   const regional = content.programs.list.filter((p) => PROGRAM_META[p.slug]?.corridors === "regional");
+
+  const locale3 = lang as Locale3;
+  const projectUI = PROJECTS_UI[locale3];
+  const countryKey = node.iso as CountryKey;
+  const countryProjects = PROJECTS.filter((p) => p.country === countryKey);
 
   return (
     <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}>
@@ -105,6 +112,26 @@ export default function Corridor() {
 
         <Section className="py-16">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 space-y-16">
+            {countryProjects.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between gap-4 mb-8">
+                  <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 flex-1">
+                    {projectUI.headerTitle}
+                  </h2>
+                  <Link href="/projects">
+                    <a className="t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors whitespace-nowrap">
+                      {projectUI.viewAll}
+                    </a>
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {countryProjects.map((p, i) => (
+                    <ProjectCard key={p.slug} project={p} locale={locale3} index={i} />
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div>
               <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-0">{t.programsTitle}</h2>
               <ul className="divide-y divide-black/10 border-b border-black/10">

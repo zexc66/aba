@@ -81,6 +81,19 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
         lang={lang}
         url={`/projects/${slug}`}
       />
+      {project && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: t.homeCrumb, item: "https://aiabasd.org/" },
+              { "@type": "ListItem", position: 2, name: t.backLabel, item: "https://aiabasd.org/projects" },
+              { "@type": "ListItem", position: 3, name: project.title.en, item: `https://aiabasd.org/projects/${project.slug}` },
+            ],
+          })}
+        </script>
+      )}
       <Header nav={content.nav} />
 
       <main id="main-content" className="pt-24">

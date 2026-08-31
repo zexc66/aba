@@ -793,6 +793,222 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://aiabasd.org/impact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/impact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/impact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/impact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/impact"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/impact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/impact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/impact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/impact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/impact"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/impact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/impact"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/impact"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/impact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/impact"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/housing"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/housing"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/energy"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/energy"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/energy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/energy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/energy"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/infrastructure"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/infrastructure"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/infrastructure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/infrastructure"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/infrastructure"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/circular</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/circular"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/circular</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/circular"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/circular</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/circular"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/circular"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/industry</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/industry"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/industry</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/industry"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/industry</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/industry"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/industry"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/agriculture</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/agriculture"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/agriculture</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/agriculture"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/agriculture</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/agriculture"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/agriculture"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/social</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/social"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/social</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/social"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/social</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/social"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/social"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/sectors/multi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/multi"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/sectors/multi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/multi"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/sectors/multi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/sectors/multi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/sectors/multi"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://aiabasd.org/projects</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects"/>

@@ -98,9 +98,11 @@ export function ProjectCard({
             <span className="t-meta text-[#5a1f2e] text-[10px]">
               {COUNTRIES[project.country][locale]}
             </span>
-            <span className="t-meta text-black/40 text-[10px]">
-              {SECTORS[project.sector][locale]}
-            </span>
+            <Link href={`/sectors/${project.sector}`}>
+              <a className="t-meta text-black/40 text-[10px] hover:text-[#5a1f2e] transition-colors text-start">
+                {SECTORS[project.sector][locale]}
+              </a>
+            </Link>
           </div>
         </div>
         <StatusBadge status={project.status} locale={locale} />
