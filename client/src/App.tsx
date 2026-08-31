@@ -22,6 +22,8 @@ const GovernanceArticle = lazy(() => import("./pages/GovernanceArticle"));
 const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
 const Vault = lazy(() => import("./pages/Vault"));
 const Admin = lazy(() => import("./pages/Admin"));
+const Projects = lazy(() => import("./pages/Projects"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Visions = lazy(() => import("./pages/Visions"));
@@ -47,6 +49,8 @@ function RouterSwitch() {
         <Route path={"/gallery"} component={Gallery} />
         <Route path={"/hama-project"} component={HamaProject} />
         <Route path={"/programs/:slug"} component={ProgramDetail} />
+        <Route path={"/projects"} component={Projects} />
+        <Route path={"/projects/:slug"} component={ProjectDetail} />
         <Route path={"/pipeline"} component={Pipeline} />
         <Route path={"/corridors/:iso"} component={Corridor} />
         <Route path={"/team/:slug"} component={TeamMember} />

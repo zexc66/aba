@@ -4,6 +4,7 @@ import Header from "@/components/home/Header";
 import Hero from "@/components/home/Hero";
 import About from "@/components/home/About";
 import Programs from "@/components/home/Programs";
+import FeaturedProjects from "@/components/home/FeaturedProjects";
 import Countries from "@/components/home/Countries";
 import Governance from "@/components/home/Governance";
 import Team from "@/components/home/Team";
@@ -32,6 +33,7 @@ export default function Home() {
           <Hero data={t.hero} />
           <About data={t.about} />
           <Programs data={t.programs} />
+          <FeaturedProjects />
           <Countries data={t.countries} />
           <Governance data={t.governance} hud={t.hud} />
           <Team data={t.team} hud={t.hud} />

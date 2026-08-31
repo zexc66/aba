@@ -792,4 +792,436 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
     <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://aiabasd.org/projects</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/sudan-productive-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/sudan-productive-housing"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/sudan-productive-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/sudan-productive-housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/sudan-productive-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/sudan-productive-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/sudan-productive-housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/sudan-reconstruction-vision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/sudan-reconstruction-vision"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/sudan-reconstruction-vision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/sudan-reconstruction-vision"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/sudan-reconstruction-vision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/sudan-reconstruction-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/sudan-reconstruction-vision"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/hama-solar-200mw</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-solar-200mw"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/hama-solar-200mw</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-solar-200mw"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/hama-solar-200mw</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-solar-200mw"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-solar-200mw"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/hama-debris-recycling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-debris-recycling"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/hama-debris-recycling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-debris-recycling"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/hama-debris-recycling</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-debris-recycling"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-debris-recycling"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/smart-meters-syria</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/smart-meters-syria"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/smart-meters-syria</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/smart-meters-syria"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/smart-meters-syria</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/smart-meters-syria"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/smart-meters-syria"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/dummar-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/dummar-housing"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/dummar-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/dummar-housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/dummar-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/dummar-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/dummar-housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/hama-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-housing"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/hama-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/hama-housing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-housing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-housing"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/schools-health-rehabilitation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/schools-health-rehabilitation"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/schools-health-rehabilitation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/schools-health-rehabilitation"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/schools-health-rehabilitation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/schools-health-rehabilitation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/schools-health-rehabilitation"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/hasiya-industrial-zone</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hasiya-industrial-zone"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/hasiya-industrial-zone</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hasiya-industrial-zone"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/hasiya-industrial-zone</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hasiya-industrial-zone"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hasiya-industrial-zone"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/hama-agriculture-water</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-agriculture-water"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/hama-agriculture-water</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-agriculture-water"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/hama-agriculture-water</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/hama-agriculture-water"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/hama-agriculture-water"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/cci-investment-portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/cci-investment-portfolio"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/cci-investment-portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/cci-investment-portfolio"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/cci-investment-portfolio</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/cci-investment-portfolio"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/cci-investment-portfolio"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/ghana-cooperation-program</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/ghana-cooperation-program"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/ghana-cooperation-program</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/ghana-cooperation-program"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/ghana-cooperation-program</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/ghana-cooperation-program"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/ghana-cooperation-program"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/angola-vision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/angola-vision"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/angola-vision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/angola-vision"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/angola-vision</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/angola-vision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/angola-vision"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/china-arab-africa-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/china-arab-africa-platform"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/china-arab-africa-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/china-arab-africa-platform"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/china-arab-africa-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/china-arab-africa-platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/china-arab-africa-platform"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/china-saudi-africa-gateway</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/china-saudi-africa-gateway"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/china-saudi-africa-gateway</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/china-saudi-africa-gateway"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/china-saudi-africa-gateway</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/china-saudi-africa-gateway"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/china-saudi-africa-gateway"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/cross-border-trade-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/cross-border-trade-platform"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/cross-border-trade-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/cross-border-trade-platform"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/cross-border-trade-platform</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/cross-border-trade-platform"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/cross-border-trade-platform"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/projects/advanced-technology-cooperation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/advanced-technology-cooperation"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/projects/advanced-technology-cooperation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/advanced-technology-cooperation"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/projects/advanced-technology-cooperation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects/advanced-technology-cooperation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects/advanced-technology-cooperation"/>
+    <priority>0.6</priority>
+  </url>
 </urlset>

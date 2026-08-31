@@ -14,6 +14,8 @@ import { LanguageProvider } from "../client/src/contexts/LanguageContext";
 import GlobalLayout from "../client/src/components/layout/GlobalLayout";
 import Home from "../client/src/pages/Home";
 import Pipeline from "../client/src/pages/Pipeline";
+import Projects from "../client/src/pages/Projects";
+import ProjectDetail from "../client/src/pages/ProjectDetail";
 import Gallery from "../client/src/pages/Gallery";
 import HamaProject from "../client/src/pages/HamaProject";
 import Visions from "../client/src/pages/Visions";
@@ -25,6 +27,7 @@ import Corridor from "../client/src/pages/Corridor";
 import TeamMember from "../client/src/pages/TeamMember";
 import GovernanceArticle from "../client/src/pages/GovernanceArticle";
 import { COPY } from "../client/src/data";
+import { PROJECTS, PROJECTS_UI, projectBySlug } from "../client/src/projects";
 
 export const SITE_URL = "https://aiabasd.org";
 export type PrerenderLocale = "en" | "ar" | "fr";
@@ -43,6 +46,12 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
   if (seg[0] === "programs" && seg[1]) {
     const p = t.programs.list.find((x) => x.slug === seg[1]);
     if (p) return { title: `${p.name} | AIABASD`, description: p.desc };
+  }
+  if (seg[0] === "projects") {
+    const ui = PROJECTS_UI[locale];
+    if (!seg[1]) return { title: ui.pageTitle, description: ui.headerNote };
+    const p = projectBySlug(seg[1]);
+    if (p) return { title: `${p.title[locale]} | AIABASD`, description: p.description[locale] };
   }
   if (seg[0] === "corridors" && seg[1]) {
     return { title: `${t.countries.title} | AIABASD`, description: t.countries.note };
@@ -112,6 +121,8 @@ export function renderRoute(
                                 null,
                                 createElement(Route, { path: "/", component: Home }),
                                 createElement(Route, { path: "/programs/:slug", component: ProgramDetail }),
+                                createElement(Route, { path: "/projects", component: Projects }),
+                                createElement(Route, { path: "/projects/:slug", component: ProjectDetail }),
                                 createElement(Route, { path: "/corridors/:iso", component: Corridor }),
                                 createElement(Route, { path: "/team/:slug", component: TeamMember }),
                                 createElement(Route, { path: "/governance/:slug", component: GovernanceArticle }),
