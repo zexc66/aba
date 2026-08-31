@@ -47,6 +47,8 @@ export interface Project {
   sector: SectorKey;
   country: CountryKey;
   featured?: boolean;
+  /** Date the owner last reviewed this project's published copy (ISO). */
+  lastReviewed?: string;
   title: L;
   location?: L;
   scale?: L;
@@ -55,6 +57,13 @@ export interface Project {
   objectives: L[];
   partnership: L[];
 }
+
+/** Fallback review date for entries without an individual one. Updated when
+ *  the owner re-certifies the published content. */
+export const DEFAULT_LAST_REVIEWED = "2026-08-29";
+
+export const projectLastReviewed = (p: Project): string =>
+  p.lastReviewed ?? DEFAULT_LAST_REVIEWED;
 
 /* ── Localized vocabularies ─────────────────────────────────────────────── */
 
@@ -134,6 +143,8 @@ export const PROJECTS_UI: Record<Locale3, {
   emptyLabel: string;
     relatedLabel: string;
     homeCrumb: string;
+    downloadBrief: string;
+    lastReviewedLabel: string;
 }> = {
   en: {
     pageTitle: "Strategic Projects & Investment Opportunities | AIABASD",
@@ -144,6 +155,8 @@ export const PROJECTS_UI: Record<Locale3, {
     featuredNote: "Flagship opportunities across the Alliance's active cooperation portfolio.",
     viewAll: "View All Projects",
     explore: "Explore Project",
+    downloadBrief: "Download Brief (PDF)",
+    lastReviewedLabel: "Content last reviewed",
     discuss: "Discuss This Opportunity",
     backLabel: "All Projects",
     filterCountry: "Country / Region",
@@ -192,6 +205,8 @@ export const PROJECTS_UI: Record<Locale3, {
     featuredNote: "فرص رائدة من محفظة التعاون النشطة للتحالف.",
     viewAll: "عرض جميع المشاريع",
     explore: "استكشاف المشروع",
+    downloadBrief: "تحميل الملف التعريفي (PDF)",
+    lastReviewedLabel: "آخر مراجعة للمحتوى",
     discuss: "ناقش هذه الفرصة",
     backLabel: "جميع المشاريع",
     filterCountry: "الدولة / الإقليم",
@@ -240,6 +255,8 @@ export const PROJECTS_UI: Record<Locale3, {
     featuredNote: "Opportunités phares du portefeuille de coopération actif de l'Alliance.",
     viewAll: "Voir tous les projets",
     explore: "Explorer le projet",
+    downloadBrief: "Télécharger la fiche (PDF)",
+    lastReviewedLabel: "Contenu revu le",
     discuss: "Discuter de cette opportunité",
     backLabel: "Tous les projets",
     filterCountry: "Pays / Région",

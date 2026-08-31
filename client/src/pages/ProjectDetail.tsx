@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ShieldAlert, CheckCircle2, Handshake, ChevronRight } from "lucide-react";
+import { ArrowLeft, ShieldAlert, CheckCircle2, Handshake, ChevronRight, Download } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
@@ -8,6 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Section } from "@/components/ui/section";
 import { ProjectCard, StatusBadge } from "@/components/projects/ProjectCard";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { COPY } from "@/data";
 import {
   COUNTRIES,
   SECTORS,
@@ -16,6 +17,7 @@ import {
   PROJECTS_UI,
   PROJECTS,
   projectBySlug,
+  projectLastReviewed,
   type Locale3,
 } from "@/projects";
 
@@ -47,6 +49,25 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
   const contactHref = project
     ? `/?project=${project.slug}#contact`
     : "/#contact";
+
+  const facts: { label: string; value: string }[] = project
+    ? [
+        { label: t.countryLabel, value: COUNTRIES[project.country][locale] },
+        ...(project.location ? [{ label: t.locationLabel, value: project.location[locale] }] : []),
+        { label: t.sectorLabel, value: SECTORS[project.sector][locale] },
+        { label: t.statusLabel, value: STATUSES[project.status][locale] },
+        { label: t.typeLabel, value: TYPES[project.type][locale] },
+        ...(project.scale ? [{ label: t.scaleLabel, value: project.scale[locale] }] : []),
+        ...(project.model ? [{ label: t.modelLabel, value: project.model[locale] }] : []),
+      ]
+    : [];
+
+  const reviewedDate = project
+    ? new Date(projectLastReviewed(project)).toLocaleDateString(
+        locale === "ar" ? "ar" : locale === "fr" ? "fr-FR" : "en-GB",
+        { day: "numeric", month: "long", year: "numeric" }
+      )
+    : "";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,14 +148,7 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
             {/* Fact strip */}
             <div className="border-b border-black/10 bg-[#fdfcfb]">
               <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-black/10 border-x border-black/10">
-                {[
-                  { label: t.countryLabel, value: COUNTRIES[project.country][locale] },
-                  ...(project.location ? [{ label: t.locationLabel, value: project.location[locale] }] : []),
-                  { label: t.sectorLabel, value: SECTORS[project.sector][locale] },
-                  { label: t.statusLabel, value: STATUSES[project.status][locale] },
-                  { label: t.typeLabel, value: TYPES[project.type][locale] },
-                  ...(project.scale ? [{ label: t.scaleLabel, value: project.scale[locale] }] : []),
-                ].map((item) => (
+                {facts.map((item) => (
                   <div key={item.label} className="bg-[#fdfcfb] px-4 py-5">
                     <div className="t-meta text-black/50 text-[10px] mb-1.5">{item.label}</div>
                     <div className="text-sm font-semibold text-[#0b0b10] leading-snug">{item.value}</div>
@@ -197,13 +211,26 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
                     <p className="text-sm text-white/65 leading-relaxed mb-6">
                       {STATUSES[project.status][locale]}
                     </p>
-                    <a
-                      href={contactHref}
-                      className="w-full inline-flex items-center justify-center gap-2 bg-[#f2a007] hover:bg-white text-[#0b0b10] font-semibold text-xs uppercase tracking-wider px-6 py-3.5 transition-colors"
-                    >
-                      {t.discuss}
-                    </a>
+                    <div className="space-y-3">
+                      <button
+                        type="button"
+                        onClick={() => window.print()}
+                        className="w-full inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white text-white font-semibold text-xs uppercase tracking-wider px-6 py-3.5 transition-colors cursor-pointer print:hidden"
+                      >
+                        <Download size={14} aria-hidden="true" />
+                        {t.downloadBrief}
+                      </button>
+                      <a
+                        href={contactHref}
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#f2a007] hover:bg-white text-[#0b0b10] font-semibold text-xs uppercase tracking-wider px-6 py-3.5 transition-colors"
+                      >
+                        {t.discuss}
+                      </a>
+                    </div>
                     <p className="text-xs text-white/45 leading-relaxed mt-5">
+                      {t.lastReviewedLabel}: {reviewedDate}
+                    </p>
+                    <p className="text-xs text-white/45 leading-relaxed mt-2">
                       {t.detailNote}
                     </p>
                   </div>
@@ -236,6 +263,51 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
           </>
         )}
       </main>
+
+      {/* Print one-pager: visible only in print/PDF output */}
+      {project && (
+        <div className="print-brief hidden" aria-hidden="true">
+          <header className="brief-header">
+            <img src="/logo.png" alt="AIABASD" className="brief-logo" />
+            <div>
+              <div className="brief-org">AIABASD</div>
+              <div className="brief-org-full">{COPY.en.metaTitle.replace("AIABASD - ", "")}</div>
+            </div>
+            <div className="brief-ref">OPPORTUNITY_BRIEF</div>
+          </header>
+          <h1 className="brief-title">{project.title[locale]}</h1>
+          <table className="brief-facts">
+            <tbody>
+              {facts.map((f) => (
+                <tr key={f.label}>
+                  <th>{f.label}</th>
+                  <td>{f.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="brief-desc">{project.description[locale]}</p>
+          <h2 className="brief-h2">{t.objectivesLabel}</h2>
+          <ul className="brief-list">
+            {project.objectives.map((o, i) => (
+              <li key={i}>{o[locale]}</li>
+            ))}
+          </ul>
+          <h2 className="brief-h2">{t.partnershipLabel}</h2>
+          <ul className="brief-list">
+            {project.partnership.map((o, i) => (
+              <li key={i}>{o[locale]}</li>
+            ))}
+          </ul>
+          <div className="brief-disclaimer">{t.disclaimer}</div>
+          <footer className="brief-footer">
+            <span>aiabasd.org · contact@aiabasd.org</span>
+            <span>
+              {t.lastReviewedLabel}: {reviewedDate}
+            </span>
+          </footer>
+        </div>
+      )}
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />
