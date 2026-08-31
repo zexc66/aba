@@ -1,7 +1,8 @@
-import { useState, memo } from "react";
+import { useState, memo, useEffect } from "react";
 import { Mail, MapPin, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { PROJECTS_UI, STATUSES, projectBySlug } from "@/projects";
 
 // Booking link renders only when configured — honest absence otherwise.
 const BOOKING_URL = (import.meta.env.VITE_BOOKING_URL as string | undefined)?.trim() || "";
@@ -91,6 +92,27 @@ function ContactComponent({ data, lang }: ContactProps) {
     };
 
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Deep-link from a project detail page: ?project=slug preselects the
+    // audience, prefills the message with the project reference, and brings
+    // the form into view.
+    useEffect(() => {
+      try {
+        const slug = new URLSearchParams(window.location.search).get("project");
+        if (!slug) return;
+        const project = projectBySlug(slug);
+        if (!project) return;
+        const locale3 = (lang === "ar" || lang === "fr" ? lang : "en") as "en" | "ar" | "fr";
+        setAudience(project.type === "opportunity" ? 1 : 2);
+        setForm((prev) => ({
+          ...prev,
+          msg: `Regarding: ${project.title[locale3]} (${STATUSES[project.status][locale3]}).\n\n`,
+        }));
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch {
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

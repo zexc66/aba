@@ -1,5 +1,16 @@
 import { Link } from "wouter";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  Factory,
+  Globe2,
+  HeartPulse,
+  Recycle,
+  Sun,
+  Tractor,
+  Network,
+  type LucideIcon,
+} from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   COUNTRIES,
@@ -10,7 +21,20 @@ import {
   type Locale3,
   type Project,
   type ProjectStatus,
+  type SectorKey,
 } from "@/projects";
+
+/** Per-sector geometric anchors (no stock imagery). */
+export const SECTOR_ICONS: Record<SectorKey, LucideIcon> = {
+  housing: Building2,
+  energy: Sun,
+  infrastructure: Network,
+  circular: Recycle,
+  industry: Factory,
+  agriculture: Tractor,
+  social: HeartPulse,
+  multi: Globe2,
+};
 
 /** Restrained status tones — subtle tints only, never promotional buttons. */
 const STATUS_TONE: Record<ProjectStatus, string> = {
@@ -60,13 +84,24 @@ export function ProjectCard({
       />
 
       <div className="flex items-start justify-between gap-3 mb-5">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 min-w-0">
-          <span className="t-meta text-[#5a1f2e] text-[10px]">
-            {COUNTRIES[project.country][locale]}
-          </span>
-          <span className="t-meta text-black/40 text-[10px]">
-            {SECTORS[project.sector][locale]}
-          </span>
+        <div className="flex items-center gap-3 min-w-0">
+          <div
+            className="w-11 h-11 shrink-0 bg-[#5a1f2e]/[0.06] border border-[#5a1f2e]/15 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-colors duration-300"
+            aria-hidden="true"
+          >
+            {(() => {
+              const Icon = SECTOR_ICONS[project.sector];
+              return <Icon size={20} strokeWidth={1.5} />;
+            })()}
+          </div>
+          <div className="flex flex-col gap-1 min-w-0">
+            <span className="t-meta text-[#5a1f2e] text-[10px]">
+              {COUNTRIES[project.country][locale]}
+            </span>
+            <span className="t-meta text-black/40 text-[10px]">
+              {SECTORS[project.sector][locale]}
+            </span>
+          </div>
         </div>
         <StatusBadge status={project.status} locale={locale} />
       </div>

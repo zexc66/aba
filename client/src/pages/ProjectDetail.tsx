@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ShieldAlert, CheckCircle2, Handshake } from "lucide-react";
+import { ArrowLeft, ShieldAlert, CheckCircle2, Handshake, ChevronRight } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Section } from "@/components/ui/section";
-import { StatusBadge } from "@/components/projects/ProjectCard";
+import { ProjectCard, StatusBadge } from "@/components/projects/ProjectCard";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import {
   COUNTRIES,
@@ -14,6 +14,7 @@ import {
   STATUSES,
   TYPES,
   PROJECTS_UI,
+  PROJECTS,
   projectBySlug,
   type Locale3,
 } from "@/projects";
@@ -32,6 +33,21 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
 
   const project = projectBySlug(slug ?? "");
 
+  // Related: same sector first, then same country, excluding self — max 3
+  const related = useMemo(() => {
+    if (!project) return [];
+    const others = PROJECTS.filter((p) => p.slug !== project.slug);
+    const sameSector = others.filter((p) => p.sector === project.sector);
+    const sameCountry = others.filter(
+      (p) => p.country === project.country && p.sector !== project.sector
+    );
+    return [...sameSector, ...sameCountry].slice(0, 3);
+  }, [project]);
+
+  const contactHref = project
+    ? `/?project=${project.slug}#contact`
+    : "/#contact";
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -47,6 +63,29 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
       <Header nav={content.nav} />
 
       <main id="main-content" className="pt-24">
+        {project && (
+          <nav aria-label="Breadcrumb" className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 pt-6">
+            <ol className="t-meta text-[10px] text-black/45 flex items-center gap-1.5 flex-wrap">
+              <li>
+                <a href="/" className="hover:text-[#5a1f2e] transition-colors">{t.homeCrumb}</a>
+              </li>
+              <li aria-hidden="true">
+                <ChevronRight size={11} className="rtl:-scale-x-100" />
+              </li>
+              <li>
+                <Link href="/projects">
+                  <a className="hover:text-[#5a1f2e] transition-colors">{t.backLabel}</a>
+                </Link>
+              </li>
+              <li aria-hidden="true">
+                <ChevronRight size={11} className="rtl:-scale-x-100" />
+              </li>
+              <li aria-current="page" className="text-[#5a1f2e]">
+                {project.title[locale]}
+              </li>
+            </ol>
+          </nav>
+        )}
         {!project ? (
           <Section className="py-24">
             <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 text-center space-y-6">
@@ -159,7 +198,7 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
                       {STATUSES[project.status][locale]}
                     </p>
                     <a
-                      href="/#contact"
+                      href={contactHref}
                       className="w-full inline-flex items-center justify-center gap-2 bg-[#f2a007] hover:bg-white text-[#0b0b10] font-semibold text-xs uppercase tracking-wider px-6 py-3.5 transition-colors"
                     >
                       {t.discuss}
@@ -179,6 +218,21 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
                 </aside>
               </div>
             </Section>
+            {/* Related projects */}
+            {related.length > 0 && (
+              <Section className="py-14 border-t border-black/10">
+                <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
+                  <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-8">
+                    {t.relatedLabel}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {related.map((p, i) => (
+                      <ProjectCard key={p.slug} project={p} locale={locale} index={i} />
+                    ))}
+                  </div>
+                </div>
+              </Section>
+            )}
           </>
         )}
       </main>

@@ -132,6 +132,8 @@ export const PROJECTS_UI: Record<Locale3, {
   objectivesLabel: string;
   partnershipLabel: string;
   emptyLabel: string;
+    relatedLabel: string;
+    homeCrumb: string;
 }> = {
   en: {
     pageTitle: "Strategic Projects & Investment Opportunities | AIABASD",
@@ -178,6 +180,8 @@ export const PROJECTS_UI: Record<Locale3, {
     objectivesLabel: "Strategic Objectives",
     partnershipLabel: "Partnership Opportunities",
     emptyLabel: "No projects match the selected filters.",
+    relatedLabel: "Related Projects",
+    homeCrumb: "Home",
   },
   ar: {
     pageTitle: "المشاريع الاستراتيجية والفرص الاستثمارية | AIABASD",
@@ -224,6 +228,8 @@ export const PROJECTS_UI: Record<Locale3, {
     objectivesLabel: "الأهداف الاستراتيجية",
     partnershipLabel: "الفرص الشراكية",
     emptyLabel: "لا توجد مشاريع مطابقة للتصفية المحددة.",
+    relatedLabel: "مشاريع ذات صلة",
+    homeCrumb: "الرئيسية",
   },
   fr: {
     pageTitle: "Projets stratégiques & Opportunités d'investissement | AIABASD",
@@ -270,6 +276,8 @@ export const PROJECTS_UI: Record<Locale3, {
     objectivesLabel: "Objectifs stratégiques",
     partnershipLabel: "Opportunités de partenariat",
     emptyLabel: "Aucun projet ne correspond aux filtres sélectionnés.",
+    relatedLabel: "Projets associés",
+    homeCrumb: "Accueil",
   },
 };
 

@@ -7,6 +7,7 @@ import Footer from "@/components/home/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { Link } from "wouter";
 import { ProjectCard, StatusBadge } from "@/components/projects/ProjectCard";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import {
@@ -24,16 +25,50 @@ import {
   type SectorKey,
 } from "@/projects";
 
+type Filters = {
+  country: CountryKey | "all";
+  sector: SectorKey | "all";
+  type: ProjectType | "all";
+  status: ProjectStatus | "all";
+};
+
+const FILTER_KEYS: (keyof Filters)[] = ["country", "sector", "type", "status"];
+
+function filtersFromUrl(): Filters {
+  const initial: Filters = { country: "all", sector: "all", type: "all", status: "all" };
+  try {
+    const params = new URLSearchParams(window.location.search);
+    for (const key of FILTER_KEYS) {
+      const value = params.get(key);
+      if (value && value !== "all") (initial[key] as string) = value;
+    }
+  } catch {
+  }
+  return initial;
+}
+
 export default function Projects() {
   const { lang, content } = useLanguageContext();
   const locale = lang as Locale3;
   const t = PROJECTS_UI[locale];
   const reduceMotion = useReducedMotion();
 
-  const [country, setCountry] = useState<CountryKey | "all">("all");
-  const [sector, setSector] = useState<SectorKey | "all">("all");
-  const [type, setType] = useState<ProjectType | "all">("all");
-  const [status, setStatus] = useState<ProjectStatus | "all">("all");
+  const [filters, setFilters] = useState<Filters>(filtersFromUrl);
+  const { country, sector, type, status } = filters;
+  const setFilter = (key: keyof Filters, value: string) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+    try {
+      const next = { ...filters, [key]: value };
+      const params = new URLSearchParams();
+      for (const k of FILTER_KEYS) {
+        const v = next[k];
+        if (v !== "all") params.set(k, String(v));
+      }
+      const query = params.toString();
+      window.history.replaceState(null, "", query ? `?${query}` : window.location.pathname);
+    } catch {
+    }
+  };
 
   // Scroll to top on mount (SPA entry via direct link)
   useEffect(() => {
@@ -49,7 +84,6 @@ export default function Projects() {
         .filter((p) => (status === "all" ? true : p.status === status)),
     [country, sector, type, status]
   );
-
   const initiatives = useMemo(() => initiativeProjects(), []);
 
   const countriesWithProjects = useMemo(
@@ -95,7 +129,7 @@ export default function Projects() {
                 <span className="t-meta text-black/55 text-[10px]">{t.filterCountry}</span>
                 <select
                   value={country}
-                  onChange={(e) => setCountry(e.target.value as CountryKey | "all")}
+                  onChange={(e) => setFilter("country", e.target.value)}
                   className={selectClass}
                 >
                   <option value="all">{t.filterAll}</option>
@@ -108,7 +142,7 @@ export default function Projects() {
                 <span className="t-meta text-black/55 text-[10px]">{t.filterSector}</span>
                 <select
                   value={sector}
-                  onChange={(e) => setSector(e.target.value as SectorKey | "all")}
+                  onChange={(e) => setFilter("sector", e.target.value)}
                   className={selectClass}
                 >
                   <option value="all">{t.filterAll}</option>
@@ -121,7 +155,7 @@ export default function Projects() {
                 <span className="t-meta text-black/55 text-[10px]">{t.filterType}</span>
                 <select
                   value={type}
-                  onChange={(e) => setType(e.target.value as ProjectType | "all")}
+                  onChange={(e) => setFilter("type", e.target.value)}
                   className={selectClass}
                 >
                   <option value="all">{t.filterAll}</option>
@@ -134,7 +168,7 @@ export default function Projects() {
                 <span className="t-meta text-black/55 text-[10px]">{t.filterStatus}</span>
                 <select
                   value={status}
-                  onChange={(e) => setStatus(e.target.value as ProjectStatus | "all")}
+                  onChange={(e) => setFilter("status", e.target.value)}
                   className={selectClass}
                 >
                   <option value="all">{t.filterAll}</option>
@@ -143,6 +177,21 @@ export default function Projects() {
                   ))}
                 </select>
               </label>
+            </div>
+
+            {/* Status legend — doubles as a one-click filter */}
+            <div className="flex flex-wrap items-center gap-2 mt-4">
+              {statusesInUse.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  aria-pressed={status === s}
+                  onClick={() => setFilter("status", status === s ? "all" : s)}
+                  className={`cursor-pointer transition-opacity ${status === "all" || status === s ? "" : "opacity-40"}`}
+                >
+                  <StatusBadge status={s} locale={locale} />
+                </button>
+              ))}
             </div>
           </div>
         </Section>

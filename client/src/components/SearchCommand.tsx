@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
-import { Search, Home, Image, Mail, Globe, FileText, Users, Building2, Briefcase, X, Eye } from "lucide-react";
+import { Search, Home, Image, Mail, Globe, FileText, Users, Building2, Briefcase, X, Eye, FolderOpen } from "lucide-react";
 import { useLocation } from "wouter";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { PROJECTS, PROJECTS_UI, COUNTRIES, type Locale3 } from "@/projects";
 
 interface SearchCommandProps {
     open: boolean;
@@ -13,6 +15,9 @@ interface SearchCommandProps {
 export default function SearchCommand({ open, onOpenChange, toggleLang, currentLang }: SearchCommandProps) {
     const [, setLocation] = useLocation();
     const [search, setSearch] = useState("");
+    const { lang } = useLanguageContext();
+    const locale = lang as Locale3;
+    const projectUI = PROJECTS_UI[locale];
 
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
@@ -91,6 +96,10 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
                             <Globe className="h-4 w-4" />
                             <span>Program Intelligence</span>
                         </Command.Item>
+                        <Command.Item onSelect={() => handleNavigate("/projects")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
+                            <FolderOpen className="h-4 w-4" />
+                            <span>{projectUI.headerTitle}</span>
+                        </Command.Item>
                         <Command.Item onSelect={() => handleNavigate("/gallery")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
                             <Image className="h-4 w-4" />
                             <span>Gallery</span>
@@ -99,6 +108,26 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
                             <Mail className="h-4 w-4" />
                             <span>Contact</span>
                         </Command.Item>
+                    </Command.Group>
+
+                    <Command.Separator className="my-2 h-px bg-neutral-200" />
+
+                    <Command.Group heading={projectUI.headerTitle}>
+                        <div className="px-2 py-1.5 text-xs font-semibold text-neutral-500">{projectUI.headerTitle}</div>
+                        {PROJECTS.map((p) => (
+                            <Command.Item
+                                key={p.slug}
+                                value={`${p.title[locale]} ${COUNTRIES[p.country][locale]}`}
+                                onSelect={() => handleNavigate(`/projects/${p.slug}`)}
+                                className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100"
+                            >
+                                <FolderOpen className="h-4 w-4 shrink-0 text-[#5a1f2e]" />
+                                <span className="truncate">{p.title[locale]}</span>
+                                <span className="ml-auto t-meta text-[10px] text-neutral-400 shrink-0">
+                                    {COUNTRIES[p.country][locale]}
+                                </span>
+                            </Command.Item>
+                        ))}
                     </Command.Group>
 
                     <Command.Separator className="my-2 h-px bg-neutral-200" />
