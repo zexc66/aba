@@ -117,6 +117,9 @@ temp/
 data-room/*
 !data-room/README.md
 
+# Firecrawl research artifacts
+.firecrawl/
+
 # Env — Vite envDir is repo root
 .env.*
 !.env.example
