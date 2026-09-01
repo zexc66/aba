@@ -95,7 +95,10 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             <img
                                 src="/logo.png"
                                 alt="AIABASD"
-                                className="h-14 w-auto object-contain"
+                                width={56}
+                                height={56}
+                                loading="lazy"
+                                className="h-14 w-14 object-contain"
                             />
                             <div className="border-s border-white/15 ps-3.5 ms-0.5">
                                 <span className="font-extrabold text-xl text-white block leading-none">AIABASD</span>

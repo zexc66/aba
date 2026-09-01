@@ -193,9 +193,9 @@ export default function Chatbot() {
                                 >
                                     <div className="max-w-[80%] rounded-sm bg-black/5 px-4 py-2">
                                         <div className="flex items-center gap-1">
-                                            <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce" style={{ animationDelay: "0ms" }} />
-                                            <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce" style={{ animationDelay: "150ms" }} />
-                                            <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce" style={{ animationDelay: "300ms" }} />
+                                            <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce motion-reduce:animate-none" style={{ animationDelay: "0ms" }} />
+                                            <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce motion-reduce:animate-none" style={{ animationDelay: "150ms" }} />
+                                            <div className="h-2 w-2 rounded-full bg-black/30 animate-bounce motion-reduce:animate-none" style={{ animationDelay: "300ms" }} />
                                         </div>
                                     </div>
                                 </motion.div>
