@@ -17,7 +17,7 @@ const STATUS_PILL: Record<string, string> = {
     pipeline: "text-black/60 bg-black/5 border-black/10",
 };
 const STATUS_DOT: Record<string, string> = {
-    active: "bg-emerald-500 animate-pulse",
+    active: "bg-emerald-500 animate-pulse motion-reduce:animate-none",
     dev: "bg-amber-500",
     pipeline: "bg-black/40",
 };

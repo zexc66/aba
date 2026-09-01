@@ -151,7 +151,11 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                             </button>
                         </div>
 
-                        <div className="hidden lg:flex flex-col gap-2.5 items-end">
+                        <div
+                            className="hidden lg:flex flex-col gap-2.5 items-end"
+                            role="group"
+                            aria-label={data.controls.pagination}
+                        >
                             {data.list.map((_, i) => (
                                 <button
                                     key={i}
@@ -159,7 +163,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                                         setCurrent(i);
                                         pauseAndResume();
                                     }}
-                                    aria-label={String(i + 1)}
+                                    aria-label={`${i + 1}`}
                                     aria-current={i === current}
                                     className="py-2.5"
                                 >

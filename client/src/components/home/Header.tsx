@@ -16,6 +16,8 @@ interface HeaderProps {
         partners: string;
         newsroom: string;
         contact: string;
+        projects: string;
+        investorAccess: string;
     };
 }
 
@@ -272,7 +274,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                             className={`hidden xl:flex items-center gap-3 px-6 py-3 text-[10px] font-black tracking-[0.25em] uppercase transition-colors duration-300 group no-press ${scrolled ? "bg-[#5a1f2e] hover:bg-black" : "bg-[#f2a007] hover:bg-white text-[#0b0b10]"}`}
                         >
                             <Lock className="h-3 w-3 shrink-0" strokeWidth={1.5} />
-                            <span>Investor Access</span>
+                            <span>{nav.investorAccess}</span>
                             <ArrowUpRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" strokeWidth={1.5} />
                         </a>
 

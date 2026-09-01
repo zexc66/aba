@@ -14,6 +14,8 @@ export interface Content {
     partners: string;
     newsroom: string;
     contact: string;
+    projects: string;
+    investorAccess: string;
   };
   gallery: {
     title: string;
@@ -203,7 +205,7 @@ export interface Content {
   };
   testimonials: {
     title: { main: string; highlighted: string; partner: string };
-    controls: { prev: string; next: string; pause: string; resume: string };
+    controls: { prev: string; next: string; pause: string; resume: string; pagination: string };
     sectionRef: string;
     communique: string;
     eyebrow: string;
@@ -391,6 +393,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       partners: "Partners",
       newsroom: "Newsroom",
       contact: "Contact",
+      projects: "Projects & Opportunities",
+      investorAccess: "Investor Access",
     },
     hero: {
       eyebrow: "Alliance • PPP • Impact",
@@ -729,7 +733,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "Voice of our", highlighted: "Institutional", partner: "Partners" },
-      controls: { prev: "Previous testimonial", next: "Next testimonial", pause: "Pause testimonial rotation", resume: "Resume testimonial rotation" },
+      controls: { prev: "Previous testimonial", next: "Next testimonial", pause: "Pause testimonial rotation", resume: "Resume testimonial rotation", pagination: "Testimonial pagination" },
       eyebrow: "Endorsements & Leadership",
       subtitle: "Direct perspectives from sovereign partners, institutional investors, and regional development directors.",
 
@@ -959,6 +963,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       partners: "الشركاء",
       newsroom: "الأخبار",
       contact: "تواصل معنا",
+      projects: "المشاريع والفرص",
+      investorAccess: "دخول المستثمرين",
     },
     hero: {
       eyebrow: "تحالف • شراكات • أثر",
@@ -1297,7 +1303,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "صوت شركاءنا", highlighted: "المؤسسيين", partner: "الاستراتيجيين" },
-      controls: { prev: "الشهادة السابقة", next: "الشهادة التالية", pause: "إيقاف تدوير الشهادات", resume: "استئناف تدوير الشهادات" },
+      controls: { prev: "الشهادة السابقة", next: "الشهادة التالية", pause: "إيقاف تدوير الشهادات", resume: "استئناف تدوير الشهادات", pagination: "التنقل بين الشهادات" },
       eyebrow: "تأييدات وقيادة",
       subtitle: "وجهات نظر مباشرة من شركاء سياديين ومستثمرين مؤسسيين ومديري تنمية إقليميين.",
 
@@ -1525,8 +1531,10 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       governance: "Gouvernance",
       team: "Équipe",
       partners: "Partenaires",
-      newsroom: "Actualités",
-      contact: "Contact",
+    newsroom: "Actualités",
+    contact: "Contact",
+    projects: "Projets & Opportunités",
+    investorAccess: "Accès investisseurs",
     },
     hero: {
       eyebrow: "Alliance • PPP • Impact",
@@ -1865,7 +1873,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     },
     testimonials: {
       title: { main: "La voix de nos", highlighted: "partenaires", partner: "institutionnels" },
-      controls: { prev: "Témoignage précédent", next: "Témoignage suivant", pause: "Mettre en pause la rotation", resume: "Reprendre la rotation" },
+      controls: { prev: "Témoignage précédent", next: "Témoignage suivant", pause: "Mettre en pause la rotation", resume: "Reprendre la rotation", pagination: "Pagination des témoignages" },
       eyebrow: "Appuis & Leadership",
       subtitle: "Perspectives directes de partenaires souverains, d'investisseurs institutionnels et de directeurs du développement régional.",
 
