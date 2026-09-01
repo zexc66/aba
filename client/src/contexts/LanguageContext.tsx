@@ -52,8 +52,11 @@ export function LanguageProvider({
   children: ReactNode;
   initialLocale?: Locale;
 }) {
-  const [lang, setLangState] = useState<Locale>(initialLocale ?? initialLang);
-  const [content, setContent] = useState<(typeof COPY)["en"]>(COPY["en"]);
+  // Derive the effective locale once — SSR (prerender) passes it explicitly,
+  // the client falls back to stored preference, then path prefix, then EN.
+  const initial = initialLocale ?? initialLang();
+  const [lang, setLangState] = useState<Locale>(initial);
+  const [content, setContent] = useState<(typeof COPY)["en"]>(COPY[initial]);
   const [isFetchingCMS, setIsFetchingCMS] = useState(cms.configured);
 
   const isRTL = lang === "ar";
