@@ -1,5 +1,5 @@
-import { authenticate, SESSION_TTL_MS, vaultStorageAvailable } from "../../server/vault-core";
-import { requestClientIp } from "../cors";
+import { authenticate, SESSION_TTL_MS, vaultStorageAvailable } from "../../server/vault-core.js";
+import { requestClientIp } from "../cors.js";
 
 interface ServerlessRequest { method?: string; body: unknown; headers: Record<string, string | string[] | undefined>; }
 interface ServerlessResponse { setHeader(name: string, value: string): unknown; status(code: number): ServerlessResponse; json(payload: unknown): void; end(): void; }

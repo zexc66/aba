@@ -1,5 +1,5 @@
-import { generateChatResponse } from "../server/services/chatService";
-import { allowConfiguredOrigin, requestClientIp } from "./cors";
+import { generateChatResponse } from "../server/services/chatService.js";
+import { allowConfiguredOrigin, requestClientIp } from "./cors.js";
 import { z } from "zod";
 
 interface ServerlessRequest {

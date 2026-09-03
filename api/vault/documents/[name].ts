@@ -1,4 +1,4 @@
-import { bearerToken, readDocument, verifyToken, vaultStorageAvailable } from "../../../server/vault-core";
+import { bearerToken, readDocument, verifyToken, vaultStorageAvailable } from "../../../server/vault-core.js";
 
 interface ServerlessRequest { method?: string; headers: Record<string, string | string[] | undefined>; query?: Record<string, string | string[] | undefined>; }
 interface ServerlessResponse { setHeader(name: string, value: string): unknown; status(code: number): ServerlessResponse; json(payload: unknown): void; send(body: unknown): void; }

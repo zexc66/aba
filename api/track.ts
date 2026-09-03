@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { allowConfiguredOrigin, requestClientIp } from "./cors";
+import { allowConfiguredOrigin, requestClientIp } from "./cors.js";
 
 interface ServerlessRequest { method?: string; body: unknown; headers: Record<string, string | string[] | undefined>; }
 interface ServerlessResponse { setHeader(name: string, value: string): unknown; status(code: number): ServerlessResponse; json(payload: unknown): void; end(): void; }

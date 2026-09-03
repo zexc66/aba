@@ -1,6 +1,6 @@
 import { randomUUID } from "crypto";
 import { z } from "zod";
-import { allowConfiguredOrigin, requestClientIp } from "./cors";
+import { allowConfiguredOrigin, requestClientIp } from "./cors.js";
 
 interface ServerlessRequest {
   method?: string;
