@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import { z } from "zod";
+import { allowConfiguredOrigin, requestClientIp } from "./cors";
 
 interface ServerlessRequest {
   method?: string;
@@ -18,6 +19,7 @@ const label = z
   .max(60)
   .regex(/^[^<>{};$`\\]*$/)
   .optional();
+const longLabel = z.string().trim().max(500).regex(/^[^<>{};$`\\]*$/).optional();
 
 const inquirySchema = z.object({
   type: z
@@ -32,6 +34,16 @@ const inquirySchema = z.object({
   region: label,
   ticket: label,
   timeline: label,
+  partyType: label,
+  sectors: longLabel,
+  countries: longLabel,
+  capabilities: longLabel,
+  capitalBand: label,
+  targetProject: z.string().trim().max(160).optional(),
+  targetService: label,
+  role: label,
+  interest: z.string().trim().max(500).optional(),
+  consent: z.literal(true),
   locale: z.enum(["en", "ar", "fr"]).optional(),
   message: z.string().trim().max(4000).optional(),
 });
@@ -49,23 +61,61 @@ function rateLimited(ip: string): boolean {
   return entry.count > 10;
 }
 
-function clientIp(req: ServerlessRequest): string {
-  const fwd = req.headers["x-forwarded-for"];
-  return typeof fwd === "string" ? fwd.split(",")[0].trim() : "unknown";
-}
-
-async function notifyByEmail(payload: {
+type InquiryDeliveryPayload = {
   id: string;
   type: string;
   email: string;
+  stage: "new";
+  priority: "normal";
   name?: string;
   organization?: string;
   sector?: string;
   region?: string;
   ticket?: string;
   timeline?: string;
+  partyType?: string;
+  sectors?: string;
+  countries?: string;
+  capabilities?: string;
+  capitalBand?: string;
+  targetProject?: string;
+  targetService?: string;
+  role?: string;
+  interest?: string;
+  locale?: "en" | "ar" | "fr";
+  consent: true;
   message?: string;
-}): Promise<boolean> {
+};
+
+function deliveryPayload(id: string, data: z.infer<typeof inquirySchema>): InquiryDeliveryPayload {
+  return {
+    id,
+    type: data.type,
+    email: data.email,
+    stage: "new",
+    priority: "normal",
+    name: data.name,
+    organization: data.organization,
+    sector: data.sector,
+    region: data.region,
+    ticket: data.ticket,
+    timeline: data.timeline,
+    partyType: data.partyType,
+    sectors: data.sectors,
+    countries: data.countries,
+    capabilities: data.capabilities,
+    capitalBand: data.capitalBand,
+    targetProject: data.targetProject,
+    targetService: data.targetService,
+    role: data.role,
+    interest: data.interest,
+    locale: data.locale,
+    consent: data.consent,
+    message: data.message,
+  };
+}
+
+async function notifyByEmail(payload: InquiryDeliveryPayload): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_NOTIFY_EMAIL;
   if (!apiKey || !to) return false;
@@ -84,12 +134,23 @@ async function notifyByEmail(payload: {
         `Reference: ${payload.id}`,
         `Type: ${payload.type}`,
         `Email: ${payload.email}`,
+        `Stage: ${payload.stage}`,
+        `Priority: ${payload.priority}`,
         `Name: ${payload.name ?? "—"}`,
         `Organization: ${payload.organization ?? "—"}`,
         `Sector: ${payload.sector ?? "—"}`,
         `Region: ${payload.region ?? "—"}`,
         `Ticket: ${payload.ticket ?? "—"}`,
         `Timeline: ${payload.timeline ?? "—"}`,
+        `Party type: ${payload.partyType ?? "—"}`,
+        `Role: ${payload.role ?? "—"}`,
+        `Interest: ${payload.interest ?? "—"}`,
+        `Sectors: ${payload.sectors ?? "—"}`,
+        `Countries: ${payload.countries ?? "—"}`,
+        `Capabilities: ${payload.capabilities ?? "—"}`,
+        `Capital band: ${payload.capitalBand ?? "—"}`,
+        `Target project: ${payload.targetProject ?? "—"}`,
+        `Target service: ${payload.targetService ?? "—"}`,
         "",
         payload.message ?? "",
       ].join("\n"),
@@ -98,11 +159,7 @@ async function notifyByEmail(payload: {
   return response.ok;
 }
 
-async function notifyByWebhook(payload: {
-  id: string;
-  type: string;
-  email: string;
-}): Promise<boolean> {
+async function notifyByWebhook(payload: InquiryDeliveryPayload): Promise<boolean> {
   const url = process.env.LEAD_WEBHOOK_URL;
   if (!url) return false;
 
@@ -111,6 +168,8 @@ async function notifyByWebhook(payload: {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       text: `New AIABASD lead ${payload.id} [${payload.type}]`,
+      // Explicit delivery shape: accepted inquiry fields only; no raw request
+      // body, access keys, or server secrets are forwarded.
       lead: payload,
     }),
   });
@@ -175,9 +234,7 @@ async function sendVisitorEmail(
 }
 
 export default async function handler(req: ServerlessRequest, res: ServerlessResponse) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (!allowConfiguredOrigin(req, res)) return;
 
   if (req.method === "OPTIONS") {
     res.status(200).end();
@@ -189,7 +246,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
     return;
   }
 
-  if (rateLimited(clientIp(req))) {
+  if (rateLimited(requestClientIp(req))) {
     res.status(429).json({ error: "Too many requests. Please try again later." });
     return;
   }
@@ -216,8 +273,8 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
   // UI shows its error state and the visitor can email directly.
   const delivered = (
     await Promise.all([
-      notifyByEmail({ id, ...parsed.data }).catch(() => false),
-      notifyByWebhook({ id, ...parsed.data }).catch(() => false),
+      notifyByEmail(deliveryPayload(id, parsed.data)).catch(() => false),
+      notifyByWebhook(deliveryPayload(id, parsed.data)).catch(() => false),
     ])
   ).some(Boolean);
   if (!delivered) {

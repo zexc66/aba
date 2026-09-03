@@ -16,6 +16,9 @@ export interface Content {
     contact: string;
     projects: string;
     investorAccess: string;
+    services: string;
+    intelligence: string;
+    match: string;
   };
   gallery: {
     title: string;
@@ -201,6 +204,9 @@ export interface Content {
       partners: string;
       newsroom: string;
       contact: string;
+      services: string;
+      intelligence: string;
+      match: string;
     };
   };
   testimonials: {
@@ -270,6 +276,22 @@ export interface Content {
     requestAccessTitle: string;
     requestAccessNote: string;
     requestCta: string;
+    organizationLabel: string;
+    roleLabel: string;
+    partyTypeLabel: string;
+    interestLabel: string;
+    targetProjectLabel: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    organizationPlaceholder: string;
+    rolePlaceholder: string;
+    partyTypePlaceholder: string;
+    interestPlaceholder: string;
+    targetProjectPlaceholder: string;
+    privacyConsentLabel: string;
+    privacyConsentText: string;
+    privacyLinkLabel: string;
+    accessStartEventLabel: string;
   };
 
   vault: {
@@ -393,8 +415,11 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       partners: "Partners",
       newsroom: "Newsroom",
       contact: "Contact",
-      projects: "Projects & Opportunities",
-      investorAccess: "Investor Access",
+       projects: "Projects & Opportunities",
+       investorAccess: "Investor Access",
+       services: "Services",
+       intelligence: "Intelligence",
+       match: "Partner Matching",
     },
     hero: {
       eyebrow: "Alliance • PPP • Impact",
@@ -722,13 +747,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       engagementTitle: "Engagement",
       updatesTitle: "Updates",
       backToTopLabel: "Back to top",
-      links: {
+       links: {
         about: "About AIABASD",
         countries: "Country Coverage",
         governance: "Governance & Ethics",
         partners: "Partner Network",
         newsroom: "Press & Newsroom",
-        contact: "Executive Contact",
+         contact: "Executive Contact",
+         services: "Commercial Services",
+         intelligence: "Market Intelligence",
+         match: "Partner Matching",
       },
     },
     testimonials: {
@@ -799,7 +827,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       cta: "INITIATE_AUTH_SESSION",
       requestKey: "REQUEST_KEY",
       auditNote: "Access is monitored and audited in accordance with the sovereign institutional privacy mandate.",
-      rangeNote: "Targeted program IRR range: 22\u201330% \u2014 detailed economics are shared with verified institutions after directorial review.",
+       rangeNote: "Project and program economics are not published here. Any commercial information is shared only when verified, approved, and appropriate for the institution.",
       backLabel: "Return to Main Site",
       secureLabel: "Secure Investor Access",
       verifying: "Verifying…",
@@ -811,8 +839,24 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       authFailed: "Invalid email or access key.",
       authNetwork: "Network error during authentication.",
       requestAccessTitle: "No access key?",
-      requestAccessNote: "Verified institutions may request vault credentials. Access is issued after directorial review — never self-serve.",
-      requestCta: "REQUEST ACCESS"
+       requestAccessNote: "Verified institutions may request vault credentials. Access is issued after directorial review — never self-serve.",
+       requestCta: "REQUEST ACCESS",
+       organizationLabel: "ORGANIZATION",
+       roleLabel: "ROLE",
+       partyTypeLabel: "PARTY TYPE",
+       interestLabel: "AREA OF INTEREST",
+       targetProjectLabel: "TARGET PROJECT",
+       messageLabel: "MESSAGE",
+       messagePlaceholder: "Tell us what access or project context you are seeking.",
+       organizationPlaceholder: "Institution or company",
+       rolePlaceholder: "Role or mandate",
+       partyTypePlaceholder: "Investor, public institution, operator, or other",
+       interestPlaceholder: "Project review, data room, partnership, or other",
+       targetProjectPlaceholder: "Project or portfolio reference (optional)",
+       privacyConsentLabel: "PRIVACY / PROCESSING CONSENT",
+       privacyConsentText: "I consent to AIABASD processing these details to review and respond to this access request.",
+       privacyLinkLabel: "Read the privacy notice",
+       accessStartEventLabel: "ACCESS_REQUEST_START"
     },
     vault: {
       title: "Investor Data Room",
@@ -963,8 +1007,11 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       partners: "الشركاء",
       newsroom: "الأخبار",
       contact: "تواصل معنا",
-      projects: "المشاريع والفرص",
-      investorAccess: "دخول المستثمرين",
+       projects: "المشاريع والفرص",
+       investorAccess: "دخول المستثمرين",
+       services: "الخدمات",
+       intelligence: "استخبارات السوق",
+       match: "مطابقة الشركاء",
     },
     hero: {
       eyebrow: "تحالف • شراكات • أثر",
@@ -1292,13 +1339,16 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       engagementTitle: "المشاركة",
       updatesTitle: "التحديثات",
       backToTopLabel: "العودة إلى الأعلى",
-      links: {
+       links: {
         about: "عن AIABASD",
         countries: "التغطية الجغرافية",
         governance: "الحوكمة والأخلاقيات",
         partners: "شبكة الشركاء",
         newsroom: "الصحافة والأخبار",
-        contact: "التواصل التنفيذي",
+         contact: "التواصل التنفيذي",
+         services: "الخدمات التجارية",
+         intelligence: "استخبارات السوق",
+         match: "مطابقة الشركاء",
       },
     },
     testimonials: {
@@ -1369,7 +1419,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       cta: "بدء_جلسة_التوثيق",
       requestKey: "طلب_مفتاح",
       auditNote: "يتم مراقبة وتدقيق الوصول وفقاً لتفويض الخصوصية المؤسسي السيادي.",
-      rangeNote: "النطاق المستهدف للعائد الداخلي للبرامج: 22\u201330% \u2014 تُشارك التفاصيل الاقتصادية مع المؤسسات الموثقة بعد المراجعة الإدارية.",
+       rangeNote: "لا تُنشر هنا التفاصيل الاقتصادية للمشاريع والبرامج. ولا تُشارك المعلومات التجارية إلا عندما تكون موثقة ومعتمدة ومناسبة للمؤسسة.",
       backLabel: "العودة إلى الموقع الرئيسي",
       secureLabel: "وصول آمن للمستثمرين",
       verifying: "جارٍ التحقق…",
@@ -1381,8 +1431,24 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       authFailed: "البريد الإلكتروني أو مفتاح الدخول غير صحيح.",
       authNetwork: "خطأ في الشبكة أثناء المصادقة.",
       requestAccessTitle: "لا تملك مفتاح دخول؟",
-      requestAccessNote: "يمكن للمؤسسات الموثقة طلب بيانات اعتماد المخزن. يُمنح الدخول بعد المراجعة الإدارية — وليس بالتسجيل الذاتي.",
-      requestCta: "طلب الدخول"
+       requestAccessNote: "يمكن للمؤسسات الموثقة طلب بيانات اعتماد المخزن. يُمنح الدخول بعد المراجعة الإدارية — وليس بالتسجيل الذاتي.",
+       requestCta: "طلب الدخول",
+       organizationLabel: "المؤسسة",
+       roleLabel: "الدور",
+       partyTypeLabel: "نوع الطرف",
+       interestLabel: "مجال الاهتمام",
+       targetProjectLabel: "المشروع المستهدف",
+       messageLabel: "الرسالة",
+       messagePlaceholder: "أخبرنا بالسياق أو الوصول أو المشروع الذي تبحث عنه.",
+       organizationPlaceholder: "المؤسسة أو الشركة",
+       rolePlaceholder: "الدور أو التفويض",
+       partyTypePlaceholder: "مستثمر أو مؤسسة عامة أو مشغل أو غير ذلك",
+       interestPlaceholder: "مراجعة مشروع أو غرفة بيانات أو شراكة أو غير ذلك",
+       targetProjectPlaceholder: "مرجع المشروع أو المحفظة (اختياري)",
+       privacyConsentLabel: "الموافقة على الخصوصية والمعالجة",
+       privacyConsentText: "أوافق على معالجة AIABASD لهذه البيانات لمراجعة طلب الوصول والرد عليه.",
+       privacyLinkLabel: "قراءة إشعار الخصوصية",
+       accessStartEventLabel: "بدء_طلب_الوصول"
     },
     vault: {
       title: "غرفة بيانات المستثمرين",
@@ -1533,8 +1599,11 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       partners: "Partenaires",
     newsroom: "Actualités",
     contact: "Contact",
-    projects: "Projets & Opportunités",
-    investorAccess: "Accès investisseurs",
+     projects: "Projets & Opportunités",
+     investorAccess: "Accès investisseurs",
+     services: "Services",
+     intelligence: "Intelligence",
+     match: "Mise en relation",
     },
     hero: {
       eyebrow: "Alliance • PPP • Impact",
@@ -1868,7 +1937,10 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         governance: "Gouvernance & Éthique",
         partners: "Réseau de Partenaires",
         newsroom: "Presse & Actualités",
-        contact: "Contact Exécutif",
+         contact: "Contact Exécutif",
+         services: "Services Commerciaux",
+         intelligence: "Intelligence de Marché",
+         match: "Mise en relation",
       },
     },
     testimonials: {
@@ -1939,7 +2011,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       cta: "INITIER_SESSION_AUTH",
       requestKey: "DEMANDER_CLÉ",
       auditNote: "L'accès est surveillé et audité conformément au mandat de confidentialité institutionnelle souveraine.",
-      rangeNote: "Plage de TRI programmatique ciblée : 22\u201330% \u2014 les détails économiques sont partagés avec les institutions vérifiées après revue directionnelle.",
+       rangeNote: "Les données économiques des projets et programmes ne sont pas publiées ici. Toute information commerciale est partagée uniquement lorsqu'elle est vérifiée, approuvée et pertinente pour l'institution.",
       backLabel: "Retour au Site Principal",
       secureLabel: "Accès Investisseur Sécurisé",
       verifying: "Vérification…",
@@ -1952,7 +2024,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       authNetwork: "Erreur réseau lors de l'authentification.",
       requestAccessTitle: "Pas de clé d'accès ?",
       requestAccessNote: "Les institutions vérifiées peuvent demander des identifiants. L'accès est délivré après revue de la direction — jamais en libre-service.",
-      requestCta: "DEMANDER L'ACCÈS"
+       requestCta: "DEMANDER L'ACCÈS",
+       organizationLabel: "ORGANISATION",
+       roleLabel: "RÔLE",
+       partyTypeLabel: "TYPE DE PARTIE",
+       interestLabel: "DOMAINE D'INTÉRÊT",
+       targetProjectLabel: "PROJET CIBLE",
+       messageLabel: "MESSAGE",
+       messagePlaceholder: "Indiquez le contexte d'accès ou de projet recherché.",
+       organizationPlaceholder: "Institution ou entreprise",
+       rolePlaceholder: "Rôle ou mandat",
+       partyTypePlaceholder: "Investisseur, institution publique, opérateur ou autre",
+       interestPlaceholder: "Revue de projet, data room, partenariat ou autre",
+       targetProjectPlaceholder: "Référence du projet ou portefeuille (facultatif)",
+       privacyConsentLabel: "CONSENTEMENT CONFIDENTIALITÉ / TRAITEMENT",
+       privacyConsentText: "J'autorise AIABASD à traiter ces informations pour examiner et traiter cette demande d'accès.",
+       privacyLinkLabel: "Lire l'avis de confidentialité",
+       accessStartEventLabel: "DEBUT_DEMANDE_ACCES"
     },
     vault: {
       title: "Salle des Données Investisseurs",

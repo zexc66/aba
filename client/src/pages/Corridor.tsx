@@ -11,6 +11,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { PROJECTS, PROJECTS_UI, type CountryKey, type Locale3 } from "@/projects";
 import { COUNTRIES, type CountryNode } from "@/countries";
 import { PROGRAM_META } from "@/intelligence";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 const EN_LIST_INDEX: Record<string, number> = {};
 const EN_ORDER = ["Ghana", "The Gambia", "Sierra Leone", "Burkina Faso", "Côte d'Ivoire", "Angola", "Jordan", "Egypt", "Syria", "Sudan", "Saudi Arabia"];
@@ -36,10 +37,10 @@ export default function Corridor() {
     return (
       <div className="min-h-screen bg-[#fdfcfb]">
         <Header nav={content.nav} />
-        <main className="pt-40 pb-24 text-center">
+        <div className="pt-40 pb-24 text-center">
           <p className="t-meta text-[#5a1f2e] mb-4">CORRIDOR_NOT_FOUND</p>
-          <Link href="/pipeline"><a className="text-sm font-semibold text-[#0b0b10] hover:text-[#5a1f2e] underline">{t.backLabel}</a></Link>
-        </main>
+          <Link href={localizedLinkPath("/pipeline", lang)}><a className="text-sm font-semibold text-[#0b0b10] hover:text-[#5a1f2e] underline">{t.backLabel}</a></Link>
+        </div>
       </div>
     );
   }
@@ -65,10 +66,10 @@ export default function Corridor() {
       />
       <Header nav={content.nav} />
 
-      <main className="pt-28 pb-24">
+      <div className="pt-28 pb-24">
         <Section className="py-12 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <Link href="/#countries">
+            <Link href={localizedLinkPath("/#countries", lang)}>
               <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mb-6 py-2">
                 <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                 <span>{t.backLabel}</span>
@@ -118,7 +119,7 @@ export default function Corridor() {
                   <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 flex-1">
                     {projectUI.headerTitle}
                   </h2>
-                  <Link href="/projects">
+                  <Link href={localizedLinkPath("/projects", lang)}>
                     <a className="t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors whitespace-nowrap">
                       {projectUI.viewAll}
                     </a>
@@ -137,7 +138,7 @@ export default function Corridor() {
               <ul className="divide-y divide-black/10 border-b border-black/10">
                 {anchored.map((p) => (
                   <li key={p.slug}>
-                    <Link href={p.link ?? `/programs/${p.slug}`}>
+                    <Link href={localizedLinkPath(p.link ?? `/programs/${p.slug}`, lang)}>
                       <a className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center py-5 group">
                         <div>
                           <h3 className="text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors">{p.name}</h3>
@@ -160,7 +161,7 @@ export default function Corridor() {
               <ul className="mt-4 flex flex-wrap gap-2">
                 {regional.map((p) => (
                   <li key={p.slug}>
-                    <Link href={`/programs/${p.slug}`}>
+                    <Link href={localizedLinkPath(`/programs/${p.slug}`, lang)}>
                       <a className="t-meta inline-block border border-black/15 px-3 py-2 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] transition-colors">
                         {p.name}
                       </a>
@@ -171,7 +172,7 @@ export default function Corridor() {
             </div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

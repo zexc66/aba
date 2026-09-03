@@ -7,6 +7,7 @@ import Footer from "@/components/home/Footer";
 import { Section } from "@/components/ui/section";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 const SLUGS: Record<string, string> = {
     "Dr. Mohammed Abdel Moneim": "mohammed-abdel-moneim",
@@ -28,10 +29,10 @@ export default function TeamMember() {
     return (
       <div className="min-h-screen bg-[#0b0b10]">
         <Header nav={content.nav} />
-        <main className="pt-40 pb-24 text-center text-white">
+        <div className="pt-40 pb-24 text-center text-white">
           <p className="t-meta text-[#f2a007] mb-4">PROFILE_NOT_FOUND</p>
-          <Link href="/#team"><a className="text-sm font-semibold text-white/80 hover:text-white underline">{t.backLabel}</a></Link>
-        </main>
+          <Link href={localizedLinkPath("/#team", lang)}><a className="text-sm font-semibold text-white/80 hover:text-white underline">{t.backLabel}</a></Link>
+        </div>
       </div>
     );
   }
@@ -41,10 +42,10 @@ export default function TeamMember() {
       <SEO title={`${member.name} | AIABASD`} description={member.bio} lang={lang} url={`/team/${slug}`} />
       <Header nav={content.nav} />
 
-      <main className="pt-28 pb-24">
+      <div className="pt-28 pb-24">
         <Section className="py-16">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <Link href="/#team">
+            <Link href={localizedLinkPath("/#team", lang)}>
               <a className="inline-flex items-center gap-2 t-meta text-[#f2a007] hover:text-white transition-colors mb-10 py-2">
                 <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                 <span>{t.backLabel}</span>
@@ -93,7 +94,7 @@ export default function TeamMember() {
 
                 <div className="pt-4">
                   <a
-                    href="/#contact"
+                    href={localizedPath("/#contact", lang)}
                     className="inline-flex items-center gap-3 bg-[#f2a007] hover:bg-white text-[#0b0b10] px-7 py-3.5 font-semibold text-sm transition-colors no-press"
                   >
                     <span>{t.contactCta}</span>
@@ -104,7 +105,7 @@ export default function TeamMember() {
             </div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

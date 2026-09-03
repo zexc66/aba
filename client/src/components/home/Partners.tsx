@@ -47,7 +47,7 @@ function PartnersComponent({ data, hud }: PartnersProps) {
                     {ALLIANCE_SYNDICATE.map((partner, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.35, delay: (i % 4) * 0.05 }}

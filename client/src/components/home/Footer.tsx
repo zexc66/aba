@@ -1,5 +1,8 @@
 import { Mail, ArrowUp } from "lucide-react";
 import { useState, memo } from "react";
+import { useLocation } from "wouter";
+import { localizedPath } from "@/localePath";
+import { LOCALIZED_COPY } from "@/localizedCopy";
 
 interface FooterProps {
     data: {
@@ -17,6 +20,9 @@ interface FooterProps {
             partners: string;
             newsroom: string;
             contact: string;
+            services: string;
+            intelligence: string;
+            match: string;
         };
     };
     newsroom: {
@@ -34,6 +40,10 @@ const socialLinks = [
 ];
 
 function FooterComponent({ data, newsroom, lang }: FooterProps) {
+    const consentCopy = LOCALIZED_COPY[lang as "en" | "ar" | "fr"].consent;
+    const [location] = useLocation();
+    const isHomeRoute = location.split(/[?#]/, 1)[0] === "/";
+    const footerPath = (path: string) => path.startsWith("#") ? (isHomeRoute ? path : `${localizedPath("/", lang)}${path}`) : localizedPath(path, lang);
     const navigation = [
         {
             title: data.navTitle,
@@ -49,12 +59,16 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                 { label: data.links.partners, href: "#partners" },
                 { label: data.links.newsroom, href: "#news" },
                 { label: data.links.contact, href: "#contact" }
+                ,{ label: data.links.services, href: "/services" }
+                ,{ label: data.links.intelligence, href: "/intelligence" }
+                ,{ label: data.links.match, href: "/match" }
             ]
         }
     ];
     const [email, setEmail] = useState("");
     const [submitting, setSubmitting] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+    const [consent, setConsent] = useState(false);
 
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -65,11 +79,12 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
             const response = await fetch("/api/inquiry", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ type: "NEWSLETTER", email, locale: lang })
+                         body: JSON.stringify({ type: "NEWSLETTER", email, locale: lang, consent: true })
             });
             if (response.ok) {
                 setStatus("success");
                 setEmail("");
+                setConsent(false);
                 // Restore the button label after a beat; the error state
                 // persists until the visitor edits the address instead.
                 setTimeout(() => setStatus((s) => (s === "success" ? "idle" : s)), 5000);
@@ -145,7 +160,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                     {group.links.map((link, j) => (
                                         <li key={j}>
                                             <a
-                                                href={link.href}
+                                                href={footerPath(link.href)}
                                                 className="text-sm text-white/70 hover:text-white transition-colors"
                                             >
                                                 {link.label}
@@ -161,7 +176,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                 {newsroom.newsletterTitle}
                             </p>
                             <form onSubmit={handleSubscribe} className="space-y-2">
-                                <input
+                                 <input
                                     type="email"
                                     required
                                     aria-label={newsroom.newsletterTitle}
@@ -172,8 +187,25 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                     }}
                                     placeholder={newsroom.newsletterPlaceholder}
                                     className="w-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder:text-white/50 rounded-md outline-none focus:border-[#f2a007] transition-colors"
-                                />
-                                <button
+                                 />
+                                 <label htmlFor="newsletter-consent" className="flex items-start gap-2 text-[11px] text-white/60 leading-relaxed">
+                                     <input
+                                         id="newsletter-consent"
+                                         type="checkbox"
+                                         required
+                                         checked={consent}
+                                         onChange={(e) => setConsent(e.target.checked)}
+                                         className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#f2a007]"
+                                     />
+                                     <span>
+                                         <span className="font-semibold text-white/80">{consentCopy.newsletterLabel}: </span>
+                                         {consentCopy.newsletterText} {" "}
+                                         <a href={localizedPath("/privacy", lang)} className="text-[#f2a007] underline underline-offset-2 hover:text-white">
+                                             {consentCopy.privacyLinkLabel}
+                                         </a>
+                                     </span>
+                                 </label>
+                                 <button
                                     type="submit"
                                     disabled={submitting || status === "success"}
                                     className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs py-2 rounded-md transition-colors disabled:opacity-50"
@@ -199,8 +231,8 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                     </div>
 
                     <div className="flex items-center gap-6 font-medium">
-                        <a href="/privacy" className="hover:text-white transition-colors">{data.privacy}</a>
-                        <a href="/terms" className="hover:text-white transition-colors">{data.terms}</a>
+                        <a href={localizedPath("/privacy", lang)} className="hover:text-white transition-colors">{data.privacy}</a>
+                        <a href={localizedPath("/terms", lang)} className="hover:text-white transition-colors">{data.terms}</a>
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             aria-label={data.backToTopLabel}

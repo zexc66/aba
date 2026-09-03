@@ -12,6 +12,17 @@ interface LeadPayload {
   region?: string;
   ticket?: string;
   timeline?: string;
+  partyType?: string;
+  sectors?: string;
+  countries?: string;
+  capabilities?: string;
+  capitalBand?: string;
+  targetProject?: string;
+  targetService?: string;
+  role?: string;
+  interest?: string;
+  stage?: string;
+  priority?: string;
   message?: string;
 }
 
@@ -40,6 +51,17 @@ export async function notifyByEmail(payload: LeadPayload): Promise<boolean> {
         `Region: ${payload.region ?? "—"}`,
         `Ticket: ${payload.ticket ?? "—"}`,
         `Timeline: ${payload.timeline ?? "—"}`,
+        `Party type: ${payload.partyType ?? "—"}`,
+        `Role: ${payload.role ?? "—"}`,
+        `Interest: ${payload.interest ?? "—"}`,
+        `Sectors: ${payload.sectors ?? "—"}`,
+        `Countries: ${payload.countries ?? "—"}`,
+        `Capabilities: ${payload.capabilities ?? "—"}`,
+        `Capital band: ${payload.capitalBand ?? "—"}`,
+        `Target project: ${payload.targetProject ?? "—"}`,
+        `Target service: ${payload.targetService ?? "—"}`,
+        `Stage: ${payload.stage ?? "new"}`,
+        `Priority: ${payload.priority ?? "normal"}`,
         "",
         payload.message ?? "",
       ].join("\n"),

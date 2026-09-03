@@ -20,7 +20,7 @@ An alliance orchestrator that couples deal origination with governance rigor —
 
 ## Operating Context
 
-- Two deployment paths from one codebase: self-hosted Express/Docker (leads persisted to `dist/inquiries.json`) and Vercel serverless (leads delivered via Resend email; fails honestly when unconfigured).
+- Two deployment paths from one codebase: self-hosted Express/Docker (leads persisted to the configured writable `DATA_DIR`, Docker default `/app/data`) and Vercel serverless (leads delivered via Resend email; fails honestly when unconfigured).
 - Content operations: all copy lives in `client/src/data.tsx` per locale; Contentful (`siteSettings`, `newsArticle`) overrides copy when configured; CI enforces EN/AR/FR key parity.
 - Language is a persisted user choice (localStorage), toggled in the header (and the Hama HUD).
 

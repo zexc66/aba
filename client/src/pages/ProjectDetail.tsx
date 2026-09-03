@@ -20,6 +20,7 @@ import {
   projectLastReviewed,
   type Locale3,
 } from "@/projects";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 export default function ProjectDetail({ params }: { params?: { slug?: string } }) {
   const { lang, content } = useLanguageContext();
@@ -46,9 +47,7 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
     return [...sameSector, ...sameCountry].slice(0, 3);
   }, [project]);
 
-  const contactHref = project
-    ? `/?project=${project.slug}#contact`
-    : "/#contact";
+  const contactHref = localizedPath(project ? `/?project=${project.slug}#contact` : "/#contact", lang);
 
   const facts: { label: string; value: string }[] = project
     ? [
@@ -96,18 +95,18 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
       )}
       <Header nav={content.nav} />
 
-      <main id="main-content" className="pt-24">
+      <div className="pt-24">
         {project && (
           <nav aria-label="Breadcrumb" className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 pt-6">
             <ol className="t-meta text-[10px] text-black/45 flex items-center gap-1.5 flex-wrap">
               <li>
-                <a href="/" className="hover:text-[#5a1f2e] transition-colors">{t.homeCrumb}</a>
+                <a href={localizedPath("/", lang)} className="hover:text-[#5a1f2e] transition-colors">{t.homeCrumb}</a>
               </li>
               <li aria-hidden="true">
                 <ChevronRight size={11} className="rtl:-scale-x-100" />
               </li>
               <li>
-                <Link href="/projects">
+                <Link href={localizedLinkPath("/projects", lang)}>
                   <a className="hover:text-[#5a1f2e] transition-colors">{t.backLabel}</a>
                 </Link>
               </li>
@@ -125,7 +124,7 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
             <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 text-center space-y-6">
               <h1 className="text-2xl font-bold">{t.detailTitle}</h1>
               <p className="t-meta text-black/50">404</p>
-              <Link href="/projects">
+              <Link href={localizedLinkPath("/projects", lang)}>
                 <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors">
                   {t.backLabel}
                 </a>
@@ -137,7 +136,7 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
             {/* Header */}
             <Section className="relative py-12 border-b border-black/10 bg-white">
               <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                <Link href="/projects">
+                <Link href={localizedLinkPath("/projects", lang)}>
                   <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 mb-8 transition-colors">
                     <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
                     {t.backLabel}
@@ -275,7 +274,7 @@ export default function ProjectDetail({ params }: { params?: { slug?: string } }
             )}
           </>
         )}
-      </main>
+      </div>
 
       {/* Print one-pager: visible only in print/PDF output */}
       {project && (

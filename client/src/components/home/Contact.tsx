@@ -3,6 +3,8 @@ import { Mail, MapPin, ArrowRight, CheckCircle2, AlertCircle } from "lucide-reac
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { PROJECTS_UI, STATUSES, projectBySlug } from "@/projects";
+import { localizedPath } from "@/localePath";
+import { LOCALIZED_COPY } from "@/localizedCopy";
 
 // Booking link renders only when configured — honest absence otherwise.
 const BOOKING_URL = (import.meta.env.VITE_BOOKING_URL as string | undefined)?.trim() || "";
@@ -58,6 +60,7 @@ interface ContactProps {
 }
 
 function ContactComponent({ data, lang }: ContactProps) {
+    const consentCopy = LOCALIZED_COPY[lang as "en" | "ar" | "fr"].consent;
     const [form, setForm] = useState({ name: "", email: "", org: "", msg: "" });
     const [sending, setSending] = useState(false);
     const [sent, setSent] = useState(false);
@@ -68,6 +71,7 @@ function ContactComponent({ data, lang }: ContactProps) {
     const [sector, setSector] = useState("");
     const [region, setRegion] = useState("");
     const [ticket, setTicket] = useState("");
+    const [consent, setConsent] = useState(false);
 
     const AUDIENCE_TYPE = ["GOVERNMENT", "INVESTOR", "EPC", "NGO", "PRESS"];
 
@@ -136,7 +140,8 @@ function ContactComponent({ data, lang }: ContactProps) {
                     organization: form.org,
                     ...details,
                     message: form.msg,
-                    locale: lang
+                    locale: lang,
+                    consent: true,
                 })
             });
 
@@ -151,6 +156,7 @@ function ContactComponent({ data, lang }: ContactProps) {
             setSector("");
             setRegion("");
             setTicket("");
+            setConsent(false);
         } catch (err) {
             console.error("Submission error:", err);
             // Error persists until the visitor edits the form or retries —
@@ -364,6 +370,24 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors resize-none"
                                 />
                             </div>
+
+                            <label htmlFor="contact-consent" className="flex items-start gap-3 text-xs text-black/65 leading-relaxed">
+                                <input
+                                    id="contact-consent"
+                                    type="checkbox"
+                                    required
+                                    checked={consent}
+                                    onChange={(e) => { setConsent(e.target.checked); setError(false); }}
+                                    className="mt-0.5 h-4 w-4 shrink-0 accent-[#5a1f2e]"
+                                />
+                                <span>
+                                    <span className="font-semibold text-black/80">{consentCopy.contactLabel}: </span>
+                                    {consentCopy.contactText} {" "}
+                                    <a href={localizedPath("/privacy", lang)} className="text-[#5a1f2e] underline underline-offset-2 hover:text-black">
+                                        {consentCopy.privacyLinkLabel}
+                                    </a>
+                                </span>
+                            </label>
 
                             {sent ? (
                                 <div

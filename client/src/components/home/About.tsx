@@ -42,7 +42,7 @@ function AboutComponent({ data }: AboutProps) {
                             {data.bullets.map((b, i) => (
                                 <motion.li
                                     key={i}
-                                    initial={{ opacity: 0, y: 12 }}
+                                    initial={false}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: i * 0.08 }}
@@ -62,7 +62,7 @@ function AboutComponent({ data }: AboutProps) {
                             {data.metrics.map((stat, i) => (
                                 <motion.div
                                     key={stat.id}
-                                    initial={{ opacity: 0 }}
+                                    initial={false}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: i * 0.08 }}
@@ -82,7 +82,7 @@ function AboutComponent({ data }: AboutProps) {
                         </div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={false}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             className="bg-[#0b0b10] text-white p-8 border border-black"
@@ -110,7 +110,7 @@ function AboutComponent({ data }: AboutProps) {
 
                 {data.ourStoryTitle && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={false}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7 }}

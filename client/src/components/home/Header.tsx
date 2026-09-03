@@ -2,7 +2,9 @@ import { useState, useEffect, useRef, memo } from "react";
 import { Search, Menu, X, Lock, ArrowUpRight, Globe, Check } from "lucide-react";
 import SearchCommand from "@/components/SearchCommand";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { useLocation } from "wouter";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedPath } from "@/localePath";
 
 interface HeaderProps {
     nav: {
@@ -18,6 +20,9 @@ interface HeaderProps {
         contact: string;
         projects: string;
         investorAccess: string;
+        services: string;
+        intelligence: string;
+        match: string;
     };
 }
 
@@ -35,6 +40,7 @@ const LANG_OPTIONS = [
 
 function HeaderComponent({ nav }: HeaderProps) {
     const { lang, setLang, isRTL } = useLanguageContext();
+    const [location] = useLocation();
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("#hero");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,13 +52,15 @@ function HeaderComponent({ nav }: HeaderProps) {
     const mobileSheetRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll();
 
+    const isHomeRoute = location.split(/[?#]/, 1)[0] === "/";
+    const sectionPath = (hash: string) => isHomeRoute ? hash : `${localizedPath("/", lang)}${hash}`;
     const navLinks = [
-        { href: "#about", label: nav.about },
-        { href: "#programs", label: nav.programs },
-        { href: "#countries", label: nav.countries },
-        { href: "/visions", label: nav.visions },
-        { href: "#governance", label: nav.governance },
-        { href: "#contact", label: nav.contact },
+        { href: sectionPath("#about"), label: nav.about },
+        { href: "/projects", label: nav.projects },
+        { href: "/services", label: nav.services },
+        { href: "/intelligence", label: nav.intelligence },
+        { href: "/match", label: nav.match },
+        { href: sectionPath("#contact"), label: nav.contact },
     ];
 
     useEffect(() => {
@@ -162,17 +170,17 @@ function HeaderComponent({ nav }: HeaderProps) {
                     ? "bg-[#F9F8F6]/90 backdrop-blur-2xl border-b border-black/5"
                     : "bg-transparent border-b border-white/10"
                     }`}
-                initial={{ y: -100 }}
+                initial={false}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
-                <motion.div
+                            <motion.div
                     className={`absolute bottom-[-1px] left-0 h-[2px] origin-left ${underlineColor}`}
                     style={{ scaleX: scrollYProgress }}
                 />
 
                 <div className="mx-auto flex max-w-[1700px] items-center justify-between px-8 lg:px-12 py-5 lg:py-6">
-                    <a href="/" className="flex items-center gap-3.5 group">
+                        <a href={localizedPath("/", lang)} className="flex items-center gap-3.5 group">
                         <img
                             src="/logo.png"
                             alt="AIABASD"
@@ -194,7 +202,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                             return (
                                 <a
                                     key={link.href}
-                                    href={link.href}
+                                    href={link.href.startsWith("#") ? link.href : localizedPath(link.href, lang)}
                                     className={`group relative px-3 py-1.5 text-xs font-semibold transition-colors duration-300 ${isActive ? navActive : navColor}`}
                                 >
                                     <span>{link.label}</span>
@@ -270,7 +278,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                         </div>
 
                         <a
-                            href="/investor-portal"
+                             href={localizedPath("/investor-portal", lang)}
                             className={`hidden xl:flex items-center gap-3 px-6 py-3 text-[10px] font-black tracking-[0.25em] uppercase transition-colors duration-300 group no-press ${scrolled ? "bg-[#5a1f2e] hover:bg-black" : "bg-[#f2a007] hover:bg-white text-[#0b0b10]"}`}
                         >
                             <Lock className="h-3 w-3 shrink-0" strokeWidth={1.5} />
@@ -304,7 +312,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                         >
                             <nav className="flex flex-col gap-5 relative z-10 pb-12" aria-label="Mobile">
                                 <motion.a
-                                    href="#contact"
+                                    href={sectionPath("#contact")}
                                     className="flex items-center justify-between py-4 px-5 bg-[#5a1f2e] text-white t-meta"
                                     onClick={() => setMobileMenuOpen(false)}
                                     initial={{ opacity: 0 }}
@@ -315,19 +323,19 @@ function HeaderComponent({ nav }: HeaderProps) {
                                     <ArrowUpRight className="w-4 h-4 rtl:-scale-x-100" strokeWidth={1.5} />
                                 </motion.a>
                                 <motion.a
-                                    href="/investor-portal"
+                                     href={localizedPath("/investor-portal", lang)}
                                     className="flex items-center justify-between group py-5 border-b border-black/10"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.15 }}
                                 >
-                                    <span className="text-[12px] font-black tracking-[0.4em] uppercase text-[#5a1f2e]">Investor Access</span>
+                                    <span className="text-[12px] font-black tracking-[0.4em] uppercase text-[#5a1f2e]">{nav.investorAccess}</span>
                                     <Lock className="h-5 w-5 text-black" strokeWidth={1.5} />
                                 </motion.a>
-                                {navLinks.filter((l) => l.href !== "#contact").map((link, i) => (
+                                {navLinks.filter((l) => l.href !== sectionPath("#contact")).map((link, i) => (
                                     <motion.a
                                         key={link.href}
-                                        href={link.href}
+                                        href={localizedPath(link.href, lang)}
                                         className="text-3xl font-institutional text-black italic hover:not-italic transition-all border-b border-black/5 pb-4 flex items-center justify-between group overflow-hidden"
                                         onClick={() => setMobileMenuOpen(false)}
                                         initial={{ opacity: 0, y: 30 }}

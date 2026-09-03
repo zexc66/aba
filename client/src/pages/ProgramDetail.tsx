@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { programStatusTone } from "@/lib/utils";
 import { stageIndex } from "@/intelligence";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 const TONE_CLASSES: Record<string, string> = {
   active: "text-emerald-700 bg-emerald-50 border-emerald-200",
@@ -53,7 +54,7 @@ export default function ProgramDetail() {
       />
       <Header nav={content.nav} />
 
-      <main className="pt-28 pb-24">
+      <div className="pt-28 pb-24">
         <Section className="py-16 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <motion.div
@@ -62,7 +63,7 @@ export default function ProgramDetail() {
               transition={{ duration: 0.4 }}
               className="max-w-4xl space-y-6"
             >
-              <Link href="/#programs">
+              <Link href={localizedLinkPath("/#programs", lang)}>
                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#5a1f2e] hover:text-[#0b0b10] transition-colors cursor-pointer py-2">
                   <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                   <span>{ui.backLabel}</span>
@@ -184,7 +185,7 @@ export default function ProgramDetail() {
                   <p className="text-sm md:text-base text-white/70 leading-relaxed">{ui.ctaSubtitle}</p>
                 </div>
                 <a
-                  href="/#contact"
+                  href={localizedPath("/#contact", lang)}
                   className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-sm transition-[color,background-color,border-color,transform] shrink-0"
                 >
                   <span>{ui.ctaButton}</span>
@@ -194,7 +195,7 @@ export default function ProgramDetail() {
             </motion.div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

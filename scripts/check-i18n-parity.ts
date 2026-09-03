@@ -1,4 +1,6 @@
 import { COPY } from "../client/src/data";
+import { INTELLIGENCE_RECORDS, PLATFORM_COPY, SERVICE_PACKAGES } from "../client/src/platform";
+import { LOCALIZED_COPY } from "../client/src/localizedCopy";
 
 type Shape = { [k: string]: Shape | "leaf" | "list" };
 
@@ -31,6 +33,28 @@ function diffPaths(a: Shape | "leaf" | "list", b: Shape | "leaf" | "list", path:
 const problems: string[] = [];
 diffPaths(shape(COPY.en), shape(COPY.ar), "ar", problems);
 diffPaths(shape(COPY.en), shape(COPY.fr), "fr", problems);
+diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.ar), "platform.ar", problems);
+diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.fr), "platform.fr", problems);
+
+const serviceIds = SERVICE_PACKAGES.map((item) => item.id);
+if (serviceIds.length !== 5 || new Set(serviceIds).size !== serviceIds.length) {
+  problems.push(`service catalog must contain five unique records: ${serviceIds.join(", ")}`);
+}
+for (const locale of ["en", "ar", "fr"] as const) {
+  for (const service of SERVICE_PACKAGES) {
+    for (const field of ["name", "scope", "deliverable", "bestFor", "limitation", "basis"] as const) {
+      if (!PLATFORM_COPY[locale] || !service[field][locale]?.trim()) problems.push(`${locale}.services.${service.id}.${field}: empty localized value`);
+    }
+  }
+}
+const intelligenceIds = INTELLIGENCE_RECORDS.map((record) => record.id);
+if (new Set(intelligenceIds).size !== intelligenceIds.length) problems.push("intelligence record IDs must be unique");
+for (const key of ["timelines", "capitalBands"] as const) {
+  const values = (locale: "en" | "ar" | "fr") => PLATFORM_COPY[locale].match.options[key].map((item) => item.value);
+  if (JSON.stringify(values("en")) !== JSON.stringify(values("ar")) || JSON.stringify(values("en")) !== JSON.stringify(values("fr"))) {
+    problems.push(`platform.match.${key}: stable option values differ by locale`);
+  }
+}
 
 const slugs = (l: "en" | "ar" | "fr") => COPY[l].programs.list.map((p) => p.slug);
 if (JSON.stringify(slugs("en")) !== JSON.stringify(slugs("ar")) || JSON.stringify(slugs("en")) !== JSON.stringify(slugs("fr"))) {
@@ -41,6 +65,24 @@ for (const l of ["en", "ar", "fr"] as const) {
   for (const p of COPY[l].programs.list) {
     if (!p.detail?.overview?.trim() || p.detail.highlights?.length < 3 || !p.status?.trim()) {
       problems.push(`${l}.programs.${p.slug}: incomplete detail`);
+    }
+  }
+}
+
+const localizedCopyShape = shape(LOCALIZED_COPY.en);
+for (const l of ["ar", "fr"] as const) {
+  diffPaths(localizedCopyShape, shape(LOCALIZED_COPY[l]), `localized.${l}`, problems);
+}
+for (const l of ["en", "ar", "fr"] as const) {
+  const localized = LOCALIZED_COPY[l];
+  for (const [name, value] of Object.entries(localized)) {
+    if (name === "privacy" || name === "terms") {
+      const legal = value as typeof localized.privacy;
+      if (legal.sections.some((section) => !section.title.trim() || section.body.some((paragraph) => !paragraph.trim()))) {
+        problems.push(`localized.${l}.${name}: empty legal copy`);
+      }
+    } else if (Object.values(value as Record<string, unknown>).some((item) => typeof item === "string" && !item.trim())) {
+      problems.push(`localized.${l}.${name}: empty localized copy`);
     }
   }
 }

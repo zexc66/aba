@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath } from "@/localePath";
 import { COUNTRIES } from "@/countries";
 import { programStatusTone } from "@/lib/utils";
 import { PROGRAM_META, SECTORS, SDG_NAMES, stageIndex, type SectorKey } from "@/intelligence";
@@ -57,7 +58,7 @@ export default function Pipeline() {
             <SEO title={`${t.title} | AIABASD`} description={t.note} lang={lang} url="/pipeline" />
             <Header nav={content.nav} />
 
-            <main className="pt-28 pb-24">
+            <div className="pt-28 pb-24">
                 <Section className="py-12 border-b border-black/10 bg-white">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                         <SectionHeader index="//" title={t.title} note={t.note} meta={t.eyebrow} titleAs="h1" />
@@ -125,11 +126,11 @@ export default function Pipeline() {
                                 {programs.map((p, i) => (
                                     <motion.li
                                         key={p.slug}
-                                        initial={{ opacity: 0 }}
+                                        initial={false}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.3, delay: Math.min(i * 0.04, 0.3) }}
                                     >
-                                        <Link href={p.link ?? `/programs/${p.slug}`}>
+                                        <Link href={localizedLinkPath(p.link ?? `/programs/${p.slug}`, lang)}>
                                             <a className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_8rem_8rem_7rem] gap-x-6 items-center py-4 group">
                                                 <div className="min-w-0">
                                                     <h2 className="text-sm md:text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
@@ -223,7 +224,7 @@ export default function Pipeline() {
                         </div>
                     </div>
                 </Section>
-            </main>
+            </div>
 
             <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
             <ScrollToTop />

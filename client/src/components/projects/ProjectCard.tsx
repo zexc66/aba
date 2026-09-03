@@ -11,7 +11,8 @@ import {
   Network,
   type LucideIcon,
 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { localizedLinkPath } from "@/localePath";
 import {
   COUNTRIES,
   SECTORS,
@@ -68,11 +69,9 @@ export function ProjectCard({
   index?: number;
 }) {
   const t = PROJECTS_UI[locale];
-  const reduceMotion = useReducedMotion();
-
   return (
     <motion.article
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: Math.min((index % 3) * 0.05, 0.15) }}
@@ -98,7 +97,7 @@ export function ProjectCard({
             <span className="t-meta text-[#5a1f2e] text-[10px]">
               {COUNTRIES[project.country][locale]}
             </span>
-            <Link href={`/sectors/${project.sector}`}>
+            <Link href={localizedLinkPath(`/sectors/${project.sector}`, locale)}>
               <a className="t-meta text-black/40 text-[10px] hover:text-[#5a1f2e] transition-colors text-start">
                 {SECTORS[project.sector][locale]}
               </a>
@@ -120,7 +119,7 @@ export function ProjectCard({
         <span className="t-meta text-[10px] text-black/45">
           {TYPES[project.type][locale]}
         </span>
-        <Link href={`/projects/${project.slug}`}>
+        <Link href={localizedLinkPath(`/projects/${project.slug}`, locale)}>
           <a
             className="inline-flex items-center gap-1.5 t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/30 hover:border-[#5a1f2e] pb-0.5 transition-colors"
           >

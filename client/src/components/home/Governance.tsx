@@ -7,6 +7,8 @@ import { Link } from "wouter";
 const PILLAR_SLUGS = ["esia-esms", "kyc-aml", "independent-oversight", "contracts"];
 import { Shield, Scale, Eye, FileText } from "lucide-react";
 import { type Content } from "@/data";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath } from "@/localePath";
 
 interface GovernanceProps {
     data: Content['governance'];
@@ -21,6 +23,7 @@ const pillarIcons = [
 ];
 
 function GovernanceComponent({ data, hud }: GovernanceProps) {
+    const { lang } = useLanguageContext();
     return (
         <Section id="governance" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
@@ -36,12 +39,12 @@ function GovernanceComponent({ data, hud }: GovernanceProps) {
                     {data.pillars.map((pillar, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.08 }}
                         >
-                        <Link href={`/governance/${PILLAR_SLUGS[i]}`} className="block bg-[#fdfcfb] p-6 lg:p-8 h-full group">
+                        <Link href={localizedLinkPath(`/governance/${PILLAR_SLUGS[i]}`, lang)} className="block bg-[#fdfcfb] p-6 lg:p-8 h-full group">
                         <span className="sr-only">{pillar.title}</span>
                             <div className="flex items-center justify-between mb-6">
                                 <span className="text-[#5a1f2e]">

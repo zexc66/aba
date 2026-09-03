@@ -14,6 +14,8 @@ const SLUGS: Record<string, string> = {
     "زياد شنيكات": "ziad-shneikat",
 };
 import { type Content } from "@/data";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath } from "@/localePath";
 
 interface TeamProps {
     data: Content['team'];
@@ -21,6 +23,7 @@ interface TeamProps {
 }
 
 function TeamComponent({ data, hud }: TeamProps) {
+    const { lang } = useLanguageContext();
     return (
         <Section id="team" className="relative py-16 bg-[#0b0b10] text-[#fdfcfb]">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
@@ -37,12 +40,12 @@ function TeamComponent({ data, hud }: TeamProps) {
                     {data.list.map((member, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.08 }}
                         >
-                        <Link href={`/team/${SLUGS[member.name] ?? ""}`} className="block bg-[#0b0b10] p-6 h-full flex flex-col group">
+                        <Link href={localizedLinkPath(`/team/${SLUGS[member.name] ?? ""}`, lang)} className="block bg-[#0b0b10] p-6 h-full flex flex-col group">
                             <div className="aspect-square bg-white/5 border border-white/10 flex items-center justify-center mb-6 overflow-hidden relative">
                                 {member.image ? (
                                     <img loading="lazy" decoding="async" src={member.image} alt={member.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[color,background-color,border-color,transform] duration-700" />

@@ -10,6 +10,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { PROJECTS, PROJECTS_UI, SECTORS, type Locale3, type SectorKey } from "@/projects";
 import { PROGRAM_META } from "@/intelligence";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 const UI: Record<Locale3, {
   backLabel: string;
@@ -89,11 +90,11 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
       />
       <Header nav={content.nav} />
 
-      <main id="main-content" className="pt-24 pb-24">
+      <div className="pt-24 pb-24">
         {!known ? (
           <Section className="py-24 text-center">
             <p className="t-meta text-[#5a1f2e]">404</p>
-            <Link href="/projects">
+            <Link href={localizedLinkPath("/projects", lang)}>
               <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 pb-0.5 mt-6">
                 <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
                 {u.allProjects}
@@ -104,7 +105,7 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
           <>
             <Section className="relative py-12 border-b border-black/10 bg-white">
               <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                <Link href="/projects">
+                <Link href={localizedLinkPath("/projects", lang)}>
                   <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mb-6 py-1">
                     <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
                     {u.backLabel}
@@ -146,7 +147,7 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
                     <ul className="divide-y divide-black/10 border-y border-black/10">
                       {programs.map((p) => (
                         <li key={p.slug}>
-                          <Link href={p.link ?? `/programs/${p.slug}`}>
+                          <Link href={localizedLinkPath(p.link ?? `/programs/${p.slug}`, lang)}>
                             <a className="flex items-center justify-between gap-4 py-4 group">
                               <span className="text-sm font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors">
                                 {p.name}
@@ -168,7 +169,7 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
                     <ul className="flex flex-wrap gap-2">
                       {initiatives.map((p) => (
                         <li key={p.slug}>
-                          <Link href={`/projects/${p.slug}`}>
+                          <Link href={localizedLinkPath(`/projects/${p.slug}`, lang)}>
                             <a className="t-meta inline-block border border-black/15 px-3 py-2 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] transition-colors text-xs">
                               {p.title[locale]}
                             </a>
@@ -182,7 +183,7 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
             </Section>
           </>
         )}
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

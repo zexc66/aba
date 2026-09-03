@@ -24,6 +24,7 @@ import {
   type ProjectStatus,
   type SectorKey,
 } from "@/projects";
+import { localizedPath } from "@/localePath";
 
 type Filters = {
   country: CountryKey | "all";
@@ -107,7 +108,7 @@ export default function Projects() {
       <SEO title={t.pageTitle} description={t.headerNote} lang={lang} url="/projects" />
       <Header nav={content.nav} />
 
-      <main id="main-content" className="pt-24">
+      <div className="pt-24">
         {/* Header */}
         <Section className="relative py-12 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
@@ -228,8 +229,8 @@ export default function Projects() {
               {initiatives.map((p, i) => (
                 <motion.a
                   key={p.slug}
-                  href={`/projects/${p.slug}`}
-                  initial={reduceMotion ? false : { opacity: 0 }}
+                  href={localizedPath(`/projects/${p.slug}`, lang)}
+                  initial={false}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: Math.min(i * 0.05, 0.2) }}
@@ -284,7 +285,7 @@ export default function Projects() {
             </div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

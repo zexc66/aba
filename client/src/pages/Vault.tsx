@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FileText, Download, LogOut, ShieldCheck, ArrowLeft, AlertCircle, FolderLock } from "lucide-react";
 import SEO from "@/components/SEO";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath } from "@/localePath";
 
 const VAULT_TOKEN_KEY = "aiabasd-vault-token";
 
@@ -104,7 +105,7 @@ export default function Vault() {
       />
 
       <header className="w-full max-w-6xl mx-auto flex items-center justify-between z-10 py-4">
-        <Link href="/investor-portal">
+         <Link href={localizedLinkPath("/investor-portal", lang)}>
           <div className="flex items-center gap-3 text-sm font-semibold text-white/70 hover:text-white transition-colors cursor-pointer">
             <ArrowLeft size={18} className={`${isRTL ? "rotate-180" : ""} rtl:-scale-x-100`} />
             <span>{t.backLabel}</span>
@@ -127,7 +128,7 @@ export default function Vault() {
         </div>
       </header>
 
-      <main className="w-full max-w-4xl mx-auto my-auto z-10 py-12">
+      <div className="w-full max-w-4xl mx-auto my-auto z-10 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -208,7 +209,7 @@ export default function Vault() {
             <p className="text-xs text-white/50 leading-relaxed">{t.restrictedNote}</p>
           </div>
         </motion.div>
-      </main>
+      </div>
     </div>
   );
 }

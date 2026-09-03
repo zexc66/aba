@@ -3,24 +3,24 @@
   <url>
     <loc>https://aiabasd.org/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/"/>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aiabasd.org/ar</loc>
+    <loc>https://aiabasd.org/ar/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/"/>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://aiabasd.org/fr</loc>
+    <loc>https://aiabasd.org/fr/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/"/>
     <priority>0.9</priority>
   </url>
@@ -70,6 +70,78 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/visions"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/visions"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/visions"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/services"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/services"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/services"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/services"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/services"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/intelligence</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/intelligence"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/intelligence</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/intelligence"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/intelligence</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/intelligence"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/intelligence"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/match</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/match"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/match"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/match"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/match"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/match</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/match"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/match"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/match"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/match"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/match</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/match"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/match"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/match"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/match"/>
     <priority>0.5</priority>
   </url>
   <url>

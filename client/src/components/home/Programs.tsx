@@ -6,6 +6,8 @@ import { ArrowUpRight, Globe, CheckCircle2 } from "lucide-react";
 import { memo } from "react";
 import { programStatusTone } from "@/lib/utils";
 import type { Content } from "@/data";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 interface ProgramsProps {
     data: Content["programs"];
@@ -23,6 +25,7 @@ const STATUS_DOT: Record<string, string> = {
 };
 
 function ProgramsComponent({ data }: ProgramsProps) {
+    const { lang } = useLanguageContext();
     const featuredProgram = data.list.find((p) => p.link === "/hama-project") || data.list[0];
 
     return (
@@ -37,7 +40,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
                 />
 
                 <div className="-mt-8 mb-10 flex justify-end">
-                    <Link href="/pipeline">
+                    <Link href={localizedLinkPath("/pipeline", lang)}>
                         <a className="inline-flex items-center t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] py-3 transition-colors no-press">
                             {`${data.pipelineCta} →`}
                         </a>
@@ -45,11 +48,11 @@ function ProgramsComponent({ data }: ProgramsProps) {
                 </div>
 
                 <motion.a
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.45 }}
-                    href={featuredProgram.link ?? `/programs/${featuredProgram.slug}`}
+                    href={localizedPath(featuredProgram.link ?? `/programs/${featuredProgram.slug}`, lang)}
                     className="mb-14 block bg-[#0b0b10] p-6 lg:p-10 text-white relative overflow-hidden border border-black group"
                 >
 
@@ -99,11 +102,11 @@ function ProgramsComponent({ data }: ProgramsProps) {
                         return (
                             <motion.a
                                 key={`${program.slug}-${i}`}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={false}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: (i % 3) * 0.05 }}
-                                href={program.link ?? `/programs/${program.slug}`}
+                                href={localizedPath(program.link ?? `/programs/${program.slug}`, lang)}
                                 className="group block bg-white border border-black/10 p-8 flex flex-col justify-between hover:border-[#5a1f2e]/50 transition-colors duration-300 relative"
                             >
                                 <span

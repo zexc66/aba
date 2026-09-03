@@ -12,6 +12,9 @@ const ROUTES = [
   "/",
   "/pipeline",
   "/visions",
+  "/services",
+  "/intelligence",
+  "/match",
   "/gallery",
   "/hama-project",
   "/programs/hama-rehabilitation",
@@ -41,7 +44,10 @@ const ROUTES = [
   "/governance/contracts",
   "/privacy",
   "/terms",
+  "/404",
   "/investor-portal",
+  "/investor-portal/vault",
+  "/admin",
   "/impact",
   "/sectors/housing",
   "/sectors/energy",
@@ -128,63 +134,68 @@ const total = ROUTES.length * LOCALES.length;
 
 for (const locale of LOCALES) {
   for (const route of ROUTES) {
-    try {
-      const { html } = await renderRoute(route, locale.code);
-      const { title, description } = routeMeta(route, locale.code);
-      const publicPath = publicPathFor(route, locale.prefix);
-      const url = `${SITE_URL}${publicPath === "/" ? "/" : publicPath}`;
+    const { html } = await renderRoute(route, locale.code);
+    const { title, description } = routeMeta(route, locale.code);
+    const publicPath = publicPathFor(route, locale.prefix);
+    const url = `${SITE_URL}${publicPath === "/" ? "/" : publicPath}`;
 
-      // hreflang alternates across the three locales
-      const alternates = LOCALES.map(
-        (l) =>
-          `<link rel="alternate" hreflang="${l.code}" href="${SITE_URL}${publicPathFor(route, l.prefix) === "/" ? "/" : publicPathFor(route, l.prefix)}"/>`
-      ).join("") +
-        `<link rel="alternate" hreflang="x-default" href="${SITE_URL}${route === "/" ? "/" : route}"/>`;
+    // hreflang alternates across the three locales
+    const alternates = LOCALES.map(
+      (l) =>
+        `<link rel="alternate" hreflang="${l.code}" href="${SITE_URL}${publicPathFor(route, l.prefix) === "/" ? "/" : publicPathFor(route, l.prefix)}"/>`
+    ).join("") +
+      `<link rel="alternate" hreflang="x-default" href="${SITE_URL}${route === "/" ? "/" : route}"/>`;
 
-      let page = template;
-      for (const re of STRIP_HEAD) page = page.replace(re, "");
+    let page = template;
+    for (const re of STRIP_HEAD) page = page.replace(re, "");
 
-      // Locale-aware html element (strip any existing lang/dir first)
-      page = page.replace(/<html([^>]*)>/, "<html>").replace(
-        "<html>",
-        `<html lang="${locale.lang}"${locale.dir === "rtl" ? ' dir="rtl"' : ""}>`
-      );
+    // Locale-aware html element (strip any existing lang/dir first)
+    page = page.replace(/<html([^>]*)>/, "<html>").replace(
+      "<html>",
+      `<html lang="${locale.lang}"${locale.dir === "rtl" ? ' dir="rtl"' : ""}>`
+    );
 
-      const head =
-        `<title>${esc(title)}</title>` +
-        `<meta name="description" content="${esc(description)}"/>` +
-        alternates +
-        `<meta property="og:type" content="website"/>` +
-        `<meta property="og:locale" content="${locale.ogLocale}"/>` +
-        `<meta property="og:url" content="${url}"/>` +
-        `<meta property="og:title" content="${esc(title)}"/>` +
-        `<meta property="og:description" content="${esc(description)}"/>` +
-        `<meta property="og:image" content="${SITE_URL}/og-image.jpg"/>` +
-        `<meta name="twitter:card" content="summary_large_image"/>` +
-        `<meta name="twitter:title" content="${esc(title)}"/>` +
-        `<meta name="twitter:description" content="${esc(description)}"/>` +
-        `<meta name="twitter:image" content="${SITE_URL}/og-image.jpg"/>` +
-        `<link rel="canonical" href="${url}"/>`;
+    const head =
+      `<title>${esc(title)}</title>` +
+      `<meta name="description" content="${esc(description)}"/>` +
+      alternates +
+      `<meta property="og:type" content="website"/>` +
+      `<meta property="og:locale" content="${locale.ogLocale}"/>` +
+      `<meta property="og:url" content="${url}"/>` +
+      `<meta property="og:title" content="${esc(title)}"/>` +
+      `<meta property="og:description" content="${esc(description)}"/>` +
+      `<meta property="og:image" content="${SITE_URL}/og-image.jpg"/>` +
+      `<meta name="twitter:card" content="summary_large_image"/>` +
+      `<meta name="twitter:title" content="${esc(title)}"/>` +
+      `<meta name="twitter:description" content="${esc(description)}"/>` +
+      `<meta name="twitter:image" content="${SITE_URL}/og-image.jpg"/>` +
+      `<link rel="canonical" href="${url}"/>`;
 
-      page = page.replace("</head>", `${head}</head>`);
-      page = page.replace(
-        /<div id="root"><\/div>/,
-        () => `<div id="root">${html}</div>`
-      );
+    page = page.replace("</head>", `${head}</head>`);
+    page = page.replace(
+      /<div id="root"><\/div>/,
+      () => `<div id="root">${html}</div>`
+    );
 
-      const relFile =
-        locale.prefix === "" ? (route === "/" ? "index.html" : path.join(route.replace(/^\//, ""), "index.html")) : path.join(locale.prefix, route.replace(/^\//, ""), "index.html");
-      const target = path.join(OUT_DIR, relFile);
-      await mkdir(path.dirname(target), { recursive: true });
-      await writeFile(target, page);
-      written++;
-    } catch (error) {
-      console.error(
-        `[prerender:${locale.code}${route}]`,
-        error instanceof Error ? error.stack : error
-      );
-    }
+    const relFile = locale.prefix === ""
+      ? (route === "/" ? "index.html" : path.join(route.replace(/^\//, ""), "index.html"))
+      : (route === "/" ? path.join(locale.prefix, "index.html") : path.join(locale.prefix, route.replace(/^\//, ""), "index.html"));
+    const target = path.join(OUT_DIR, relFile);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, page);
+    written++;
   }
 }
 
+if (written !== total) {
+  throw new Error(`prerender incomplete: ${written}/${total} routes rendered`);
+}
+
+// Vercel recognizes a root 404.html as the status-bearing fallback for
+// unknown paths. The localized /ar/404/ and /fr/404/ routes remain available
+// as normal, crawlable pages; the platform fallback uses the English copy.
+await writeFile(
+  path.join(OUT_DIR, "404.html"),
+  await readFile(path.join(OUT_DIR, "404", "index.html"), "utf-8")
+);
 console.log(`prerender: ${written}/${total} routes rendered`);

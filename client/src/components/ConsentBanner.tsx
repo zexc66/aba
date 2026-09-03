@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Cookie } from "lucide-react";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { trackPageview } from "@/services/analytics";
 
 export const CONSENT_STORAGE_KEY = "aiabasd-consent";
 
@@ -31,6 +32,9 @@ export default function ConsentBanner() {
       localStorage.setItem(CONSENT_STORAGE_KEY, value);
     } catch {
       // Storage unavailable — treat as declined; analytics stays off.
+    }
+    if (value === "granted") {
+      trackPageview(`${window.location.pathname}${window.location.search}${window.location.hash}`);
     }
     setVisible(false);
   };

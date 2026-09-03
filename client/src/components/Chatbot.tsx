@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { useLanguageContext } from "@/contexts/LanguageContext";
+import { LOCALIZED_COPY } from "@/localizedCopy";
 
 interface Message {
     id: string;
@@ -10,11 +12,13 @@ interface Message {
 }
 
 export default function Chatbot() {
+    const { lang } = useLanguageContext();
+    const copy = LOCALIZED_COPY[lang].chatbot;
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState<Message[]>([
         {
             id: "1",
-            text: "Hello! How can I help you today?",
+            text: copy.initialGreeting,
             sender: "bot",
             timestamp: new Date(),
         },
@@ -47,6 +51,12 @@ export default function Chatbot() {
         scrollToBottom();
     }, [messages]);
 
+    useEffect(() => {
+        setMessages((previous) => previous.length === 1 && previous[0].id === "1"
+            ? [{ ...previous[0], text: copy.initialGreeting }]
+            : previous);
+    }, [copy.initialGreeting]);
+
     const handleSend = async () => {
         if (!input.trim()) return;
 
@@ -65,14 +75,14 @@ export default function Chatbot() {
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: input }),
+                body: JSON.stringify({ message: input, locale: lang }),
             });
 
             const data = await response.json();
 
             const botMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: data.response || "I'm sorry, I couldn't process that.",
+                text: data.response || copy.fallback,
                 sender: "bot",
                 timestamp: new Date(),
             };
@@ -81,7 +91,7 @@ export default function Chatbot() {
         } catch (error) {
             const errorMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: "Sorry, I'm having trouble connecting. Please try again later.",
+                text: copy.connectionError,
                 sender: "bot",
                 timestamp: new Date(),
             };
@@ -104,7 +114,7 @@ export default function Chatbot() {
                 onClick={() => setIsOpen(!isOpen)}
                 className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center bg-[#5a1f2e] hover:bg-[#0b0b10] text-white border border-black/20 transition-colors no-press"
                 whileTap={{ scale: 0.95 }}
-                aria-label="Toggle chat"
+                 aria-label={copy.toggleChat}
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
@@ -135,7 +145,7 @@ export default function Chatbot() {
                 {isOpen && (
                     <motion.div
                         role="dialog"
-                        aria-label="AIABASD Assistant"
+                         aria-label={copy.assistantLabel}
                         initial={{ opacity: 0, y: 16, scale: 0.97 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -146,12 +156,12 @@ export default function Chatbot() {
                         <div className="flex items-center justify-between border-b border-black/10 bg-[#5a1f2e] px-4 py-3">
                             <div className="flex items-center gap-2.5">
                                 <span className="w-1.5 h-1.5 bg-emerald-400" aria-hidden="true" />
-                                <h3 className="t-meta text-white">AIABASD Assistant</h3>
+                                 <h3 className="t-meta text-white">{copy.assistantLabel}</h3>
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="rounded-sm p-1 text-white/80 hover:bg-white/20 transition"
-                                aria-label="Close chat"
+                                 aria-label={copy.closeChat}
                             >
                                 <X className="h-5 w-5" />
                             </button>
@@ -209,11 +219,11 @@ export default function Chatbot() {
                                 <input
                                     ref={inputRef}
                                     type="text"
-                                    aria-label="Message"
+                                     aria-label={copy.messageLabel}
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={handleKeyPress}
-                                    placeholder="Type your message..."
+                                     placeholder={copy.messagePlaceholder}
                                     className="flex-1 rounded-sm border border-black/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-[#5a1f2e] transition-colors"
                                     disabled={isTyping}
                                 />
@@ -221,7 +231,7 @@ export default function Chatbot() {
                                     onClick={handleSend}
                                     disabled={!input.trim() || isTyping}
                                     className="rounded-sm bg-[#5a1f2e] px-4 py-2.5 text-white hover:bg-[#0b0b10] transition-colors disabled:opacity-50 disabled:cursor-not-allowed no-press"
-                                    aria-label="Send message"
+                                     aria-label={copy.sendMessage}
                                 >
                                     {isTyping ? (
                                         <Loader2 className="h-5 w-5 animate-spin" />

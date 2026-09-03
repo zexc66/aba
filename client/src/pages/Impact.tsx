@@ -6,6 +6,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { useLanguageContext } from "@/contexts/LanguageContext";
+import { localizedLinkPath } from "@/localePath";
 import { STATUSES, projectBySlug, type Locale3 } from "@/projects";
 
 type Locale = Locale3;
@@ -174,7 +175,7 @@ export default function Impact() {
       <SEO title={t.pageTitle} description={t.note} lang={lang} url="/impact" />
       <Header nav={content.nav} />
 
-      <main id="main-content" className="pt-24 pb-24">
+      <div className="pt-24 pb-24">
         <Section className="relative py-12 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <SectionHeader
@@ -229,7 +230,7 @@ export default function Impact() {
                         {ind.label[locale]}
                       </p>
                       {project && (
-                        <Link href={`/projects/${project.slug}`}>
+                        <Link href={localizedLinkPath(`/projects/${project.slug}`, lang)}>
                           <a className="t-meta text-[10px] text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mt-1 inline-block">
                             {project.title[locale]}
                           </a>
@@ -266,7 +267,7 @@ export default function Impact() {
             </div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

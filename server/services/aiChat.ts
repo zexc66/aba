@@ -1,6 +1,7 @@
-/** Grounded assistant: Gemini with a compact, owner-approved facts base.
- *  Honest degradation — when GEMINI_API_KEY is unconfigured or the call
- *  fails, the caller falls back to the rule-based chatService. */
+/** Deferred Gemini assistant with a compact, owner-approved facts base.
+ *  Public chat routes intentionally do not call this module. Keep it unused
+ *  until the model returns structured fact IDs and citations that can be
+ *  validated before any model text is exposed. */
 
 const FACTS = `
 ORGANIZATION
@@ -45,6 +46,94 @@ RULES (binding):
 
 FACTS:
 ${FACTS}`;
+
+const APPROVED_NUMBERS = new Set(["2", "11", "20", "50", "150", "550", "10000", "2030", "2063"]);
+
+const FACT_ANCHOR_PATTERNS = [
+  /\bAIABASD\b|African International Alliance|alliance/i,
+  /Hama|Fida['’]an|Al[- ]Arish|debris|rubble|eco[- ]brick|Green Energy|Digital Africa|Integrated Cities|Food Security/i,
+  /ESIA|ESMS|KYC|AML|PPP|BOT|EPC\+F|independent (?:engineer|auditor|oversight)/i,
+  /Africa|Arab world|Ghana|Gambia|Sierra Leone|Burkina Faso|Côte d['’]Ivoire|Angola|Sudan|Egypt|Jordan|Syria|Saudi Arabia|Gaza/i,
+  /Investor Portal|access key|contact form|contact@aiabasd\.org|gs@aiabasd\.org|fo@aiabasd\.org/i,
+  /\b(?:550|10,?000|50|20|150|11|2030|2063)\b/i,
+];
+
+const APPROVED_LOCATION_TERMS = new Set([
+  "africa", "arab world", "ghana", "the gambia", "gambia", "sierra leone", "burkina faso",
+  "côte d'ivoire", "côte d’ivoire", "angola", "sudan", "egypt", "jordan", "syria",
+  "saudi arabia", "gaza", "hama", "al-arish", "middle east", "west africa", "central africa",
+]);
+
+const UNSAFE_RESPONSE_PATTERNS = [
+  /ignore\s+(?:all|any|the\s+previous|previous)\s+instructions?/i,
+  /(?:system|developer|internal)\s+(?:prompt|message|instructions?)/i,
+  /reveal\s+(?:the\s+)?(?:prompt|instructions?|hidden)/i,
+  /\b(?:jailbreak|you\s+are\s+now)\b/i,
+  /<script\b|javascript:/i,
+  /\b(?:expected|projected|targeted|guarantee(?:d|s)?|risk[- ]free|no\s+risk|assured|profit|yield|roi|return(?:s)?|interest\s+rate|financial\s+return|revenue|valuation|approved|approval|certified|certification|licensed|authorized|signed|contract(?:s|ed|ual)?|promis(?:e|ed|es|ing)|climate[- ]positive|world[- ]class|best[- ]in[- ]class|market[- ]leading)\b/i,
+  /\b(?:offices?|branches?|locations?|employees?|staff|facilities|countries)\b/i,
+];
+
+function hasOnlyApprovedNumbers(text: string): boolean {
+  const factualText = text.replace(/^\s*\d+[.)]\s+/gm, "");
+  const numberPattern = /(?<![A-Za-z])\d[\d,]*(?:\.\d+)?(?:[A-Za-z]+)?%?\+?/g;
+  let match: RegExpExecArray | null;
+  while ((match = numberPattern.exec(factualText)) !== null) {
+    const token = match[0];
+    const number = token.match(/^\d[\d,]*(?:\.\d+)?/)?.[0].replace(/,/g, "");
+    if (number === undefined || !APPROVED_NUMBERS.has(number)) return false;
+
+    // Allow an approved number only in the fact context in which it is
+    // approved. This blocks otherwise-valid tokens being repurposed for new
+    // project, office, location, or financial claims.
+    const context = factualText.slice(Math.max(0, match.index - 60), match.index + token.length + 60).toLowerCase();
+    const validContext = approvedNumberContext(number, context);
+    if (!validContext) return false;
+  }
+  return true;
+}
+
+function approvedNumberContext(number: string, context: string): boolean {
+  switch (number) {
+    case "2": return /business days?/.test(context);
+    case "11": return /corridors?/.test(context);
+    case "20": return /health centers?/.test(context);
+    case "50": return /schools?/.test(context);
+    case "150": return /\bmw\b|solar/.test(context);
+    case "550": return /usd|million|pipeline|capital/.test(context);
+    case "10000": return /jobs?/.test(context);
+    case "2030": return /sdg|sustainable development|un/.test(context);
+    case "2063": return /agenda|au\b/.test(context);
+    default: return false;
+  }
+}
+
+function hasApprovedLocationTerms(text: string): boolean {
+  const locationPattern = /\b(?:in|across|from|to|near|within|serving)\s+([A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'-]*(?:\s+[A-ZÀ-ÖØ-Þ][A-Za-zÀ-ÖØ-öø-ÿ'-]*){0,2})/g;
+  let match: RegExpExecArray | null;
+  while ((match = locationPattern.exec(text)) !== null) {
+    const candidate = match[1].toLowerCase().replace(/[.,;:!?]+$/, "").trim();
+    if (["ppp", "bot", "epc", "esia", "esms"].includes(candidate)) continue;
+    if (!APPROVED_LOCATION_TERMS.has(candidate)) return false;
+  }
+  return true;
+}
+
+function hasApprovedEmploymentClaims(text: string): boolean {
+  if (!/\bjobs?\b/i.test(text)) return true;
+  return /\b10,?000\+?\s+jobs?\b/i.test(text);
+}
+
+/** Gate model output before it can be labelled as grounded. */
+export function sanitizeGroundedResponse(value: unknown): string | null {
+  if (typeof value !== "string") return null;
+  const text = value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "").trim();
+  if (!text || text.length > 2000 || text.split(/\s+/).length > 120) return null;
+  if (UNSAFE_RESPONSE_PATTERNS.some((pattern) => pattern.test(text))) return null;
+  if (!hasOnlyApprovedNumbers(text) || !hasApprovedLocationTerms(text) || !hasApprovedEmploymentClaims(text)) return null;
+  if (!FACT_ANCHOR_PATTERNS.some((pattern) => pattern.test(text))) return null;
+  return text;
+}
 
 export function aiConfigured(): boolean {
   return Boolean(process.env.GEMINI_API_KEY);

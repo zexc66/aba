@@ -8,6 +8,7 @@ import { Section } from "@/components/ui/section";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { GOVERNANCE_ARTICLES, type GovernanceSlug } from "@/intelligence";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 const PILLAR_SLUGS: GovernanceSlug[] = ["esia-esms", "kyc-aml", "independent-oversight", "contracts"];
 
@@ -24,10 +25,10 @@ export default function GovernanceArticle() {
     return (
       <div className="min-h-screen bg-[#fdfcfb]">
         <Header nav={content.nav} />
-        <main className="pt-40 pb-24 text-center">
+        <div className="pt-40 pb-24 text-center">
           <p className="t-meta text-[#5a1f2e] mb-4">FRAMEWORK_NOT_FOUND</p>
-          <Link href="/#governance"><a className="text-sm font-semibold text-[#0b0b10] hover:text-[#5a1f2e] underline">{t.backLabel}</a></Link>
-        </main>
+          <Link href={localizedLinkPath("/#governance", lang)}><a className="text-sm font-semibold text-[#0b0b10] hover:text-[#5a1f2e] underline">{t.backLabel}</a></Link>
+        </div>
       </div>
     );
   }
@@ -44,10 +45,10 @@ export default function GovernanceArticle() {
       />
       <Header nav={content.nav} />
 
-      <main className="pt-28 pb-24">
+      <div className="pt-28 pb-24">
         <Section className="py-12 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <Link href="/#governance">
+            <Link href={localizedLinkPath("/#governance", lang)}>
               <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mb-6 py-2">
                 <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
                 <span>{t.backLabel}</span>
@@ -108,7 +109,7 @@ export default function GovernanceArticle() {
                 </div>
                 <p className="text-sm text-white/70 leading-relaxed">{t.requestNote}</p>
                 <a
-                  href="/#contact"
+                  href={localizedPath("/#contact", lang)}
                   className="mt-8 inline-flex items-center gap-2 bg-[#5a1f2e] hover:bg-[#f2a007] hover:text-[#0b0b10] text-white px-6 py-3 text-sm font-semibold transition-colors no-press"
                 >
                   {t.requestLabel}
@@ -117,7 +118,7 @@ export default function GovernanceArticle() {
             </motion.aside>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

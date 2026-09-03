@@ -29,7 +29,7 @@ export default function Home() {
         <AnimatedBackground />
         <Header nav={t.nav} />
 
-        <main>
+        <div>
           <Hero data={t.hero} />
           <About data={t.about} />
           <Programs data={t.programs} />
@@ -41,7 +41,7 @@ export default function Home() {
           <Testimonials data={t.testimonials} hud={t.hud} lang={lang} />
           <Newsroom data={t.newsroom} engagements={t.engagements} lang={lang} />
           <Contact data={t.contact} lang={lang} />
-        </main>
+        </div>
 
         <Footer data={t.footer} newsroom={t.newsroom} lang={lang} />
         <ScrollToTop />

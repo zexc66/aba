@@ -178,7 +178,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                                             strokeWidth={isHighlighted ? "1.5" : "0.8"}
                                             strokeLinecap="round"
                                             opacity={isHighlighted ? 0.95 : 0.3}
-                                            initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
+                                            initial={false}
                                             animate={{ pathLength: 1, opacity: isHighlighted ? 0.95 : 0.3 }}
                                             transition={{
                                                 pathLength: { duration: 0.9, delay: 0.4 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
@@ -284,7 +284,7 @@ function NodalMapComponent({ activeCountry, compact = false }: { activeCountry: 
                 <AnimatePresence>
                     {currentCountry && (
                         <motion.div
-                            initial={{ opacity: 0, y: 15, scale: 0.96 }}
+                            initial={false}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 15, scale: 0.96 }}
                             className="static md:absolute md:bottom-4 ltr:md:left-4 rtl:md:right-4 z-30 w-full md:w-auto md:max-w-sm mt-3 md:mt-0"

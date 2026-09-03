@@ -1,4 +1,6 @@
 import { generateChatResponse } from "../server/services/chatService";
+import { allowConfiguredOrigin, requestClientIp } from "./cors";
+import { z } from "zod";
 
 interface ServerlessRequest {
   method?: string;
@@ -13,6 +15,11 @@ interface ServerlessResponse {
 
 const hits = new Map<string, { count: number; resetAt: number }>();
 
+const chatSchema = z.object({
+  message: z.string().trim().min(1).max(2000),
+  locale: z.enum(["en", "ar", "fr"]).optional(),
+});
+
 function rateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = hits.get(ip);
@@ -24,15 +31,8 @@ function rateLimited(ip: string): boolean {
   return entry.count > 30;
 }
 
-function clientIp(req: ServerlessRequest): string {
-  const fwd = req.headers["x-forwarded-for"];
-  return typeof fwd === "string" ? fwd.split(",")[0].trim() : "unknown";
-}
-
 export default async function handler(req: ServerlessRequest, res: ServerlessResponse) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (!allowConfiguredOrigin(req, res)) return;
 
   if (req.method === "OPTIONS") {
     res.status(200).end();
@@ -44,7 +44,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
     return;
   }
 
-  if (rateLimited(clientIp(req))) {
+  if (rateLimited(requestClientIp(req))) {
     res.status(429).json({ error: "Too many requests. Please try again later." });
     return;
   }
@@ -58,11 +58,13 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
     }
   }
 
-  const message = (body as { message?: unknown } | null)?.message;
-  if (typeof message !== "string" || message.trim().length === 0 || message.trim().length > 2000) {
+  const parsed = chatSchema.safeParse(body);
+  if (!parsed.success) {
     res.status(400).json({ error: "Invalid message. Maximum 2000 characters." });
     return;
   }
 
-  res.status(200).json({ response: generateChatResponse(message) });
+  // Public chat is intentionally deterministic until structured fact IDs
+  // and citations exist for model output. Never expose free-form Gemini text.
+  res.status(200).json({ response: generateChatResponse(parsed.data.message, parsed.data.locale), source: "rules" });
 }

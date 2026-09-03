@@ -8,6 +8,9 @@ const ROUTES = [
   "/",
   "/pipeline",
   "/visions",
+  "/services",
+  "/intelligence",
+  "/match",
   "/gallery",
   "/hama-project",
   "/programs/hama-rehabilitation",
@@ -73,8 +76,10 @@ const LOCALES = [
 ];
 
 const esc = (s) => s.replace(/&/g, "&amp;");
-const pathFor = (route, prefix) =>
-  ((prefix ? prefix + "/" : "") + (route === "/" ? "" : route.replace(/^\//, ""))).replace(/\/+$/, "");
+const pathFor = (route, prefix) => {
+  if (route === "/") return prefix ? `${prefix}/` : "";
+  return `${prefix ? prefix + "/" : ""}${route.replace(/^\//, "")}`;
+};
 
 const entries = ROUTES.map((route) => {
   const alts = LOCALES.map(

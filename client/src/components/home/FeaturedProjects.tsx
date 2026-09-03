@@ -5,6 +5,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { PROJECTS_UI, featuredProjects, type Locale3 } from "@/projects";
+import { localizedLinkPath } from "@/localePath";
 
 export default function FeaturedProjects() {
   const { lang } = useLanguageContext();
@@ -29,7 +30,7 @@ export default function FeaturedProjects() {
         </div>
 
         <div className="mt-10 flex justify-end">
-          <Link href="/projects">
+          <Link href={localizedLinkPath("/projects", lang)}>
             <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] py-2 transition-colors no-press">
               {t.viewAll}
               <ArrowRight size={14} className="rtl:-scale-x-100" aria-hidden="true" />

@@ -6,6 +6,7 @@ import { MapPin } from "lucide-react";
 import { COUNTRIES } from "@/countries";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { COPY } from "@/data";
+import { localizedLinkPath } from "@/localePath";
 
 const EN_LIST = COPY.en.countries.list;
 
@@ -88,7 +89,7 @@ function CountriesComponent({ data }: CountriesProps) {
 
                                 <div className="flex flex-wrap gap-2">
                                     {members.map(({ name, node }) => (
-                                        <Link key={name} href={`/corridors/${node?.iso ?? ""}`}>
+                                        <Link key={name} href={localizedLinkPath(`/corridors/${node?.iso ?? ""}`, lang)}>
                                             <a className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 text-xs font-semibold border border-black/10 bg-white text-[#0b0b10]/90 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e] transition-colors">
                                                 <MapPin size={12} className={`shrink-0 ${node?.status === "active" ? "text-emerald-600" : "text-black/35"}`} aria-hidden="true" />
                                                 {name}

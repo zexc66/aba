@@ -16,6 +16,18 @@ interface Lead {
   region?: string;
   ticket?: string;
   timeline?: string;
+  partyType?: string;
+  sectors?: string;
+  countries?: string;
+  capabilities?: string;
+  capitalBand?: string;
+  targetProject?: string;
+  targetService?: string;
+  consent?: boolean;
+  role?: string;
+  interest?: string;
+  stage?: string;
+  priority?: string;
   message?: string;
   timestamp: string;
 }
@@ -64,7 +76,7 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
   }, [load]);
 
   const totalViews = stats
-    ? Object.values(stats).reduce((sum, day) => sum + Object.values(day).reduce((a, b) => a + b, 0), 0)
+    ? Object.values(stats).reduce((sum, day) => sum + Object.entries(day).filter(([path]) => !path.startsWith("event:")).reduce((a, [, count]) => a + count, 0), 0)
     : 0;
   const activeDays = stats ? Object.keys(stats).length : 0;
 
@@ -95,7 +107,7 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto space-y-10 py-8">
+      <div className="max-w-6xl mx-auto space-y-10 py-8">
         {failed ? (
           <div role="alert" className="flex items-center gap-2.5 text-sm text-red-300 border border-red-900/50 bg-red-950/30 rounded-lg px-4 py-3">
             <AlertCircle size={16} /> Could not load console data.
@@ -144,9 +156,10 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
                       className="bg-[#11111a] px-5 py-4"
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <div className="flex items-center gap-3 min-w-0">
-                          <span className="t-data text-xs text-[#f2a007]" dir="ltr">{lead.id}</span>
-                          <span className="t-meta text-white/45 text-[10px] border border-white/15 px-2 py-1" dir="ltr">{lead.type}</span>
+                         <div className="flex items-center gap-3 min-w-0">
+                           <span className="t-data text-xs text-[#f2a007]" dir="ltr">{lead.id}</span>
+                           <span className="t-meta text-white/45 text-[10px] border border-white/15 px-2 py-1" dir="ltr">{lead.type}</span>
+                           <span className="t-meta text-white/45 text-[10px] border border-white/15 px-2 py-1" dir="ltr">{lead.stage ?? "new"} · {lead.priority ?? "normal"}</span>
                           {lead.organization && (
                             <span className="text-sm font-semibold text-white truncate">{lead.organization}</span>
                           )}
@@ -158,9 +171,29 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
                         {lead.name && <span>{lead.name}</span>}
                         {lead.sector && <span>SECTOR: {lead.sector}</span>}
                         {lead.region && <span>REGION: {lead.region}</span>}
-                        {lead.ticket && <span>TICKET: {lead.ticket}</span>}
-                      </div>
-                      {lead.message && (
+                         {lead.ticket && <span>TICKET: {lead.ticket}</span>}
+                       </div>
+                       <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-2 border-t border-white/5 pt-3 text-xs text-white/60 sm:grid-cols-2 xl:grid-cols-4" dir="ltr">
+                         {[
+                           ["ROLE", lead.role],
+                           ["PARTY_TYPE", lead.partyType],
+                           ["INTEREST", lead.interest],
+                           ["TIMELINE", lead.timeline],
+                           ["SECTORS", lead.sectors],
+                           ["COUNTRIES", lead.countries],
+                           ["CAPABILITIES", lead.capabilities],
+                           ["CAPITAL_BAND", lead.capitalBand],
+                           ["TARGET_PROJECT", lead.targetProject],
+                           ["TARGET_SERVICE", lead.targetService],
+                           ["CONSENT", lead.consent === true ? "GRANTED" : "NOT_CAPTURED"],
+                         ].filter((entry): entry is [string, string] => Boolean(entry[1])).map(([label, value]) => (
+                           <div key={label} className="min-w-0 break-words">
+                             <dt className="t-meta text-[9px] text-white/35">{label}</dt>
+                             <dd className="mt-0.5 break-words text-white/70">{value}</dd>
+                           </div>
+                         ))}
+                       </dl>
+                       {lead.message && (
                         <p className="text-xs text-white/50 leading-relaxed mt-2 pt-2 border-t border-white/5 whitespace-pre-line">
                           {lead.message}
                         </p>
@@ -172,7 +205,7 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
             </section>
           </>
         )}
-      </main>
+      </div>
     </div>
   );
 }

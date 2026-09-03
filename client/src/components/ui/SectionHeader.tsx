@@ -23,7 +23,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
         <div id={id} className="mb-14 scroll-mt-28">
             <div className="grid grid-cols-[2.5rem_1fr_auto] md:grid-cols-[3.5rem_1fr_auto] items-baseline gap-x-4 md:gap-x-8">
                 <motion.span
-                    initial={{ opacity: 0 }}
+                    initial={false}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4 }}
@@ -35,7 +35,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
 
                 <div className="min-w-0">
                     <Title
-                        initial={{ opacity: 0, y: 12 }}
+                    initial={false}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -45,7 +45,7 @@ export default function SectionHeader({ index, title, note, meta, dark = false, 
                     </Title>
                     {note && (
                         <motion.p
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.45, delay: 0.15 }}

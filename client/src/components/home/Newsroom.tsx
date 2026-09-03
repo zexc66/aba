@@ -163,7 +163,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                         {featured && (
                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                                 <motion.article
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={false}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4 }}
@@ -221,7 +221,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                 {rest.map((news, i) => (
                                     <motion.article
                                         key={`${news.title}-${i}`}
-                                        initial={{ opacity: 0, y: 20 }}
+                                        initial={false}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: i * 0.05 }}

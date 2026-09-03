@@ -19,7 +19,7 @@ export default function Gallery() {
             <SEO title={`${t.title} | AIABASD`} description={t.subtitle} lang={lang} url="/gallery" />
             <Header nav={content.nav} />
 
-            <main className="pt-28 pb-24">
+            <div className="pt-28 pb-24">
                 <Section className="py-16 border-b border-black/10 bg-white">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                         <div className="max-w-3xl space-y-4">
@@ -94,7 +94,7 @@ export default function Gallery() {
                         </div>
                     </div>
                 </Section>
-            </main>
+            </div>
 
             <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
         </div>

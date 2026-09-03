@@ -29,6 +29,9 @@ const Impact = lazy(() => import("./pages/Impact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Visions = lazy(() => import("./pages/Visions"));
+const Services = lazy(() => import("./pages/Services"));
+const Intelligence = lazy(() => import("./pages/Intelligence"));
+const Match = lazy(() => import("./pages/Match"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function SkipLink() {
@@ -65,6 +68,9 @@ function RouterSwitch() {
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />
         <Route path={"/visions"} component={Visions} />
+        <Route path={"/services"} component={Services} />
+        <Route path={"/intelligence"} component={Intelligence} />
+        <Route path={"/match"} component={Match} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
@@ -74,19 +80,16 @@ function RouterSwitch() {
 
 /** Locale path prefix (/ar, /fr) for prerendered locale URLs — stripped from
  *  client routing so /ar/pipeline matches the /pipeline route. */
-function pathPrefix(): string | undefined {
-  try {
-    const m = window.location.pathname.match(/^\/(ar|fr)(?=\/|$)/);
-    return m ? m[1] : undefined;
-  } catch {
-    return undefined;
-  }
-}
-
 function Router() {
+  const { lang } = useLanguageContext();
+  const base = lang === "en" ? undefined : `/${lang}`;
+
   return (
     <Suspense fallback={<PageLoader />}>
-      <WouterRouter base={pathPrefix()}>
+      {/* Remount when the namespace changes: Wouter caches its base, so a
+          stable Router would keep /ar after the language selector moves to
+          /fr or /. The browser URL is already updated by LanguageProvider. */}
+      <WouterRouter key={base ?? "en"} base={base}>
         <RouterSwitch />
       </WouterRouter>
     </Suspense>

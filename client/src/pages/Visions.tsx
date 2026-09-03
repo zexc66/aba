@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { COUNTRIES } from "@/countries";
 import { COPY } from "@/data";
+import { localizedLinkPath, localizedPath } from "@/localePath";
 
 const EN_LIST = COPY.en.countries.list;
 
@@ -27,7 +28,7 @@ export default function Visions() {
       />
       <Header nav={content.nav} />
 
-      <main className="pt-28 pb-24">
+      <div className="pt-28 pb-24">
         {/* ── Hero: Vision Statement ── */}
         <Section className="py-16 border-b border-black/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
@@ -109,7 +110,7 @@ export default function Visions() {
                   <span className="t-meta text-[#5a1f2e]">SDG 2030</span>
                 </div>
                 <p className="text-sm md:text-base text-black/70 leading-relaxed">{t.sdgFrame}</p>
-                <Link href="/pipeline">
+                <Link href={localizedLinkPath("/pipeline", lang)}>
                   <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] mt-6 border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 pt-2 transition-colors no-press">
                     SDG_ALIGNMENT_MATRIX <ArrowRight size={12} className="rtl:rotate-180" />
                   </a>
@@ -192,7 +193,7 @@ export default function Visions() {
                   </div>
                   <span className="t-meta text-[#5a1f2e] block mb-2">{member.title}</span>
                   <h3 className="text-lg font-bold text-[#0b0b10]">{member.name}</h3>
-                  <Link href={`/team/${["mohammed-abdel-moneim", "faris-safi", "ziad-shneikat"][i] ?? ""}`}>
+                  <Link href={localizedLinkPath(`/team/${["mohammed-abdel-moneim", "faris-safi", "ziad-shneikat"][i] ?? ""}`, lang)}>
                     <a className="inline-flex items-center gap-2 t-meta text-black/50 hover:text-[#5a1f2e] mt-4 transition-colors py-2">
                       PROFILE <ArrowRight size={12} className="rtl:rotate-180" strokeWidth={1.5} />
                     </a>
@@ -203,7 +204,7 @@ export default function Visions() {
 
             <div className="mt-14 flex justify-center">
               <a
-                href="/#contact"
+                href={localizedPath("/#contact", lang)}
                 className="inline-flex items-center gap-3 bg-[#5a1f2e] hover:bg-[#0b0b10] text-white px-8 py-4 font-semibold text-sm transition-colors no-press"
               >
                 <span>{t.leadershipCta}</span>
@@ -212,7 +213,7 @@ export default function Visions() {
             </div>
           </div>
         </Section>
-      </main>
+      </div>
 
       <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
       <ScrollToTop />

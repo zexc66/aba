@@ -80,7 +80,7 @@ function TestimonialsComponent({ data, hud }: TestimonialsProps) {
                             <AnimatePresence mode="wait">
                                 <motion.blockquote
                                     key={current}
-                                    initial={{ opacity: 0, y: 14 }}
+                                    initial={false}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -10 }}
                                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}

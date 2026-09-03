@@ -28,8 +28,16 @@ import ProgramDetail from "../client/src/pages/ProgramDetail";
 import Corridor from "../client/src/pages/Corridor";
 import TeamMember from "../client/src/pages/TeamMember";
 import GovernanceArticle from "../client/src/pages/GovernanceArticle";
+import Services from "../client/src/pages/Services";
+import Intelligence from "../client/src/pages/Intelligence";
+import Match from "../client/src/pages/Match";
+import NotFound from "../client/src/pages/NotFound";
+import Admin from "../client/src/pages/Admin";
+import Vault from "../client/src/pages/Vault";
 import { COPY } from "../client/src/data";
 import { PROJECTS, PROJECTS_UI, SECTORS, projectBySlug } from "../client/src/projects";
+import { PLATFORM_COPY } from "../client/src/platform";
+import { LOCALIZED_COPY } from "../client/src/localizedCopy";
 
 export const SITE_URL = "https://aiabasd.org";
 export type PrerenderLocale = "en" | "ar" | "fr";
@@ -83,14 +91,22 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
     };
     return { title: `${names[seg[1]] ?? "Governance"} | AIABASD`, description: t.governance.text };
   }
+  if (clean === "/services") return { title: `${PLATFORM_COPY[locale].services.title} | AIABASD`, description: PLATFORM_COPY[locale].services.intro };
+  if (clean === "/intelligence") return { title: `${PLATFORM_COPY[locale].intelligence.title} | AIABASD`, description: PLATFORM_COPY[locale].intelligence.intro };
+  if (clean === "/match") return { title: `${PLATFORM_COPY[locale].match.title} | AIABASD`, description: PLATFORM_COPY[locale].match.intro };
+  if (clean === "/privacy") return { title: `${LOCALIZED_COPY[locale].privacy.title} | AIABASD`, description: LOCALIZED_COPY[locale].privacy.description };
+  if (clean === "/terms") return { title: `${LOCALIZED_COPY[locale].terms.title} | AIABASD`, description: LOCALIZED_COPY[locale].terms.description };
+  if (clean === "/404") return { title: LOCALIZED_COPY[locale].notFound.seoTitle, description: LOCALIZED_COPY[locale].notFound.seoDescription };
   const titles: Record<string, { title: string; description: string }> = {
     "/pipeline": { title: `${t.pipeline.title} | AIABASD`, description: t.pipeline.note },
     "/gallery": { title: `Gallery | AIABASD`, description: t.countries.note },
     "/hama-project": { title: `Hama Project | AIABASD`, description: t.hero.subtitle },
     "/visions": { title: `${t.visions.title} | AIABASD`, description: t.visions.heroNote },
-    "/privacy": { title: `Privacy | AIABASD`, description: t.hero.subtitle },
-    "/terms": { title: `Terms | AIABASD`, description: t.hero.subtitle },
+    "/privacy": { title: `${LOCALIZED_COPY[locale].privacy.title} | AIABASD`, description: LOCALIZED_COPY[locale].privacy.description },
+    "/terms": { title: `${LOCALIZED_COPY[locale].terms.title} | AIABASD`, description: LOCALIZED_COPY[locale].terms.description },
     "/investor-portal": { title: `${t.investor.vaultTitle} | AIABASD`, description: t.investor.subtitle },
+    "/investor-portal/vault": { title: `${t.vault.title} | AIABASD`, description: t.vault.subtitle },
+    "/admin": { title: "Operations Console | AIABASD", description: "Internal lead and analytics console." },
   };
   return titles[clean] ?? { title: `${t.metaTitle}`, description: t.hero.subtitle };
 }
@@ -148,7 +164,13 @@ export function renderRoute(
                                 createElement(Route, { path: "/visions", component: Visions }),
                                 createElement(Route, { path: "/privacy", component: Privacy }),
                                 createElement(Route, { path: "/terms", component: Terms }),
-                                createElement(Route, { path: "/investor-portal", component: InvestorLogin })
+                                  createElement(Route, { path: "/investor-portal", component: InvestorLogin }),
+                                  createElement(Route, { path: "/investor-portal/vault", component: Vault }),
+                                  createElement(Route, { path: "/admin", component: Admin }),
+                                 createElement(Route, { path: "/services", component: Services }),
+                                 createElement(Route, { path: "/intelligence", component: Intelligence }),
+                                 createElement(Route, { path: "/match", component: Match })
+                                 ,createElement(Route, { component: NotFound })
                               )
                             ),
                           }

@@ -33,7 +33,7 @@ export default function Hero({ data }: HeroProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
                     <div className="lg:col-span-5 flex flex-col items-start text-start">
                         <motion.div
-                            initial={{ opacity: 0 }}
+                            initial={false}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}
                             className="flex items-center gap-3 mb-6"
@@ -44,7 +44,7 @@ export default function Hero({ data }: HeroProps) {
                         </motion.div>
 
                         <motion.h1
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={false}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
                             className="text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight text-white mb-5 leading-[1.05]"
@@ -53,7 +53,7 @@ export default function Hero({ data }: HeroProps) {
                         </motion.h1>
 
                         <motion.p
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={false}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
                             className="text-base md:text-lg text-white/70 mb-8 leading-relaxed max-w-2xl"
@@ -62,7 +62,7 @@ export default function Hero({ data }: HeroProps) {
                         </motion.p>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={false}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.55, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
                             className="flex flex-wrap gap-5 items-center"
@@ -85,7 +85,7 @@ export default function Hero({ data }: HeroProps) {
                     </div>
 
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.97 }}
+                        initial={false}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                         className="lg:col-span-7 relative min-h-[280px] lg:min-h-[480px] border border-white/15 overflow-hidden"

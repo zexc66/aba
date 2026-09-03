@@ -37,12 +37,20 @@ function pathLocale(): Locale | null {
 }
 
 function initialLang(): Locale {
-  try {
-    const stored = localStorage.getItem(LANG_STORAGE_KEY);
-    if (stored === "en" || stored === "ar" || stored === "fr") return stored;
-  } catch {
-  }
-  return pathLocale() ?? "en";
+  // The URL namespace is authoritative. An unprefixed URL is always English;
+  // stored preferences must never make / render Arabic or French SSR copy.
+  const prefixed = pathLocale();
+  if (prefixed) return prefixed;
+  return "en";
+}
+
+function localizedBrowserPath(next: Locale): string {
+  const pathname = window.location.pathname;
+  const unprefixed = pathname.replace(/^\/(?:ar|fr)(?=\/|$)/, "") || "/";
+  const route = next === "en"
+    ? unprefixed
+    : unprefixed === "/" ? `/${next}/` : `/${next}${unprefixed}`;
+  return `${route}${window.location.search}${window.location.hash}`;
 }
 
 export function LanguageProvider({
@@ -53,7 +61,7 @@ export function LanguageProvider({
   initialLocale?: Locale;
 }) {
   // Derive the effective locale once — SSR (prerender) passes it explicitly,
-  // the client falls back to stored preference, then path prefix, then EN.
+  // the client honors a URL prefix before stored preference, then EN.
   const initial = initialLocale ?? initialLang();
   const [lang, setLangState] = useState<Locale>(initial);
   const [content, setContent] = useState<(typeof COPY)["en"]>(COPY[initial]);
@@ -69,6 +77,15 @@ export function LanguageProvider({
     } catch {
     }
   }, [isRTL, lang]);
+
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const next = pathLocale() ?? "en";
+      setLangState((current) => current === next ? current : next);
+    };
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
+  }, []);
 
   useEffect(() => {
     if (!cms.configured) {
@@ -92,12 +109,22 @@ export function LanguageProvider({
   }, [lang]);
 
   const setLang = useCallback((next: Locale) => {
+    if (next === lang) return;
     setLangState(next);
-  }, []);
+    if (typeof window === "undefined") return;
+
+    // Wouter listens for popstate. Updating history then dispatching the event
+    // keeps the SPA route and the locale content synchronized without a reload.
+    const target = localizedBrowserPath(next);
+    if (target !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+      window.history.pushState({}, "", target);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    }
+  }, [lang]);
 
   const toggleLang = useCallback(() => {
-    setLangState(prev => (prev === "en" ? "ar" : prev === "ar" ? "fr" : "en"));
-  }, []);
+    setLang(lang === "en" ? "ar" : lang === "ar" ? "fr" : "en");
+  }, [lang, setLang]);
 
   const langLabel = useMemo(() => content.langLabel, [content.langLabel]);
 
