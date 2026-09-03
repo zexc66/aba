@@ -118,45 +118,54 @@ function deliveryPayload(id: string, data: z.infer<typeof inquirySchema>): Inqui
 async function notifyByEmail(payload: InquiryDeliveryPayload): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_NOTIFY_EMAIL;
-  if (!apiKey || !to) return false;
+  if (!apiKey || !to) {
+    console.error(`[PROTOCOL][EMAIL_CONFIG] Missing ${!apiKey ? "RESEND_API_KEY" : "LEAD_NOTIFY_EMAIL"}`);
+    return false;
+  }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.LEAD_FROM_EMAIL || "onboarding@resend.dev",
-      to: [to],
-      subject: `[AIABASD Lead][${payload.type}] ${payload.id}`,
-      text: [
-        `Reference: ${payload.id}`,
-        `Type: ${payload.type}`,
-        `Email: ${payload.email}`,
-        `Stage: ${payload.stage}`,
-        `Priority: ${payload.priority}`,
-        `Name: ${payload.name ?? "—"}`,
-        `Organization: ${payload.organization ?? "—"}`,
-        `Sector: ${payload.sector ?? "—"}`,
-        `Region: ${payload.region ?? "—"}`,
-        `Ticket: ${payload.ticket ?? "—"}`,
-        `Timeline: ${payload.timeline ?? "—"}`,
-        `Party type: ${payload.partyType ?? "—"}`,
-        `Role: ${payload.role ?? "—"}`,
-        `Interest: ${payload.interest ?? "—"}`,
-        `Sectors: ${payload.sectors ?? "—"}`,
-        `Countries: ${payload.countries ?? "—"}`,
-        `Capabilities: ${payload.capabilities ?? "—"}`,
-        `Capital band: ${payload.capitalBand ?? "—"}`,
-        `Target project: ${payload.targetProject ?? "—"}`,
-        `Target service: ${payload.targetService ?? "—"}`,
-        "",
-        payload.message ?? "",
-      ].join("\n"),
-    }),
-  });
-  return response.ok;
+  try {
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.LEAD_FROM_EMAIL || "onboarding@resend.dev",
+        to: [to],
+        subject: `[AIABASD Lead][${payload.type}] ${payload.id}`,
+        text: [
+          `Reference: ${payload.id}`,
+          `Type: ${payload.type}`,
+          `Email: ${payload.email}`,
+          `Stage: ${payload.stage}`,
+          `Priority: ${payload.priority}`,
+          `Name: ${payload.name ?? "—"}`,
+          `Organization: ${payload.organization ?? "—"}`,
+          `Sector: ${payload.sector ?? "—"}`,
+          `Region: ${payload.region ?? "—"}`,
+          `Ticket: ${payload.ticket ?? "—"}`,
+          `Timeline: ${payload.timeline ?? "—"}`,
+          `Party type: ${payload.partyType ?? "—"}`,
+          `Role: ${payload.role ?? "—"}`,
+          `Interest: ${payload.interest ?? "—"}`,
+          `Sectors: ${payload.sectors ?? "—"}`,
+          `Countries: ${payload.countries ?? "—"}`,
+          `Capabilities: ${payload.capabilities ?? "—"}`,
+          `Capital band: ${payload.capitalBand ?? "—"}`,
+          `Target project: ${payload.targetProject ?? "—"}`,
+          `Target service: ${payload.targetService ?? "—"}`,
+          "",
+          payload.message ?? "",
+        ].join("\n"),
+      }),
+    });
+    if (!response.ok) console.error(`[PROTOCOL][EMAIL_REJECTED] Resend returned HTTP ${response.status}`);
+    return response.ok;
+  } catch (error) {
+    console.error(`[PROTOCOL][EMAIL_FAILURE] Resend request failed: ${error instanceof Error ? error.name : "unknown"}`);
+    return false;
+  }
 }
 
 async function notifyByWebhook(payload: InquiryDeliveryPayload): Promise<boolean> {
