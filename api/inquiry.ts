@@ -262,7 +262,9 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
 
   const parsed = inquirySchema.safeParse(body);
   if (!parsed.success) {
-    res.status(400).json({ error: "Invalid inquiry payload." });
+    const fields = parsed.error.issues.map((issue) => issue.path.join(".") || "payload");
+    console.warn(`[PROTOCOL][REJECT] Inquiry validation failed: ${fields.join(",")}`);
+    res.status(400).json({ error: "Invalid inquiry payload.", fields });
     return;
   }
 
