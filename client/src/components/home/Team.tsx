@@ -19,24 +19,22 @@ import { localizedLinkPath } from "@/localePath";
 
 interface TeamProps {
     data: Content['team'];
-    hud: Content['hud'];
 }
 
-function TeamComponent({ data, hud }: TeamProps) {
+function TeamComponent({ data }: TeamProps) {
     const { lang } = useLanguageContext();
     return (
-        <Section id="team" className="relative py-16 bg-[#0b0b10] text-[#fdfcfb]">
+        <Section id="team" className="relative py-20 bg-[#0b0b10] text-[#fdfcfb] border-y border-[#f2a007]/25">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
                     index="05"
                     title={data.title}
                     note={data.note}
-                    meta={hud.intellectualAuthority}
                     dark
                 />
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-px bg-[#fdfcfb]/10 border border-[#fdfcfb]/10">
                     {data.list.map((member, i) => (
                         <motion.div
                             key={i}
@@ -44,13 +42,14 @@ function TeamComponent({ data, hud }: TeamProps) {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: i * 0.08 }}
+                            className={i === 0 ? "lg:col-span-6" : "lg:col-span-3"}
                         >
-                        <Link href={localizedLinkPath(`/team/${SLUGS[member.name] ?? ""}`, lang)} className="block bg-[#0b0b10] p-6 h-full flex flex-col group">
-                            <div className="aspect-square bg-white/5 border border-white/10 flex items-center justify-center mb-6 overflow-hidden relative">
+                        <Link href={localizedLinkPath(`/team/${SLUGS[member.name] ?? ""}`, lang)} className="block bg-[#0b0b10] p-6 h-full flex flex-col group transition-transform active:translate-y-px">
+                            <div className={`${i === 0 ? "lg:aspect-[4/3]" : "aspect-square"} bg-[#fdfcfb]/5 border border-[#fdfcfb]/10 flex items-center justify-center mb-6 overflow-hidden relative`}>
                                 {member.image ? (
                                     <img loading="lazy" decoding="async" src={member.image} alt={member.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-[color,background-color,border-color,transform] duration-700" />
                                 ) : (
-                                    <User size={64} className="text-white/20" strokeWidth={1} />
+                                    <User size={64} className="text-[#fdfcfb]/20" strokeWidth={1.5} />
                                 )}
                             </div>
 
@@ -58,13 +57,13 @@ function TeamComponent({ data, hud }: TeamProps) {
                                 <span className="t-meta text-[#f2a007] block">
                                     {member.title}
                                 </span>
-                                <h3 className="text-xl font-bold text-white leading-snug">
+                                <h3 className={`${i === 0 ? "text-2xl" : "text-xl"} font-bold text-[#fdfcfb] leading-snug`}>
                                     {member.name}
                                 </h3>
-                                <p className="text-xs text-white/60 leading-relaxed pt-2">
+                                <p className="text-xs text-[#fdfcfb]/60 leading-relaxed pt-2">
                                     {member.bio}
                                 </p>
-                                <span className="t-meta text-[#f2a007] mt-4 pt-3 border-t border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="t-meta text-[#f2a007] mt-4 pt-3 border-t border-[#fdfcfb]/10 opacity-0 group-hover:opacity-100 transition-opacity">
                                     {data.profileLabel}
                                 </span>
                             </div>

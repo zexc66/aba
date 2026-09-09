@@ -162,6 +162,7 @@ export interface Content {
     submitting: string;
     successNote: string;
     error: string;
+    emailInvalid: string;
     reassure: string;
     anotherLabel: string;
     bookingTitle: string;
@@ -425,7 +426,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       eyebrow: "Alliance • PPP • Impact",
       title: "Accelerating sustainable growth across Africa",
       subtitle:
-        "We convene governments, private capital, and impact operators to deliver bankable PPP/BOT programs across energy, logistics, agriculture, digital infrastructure, and resilient cities — aligned with SDG 2030 and AU Agenda 2063.",
+        "We convene governments, private capital, and operators to deliver bankable PPP and BOT programs across Africa, aligned with Agenda 2063.",
       ctaPrimary: "Explore Programs",
       ctaSecondary: "Partner with us",
     },
@@ -712,6 +713,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       successNote: "Your message has been received securely. Reference: {ref}",
       reassure: "Submissions reach our partnerships team directly; a partner typically responds within two business days.",
       anotherLabel: "SEND ANOTHER INQUIRY",
+      emailInvalid: "Enter a valid email address, e.g. name@institution.org.",
       bookingTitle: "Book a direct meeting",
       bookingNote: "Skip the queue — pick a slot with the partnerships team.",
       bookingCta: "OPEN CALENDAR",
@@ -1017,7 +1019,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       eyebrow: "تحالف • شراكات • أثر",
       title: "تسريع النمو المستدام عبر إفريقيا",
       subtitle:
-        "نُوَحِّد الحكومات ورؤوس الأموال والجهات التشغيلية لتنفيذ برامج قابلة للتمويل في الطاقة واللوجستيات والزراعة والبنية الرقمية والمدن المرنة — بما يتوافق مع أهداف التنمية المستدامة 2030 وأجندة إفريقيا 2063.",
+        "نجمع الحكومات ورأس المال الخاص والمشغّلين لتنفيذ برامج شراكة وبناء وتشغيل قابلة للتمويل عبر إفريقيا، بما يتوافق مع أجندة 2063.",
       ctaPrimary: "استكشاف البرامج",
       ctaSecondary: "انضم كشريك",
     },
@@ -1304,6 +1306,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       successNote: "تم استلام رسالتك بأمان. الرقم المرجعي: {ref}",
       reassure: "تصل الإرسالات فريق الشراكات مباشرة؛ وعادةً يرد أحد الشركاء خلال يومي عمل.",
       anotherLabel: "إرسال استفسار آخر",
+      emailInvalid: "أدخل عنوان بريد إلكتروني صالح، مثل name@institution.org.",
       bookingTitle: "احجز اجتماعاً مباشراً",
       bookingNote: "تجاوز الانتظار — اختر موعداً مع فريق الشراكات.",
       bookingCta: "فتح التقويم",
@@ -1609,7 +1612,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       eyebrow: "Alliance • PPP • Impact",
       title: "Accélérer la croissance durable en Afrique",
       subtitle:
-        "Nous réunissons les gouvernements, les capitaux privés et les opérateurs d'impact pour mettre en œuvre des programmes PPP/BOT finançables dans les domaines de l'énergie, de la logistique, de l'agriculture, des infrastructures numériques et des villes résilientes — conformément aux ODD 2030 et à l'Agenda 2063 de l'UA.",
+        "Nous réunissons gouvernements, capitaux privés et opérateurs pour des programmes PPP et BOT finançables en Afrique, alignés sur l'Agenda 2063.",
       ctaPrimary: "Explorer les programmes",
       ctaSecondary: "Devenez partenaire",
     },
@@ -1896,6 +1899,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       successNote: "Votre message a été reçu en toute sécurité. Référence : {ref}",
       reassure: "Les envois parviennent directement à notre équipe partenariats ; un associé répond généralement sous deux jours ouvrés.",
       anotherLabel: "ENVOYER UNE AUTRE DEMANDE",
+      emailInvalid: "Saisissez une adresse e-mail valide, p. ex. nom@institution.org.",
       bookingTitle: "Réserver une réunion directe",
       bookingNote: "Passez devant la file — choisissez un créneau avec l'équipe partenariats.",
       bookingCta: "OUVRIR LE CALENDRIER",

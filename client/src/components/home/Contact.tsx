@@ -29,6 +29,7 @@ interface ContactProps {
         submitting: string;
         successNote: string;
         error: string;
+        emailInvalid: string;
         reassure: string;
         anotherLabel: string;
         bookingTitle: string;
@@ -168,22 +169,21 @@ function ContactComponent({ data, lang }: ContactProps) {
     };
 
     return (
-        <Section id="contact" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="contact" className="relative py-20 bg-[#fdfcfb]">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
                     index="09"
                     title={data.title}
                     note={data.subtitle}
-                    meta={data.eyebrow}
                 />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
                     <div className="lg:col-span-5 space-y-10">
 
-                        <div className="border border-black/10 p-8 space-y-6">
-                            <h3 className="t-meta text-black/55 border-b border-black/10 pb-3">
+                        <div className="border border-[#0b0b10]/10 p-8 space-y-6">
+                            <h3 className="t-meta text-[#0b0b10]/65 border-b border-[#0b0b10]/10 pb-3">
                                 {data.hqTitle}
                             </h3>
 
@@ -192,7 +192,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     <MapPin className="w-5 h-5 text-[#5a1f2e] shrink-0 mt-0.5" />
                                     <div>
                                         <div className="font-bold">{data.london}</div>
-                                        <div className="text-black/60 text-xs mt-0.5">{data.uk}</div>
+                                        <div className="text-[#0b0b10]/60 text-xs mt-0.5">{data.uk}</div>
                                     </div>
                                 </div>
 
@@ -200,11 +200,11 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     <MapPin className="w-5 h-5 text-[#5a1f2e] shrink-0 mt-0.5" />
                                     <div>
                                         <div className="font-bold">{data.dakar}</div>
-                                        <div className="text-black/60 text-xs mt-0.5">{data.senegal}</div>
+                                        <div className="text-[#0b0b10]/60 text-xs mt-0.5">{data.senegal}</div>
                                     </div>
                                 </div>
 
-                                <div className="pt-2 border-t border-black/10 space-y-1">
+                                <div className="pt-2 border-t border-[#0b0b10]/10 space-y-1">
                                     {[
                                         { label: data.sidebar.emailGeneralLabel, address: "contact@aiabasd.org" },
                                         { label: data.sidebar.emailSecretariatLabel, address: "gs@aiabasd.org" },
@@ -213,13 +213,13 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         <a
                                             key={address}
                                             href={`mailto:${address}`}
-                                            className="flex items-center justify-between gap-4 py-2 text-sm text-[#0b0b10] hover:text-[#5a1f2e] transition-colors group"
+                                            className="flex items-center justify-between gap-4 py-2 text-sm text-[#0b0b10] hover:text-[#5a1f2e] transition-[color,transform] active:translate-y-px group"
                                         >
                                             <span className="flex items-center gap-3 min-w-0">
                                                 <Mail className="w-4 h-4 text-[#5a1f2e] shrink-0" strokeWidth={1.5} />
                                                 <span className="font-medium min-w-0 leading-snug">{label}</span>
                                             </span>
-                                            <span className="t-data text-xs text-black/55 group-hover:text-[#5a1f2e] transition-colors shrink-0" dir="ltr">
+                                            <span className="t-data text-xs text-[#0b0b10]/65 group-hover:text-[#5a1f2e] transition-colors shrink-0" dir="ltr">
                                                 {address}
                                             </span>
                                         </a>
@@ -231,12 +231,12 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         href={BOOKING_URL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block bg-[#0b0b10] text-white p-5 hover:bg-[#5a1f2e] transition-colors group"
+                                        className="block bg-[#0b0b10] text-[#fdfcfb] p-5 hover:bg-[#5a1f2e] transition-[color,background-color,transform] active:translate-y-px group"
                                     >
-                                        <div className="t-meta text-[#f2a007] group-hover:text-white">
+                                        <div className="t-meta text-[#f2a007] group-hover:text-[#fdfcfb]">
                                             {data.bookingTitle}
                                         </div>
-                                        <p className="text-xs text-white/70 group-hover:text-white/85 leading-relaxed mt-1.5">
+                                        <p className="text-xs text-[#fdfcfb]/70 group-hover:text-[#fdfcfb]/85 leading-relaxed mt-1.5">
                                             {data.bookingNote}
                                         </p>
                                         <span className="t-meta text-[#f2a007] text-[10px] inline-block mt-3 border-b border-[#f2a007]/40 group-hover:border-white pb-0.5">
@@ -248,14 +248,14 @@ function ContactComponent({ data, lang }: ContactProps) {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-7 bg-white p-6 md:p-10 border border-black/10">
-                        <h3 className="t-meta text-[#5a1f2e] mb-8 pb-4 border-b-2 border-[#0b0b10]">
+                    <div className="lg:col-span-7 bg-[#fdfcfb] p-6 md:p-10 border border-[#0b0b10]/10">
+                        <h3 className="t-meta text-[#5a1f2e] mb-8 pb-4 border-b border-[#0b0b10]">
                             {data.formTitle}
                         </h3>
 
                         <form onSubmit={onSubmit} className="space-y-6">
                             <div className="space-y-2">
-                                <label htmlFor="contact-audience" className="t-meta text-black/60">
+                                <label htmlFor="contact-audience" className="t-meta text-[#0b0b10]/60">
                                     {data.audienceLabel}
                                 </label>
                                 <select
@@ -268,7 +268,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         setRegion("");
                                         setTicket("");
                                     }}
-                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors cursor-pointer"
+                                    className="w-full bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-3 text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-[#fdfcfb] transition-colors cursor-pointer"
                                 >
                                     <option value={-1}>—</option>
                                     {data.audienceOptions.map((option, i) => (
@@ -281,14 +281,14 @@ function ContactComponent({ data, lang }: ContactProps) {
                                 <div className="grid sm:grid-cols-2 gap-6" data-testid="contact-details">
                                     {(FIELDS_BY_AUDIENCE[audience] ?? []).map((field) => (
                                         <div key={field.key} className="space-y-2">
-                                            <label htmlFor={`contact-${field.key}`} className="t-meta text-black/60">
+                                            <label htmlFor={`contact-${field.key}`} className="t-meta text-[#0b0b10]/60">
                                                 {field.label}
                                             </label>
                                             <select
                                                 id={`contact-${field.key}`}
                                                 value={field.value}
                                                 onChange={(e) => field.set(e.target.value)}
-                                                className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors cursor-pointer"
+                                                className="w-full bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-3 text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-[#fdfcfb] transition-colors cursor-pointer"
                                             >
                                                 <option value="">—</option>
                                                 {field.options.map((option, i) => (
@@ -302,7 +302,7 @@ function ContactComponent({ data, lang }: ContactProps) {
 
                             <div className="grid sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label htmlFor="contact-name" className="t-meta text-black/60">
+                                    <label htmlFor="contact-name" className="t-meta text-[#0b0b10]/60">
                                         {data.name} *
                                     </label>
                                     <input
@@ -311,12 +311,12 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         value={form.name}
                                         onChange={(e) => { setForm({ ...form, name: e.target.value }); setError(false); }}
                                         placeholder={data.placeholders.name}
-                                        className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
+                                        className="w-full bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-3 text-sm text-[#0b0b10] placeholder:text-[#0b0b10]/60 outline-none focus:border-[#5a1f2e] focus:bg-[#fdfcfb] transition-colors"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label htmlFor="contact-org" className="t-meta text-black/60">
+                                    <label htmlFor="contact-org" className="t-meta text-[#0b0b10]/60">
                                         {data.org}
                                     </label>
                                     <input
@@ -324,17 +324,17 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         value={form.org}
                                         onChange={(e) => { setForm({ ...form, org: e.target.value }); setError(false); }}
                                         placeholder={data.placeholders.org}
-                                        className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
+                                        className="w-full bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-3 text-sm text-[#0b0b10] placeholder:text-[#0b0b10]/60 outline-none focus:border-[#5a1f2e] focus:bg-[#fdfcfb] transition-colors"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="contact-email" className="t-meta text-black/60">
+                                <label htmlFor="contact-email" className="t-meta text-[#0b0b10]/60">
                                     {data.email} *
                                 </label>
-                                <p id="contact-email-note" aria-live="polite" className={emailInvalid ? "text-xs text-red-700" : "sr-only"}>
-                                    {emailInvalid ? "Enter a valid email address, e.g. name@institution.org." : ""}
+                                <p id="contact-email-note" aria-live="polite" className={emailInvalid ? "text-xs text-[#5a1f2e]" : "sr-only"}>
+                                    {emailInvalid ? data.emailInvalid : ""}
                                 </p>
                                 <input
                                     id="contact-email"
@@ -352,12 +352,12 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         if (form.email.length > 0) setEmailInvalid(!EMAIL_RE.test(form.email));
                                     }}
                                     placeholder={data.placeholders.email}
-                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors"
+                                    className="w-full bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-3 text-sm text-[#0b0b10] placeholder:text-[#0b0b10]/60 outline-none focus:border-[#5a1f2e] focus:bg-[#fdfcfb] transition-colors"
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="contact-msg" className="t-meta text-black/60">
+                                <label htmlFor="contact-msg" className="t-meta text-[#0b0b10]/60">
                                     {data.msg} *
                                 </label>
                                 <textarea
@@ -367,11 +367,11 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     value={form.msg}
                                     onChange={(e) => { setForm({ ...form, msg: e.target.value }); setError(false); }}
                                     placeholder={data.placeholders.msg}
-                                    className="w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors resize-none"
+                                    className="w-full bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-3 text-sm text-[#0b0b10] placeholder:text-[#0b0b10]/60 outline-none focus:border-[#5a1f2e] focus:bg-[#fdfcfb] transition-colors resize-none"
                                 />
                             </div>
 
-                            <label htmlFor="contact-consent" className="flex items-start gap-3 text-xs text-black/65 leading-relaxed">
+                            <label htmlFor="contact-consent" className="flex items-start gap-3 text-xs text-[#0b0b10]/65 leading-relaxed">
                                 <input
                                     id="contact-consent"
                                     type="checkbox"
@@ -381,9 +381,9 @@ function ContactComponent({ data, lang }: ContactProps) {
                                     className="mt-0.5 h-4 w-4 shrink-0 accent-[#5a1f2e]"
                                 />
                                 <span>
-                                    <span className="font-semibold text-black/80">{consentCopy.contactLabel}: </span>
+                                    <span className="font-semibold text-[#0b0b10]/80">{consentCopy.contactLabel}: </span>
                                     {consentCopy.contactText} {" "}
-                                    <a href={localizedPath("/privacy", lang)} className="text-[#5a1f2e] underline underline-offset-2 hover:text-black">
+                                    <a href={localizedPath("/privacy", lang)} className="text-[#5a1f2e] underline underline-offset-2 hover:text-[#0b0b10] active:translate-y-px inline-block transition-[color,transform]">
                                         {consentCopy.privacyLinkLabel}
                                     </a>
                                 </span>
@@ -393,20 +393,20 @@ function ContactComponent({ data, lang }: ContactProps) {
                                 <div
                                     role="status"
                                     data-testid="contact-success-panel"
-                                    className="border border-emerald-200 bg-emerald-50 p-6 space-y-4"
+                                    className="border border-[#5a1f2e]/25 border-s-4 border-s-[#5a1f2e] bg-[#5a1f2e]/[0.06] p-6 space-y-4"
                                 >
-                                    <div className="flex items-center gap-2.5 text-emerald-700">
-                                        <CheckCircle2 size={18} className="shrink-0" />
+                                    <div className="flex items-center gap-2.5 text-[#5a1f2e]">
+                                        <CheckCircle2 size={18} className="shrink-0" strokeWidth={1.5} />
                                         <p className="text-sm font-semibold">
                                             {data.sent}
                                         </p>
                                     </div>
                                     {reference && (
-                                        <p className="text-xs text-black/70" data-testid="contact-reference">
+                                        <p className="text-xs text-[#0b0b10]/70" data-testid="contact-reference">
                                             {data.successNote.replace("{ref}", reference)}
                                         </p>
                                     )}
-                                    <p className="text-xs text-black/55 leading-relaxed">
+                                    <p className="text-xs text-[#0b0b10]/65 leading-relaxed">
                                         {data.reassure}
                                     </p>
                                     <button
@@ -415,7 +415,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                             setSent(false);
                                             setReference(null);
                                         }}
-                                        className="t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors cursor-pointer"
+                                        className="t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-[color,border-color,transform] active:translate-y-px cursor-pointer"
                                     >
                                         {data.anotherLabel}
                                     </button>
@@ -426,7 +426,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         <button
                                             type="submit"
                                             disabled={sending}
-                                            className="px-8 py-3.5 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs uppercase tracking-wider rounded-sm transition-colors flex items-center gap-2 disabled:opacity-50 no-press"
+                                            className="px-8 py-3.5 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-[#fdfcfb] font-semibold text-xs uppercase tracking-wider transition-[color,background-color,transform] flex items-center gap-2 disabled:opacity-50 active:translate-y-px"
                                         >
                                             {sending ? (
                                                 <span>{data.submitting}</span>
@@ -439,7 +439,7 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         </button>
                                     </div>
 
-                                    <p className="text-xs text-black/55 leading-relaxed pt-1">
+                                    <p className="text-xs text-[#0b0b10]/65 leading-relaxed pt-1">
                                         {data.reassure}
                                     </p>
 
@@ -447,9 +447,9 @@ function ContactComponent({ data, lang }: ContactProps) {
                                         <div
                                             role="alert"
                                             data-testid="contact-error"
-                                            className="flex items-start gap-2.5 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3"
+                                            className="flex items-start gap-2.5 text-sm text-[#5a1f2e] bg-[#5a1f2e]/10 border border-[#5a1f2e]/25 px-4 py-3"
                                         >
-                                            <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                                            <AlertCircle size={16} className="shrink-0 mt-0.5" strokeWidth={1.5} />
                                             <span>{data.error}</span>
                                         </div>
                                     )}

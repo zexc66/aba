@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef, memo } from "react";
+import { useState, useEffect, useRef, memo, useMemo } from "react";
 import { Search, Menu, X, Lock, ArrowUpRight, Globe, Check } from "lucide-react";
 import SearchCommand from "@/components/SearchCommand";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { useLocation } from "wouter";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { localizedPath } from "@/localePath";
+import { deployAssetPath, localizedPath } from "@/localePath";
+import { isVercelDeployment } from "@/deployment";
 
 interface HeaderProps {
     nav: {
@@ -50,36 +51,54 @@ function HeaderComponent({ nav }: HeaderProps) {
     const langMenuRef = useRef<HTMLDivElement>(null);
     const mobileButtonRef = useRef<HTMLButtonElement>(null);
     const mobileSheetRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll();
+    const { scrollY, scrollYProgress } = useScroll();
 
     const isHomeRoute = location.split(/[?#]/, 1)[0] === "/";
     const sectionPath = (hash: string) => isHomeRoute ? hash : `${localizedPath("/", lang)}${hash}`;
-    const navLinks = [
+    const navLinks = useMemo(() => [
         { href: sectionPath("#about"), label: nav.about },
         { href: "/projects", label: nav.projects },
         { href: "/services", label: nav.services },
         { href: "/intelligence", label: nav.intelligence },
         { href: "/match", label: nav.match },
         { href: sectionPath("#contact"), label: nav.contact },
-    ];
+    ], [isHomeRoute, lang, nav.about, nav.contact, nav.intelligence, nav.match, nav.projects, nav.services]);
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        setScrolled(latest > 40);
+    });
 
     useEffect(() => {
-        const onScroll = () => {
-            setScrolled(window.scrollY > 40);
-            let current = "#hero";
-            for (const link of navLinks) {
-                if (!link.href.startsWith("#")) continue;
-                const el = document.querySelector(link.href);
-                if (el && (el as HTMLElement).getBoundingClientRect().top <= window.innerHeight * 0.4) {
-                    current = link.href;
+        if (!isHomeRoute) {
+            setActiveSection("");
+            return;
+        }
+        const anchors = navLinks.filter((link) => link.href.startsWith("#")).map((link) => link.href);
+        const sections = anchors
+            .map((href) => document.querySelector<HTMLElement>(href))
+            .filter((el): el is HTMLElement => Boolean(el));
+        if (sections.length === 0) return;
+
+        const visible = new Map<string, number>();
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    const href = `#${entry.target.id}`;
+                    if (entry.isIntersecting) {
+                        visible.set(href, entry.intersectionRatio);
+                    } else {
+                        visible.delete(href);
+                    }
                 }
-            }
-            setActiveSection(current);
-        };
-        onScroll();
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
+                const next = Array.from(visible.entries()).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "#hero";
+                setActiveSection(next);
+            },
+            { rootMargin: "-28% 0px -58% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+        );
+
+        for (const section of sections) observer.observe(section);
+        return () => observer.disconnect();
+    }, [isHomeRoute, navLinks]);
 
     useEffect(() => {
         if (!mobileMenuOpen && !langMenuOpen) return;
@@ -156,19 +175,19 @@ function HeaderComponent({ nav }: HeaderProps) {
         setLang(lang === "en" ? "ar" : lang === "ar" ? "fr" : "en");
     };
 
-    const textColor = scrolled ? "text-[#0b0b10]" : "text-white";
+    const textColor = scrolled ? "text-[#0b0b10]" : "text-[#fdfcfb]";
     const subColor = scrolled ? "text-[#5a1f2e]" : "text-[#f2a007]";
-    const navColor = scrolled ? "text-[#0b0b10]/70 hover:text-[#5a1f2e]" : "text-white/70 hover:text-white";
+    const navColor = scrolled ? "text-[#0b0b10]/70 hover:text-[#5a1f2e]" : "text-[#fdfcfb]/75 hover:text-[#fdfcfb]";
     const navActive = scrolled ? "text-[#5a1f2e]" : "text-[#f2a007]";
     const underlineColor = scrolled ? "bg-[#5a1f2e]" : "bg-[#f2a007]";
-    const btnBg = scrolled ? "bg-black/[0.03] hover:bg-black hover:text-white" : "bg-white/10 hover:bg-white hover:text-[#0b0b10] text-white";
+    const btnBg = scrolled ? "bg-[#0b0b10]/[0.03] hover:bg-[#0b0b10] hover:text-[#fdfcfb]" : "bg-[#fdfcfb]/10 hover:bg-[#fdfcfb] hover:text-[#0b0b10] text-[#fdfcfb]";
 
     return (
         <>
             <motion.header
                 className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${scrolled
-                    ? "bg-[#F9F8F6]/90 backdrop-blur-2xl border-b border-black/5"
-                    : "bg-transparent border-b border-white/10"
+                    ? "bg-[#F9F8F6]/90 backdrop-blur-2xl border-b border-[#0b0b10]/5"
+                    : "bg-transparent border-b border-[#fdfcfb]/10"
                     }`}
                 initial={false}
                 animate={{ y: 0 }}
@@ -182,11 +201,11 @@ function HeaderComponent({ nav }: HeaderProps) {
                 <div className="mx-auto flex max-w-[1700px] items-center justify-between px-8 lg:px-12 py-5 lg:py-6">
                         <a href={localizedPath("/", lang)} className="flex items-center gap-3.5 group">
                         <img
-                            src="/logo.png"
+                            src={deployAssetPath("/logo.png")}
                             alt="AIABASD"
                             className="h-12 lg:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                         />
-                        <div className={`leading-tight hidden sm:block border-s ps-3.5 ms-0.5 ${scrolled ? "border-black/10" : "border-white/15"}`}>
+                        <div className={`leading-tight hidden sm:block border-s ps-3.5 ms-0.5 ${scrolled ? "border-[#0b0b10]/10" : "border-[#fdfcfb]/15"}`}>
                             <span className={`font-extrabold text-xl tracking-tight block ${textColor}`}>
                                 AIABASD
                             </span>
@@ -216,15 +235,15 @@ function HeaderComponent({ nav }: HeaderProps) {
                         <button
                             onClick={() => setSearchOpen(true)}
                             aria-label="Search"
-                            className={`hidden sm:flex items-center gap-2 px-3 py-2.5 transition-colors duration-300 no-press t-meta ${btnBg}`}
+                            className={`hidden sm:flex items-center gap-2 px-3 py-2.5 transition-[color,background-color,transform] duration-300 no-press active:translate-y-px t-meta ${btnBg}`}
                         >
                             <Search className="h-3.5 w-3.5" strokeWidth={1.5} />
-                            <span className={`t-data text-[10px] border px-1.5 py-0.5 ${scrolled ? "border-black/15" : "border-white/20"}`}>Ctrl K</span>
+                            <span className={`t-data text-[10px] border px-1.5 py-0.5 ${scrolled ? "border-[#0b0b10]/15" : "border-[#fdfcfb]/20"}`}>Ctrl K</span>
                         </button>
                         <button
                             onClick={() => setSearchOpen(true)}
                             aria-label="Search"
-                            className={`sm:hidden p-3 transition-colors duration-300 no-press ${btnBg}`}
+                            className={`sm:hidden p-3 transition-[color,background-color,transform] duration-300 no-press active:translate-y-px ${btnBg}`}
                         >
                             <Search className="h-4 w-4" strokeWidth={1.5} />
                         </button>
@@ -236,9 +255,9 @@ function HeaderComponent({ nav }: HeaderProps) {
                                 aria-haspopup="menu"
                                 aria-expanded={langMenuOpen}
                                 aria-label="Change language"
-                                className={`flex items-center gap-2 px-4 py-2.5 text-[10px] font-black tracking-widest uppercase transition-colors no-press ${scrolled ? "bg-black/[0.03] hover:bg-black/[0.08]" : "bg-white/10 hover:bg-white/20 text-white"}`}
+                                className={`flex items-center gap-2 px-4 py-2.5 text-[10px] font-black tracking-widest uppercase transition-[color,background-color,transform] no-press active:translate-y-px ${scrolled ? "bg-[#0b0b10]/[0.03] hover:bg-[#0b0b10]/[0.08]" : "bg-[#fdfcfb]/10 hover:bg-[#fdfcfb]/20 text-[#fdfcfb]"}`}
                             >
-                                <span className={scrolled ? "text-[#0b0b10]" : "text-white"}>
+                                <span className={scrolled ? "text-[#0b0b10]" : "text-[#fdfcfb]"}>
                                     {LANG_OPTIONS.find((l) => l.code === lang)?.short ?? "EN"}
                                 </span>
                                 <Globe className={`h-3 w-3 ${scrolled ? "text-[#5a1f2e]" : "text-[#f2a007]"}`} />
@@ -255,7 +274,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                                         exit={{ opacity: 0, y: -4, scale: 0.97 }}
                                         transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
                                         style={{ transformOrigin: isRTL ? "top left" : "top right" }}
-                                        className={`absolute top-[calc(100%+10px)] ${isRTL ? "left-0" : "right-0"} bg-white border border-black/15 shadow-xl p-1.5 min-w-[150px] z-50`}
+                                        className={`absolute top-[calc(100%+10px)] ${isRTL ? "left-0" : "right-0"} bg-[#fdfcfb] border border-[#0b0b10]/15 shadow-[0_18px_60px_rgba(90,31,46,0.18)] p-1.5 min-w-[150px] z-50`}
                                     >
                                         {LANG_OPTIONS.map((option) => (
                                             <button
@@ -266,7 +285,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                                                     setLang(option.code);
                                                     setLangMenuOpen(false);
                                                 }}
-                                                className="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-sm font-semibold text-[#0b0b10] hover:bg-black/5 transition-colors"
+                                                className="w-full flex items-center justify-between gap-3 px-4 py-2.5 text-sm font-semibold text-[#0b0b10] hover:bg-[#0b0b10]/5 active:translate-y-px transition-[color,background-color,transform]"
                                             >
                                                 <span>{option.label}</span>
                                                 {lang === option.code && <Check size={14} className="text-[#5a1f2e]" />}
@@ -277,14 +296,14 @@ function HeaderComponent({ nav }: HeaderProps) {
                             </AnimatePresence>
                         </div>
 
-                        <a
+                         {!isVercelDeployment && <a
                              href={localizedPath("/investor-portal", lang)}
-                            className={`hidden xl:flex items-center gap-3 px-6 py-3 text-[10px] font-black tracking-[0.25em] uppercase transition-colors duration-300 group no-press ${scrolled ? "bg-[#5a1f2e] hover:bg-black" : "bg-[#f2a007] hover:bg-white text-[#0b0b10]"}`}
+                            className={`hidden xl:flex items-center gap-3 px-6 py-3 text-[10px] font-black tracking-[0.25em] uppercase transition-[color,background-color,transform] duration-300 group no-press active:translate-y-px ${scrolled ? "bg-[#5a1f2e] hover:bg-[#0b0b10] text-[#fdfcfb]" : "bg-[#f2a007] hover:bg-[#fdfcfb] text-[#0b0b10]"}`}
                         >
                             <Lock className="h-3 w-3 shrink-0" strokeWidth={1.5} />
                             <span>{nav.investorAccess}</span>
                             <ArrowUpRight className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" strokeWidth={1.5} />
-                        </a>
+                         </a>}
 
                         <button
                             ref={mobileButtonRef}
@@ -292,7 +311,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                             aria-expanded={mobileMenuOpen}
                             aria-controls="mobile-nav"
-                            className="lg:hidden p-3 bg-black text-white hover:bg-[#5a1f2e] transition-colors no-press"
+                            className="lg:hidden p-3 bg-[#0b0b10] text-[#fdfcfb] hover:bg-[#5a1f2e] transition-[color,background-color,transform] no-press active:translate-y-px"
                         >
                             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                         </button>
@@ -313,7 +332,7 @@ function HeaderComponent({ nav }: HeaderProps) {
                             <nav className="flex flex-col gap-5 relative z-10 pb-12" aria-label="Mobile">
                                 <motion.a
                                     href={sectionPath("#contact")}
-                                    className="flex items-center justify-between py-4 px-5 bg-[#5a1f2e] text-white t-meta"
+                                    className="flex items-center justify-between py-4 px-5 bg-[#5a1f2e] text-[#fdfcfb] t-meta active:translate-y-px transition-transform"
                                     onClick={() => setMobileMenuOpen(false)}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
@@ -322,21 +341,21 @@ function HeaderComponent({ nav }: HeaderProps) {
                                     <span>{nav.contact}</span>
                                     <ArrowUpRight className="w-4 h-4 rtl:-scale-x-100" strokeWidth={1.5} />
                                 </motion.a>
-                                <motion.a
+                                {!isVercelDeployment && <motion.a
                                      href={localizedPath("/investor-portal", lang)}
-                                    className="flex items-center justify-between group py-5 border-b border-black/10"
+                                    className="flex items-center justify-between group py-5 border-b border-[#0b0b10]/10"
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.15 }}
                                 >
                                     <span className="text-[12px] font-black tracking-[0.4em] uppercase text-[#5a1f2e]">{nav.investorAccess}</span>
-                                    <Lock className="h-5 w-5 text-black" strokeWidth={1.5} />
-                                </motion.a>
+                                    <Lock className="h-5 w-5 text-[#0b0b10]" strokeWidth={1.5} />
+                                </motion.a>}
                                 {navLinks.filter((l) => l.href !== sectionPath("#contact")).map((link, i) => (
                                     <motion.a
                                         key={link.href}
                                         href={localizedPath(link.href, lang)}
-                                        className="text-3xl font-institutional text-black italic hover:not-italic transition-all border-b border-black/5 pb-4 flex items-center justify-between group overflow-hidden"
+                                        className="text-3xl font-institutional text-[#0b0b10] italic hover:not-italic active:translate-y-px transition-all border-b border-[#0b0b10]/5 pb-4 flex items-center justify-between group overflow-hidden"
                                         onClick={() => setMobileMenuOpen(false)}
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}

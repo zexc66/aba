@@ -35,10 +35,10 @@ export default function Home() {
           <Programs data={t.programs} />
           <FeaturedProjects />
           <Countries data={t.countries} />
-          <Governance data={t.governance} hud={t.hud} />
-          <Team data={t.team} hud={t.hud} />
-          <Partners data={t.partners} hud={t.hud} lang={lang} />
-          <Testimonials data={t.testimonials} hud={t.hud} lang={lang} />
+          <Governance data={t.governance} />
+          <Team data={t.team} />
+          <Partners data={t.partners} lang={lang} />
+          <Testimonials data={t.testimonials} lang={lang} />
           <Newsroom data={t.newsroom} engagements={t.engagements} lang={lang} />
           <Contact data={t.contact} lang={lang} />
         </div>

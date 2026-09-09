@@ -141,20 +141,18 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
     const [featured, ...rest] = articles;
 
     return (
-        <Section id="news" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="news" className="relative py-20 bg-[#fdfcfb] border-b border-[#0b0b10]/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
                     index="08"
                     title={data.title}
                     note={data.note}
-                    meta={data.eyebrow}
                 />
 
                 {articles.length === 0 ? (
-                    <div className="border border-black/10 bg-white/50 px-8 py-16 flex flex-col items-center text-center">
-                        <span className="t-meta text-[#5a1f2e] border border-[#5a1f2e]/25 px-3 py-1.5 mb-6">AWAITING FIRST ENTRY</span>
-                        <p className="max-w-xl text-sm text-black/60 leading-relaxed">
+                    <div className="border border-[#0b0b10]/10 bg-[#fdfcfb]/50 px-8 py-16 flex flex-col items-center text-center">
+                        <p className="max-w-xl text-sm text-[#0b0b10]/65 leading-relaxed">
                             {data.empty}
                         </p>
                     </div>
@@ -167,7 +165,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.4 }}
-                                    className="lg:col-span-12 bg-white border border-black/10 overflow-hidden flex flex-col md:flex-row group transition-colors duration-300 hover:border-[#5a1f2e]/40"
+                                    className="lg:col-span-12 bg-[#fdfcfb] border border-[#0b0b10]/10 overflow-hidden flex flex-col md:flex-row group transition-colors duration-300 hover:border-[#5a1f2e]/40"
                                 >
                                     {featured.image && (
                                         <div className="md:w-1/2 h-64 md:h-auto overflow-hidden relative">
@@ -185,8 +183,8 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                                 {featured.date && (
                                                     <>
                                                         {featured.category && <span>•</span>}
-                                                        <span className="text-black/55 flex items-center gap-1">
-                                                            <Calendar size={12} /> {formatDate(featured.date, lang)}
+                                                        <span className="text-[#0b0b10]/65 flex items-center gap-1">
+                                                            <Calendar size={12} strokeWidth={1.5} /> {formatDate(featured.date, lang)}
                                                         </span>
                                                     </>
                                                 )}
@@ -195,18 +193,18 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                                 {featured.title}
                                             </h3>
                                             {featured.excerpt && (
-                                                <p className="text-sm text-black/70 leading-relaxed">
+                                                <p className="text-sm text-[#0b0b10]/70 leading-relaxed">
                                                     {featured.excerpt}
                                                 </p>
                                             )}
                                         </div>
 
                                         {(featured.author || featured.readTime) && (
-                                            <div className="flex items-center justify-between pt-4 border-t border-black/5 text-xs text-black/60 font-medium">
+                                            <div className="flex items-center justify-between pt-4 border-t border-[#0b0b10]/5 text-xs text-[#0b0b10]/60 font-medium">
                                                 <span>{featured.author}</span>
                                                 {featured.readTime && (
                                                     <span className="flex items-center gap-1">
-                                                        <Clock size={12} /> {featured.readTime}
+                                                        <Clock size={12} strokeWidth={1.5} /> {featured.readTime}
                                                     </span>
                                                 )}
                                             </div>
@@ -225,10 +223,10 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.5, delay: i * 0.05 }}
-                                        className="bg-white p-6 border border-black/10 transition-colors duration-300 hover:border-[#5a1f2e]/40 group flex flex-col md:flex-row gap-6 items-center"
+                                        className="bg-[#fdfcfb] p-6 border border-[#0b0b10]/10 transition-colors duration-300 hover:border-[#5a1f2e]/40 group flex flex-col md:flex-row gap-6 items-center"
                                     >
                                         {news.image && (
-                                            <div className="w-full md:w-36 h-36 rounded-lg overflow-hidden shrink-0">
+                                            <div className="w-full md:w-36 h-36 overflow-hidden shrink-0">
                                                 <img loading="lazy" decoding="async" src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                             </div>
                                         )}
@@ -238,8 +236,8 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                                 {news.date && (
                                                     <>
                                                         {news.category && <span>•</span>}
-                                                        <span className="text-black/55 flex items-center gap-1">
-                                                            <Calendar size={12} /> {formatDate(news.date, lang)}
+                                                        <span className="text-[#0b0b10]/65 flex items-center gap-1">
+                                                            <Calendar size={12} strokeWidth={1.5} /> {formatDate(news.date, lang)}
                                                         </span>
                                                     </>
                                                 )}
@@ -248,7 +246,7 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                                                 {news.title}
                                             </h4>
                                             {news.excerpt && (
-                                                <p className="text-xs text-black/70 leading-relaxed line-clamp-2">
+                                                <p className="text-xs text-[#0b0b10]/70 leading-relaxed line-clamp-2">
                                                     {news.excerpt}
                                                 </p>
                                             )}
@@ -261,23 +259,23 @@ function NewsroomComponent({ data, engagements: ui, lang }: NewsroomProps) {
                 )}
 
                 <div className="mt-16">
-                    <h3 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-0">
+                    <h3 className="t-meta text-[#5a1f2e] border-b border-[#0b0b10] pb-3 mb-0">
                         {ui.title}
                     </h3>
                     {engagements.length === 0 ? (
-                        <p className="text-sm text-black/55 leading-relaxed pt-5 max-w-[65ch]">
+                        <p className="text-sm text-[#0b0b10]/65 leading-relaxed pt-5 max-w-[65ch]">
                             {ui.empty}
                         </p>
                     ) : (
-                        <ul className="divide-y divide-black/10 border-b border-black/10">
+                        <ul className="divide-y divide-[#0b0b10]/10 border-b border-[#0b0b10]/10">
                             {engagements.map((e, i) => (
                                 <li key={i} className="grid grid-cols-1 md:grid-cols-[8rem_7rem_1fr_8rem] gap-x-6 items-baseline py-4">
                                     <span className="t-data text-xs text-[#5a1f2e]" dir="ltr">
                                         <bdi>{formatDate(e.date, lang)}</bdi>
                                     </span>
-                                    <span className="t-meta text-black/55">{e.type}</span>
+                                    <span className="t-meta text-[#0b0b10]/65">{e.type}</span>
                                     <h4 className="text-sm font-semibold text-[#0b0b10] leading-snug">{e.title}</h4>
-                                    <span className="t-meta text-black/55 md:text-end">{e.location}</span>
+                                    <span className="t-meta text-[#0b0b10]/65 md:text-end">{e.location}</span>
                                 </li>
                             ))}
                         </ul>

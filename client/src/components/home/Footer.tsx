@@ -1,7 +1,7 @@
 import { Mail, ArrowUp } from "lucide-react";
 import { useState, memo } from "react";
 import { useLocation } from "wouter";
-import { localizedPath } from "@/localePath";
+import { deployAssetPath, localizedPath } from "@/localePath";
 import { LOCALIZED_COPY } from "@/localizedCopy";
 
 interface FooterProps {
@@ -100,15 +100,15 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
     };
 
     return (
-        <footer className="relative bg-[#0b0b10] text-[#fdfcfb] pt-20 pb-12 overflow-hidden border-t border-white/10">
+        <footer className="relative bg-[#0b0b10] text-[#fdfcfb] pt-20 pb-12 overflow-hidden border-t border-[#f2a007]/25">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-[#fdfcfb]/10">
 
                     <div className="lg:col-span-5 space-y-6">
                         <div className="flex items-center gap-4">
                             <img
-                                src="/logo.png"
+                                src={deployAssetPath("/logo.png")}
                                 alt="AIABASD"
                                 width={56}
                                 height={56}
@@ -116,7 +116,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                 className="h-14 w-14 object-contain"
                             />
                             <div className="border-s border-white/15 ps-3.5 ms-0.5">
-                                <span className="font-extrabold text-xl text-white block leading-none">AIABASD</span>
+                                <span className="font-extrabold text-xl text-[#fdfcfb] block leading-none">AIABASD</span>
                                 <span className="text-[11px] font-semibold text-[#f2a007] block max-w-[280px] leading-snug mt-1">
                                     {lang === "ar"
                                         ? "التحالف الدولي الأفريقي للأعمال والتنمية المستدامة"
@@ -127,7 +127,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             </div>
                         </div>
 
-                        <p className="text-sm text-white/70 leading-relaxed max-w-sm">
+                        <p className="text-sm text-[#fdfcfb]/70 leading-relaxed max-w-sm">
                             {lang === "en"
                                 ? "Architecting Sustainable Futures Across the Global South."
                                 : lang === "ar"
@@ -142,9 +142,9 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                     key={i}
                                     href={social.href}
                                     aria-label={social.label}
-                                    className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-[#5a1f2e] hover:text-white hover:border-[#5a1f2e] transition-colors"
+                                    className="w-10 h-10 bg-[#fdfcfb]/5 border border-[#fdfcfb]/10 flex items-center justify-center text-[#fdfcfb]/70 hover:bg-[#5a1f2e] hover:text-[#fdfcfb] hover:border-[#5a1f2e] active:scale-95 transition-[color,background-color,border-color,transform]"
                                 >
-                                    <social.icon size={18} />
+                                    <social.icon size={18} strokeWidth={1.5} />
                                 </a>
                             ))}
                         </div>
@@ -153,7 +153,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                     <div className="lg:col-span-7 grid sm:grid-cols-3 gap-8">
                         {navigation.map((group, i) => (
                             <div key={i} className="space-y-4">
-                                <p className="t-meta text-[#f2a007] pb-2 border-b border-white/10">
+                                <p className="t-meta text-[#f2a007] pb-2 border-b border-[#fdfcfb]/10">
                                     {group.title}
                                 </p>
                                 <ul className="space-y-2.5">
@@ -161,7 +161,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                         <li key={j}>
                                             <a
                                                 href={footerPath(link.href)}
-                                                className="text-sm text-white/70 hover:text-white transition-colors"
+                                                className="text-sm text-[#fdfcfb]/70 hover:text-[#fdfcfb] active:translate-y-px inline-block transition-[color,transform]"
                                             >
                                                 {link.label}
                                             </a>
@@ -172,7 +172,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                         ))}
 
                         <div className="space-y-4">
-                            <p className="t-meta text-[#f2a007] pb-2 border-b border-white/10">
+                            <p className="t-meta text-[#f2a007] pb-2 border-b border-[#fdfcfb]/10">
                                 {newsroom.newsletterTitle}
                             </p>
                             <form onSubmit={handleSubscribe} className="space-y-2">
@@ -186,9 +186,9 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                         setStatus((s) => (s === "error" ? "idle" : s));
                                     }}
                                     placeholder={newsroom.newsletterPlaceholder}
-                                    className="w-full bg-white/5 border border-white/10 px-3 py-2 text-xs text-white placeholder:text-white/50 rounded-md outline-none focus:border-[#f2a007] transition-colors"
+                                    className="w-full bg-[#fdfcfb]/5 border border-[#fdfcfb]/10 px-3 py-2 text-xs text-[#fdfcfb] placeholder:text-[#fdfcfb]/65 outline-none focus:border-[#f2a007] transition-colors"
                                  />
-                                 <label htmlFor="newsletter-consent" className="flex items-start gap-2 text-[11px] text-white/60 leading-relaxed">
+                                 <label htmlFor="newsletter-consent" className="flex items-start gap-2 text-[11px] text-[#fdfcfb]/60 leading-relaxed">
                                      <input
                                          id="newsletter-consent"
                                          type="checkbox"
@@ -198,9 +198,9 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                          className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-[#f2a007]"
                                      />
                                      <span>
-                                         <span className="font-semibold text-white/80">{consentCopy.newsletterLabel}: </span>
+                                         <span className="font-semibold text-[#fdfcfb]/80">{consentCopy.newsletterLabel}: </span>
                                          {consentCopy.newsletterText} {" "}
-                                         <a href={localizedPath("/privacy", lang)} className="text-[#f2a007] underline underline-offset-2 hover:text-white">
+                                         <a href={localizedPath("/privacy", lang)} className="text-[#f2a007] underline underline-offset-2 hover:text-[#fdfcfb] active:translate-y-px inline-block transition-[color,transform]">
                                              {consentCopy.privacyLinkLabel}
                                          </a>
                                      </span>
@@ -208,14 +208,14 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                  <button
                                     type="submit"
                                     disabled={submitting || status === "success"}
-                                    className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-xs py-2 rounded-md transition-colors disabled:opacity-50"
+                                    className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-[#fdfcfb] font-semibold text-xs py-2 transition-[color,background-color,transform] active:translate-y-px disabled:opacity-50"
                                 >
                                     {status === "success"
                                         ? newsroom.newsletterSuccess
                                         : newsroom.newsletterCta}
                                 </button>
                                 {status === "error" && (
-                                    <p role="alert" className="text-[11px] text-red-400">
+                                    <p role="alert" className="text-[11px] text-[#f2a007]">
                                         {newsroom.newsletterError}
                                     </p>
                                 )}
@@ -225,20 +225,20 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
 
                 </div>
 
-                <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+                <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#fdfcfb]/50">
                     <div>
                         © {new Date().getFullYear()} AIABASD. {data.rights}
                     </div>
 
                     <div className="flex items-center gap-6 font-medium">
-                        <a href={localizedPath("/privacy", lang)} className="hover:text-white transition-colors">{data.privacy}</a>
-                        <a href={localizedPath("/terms", lang)} className="hover:text-white transition-colors">{data.terms}</a>
+                        <a href={localizedPath("/privacy", lang)} className="hover:text-[#fdfcfb] active:translate-y-px inline-block transition-[color,transform]">{data.privacy}</a>
+                        <a href={localizedPath("/terms", lang)} className="hover:text-[#fdfcfb] active:translate-y-px inline-block transition-[color,transform]">{data.terms}</a>
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             aria-label={data.backToTopLabel}
-                            className="flex items-center gap-1.5 text-white/70 hover:text-white transition-colors cursor-pointer"
+                            className="flex items-center gap-1.5 text-[#fdfcfb]/70 hover:text-[#fdfcfb] active:scale-95 transition-[color,transform] cursor-pointer"
                         >
-                            <ArrowUp size={14} />
+                            <ArrowUp size={14} strokeWidth={1.5} />
                         </button>
                     </div>
                 </div>

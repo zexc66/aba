@@ -57,7 +57,7 @@ function CountriesComponent({ data }: CountriesProps) {
     }
 
     return (
-        <Section id="countries" className="relative py-16 bg-[#fdfcfb] border-b border-black/10">
+        <Section id="countries" className="relative py-20 bg-[#fdfcfb] border-b border-[#0b0b10]/10">
             <div className="relative mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
 
                 <SectionHeader
@@ -68,11 +68,11 @@ function CountriesComponent({ data }: CountriesProps) {
                 />
 
                 <div>
-                    <h3 className="t-meta text-black/55 mb-0 pb-3 border-b-2 border-[#0b0b10]">
+                    <h3 className="t-meta text-[#0b0b10]/65 mb-0 pb-3 border-b border-[#0b0b10]">
                         {data.indexTitle}
                     </h3>
 
-                    <ul className="divide-y divide-black/10 border-b border-black/10 list-none p-0 m-0">
+                    <ul className="divide-y divide-[#0b0b10]/10 border-b border-[#0b0b10]/10 list-none p-0 m-0">
                         {regions.map(({ regionKey, members, projects }, i) => (
                             <li
                                 key={regionKey}
@@ -89,16 +89,16 @@ function CountriesComponent({ data }: CountriesProps) {
 
                                 <div className="flex flex-wrap gap-2">
                                     {members.map(({ name, node }) => (
-                                        <Link key={name} href={localizedLinkPath(`/corridors/${node?.iso ?? ""}`, lang)}>
-                                            <a className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 text-xs font-semibold border border-black/10 bg-white text-[#0b0b10]/90 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e] transition-colors">
-                                                <MapPin size={12} className={`shrink-0 ${node?.status === "active" ? "text-emerald-600" : "text-black/35"}`} aria-hidden="true" />
+                                        <Link asChild key={name} href={localizedLinkPath(`/corridors/${node?.iso ?? ""}`, lang)}>
+                                            <a className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 text-xs font-semibold border border-[#0b0b10]/10 bg-[#fdfcfb] text-[#0b0b10]/90 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e] transition-[color,border-color,transform] active:translate-y-px">
+                                                <MapPin size={12} className={`shrink-0 ${node?.status === "active" ? "text-[#5a1f2e]" : "text-[#0b0b10]/35"}`} strokeWidth={1.5} aria-hidden="true" />
                                                 {name}
                                             </a>
                                         </Link>
                                     ))}
                                 </div>
 
-                                <span className="t-meta text-black/50 hidden md:block" aria-hidden="true">
+                                <span className="t-meta text-[#0b0b10]/50 hidden md:block" aria-hidden="true">
                                     {String(i + 1).padStart(2, "0")}/{String(regions.length).padStart(2, "0")}
                                 </span>
                             </li>

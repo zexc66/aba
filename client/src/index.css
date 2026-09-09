@@ -207,6 +207,10 @@ html {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
 }
 
+.shadow-premium-2xl {
+  box-shadow: 0 24px 48px -12px rgba(90, 31, 46, 0.14), 0 8px 16px -8px rgba(11, 11, 16, 0.08);
+}
+
 .glass {
   background: #ffffff;
   border: 1px solid rgba(11, 11, 16, 0.08);
@@ -424,6 +428,36 @@ button:active:not(:disabled):not(.no-press) {
     line-height: 1.6;
     margin-bottom: 16px;
   }
+  .print-brief .brief-readiness {
+    border: 1px solid #d8d4d0;
+    padding: 9px 10px;
+    margin-bottom: 16px;
+  }
+  .print-brief .brief-readiness-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: #5a1f2e;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .print-brief .brief-readiness-track {
+    height: 4px;
+    background: #eee9e4;
+    margin-top: 7px;
+  }
+  .print-brief .brief-readiness-track div {
+    height: 100%;
+    background: #f2a007;
+  }
+  .print-brief .brief-readiness p {
+    color: #555;
+    font-size: 9px;
+    line-height: 1.45;
+    margin-top: 7px;
+  }
   .print-brief .brief-h2 {
     font-size: 10px;
     text-transform: uppercase;
@@ -459,4 +493,67 @@ button:active:not(:disabled):not(.no-press) {
     font-size: 9px;
     color: #666;
   }
+}
+
+/* ── Sovereign terminal surfaces polish pass (additive rules) ──────────── */
+input,
+textarea,
+select {
+  caret-color: #5a1f2e;
+}
+
+.dark input,
+.dark textarea,
+.dark select,
+[class*="bg-[#0b0b10]"] input,
+[class*="bg-[#0b0b10]"] textarea,
+[class*="bg-[#0b0b10]"] select {
+  caret-color: #f2a007;
+}
+
+.dark ::selection,
+[class*="bg-[#0b0b10]"] ::selection,
+[class*="bg-[#101116]"] ::selection,
+[class*="bg-[#11111a]"] ::selection,
+[class*="bg-[#121216]"] ::selection {
+  background-color: rgba(242, 160, 7, 0.3);
+  color: #f2a007;
+}
+
+.scrollbar-sov-dark {
+  scrollbar-width: thin;
+  scrollbar-color: #f2a007 #101116;
+}
+.scrollbar-sov-dark::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-sov-dark::-webkit-scrollbar-track {
+  background: #0b0b10;
+}
+.scrollbar-sov-dark::-webkit-scrollbar-thumb {
+  background: #f2a007;
+  border: 1px solid #0b0b10;
+}
+.scrollbar-sov-dark::-webkit-scrollbar-thumb:hover {
+  background: #ffb833;
+}
+
+.scrollbar-sov-light {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90, 31, 46, 0.3) #fdfcfb;
+}
+.scrollbar-sov-light::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scrollbar-sov-light::-webkit-scrollbar-track {
+  background: #fdfcfb;
+}
+.scrollbar-sov-light::-webkit-scrollbar-thumb {
+  background: rgba(90, 31, 46, 0.3);
+  border: 1px solid #fdfcfb;
+}
+.scrollbar-sov-light::-webkit-scrollbar-thumb:hover {
+  background: #5a1f2e;
 }
