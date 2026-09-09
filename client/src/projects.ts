@@ -141,10 +141,26 @@ export const PROJECTS_UI: Record<Locale3, {
   objectivesLabel: string;
   partnershipLabel: string;
   emptyLabel: string;
-    relatedLabel: string;
-    homeCrumb: string;
-    downloadBrief: string;
-    lastReviewedLabel: string;
+  relatedLabel: string;
+  homeCrumb: string;
+  downloadBrief: string;
+  lastReviewedLabel: string;
+  readinessLabel: string;
+  readinessNote: string;
+  readinessProfileLabel: string;
+  saveProjectLabel: string;
+  removeSavedProjectLabel: string;
+  watchlistLabel: string;
+  watchlistEmpty: string;
+  compareProjectLabel: string;
+  removeComparedProjectLabel: string;
+  compareTitle: string;
+  compareNote: string;
+  compareClearLabel: string;
+  compareLimitLabel: string;
+  compareFactLabel: string;
+  submitOpportunityLabel: string;
+  opportunityMapLabel: string;
 }> = {
   en: {
     pageTitle: "Strategic Projects & Investment Opportunities | AIABASD",
@@ -195,6 +211,22 @@ export const PROJECTS_UI: Record<Locale3, {
     emptyLabel: "No projects match the selected filters.",
     relatedLabel: "Related Projects",
     homeCrumb: "Home",
+    readinessLabel: "Readiness signal",
+    readinessNote: "Based only on the completeness of the published profile. It is not an investment, legal, or technical due-diligence rating.",
+    readinessProfileLabel: "Published profile completeness",
+    saveProjectLabel: "Save opportunity",
+    removeSavedProjectLabel: "Remove from saved opportunities",
+    watchlistLabel: "Saved opportunities",
+    watchlistEmpty: "No opportunities saved yet. Use the bookmark on a project to build a shortlist.",
+    compareProjectLabel: "Add to comparison",
+    removeComparedProjectLabel: "Remove from comparison",
+    compareTitle: "Compare saved opportunities",
+    compareNote: "Select up to three saved opportunities to review their published facts side by side.",
+    compareClearLabel: "Clear comparison",
+    compareLimitLabel: "Maximum of three opportunities",
+    compareFactLabel: "Published fact",
+    submitOpportunityLabel: "Submit an opportunity",
+    opportunityMapLabel: "View opportunity map",
   },
   ar: {
     pageTitle: "المشاريع الاستراتيجية والفرص الاستثمارية | AIABASD",
@@ -245,6 +277,22 @@ export const PROJECTS_UI: Record<Locale3, {
     emptyLabel: "لا توجد مشاريع مطابقة للتصفية المحددة.",
     relatedLabel: "مشاريع ذات صلة",
     homeCrumb: "الرئيسية",
+    readinessLabel: "مؤشر الجاهزية",
+    readinessNote: "يعتمد فقط على اكتمال الملف المنشور، وليس تقييماً استثمارياً أو قانونياً أو تقنياً للعناية الواجبة.",
+    readinessProfileLabel: "اكتمال الملف المنشور",
+    saveProjectLabel: "حفظ الفرصة",
+    removeSavedProjectLabel: "إزالة من الفرص المحفوظة",
+    watchlistLabel: "الفرص المحفوظة",
+    watchlistEmpty: "لم يتم حفظ أي فرص بعد. استخدم إشارة الحفظ في أحد المشاريع لإنشاء قائمة مختصرة.",
+    compareProjectLabel: "إضافة إلى المقارنة",
+    removeComparedProjectLabel: "إزالة من المقارنة",
+    compareTitle: "مقارنة الفرص المحفوظة",
+    compareNote: "اختر ما يصل إلى ثلاث فرص محفوظة لمراجعة بياناتها المنشورة جنباً إلى جنب.",
+    compareClearLabel: "مسح المقارنة",
+    compareLimitLabel: "الحد الأقصى ثلاث فرص",
+    compareFactLabel: "البيان المنشور",
+    submitOpportunityLabel: "تقديم فرصة",
+    opportunityMapLabel: "عرض خريطة الفرص",
   },
   fr: {
     pageTitle: "Projets stratégiques & Opportunités d'investissement | AIABASD",
@@ -295,6 +343,22 @@ export const PROJECTS_UI: Record<Locale3, {
     emptyLabel: "Aucun projet ne correspond aux filtres sélectionnés.",
     relatedLabel: "Projets associés",
     homeCrumb: "Accueil",
+    readinessLabel: "Indicateur de préparation",
+    readinessNote: "Fondé uniquement sur l'exhaustivité du profil publié. Ce n'est pas une notation d'investissement, juridique ou technique.",
+    readinessProfileLabel: "Exhaustivité du profil publié",
+    saveProjectLabel: "Enregistrer l'opportunité",
+    removeSavedProjectLabel: "Retirer des opportunités enregistrées",
+    watchlistLabel: "Opportunités enregistrées",
+    watchlistEmpty: "Aucune opportunité enregistrée. Utilisez le signet d'un projet pour créer une sélection.",
+    compareProjectLabel: "Ajouter à la comparaison",
+    removeComparedProjectLabel: "Retirer de la comparaison",
+    compareTitle: "Comparer les opportunités enregistrées",
+    compareNote: "Sélectionnez jusqu'à trois opportunités enregistrées pour comparer leurs informations publiées.",
+    compareClearLabel: "Effacer la comparaison",
+    compareLimitLabel: "Maximum de trois opportunités",
+    compareFactLabel: "Fait publié",
+    submitOpportunityLabel: "Soumettre une opportunité",
+    opportunityMapLabel: "Voir la carte des opportunités",
   },
 };
 

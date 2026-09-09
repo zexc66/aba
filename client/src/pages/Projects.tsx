@@ -1,6 +1,6 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ShieldAlert } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bookmark, GitCompareArrows, Plus, ShieldAlert, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
@@ -24,7 +24,9 @@ import {
   type ProjectStatus,
   type SectorKey,
 } from "@/projects";
-import { localizedPath } from "@/localePath";
+import { localizedLinkPath, localizedPath } from "@/localePath";
+import { useWatchlist } from "@/contexts/WatchlistContext";
+import { projectReadiness } from "@/readiness";
 
 type Filters = {
   country: CountryKey | "all";
@@ -53,6 +55,8 @@ export default function Projects() {
   const locale = lang as Locale3;
   const t = PROJECTS_UI[locale];
   const reduceMotion = useReducedMotion();
+  const { savedSlugs, compareSlugs, toggleCompare, clearCompare } = useWatchlist();
+  const [showSavedOnly, setShowSavedOnly] = useState(false);
 
   const [filters, setFilters] = useState<Filters>(filtersFromUrl);
   const { country, sector, type, status } = filters;
@@ -82,10 +86,32 @@ export default function Projects() {
         .filter((p) => (country === "all" ? true : p.country === country))
         .filter((p) => (sector === "all" ? true : p.sector === sector))
         .filter((p) => (type === "all" ? true : p.type === type))
-        .filter((p) => (status === "all" ? true : p.status === status)),
-    [country, sector, type, status]
+        .filter((p) => (status === "all" ? true : p.status === status))
+        .filter((p) => (!showSavedOnly || savedSlugs.includes(p.slug))),
+    [country, sector, type, status, showSavedOnly, savedSlugs]
   );
   const initiatives = useMemo(() => initiativeProjects(), []);
+  const comparedProjects = useMemo(
+    () => compareSlugs.map((slug) => PROJECTS.find((project) => project.slug === slug)).filter((project): project is (typeof PROJECTS)[number] => Boolean(project)),
+    [compareSlugs]
+  );
+
+  const comparisonRows: { label: string; get: (project: (typeof PROJECTS)[number]) => ReactNode }[] = [
+    { label: t.countryLabel, get: (project) => COUNTRIES[project.country][locale] },
+    { label: t.sectorLabel, get: (project) => SECTORS[project.sector][locale] },
+    { label: t.statusLabel, get: (project) => STATUSES[project.status][locale] },
+    { label: t.scaleLabel, get: (project) => project.scale?.[locale] ?? "—" },
+    { label: t.modelLabel, get: (project) => project.model?.[locale] ?? "—" },
+    { label: t.readinessProfileLabel, get: (project) => `${projectReadiness(project).score}%` },
+    {
+      label: t.objectivesLabel,
+      get: (project) => <ul className="space-y-1">{project.objectives.map((item, index) => <li key={index}>{item[locale]}</li>)}</ul>,
+    },
+    {
+      label: t.partnershipLabel,
+      get: (project) => <ul className="space-y-1">{project.partnership.map((item, index) => <li key={index}>{item[locale]}</li>)}</ul>,
+    },
+  ];
 
   const countriesWithProjects = useMemo(
     () => Array.from(new Set(PROJECTS.filter((p) => p.type !== "initiative").map((p) => p.country))),
@@ -101,7 +127,7 @@ export default function Projects() {
   );
 
   const selectClass =
-    "w-full bg-[#fdfcfb] border border-black/10 px-4 py-3 rounded-sm text-sm text-[#0b0b10] outline-none focus:border-[#5a1f2e] focus:bg-white transition-colors cursor-pointer";
+    "w-full min-h-11 bg-[#fdfcfb] border border-black/10 px-4 py-2.5 text-sm text-[#0b0b10] transition-colors cursor-pointer focus:border-[#5a1f2e] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2";
 
   return (
     <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}>
@@ -119,6 +145,20 @@ export default function Projects() {
               meta="PROJECT_PORTFOLIO"
               titleAs="h1"
             />
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link asChild href={localizedLinkPath("/submit-project", lang)}>
+                <a className="inline-flex min-h-11 items-center gap-2 bg-[#5a1f2e] px-5 py-3 t-meta text-[10px] text-white transition-colors hover:bg-black active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                  {t.submitOpportunityLabel}
+                  <Plus size={14} strokeWidth={2} aria-hidden="true" />
+                </a>
+              </Link>
+              <Link asChild href={localizedLinkPath("/opportunity-map", lang)}>
+                <a className="inline-flex min-h-11 items-center gap-2 border border-black/15 bg-white px-5 py-3 t-meta text-[10px] text-[#5a1f2e] transition-colors hover:border-[#5a1f2e] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                  {t.opportunityMapLabel}
+                  <ArrowUpRight size={14} strokeWidth={2} className="rtl:-scale-x-100" aria-hidden="true" />
+                </a>
+              </Link>
+            </div>
           </div>
         </Section>
 
@@ -126,9 +166,10 @@ export default function Projects() {
         <Section className="py-8 border-b border-black/10">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10 border border-black/10">
-              <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/55 text-[10px]">{t.filterCountry}</span>
+              <label htmlFor="filter-country" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
+                <span className="t-meta text-black/70 text-[10px]">{t.filterCountry}</span>
                 <select
+                  id="filter-country"
                   value={country}
                   onChange={(e) => setFilter("country", e.target.value)}
                   className={selectClass}
@@ -139,9 +180,10 @@ export default function Projects() {
                   ))}
                 </select>
               </label>
-              <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/55 text-[10px]">{t.filterSector}</span>
+              <label htmlFor="filter-sector" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
+                <span className="t-meta text-black/70 text-[10px]">{t.filterSector}</span>
                 <select
+                  id="filter-sector"
                   value={sector}
                   onChange={(e) => setFilter("sector", e.target.value)}
                   className={selectClass}
@@ -152,9 +194,10 @@ export default function Projects() {
                   ))}
                 </select>
               </label>
-              <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/55 text-[10px]">{t.filterType}</span>
+              <label htmlFor="filter-type" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
+                <span className="t-meta text-black/70 text-[10px]">{t.filterType}</span>
                 <select
+                  id="filter-type"
                   value={type}
                   onChange={(e) => setFilter("type", e.target.value)}
                   className={selectClass}
@@ -165,9 +208,10 @@ export default function Projects() {
                   ))}
                 </select>
               </label>
-              <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/55 text-[10px]">{t.filterStatus}</span>
+              <label htmlFor="filter-status" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
+                <span className="t-meta text-black/70 text-[10px]">{t.filterStatus}</span>
                 <select
+                  id="filter-status"
                   value={status}
                   onChange={(e) => setFilter("status", e.target.value)}
                   className={selectClass}
@@ -188,20 +232,153 @@ export default function Projects() {
                   type="button"
                   aria-pressed={status === s}
                   onClick={() => setFilter("status", status === s ? "all" : s)}
-                  className={`cursor-pointer transition-opacity ${status === "all" || status === s ? "" : "opacity-40"}`}
+                  className={`inline-flex min-h-11 items-center cursor-pointer transition-opacity active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${status === "all" || status === s ? "" : "opacity-40"}`}
                 >
                   <StatusBadge status={s} locale={locale} />
                 </button>
               ))}
+              <button
+                type="button"
+                aria-pressed={showSavedOnly}
+                onClick={() => setShowSavedOnly((current) => !current)}
+                className={`inline-flex min-h-11 items-center gap-2 border px-3 py-2 t-meta text-[10px] transition-colors active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${showSavedOnly ? "border-[#f2a007] bg-[#f2a007]/10 text-[#6b4a00]" : "border-black/10 text-black/60 hover:border-[#5a1f2e]/30 hover:text-[#5a1f2e]"}`}
+              >
+                <Bookmark size={12} aria-hidden="true" />
+                {t.watchlistLabel} ({savedSlugs.length})
+              </button>
             </div>
           </div>
         </Section>
+
+        {comparedProjects.length > 0 && (
+          <Section className="border-b border-black bg-[#0b0b10] py-10 text-white">
+            <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <div className="mb-2 flex items-center gap-2 text-[#f2a007]">
+                    <GitCompareArrows size={16} aria-hidden="true" />
+                    <span className="t-meta text-[10px]">{t.compareTitle}</span>
+                    <span className="t-data text-[10px] text-[#f2a007]/80">({comparedProjects.length}/3)</span>
+                  </div>
+                  <p className="max-w-2xl text-sm leading-relaxed text-[#fdfcfb]/70">{t.compareNote}</p>
+                </div>
+                 <button
+                   type="button"
+                   onClick={clearCompare}
+                   className="inline-flex min-h-11 items-center t-meta border-b border-white/30 px-2 pb-1 text-[10px] text-white/70 transition-colors hover:border-white hover:text-white active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
+                 >
+                  {t.compareClearLabel}
+                </button>
+              </div>
+
+              <div
+                className="overflow-x-auto border border-white/10 scrollbar-sov-dark"
+                tabIndex={0}
+                role="region"
+                aria-label={t.compareTitle}
+              >
+                <table className="min-w-[760px] w-full border-collapse text-start text-sm">
+                  <caption className="sr-only">{t.compareNote} {t.compareLimitLabel}</caption>
+                  <thead>
+                    <tr className="border-b border-white/10">
+                      <th
+                        scope="col"
+                        className="sticky start-0 z-10 w-44 min-w-44 bg-[#0b0b10] p-4 text-start align-top text-[10px] uppercase tracking-wider text-white/60 border-e border-white/10 break-words"
+                      >
+                        {t.compareFactLabel}
+                      </th>
+                      {comparedProjects.map((project) => (
+                        <th key={project.slug} scope="col" className="min-w-[200px] max-w-[320px] border-s border-white/10 p-4 text-start align-top break-words">
+                          <div className="flex items-start justify-between gap-3">
+                            <span className="font-semibold leading-snug text-white break-words">{project.title[locale]}</span>
+                             <button
+                               type="button"
+                               onClick={() => toggleCompare(project.slug)}
+                               aria-label={t.removeComparedProjectLabel}
+                               title={t.removeComparedProjectLabel}
+                               className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-white/50 transition-colors hover:text-[#f2a007] active:scale-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
+                             >
+                              <X size={15} aria-hidden="true" />
+                            </button>
+                          </div>
+                        </th>
+                      ))}
+                      {comparedProjects.length === 1 && (
+                        <th scope="col" className="min-w-[200px] max-w-[320px] border-s border-dashed border-white/15 p-4 text-start align-top bg-white/[0.02]">
+                          <div className="flex flex-col gap-1.5">
+                            <span className="t-meta text-[10px] text-[#f2a007]/80 font-semibold">{t.compareTitle}</span>
+                            <span className="text-xs text-white/50 leading-snug break-words">{t.compareNote}</span>
+                          </div>
+                        </th>
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row) => (
+                      <tr key={row.label} className="border-b border-white/10 last:border-0">
+                        <th
+                          scope="row"
+                          className="sticky start-0 z-10 w-44 min-w-44 bg-[#0b0b10] p-4 text-start align-top text-[10px] uppercase tracking-wider text-white/60 border-e border-white/10 font-normal break-words"
+                        >
+                          {row.label}
+                        </th>
+                        {comparedProjects.map((project) => (
+                          <td key={project.slug} className="border-s border-white/10 p-4 align-top leading-relaxed text-[#fdfcfb]/80 break-words">{row.get(project)}</td>
+                        ))}
+                        {comparedProjects.length === 1 && (
+                          <td className="border-s border-dashed border-white/15 p-4 align-top text-white/30 text-xs bg-white/[0.01]">
+                            —
+                          </td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </Section>
+        )}
 
         {/* Project grid */}
         <Section className="py-12">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             {projects.length === 0 ? (
-              <p className="py-16 text-center t-meta text-black/50">{t.emptyLabel}</p>
+              <div className="border border-black/10 bg-white p-10 md:p-14 text-center max-w-2xl mx-auto my-4">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center border border-black/10 bg-[#fdfcfb] text-[#5a1f2e]">
+                  {showSavedOnly ? (
+                    <Bookmark size={20} className="text-[#f2a007]" aria-hidden="true" />
+                  ) : (
+                    <ShieldAlert size={20} className="text-[#5a1f2e]" aria-hidden="true" />
+                  )}
+                </div>
+                <p className="t-meta text-black/70 text-xs leading-relaxed max-w-md mx-auto mb-2">
+                  {showSavedOnly ? t.watchlistEmpty : t.emptyLabel}
+                </p>
+                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                  {showSavedOnly ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowSavedOnly(false)}
+                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-5 py-2.5 t-meta text-[10px] text-white hover:bg-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:scale-95"
+                    >
+                      {t.viewAll}
+                      <ArrowRight size={13} className="rtl:-scale-x-100" aria-hidden="true" />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setFilters({ country: "all", sector: "all", type: "all", status: "all" });
+                        window.history.replaceState(null, "", window.location.pathname);
+                      }}
+                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-5 py-2.5 t-meta text-[10px] text-white hover:bg-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:scale-95"
+                    >
+                      {t.viewAll}
+                      <ArrowRight size={13} className="rtl:-scale-x-100" aria-hidden="true" />
+                    </button>
+                  )}
+                </div>
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {projects.map((p, i) => (
@@ -220,7 +397,7 @@ export default function Projects() {
               <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                 {t.initiativesTitle}
               </h2>
-              <p className="text-sm text-white/60 leading-relaxed mt-3 max-w-3xl">
+              <p className="text-sm text-[#fdfcfb]/70 leading-relaxed mt-3 max-w-3xl">
                 {t.initiativesNote}
               </p>
             </div>
@@ -233,19 +410,23 @@ export default function Projects() {
                   initial={false}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: Math.min(i * 0.05, 0.2) }}
-                  className="bg-[#11111a] p-7 flex flex-col hover:bg-white/[0.04] transition-colors group"
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { duration: 0.35, delay: Math.min(i * 0.05, 0.2) }
+                  }
+                  className="bg-[#11111a] p-7 flex flex-col hover:bg-white/[0.04] active:scale-[0.99] transition-colors group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
                 >
                   <div className="flex items-center justify-between gap-3 mb-4">
                     <StatusBadge status={p.status} locale={locale} />
-                    <span className="t-data text-[10px] text-white/35" dir="ltr">
+                    <span className="t-data text-[10px] text-white/50" dir="ltr">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
                   <h3 className="text-lg font-bold text-white group-hover:text-[#f2a007] transition-colors leading-snug mb-3">
                     {p.title[locale]}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">
+                  <p className="text-sm text-[#fdfcfb]/70 leading-relaxed">
                     {p.description[locale]}
                   </p>
                 </motion.a>
@@ -255,12 +436,12 @@ export default function Projects() {
             {/* Advanced technology cooperation areas */}
             <div className="border border-white/10 p-6 md:p-8">
               <h3 className="text-base font-bold text-white mb-2">{t.techTitle}</h3>
-              <p className="t-meta text-white/45 text-[10px] mb-5">{t.techNote}</p>
+              <p className="t-meta text-white/60 text-[10px] mb-5">{t.techNote}</p>
               <ul className="flex flex-wrap gap-2" role="list">
                 {t.techAreas.map((area) => (
                   <li
                     key={area}
-                    className="t-meta text-[10px] text-white/70 border border-white/15 px-3 py-2 bg-white/[0.03]"
+                    className="t-meta text-[10px] text-[#fdfcfb]/80 border border-white/15 px-3 py-2 bg-white/[0.03]"
                   >
                     {area}
                   </li>
@@ -280,7 +461,7 @@ export default function Projects() {
               <ShieldAlert size={18} className="text-[#5a1f2e] shrink-0 mt-0.5" aria-hidden="true" />
               <div>
                 <p className="t-meta text-[#5a1f2e] mb-2">{t.disclaimerLabel}</p>
-                <p className="text-sm text-black/65 leading-relaxed">{t.disclaimer}</p>
+                <p className="text-sm text-black/75 leading-relaxed">{t.disclaimer}</p>
               </div>
             </div>
           </div>
