@@ -5,6 +5,7 @@ import { existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { z } from "zod";
 import { generateChatResponse } from "./services/chatService";
+import { inquirySchema, projectSubmissionSchema } from "./inquirySchema";
 import { saveInquiry, listInquiries } from "./storage";
 import { notifyLead, acknowledgeLead } from "./notify";
 import { recordPageview, recordEvent, readAnalytics } from "./analytics";
@@ -13,43 +14,6 @@ import { registerRssRoute } from "./rss";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Structured intake fields are single-line labels (no control chars) chosen
-// from client-side selects. Every inquiry contains affirmative consent.
-const label = z
-  .string()
-  .trim()
-  .max(60)
-  .regex(/^[^<>{};$`\\]*$/)
-  .optional();
-const longLabel = z.string().trim().max(500).regex(/^[^<>{};$`\\]*$/).optional();
-
-const inquirySchema = z.object({
-  type: z
-    .string()
-    .trim()
-    .regex(/^[A-Za-z0-9_-]{2,40}$/)
-    .default("GENERAL"),
-  email: z.email().max(254),
-  name: z.string().trim().max(120).optional(),
-  organization: z.string().trim().max(160).optional(),
-  sector: label,
-  region: label,
-  ticket: label,
-  timeline: label,
-  partyType: label,
-  sectors: longLabel,
-  countries: longLabel,
-  capabilities: longLabel,
-  capitalBand: label,
-  targetProject: z.string().trim().max(160).optional(),
-  targetService: label,
-  role: label,
-  interest: z.string().trim().max(500).optional(),
-  consent: z.literal(true),
-  locale: z.enum(["en", "ar", "fr"]).optional(),
-  message: z.string().trim().max(4000).optional(),
-});
 
 const chatSchema = z.object({
   message: z.string().trim().min(1).max(2000),
@@ -125,10 +89,22 @@ async function startServer() {
       return;
     }
 
+    let data = parsed.data;
+    if (data.type === "PROJECT_SUBMISSION") {
+      const projectParsed = projectSubmissionSchema.safeParse(req.body);
+      if (!projectParsed.success) {
+        const fields = projectParsed.error.issues.map((issue) => issue.path.join(".") || "payload");
+        console.warn(`[PROTOCOL][REJECT] Project submission validation failed: ${fields.join(",")}`);
+        res.status(400).json({ error: "Invalid project submission payload.", fields });
+        return;
+      }
+      data = projectParsed.data;
+    }
+
     // Stage and priority are internal workflow fields. Public callers cannot
     // set them, even if they add those keys to the request body.
     const entry = await saveInquiry({
-      ...parsed.data,
+      ...data,
       stage: "new",
       priority: "normal",
     });
