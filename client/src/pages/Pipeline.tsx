@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "wouter";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
@@ -16,6 +16,7 @@ import { PROGRAM_META, SECTORS, SDG_NAMES, stageIndex, type SectorKey } from "@/
 
 export default function Pipeline() {
     const { lang, content } = useLanguageContext();
+    const shouldReduceMotion = useReducedMotion();
     const t = content.pipeline;
     const corridorLabels = content.countries.list;
 
@@ -70,7 +71,7 @@ export default function Pipeline() {
                         {/* Filters */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-black/10 border border-black/10 mb-10">
                             <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                                <span className="t-meta text-black/55">{t.filterSector}</span>
+                                <span className="t-meta text-black/65">{t.filterSector}</span>
                                 <select
                                     value={sector}
                                     onChange={(e) => setSector(e.target.value as SectorKey | "all")}
@@ -83,7 +84,7 @@ export default function Pipeline() {
                                 </select>
                             </label>
                             <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                                <span className="t-meta text-black/55">{t.filterCountry}</span>
+                                <span className="t-meta text-black/65">{t.filterCountry}</span>
                                 <select
                                     value={corridor}
                                     onChange={(e) => setCorridor(e.target.value)}
@@ -97,7 +98,7 @@ export default function Pipeline() {
                                 </select>
                             </label>
                             <label className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                                <span className="t-meta text-black/55">{t.filterStatus}</span>
+                                <span className="t-meta text-black/65">{t.filterStatus}</span>
                                 <select
                                     value={stage === "all" ? "all" : String(stage)}
                                     onChange={(e) => setStage(e.target.value === "all" ? "all" : Number(e.target.value))}
@@ -113,7 +114,7 @@ export default function Pipeline() {
 
                         {/* Explorer table */}
                         <div>
-                            <div className="t-meta text-black/55 grid grid-cols-[1fr_auto] md:grid-cols-[1fr_8rem_8rem_7rem] gap-x-6 pb-3 border-b-2 border-[#0b0b10]">
+                            <div className="t-meta text-black/65 grid grid-cols-[1fr_auto] md:grid-cols-[1fr_8rem_8rem_7rem] gap-x-6 pb-3 border-b-2 border-[#0b0b10]">
                                 <span>{content.programs.title}</span>
                                 <span className="hidden md:block">{t.filterSector}</span>
                                 <span className="hidden md:block">{t.filterCountry}</span>
@@ -121,29 +122,29 @@ export default function Pipeline() {
                             </div>
                             <ul className="divide-y divide-black/10 border-b border-black/10">
                                 {programs.length === 0 && (
-                                    <li className="py-10 text-center t-meta text-black/50">— 0 —</li>
+                                    <li className="py-10 text-center t-meta text-black/60">— 0 —</li>
                                 )}
                                 {programs.map((p, i) => (
                                     <motion.li
                                         key={p.slug}
                                         initial={false}
                                         animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.3, delay: Math.min(i * 0.04, 0.3) }}
+                                        transition={{ duration: shouldReduceMotion ? 0 : 0.3, delay: shouldReduceMotion ? 0 : Math.min(i * 0.04, 0.3) }}
                                     >
-                                        <Link href={localizedLinkPath(p.link ?? `/programs/${p.slug}`, lang)}>
-                                            <a className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_8rem_8rem_7rem] gap-x-6 items-center py-4 group">
+                                        <Link asChild href={localizedLinkPath(p.link ?? `/programs/${p.slug}`, lang)}>
+                                            <a className="grid grid-cols-[1fr_auto] md:grid-cols-[1fr_8rem_8rem_7rem] gap-x-6 items-center py-4 px-3 -mx-3 group active:bg-black/[0.03] transition-colors">
                                                 <div className="min-w-0">
                                                     <h2 className="text-sm md:text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
                                                         {p.name}
                                                     </h2>
-                                                    <p className="t-meta text-black/45 mt-1" dir="ltr">
+                                                    <p className="t-meta text-black/60 mt-1" dir="ltr">
                                                         {p.tags.join(" · ")}
                                                     </p>
                                                 </div>
-                                                <span className="hidden md:block t-meta text-black/55">
+                                                <span className="hidden md:block t-meta text-black/65">
                                                     {SECTORS[p.meta.sector][lang]}
                                                 </span>
-                                                <span className="hidden md:block t-meta text-black/55">
+                                                <span className="hidden md:block t-meta text-black/65">
                                                     {p.meta.corridors === "regional"
                                                         ? t.multiRegion
                                                         : p.meta.corridors.map(corridorName).join(" · ")}
@@ -192,9 +193,9 @@ export default function Pipeline() {
                                 <table className="w-full border-collapse">
                                     <thead>
                                         <tr className="border-b-2 border-[#0b0b10]">
-                                            <th className="t-meta text-black/55 text-start py-3 pe-4 min-w-[16rem]">SDG</th>
+                                            <th className="t-meta text-black/65 text-start py-3 pe-4 min-w-[16rem]">SDG</th>
                                             {sdgPrograms.map((p, pi) => (
-                                                <th key={p.slug} title={p.name} className="t-data text-black/45 py-3 px-2 min-w-[4rem] align-bottom" dir="ltr">
+                                                <th key={p.slug} title={p.name} className="t-data text-black/60 py-3 px-2 min-w-[4rem] align-bottom" dir="ltr">
                                                     {String(pi + 1).padStart(2, "0")}
                                                 </th>
                                             ))}

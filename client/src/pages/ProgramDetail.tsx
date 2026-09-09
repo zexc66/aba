@@ -18,7 +18,7 @@ const TONE_CLASSES: Record<string, string> = {
   pipeline: "text-black/60 bg-black/5 border-black/10",
 };
 const TONE_DOTS: Record<string, string> = {
-  active: "bg-emerald-500 animate-pulse",
+  active: "bg-emerald-500 animate-pulse motion-reduce:animate-none",
   dev: "bg-amber-500",
   pipeline: "bg-black/40",
 };
@@ -26,26 +26,31 @@ const TONE_DOTS: Record<string, string> = {
 export default function ProgramDetail() {
   const { slug } = useParams<{ slug: string }>();
   const [, setLocation] = useLocation();
-  const { lang, isRTL, toggleLang, langLabel, content } = useLanguageContext();
+  const { lang, isRTL, content } = useLanguageContext();
   const ui = content.programDetail;
 
-  const program = content.programs.list.find((p) => p.slug === slug);
+  const program = content.programs.list.find(p => p.slug === slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  if (!program) {
-    setLocation("/404", { replace: true });
-    return null;
-  }
+  useEffect(() => {
+    if (!program) {
+      setLocation("/404", { replace: true });
+    }
+  }, [program, setLocation]);
+
+  if (!program) return null;
 
   const tone = programStatusTone(program.status);
   const uiStages = content.pipeline.stages;
   const stageIdx = stageIndex(tone);
 
   return (
-    <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}>
+    <div
+      className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}
+    >
       <SEO
         title={`${program.name} | AIABASD`}
         description={program.detail.overview.slice(0, 155)}
@@ -63,18 +68,20 @@ export default function ProgramDetail() {
               transition={{ duration: 0.4 }}
               className="max-w-4xl space-y-6"
             >
-              <Link href={localizedLinkPath("/#programs", lang)}>
-                <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#5a1f2e] hover:text-[#0b0b10] transition-colors cursor-pointer py-2">
-                  <ArrowLeft size={14} className={isRTL ? "rotate-180" : ""} />
+              <Link href={localizedLinkPath("/#programs", lang)} asChild>
+                <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-colors">
+                  <ArrowLeft
+                    size={14}
+                    className="rtl:-scale-x-100"
+                    aria-hidden="true"
+                  />
                   <span>{ui.backLabel}</span>
-                </div>
+                </a>
               </Link>
 
               <div className="flex items-center gap-3">
                 <div className="h-0.5 w-8 bg-[#5a1f2e]" />
-                <span className="t-meta text-[#5a1f2e]">
-                  {ui.eyebrow}
-                </span>
+                <span className="t-meta text-[#5a1f2e]">{ui.eyebrow}</span>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
@@ -94,28 +101,41 @@ export default function ProgramDetail() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
-                <span className={`inline-flex items-center gap-2 t-meta px-2.5 py-1.5 border ${TONE_CLASSES[tone]}`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${TONE_DOTS[tone]}`} />
+                <span
+                  className={`inline-flex items-center gap-2 t-meta px-2.5 py-1.5 border ${TONE_CLASSES[tone]}`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${TONE_DOTS[tone]}`}
+                  />
                   {ui.statusLabel}: {program.status}
                 </span>
                 <p className="t-meta text-black/50" dir="ltr">
                   {program.tags.join(" \u00b7 ")}
                 </p>
 
-                <span className="inline-flex items-center gap-3 basis-full sm:basis-auto" aria-label={`${content.pipeline.stageTitle}: ${uiStages[stageIdx]}`}>
-                  <span className="t-meta text-black/45">{content.pipeline.stageTitle}</span>
+                <span
+                  className="inline-flex items-center gap-3 basis-full sm:basis-auto"
+                  aria-label={`${content.pipeline.stageTitle}: ${uiStages[stageIdx]}`}
+                >
+                  <span className="t-meta text-black/45">
+                    {content.pipeline.stageTitle}
+                  </span>
                   <span className="flex items-center gap-1">
                     {uiStages.map((label, s) => (
                       <span
                         key={s}
                         title={label}
-                        className={`w-4 h-4 border ${s <= stageIdx
-                          ? "bg-[#5a1f2e] border-[#5a1f2e]"
-                          : "bg-transparent border-black/20"}`}
+                        className={`w-4 h-4 border ${
+                          s <= stageIdx
+                            ? "bg-[#5a1f2e] border-[#5a1f2e]"
+                            : "bg-transparent border-black/20"
+                        }`}
                       />
                     ))}
                   </span>
-                  <span className="t-meta text-[#5a1f2e]">{uiStages[stageIdx]}</span>
+                  <span className="t-meta text-[#5a1f2e]">
+                    {uiStages[stageIdx]}
+                  </span>
                 </span>
               </div>
             </motion.div>
@@ -155,12 +175,22 @@ export default function ProgramDetail() {
                 </h2>
                 <div className="space-y-4">
                   {program.detail.highlights.map((h, i) => (
-                    <div key={i} className="bg-white rounded-sm border border-black/5 p-6 space-y-2">
+                    <div
+                      key={i}
+                      className="bg-white rounded-sm border border-black/5 p-6 space-y-2"
+                    >
                       <div className="flex items-center gap-2.5">
-                        <CheckCircle2 size={16} className="text-[#5a1f2e] shrink-0" />
-                        <h3 className="text-sm font-bold text-[#0b0b10]">{h.title}</h3>
+                        <CheckCircle2
+                          size={16}
+                          className="text-[#5a1f2e] shrink-0"
+                        />
+                        <h3 className="text-sm font-bold text-[#0b0b10]">
+                          {h.title}
+                        </h3>
                       </div>
-                      <p className="text-sm text-black/70 leading-relaxed">{h.desc}</p>
+                      <p className="text-sm text-black/70 leading-relaxed">
+                        {h.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -176,20 +206,31 @@ export default function ProgramDetail() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="bg-[#0b0b10] rounded-sm p-8 lg:p-12 text-white relative overflow-hidden"
+              className="bg-[#0b0b10] rounded-sm p-8 lg:p-12 text-[#fdfcfb] relative overflow-hidden"
             >
-              <div className="absolute -right-24 -top-24 w-96 h-96 bg-[#5a1f2e]/30 rounded-full blur-3xl pointer-events-none" />
+              <div
+                className="absolute inset-y-0 end-0 w-1.5 bg-[#5a1f2e] pointer-events-none"
+                aria-hidden="true"
+              />
               <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="space-y-3 max-w-2xl">
-                  <h2 className="text-2xl md:text-3xl font-bold">{ui.ctaTitle}</h2>
-                  <p className="text-sm md:text-base text-white/70 leading-relaxed">{ui.ctaSubtitle}</p>
+                  <h2 className="text-2xl md:text-3xl font-bold">
+                    {ui.ctaTitle}
+                  </h2>
+                  <p className="text-sm md:text-base text-[#fdfcfb]/75 leading-relaxed">
+                    {ui.ctaSubtitle}
+                  </p>
                 </div>
                 <a
                   href={localizedPath("/#contact", lang)}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-white px-6 py-3 rounded-sm transition-[color,background-color,border-color,transform] shrink-0"
+                  className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-bold text-[#0b0b10] bg-[#f2a007] hover:bg-[#fdfcfb] px-6 py-3 rounded-sm transition-[color,background-color,border-color,transform] shrink-0"
                 >
                   <span>{ui.ctaButton}</span>
-                  <ArrowRight size={16} />
+                  <ArrowRight
+                    size={16}
+                    className="rtl:-scale-x-100"
+                    aria-hidden="true"
+                  />
                 </a>
               </div>
             </motion.div>

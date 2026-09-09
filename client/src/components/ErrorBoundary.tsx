@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import { AlertTriangle, RotateCcw } from "lucide-react";
 import { Component, ReactNode } from "react";
 
@@ -24,34 +23,31 @@ class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex items-center justify-center min-h-screen p-8 bg-background">
-          <div className="flex flex-col items-center w-full max-w-2xl p-8">
+        <main className="flex min-h-screen items-center justify-center bg-[#fdfcfb] p-8 text-[#0b0b10]">
+          <section className="flex w-full max-w-2xl flex-col items-center border border-[#0b0b10]/10 p-8 shadow-[0_20px_60px_rgba(90,31,46,0.12)]" role="alert" aria-live="assertive">
             <AlertTriangle
               size={48}
-              className="text-destructive mb-6 flex-shrink-0"
+              strokeWidth={1.75}
+              className="mb-6 flex-shrink-0 text-[#5a1f2e]"
             />
 
-            <h2 className="text-xl mb-4">An unexpected error occurred.</h2>
+            <h2 className="mb-4 text-center text-xl font-semibold text-balance">An unexpected error occurred.</h2>
 
-            <div className="p-4 w-full rounded bg-muted overflow-auto mb-6">
-              <pre className="text-sm text-muted-foreground whitespace-break-spaces">
+            <div className="mb-6 w-full overflow-auto border border-[#0b0b10]/10 bg-[#0b0b10]/5 p-4">
+              <pre className="whitespace-break-spaces break-words text-sm text-[#0b0b10]/65">
                 {this.state.error?.stack}
               </pre>
             </div>
 
             <button
               onClick={() => window.location.reload()}
-              className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-lg",
-                "bg-primary text-primary-foreground",
-                "hover:opacity-90 cursor-pointer"
-              )}
+              className="flex min-h-11 items-center gap-2 bg-[#5a1f2e] px-4 py-2 text-sm font-semibold text-[#fdfcfb] transition-[background-color,transform] duration-200 hover:bg-[#0b0b10] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f2a007] motion-reduce:transition-none cursor-pointer"
             >
-              <RotateCcw size={16} />
+              <RotateCcw size={16} strokeWidth={1.75} />
               Reload Page
             </button>
-          </div>
-        </div>
+          </section>
+        </main>
       );
     }
 

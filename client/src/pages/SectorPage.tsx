@@ -8,19 +8,28 @@ import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { PROJECTS, PROJECTS_UI, SECTORS, type Locale3, type SectorKey } from "@/projects";
+import {
+  PROJECTS,
+  PROJECTS_UI,
+  SECTORS,
+  type Locale3,
+  type SectorKey,
+} from "@/projects";
 import { PROGRAM_META } from "@/intelligence";
-import { localizedLinkPath, localizedPath } from "@/localePath";
+import { localizedLinkPath } from "@/localePath";
 
-const UI: Record<Locale3, {
-  backLabel: string;
-  projectsLabel: string;
-  initiativesLabel: string;
-  programsLabel: string;
-  programsNote: string;
-  emptyLabel: string;
-  allProjects: string;
-}> = {
+const UI: Record<
+  Locale3,
+  {
+    backLabel: string;
+    projectsLabel: string;
+    initiativesLabel: string;
+    programsLabel: string;
+    programsNote: string;
+    emptyLabel: string;
+    allProjects: string;
+  }
+> = {
   en: {
     backLabel: "All Projects",
     projectsLabel: "Projects & Opportunities",
@@ -58,7 +67,11 @@ const PROGRAM_SECTOR_MAP: Partial<Record<SectorKey, string>> = {
   industry: "industrial",
 };
 
-export default function SectorPage({ params }: { params?: { sector?: string } }) {
+export default function SectorPage({
+  params,
+}: {
+  params?: { sector?: string };
+}) {
   const { lang, content } = useLanguageContext();
   const locale = lang as Locale3;
   const t = PROJECTS_UI[locale];
@@ -67,24 +80,34 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
   const sector =
     (params?.sector as SectorKey) ??
     (typeof window !== "undefined"
-      ? (window.location.pathname.replace(/^\/(ar|fr)/, "").split("/")[2] as SectorKey)
+      ? (window.location.pathname
+          .replace(/^\/(ar|fr)/, "")
+          .split("/")[2] as SectorKey)
       : undefined);
 
   const known = sector && SECTORS[sector] ? (sector as SectorKey) : undefined;
   const sectorName = known ? SECTORS[known][locale] : "";
-  const inSector = known ? PROJECTS.filter((p) => p.sector === known) : [];
-  const initiatives = inSector.filter((p) => p.type === "initiative");
-  const projects = inSector.filter((p) => p.type !== "initiative");
+  const inSector = known ? PROJECTS.filter(p => p.sector === known) : [];
+  const initiatives = inSector.filter(p => p.type === "initiative");
+  const projects = inSector.filter(p => p.type !== "initiative");
   const programSector = known ? PROGRAM_SECTOR_MAP[known] : undefined;
   const programs = programSector
-    ? content.programs.list.filter((p) => PROGRAM_META[p.slug]?.sector === programSector)
+    ? content.programs.list.filter(
+        p => PROGRAM_META[p.slug]?.sector === programSector
+      )
     : [];
 
   return (
-    <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}>
+    <div
+      className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}
+    >
       <SEO
         title={sectorName ? `${sectorName} | AIABASD` : t.pageTitle}
-        description={sectorName ? `${sectorName} — ${t.headerNote}`.slice(0, 155) : t.headerNote}
+        description={
+          sectorName
+            ? `${sectorName} — ${t.headerNote}`.slice(0, 155)
+            : t.headerNote
+        }
         lang={lang}
         url={known ? `/sectors/${known}` : "/projects"}
       />
@@ -92,22 +115,32 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
 
       <div className="pt-24 pb-24">
         {!known ? (
-          <Section className="py-24 text-center">
-            <p className="t-meta text-[#5a1f2e]">404</p>
-            <Link href={localizedLinkPath("/projects", lang)}>
-              <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 pb-0.5 mt-6">
-                <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
-                {u.allProjects}
-              </a>
-            </Link>
+          <Section className="py-24">
+            <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 text-center">
+              <p className="t-meta text-[#5a1f2e] mb-6">404</p>
+              <Link href={localizedLinkPath("/projects", lang)} asChild>
+                <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-colors">
+                  <ArrowLeft
+                    size={14}
+                    className="rtl:-scale-x-100"
+                    aria-hidden="true"
+                  />
+                  {u.allProjects}
+                </a>
+              </Link>
+            </div>
           </Section>
         ) : (
           <>
             <Section className="relative py-12 border-b border-black/10 bg-white">
               <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                <Link href={localizedLinkPath("/projects", lang)}>
-                  <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mb-6 py-1">
-                    <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
+                <Link href={localizedLinkPath("/projects", lang)} asChild>
+                  <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 mb-6 transition-colors">
+                    <ArrowLeft
+                      size={14}
+                      className="rtl:-scale-x-100"
+                      aria-hidden="true"
+                    />
                     {u.backLabel}
                   </a>
                 </Link>
@@ -132,7 +165,12 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                       {projects.map((p, i) => (
-                        <ProjectCard key={p.slug} project={p} locale={locale} index={i} />
+                        <ProjectCard
+                          key={p.slug}
+                          project={p}
+                          locale={locale}
+                          index={i}
+                        />
                       ))}
                     </div>
                   )}
@@ -143,16 +181,26 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
                     <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-4">
                       {u.programsLabel}
                     </h2>
-                    <p className="text-sm text-black/55 mb-4">{u.programsNote}</p>
+                    <p className="text-sm text-black/55 mb-4">
+                      {u.programsNote}
+                    </p>
                     <ul className="divide-y divide-black/10 border-y border-black/10">
-                      {programs.map((p) => (
+                      {programs.map(p => (
                         <li key={p.slug}>
-                          <Link href={localizedLinkPath(p.link ?? `/programs/${p.slug}`, lang)}>
+                          <Link
+                            asChild
+                            href={localizedLinkPath(
+                              p.link ?? `/programs/${p.slug}`,
+                              lang
+                            )}
+                          >
                             <a className="flex items-center justify-between gap-4 py-4 group">
                               <span className="text-sm font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors">
                                 {p.name}
                               </span>
-                              <span className="t-meta text-black/50">{p.status}</span>
+                              <span className="t-meta text-black/50">
+                                {p.status}
+                              </span>
                             </a>
                           </Link>
                         </li>
@@ -167,9 +215,15 @@ export default function SectorPage({ params }: { params?: { sector?: string } })
                       {u.initiativesLabel}
                     </h2>
                     <ul className="flex flex-wrap gap-2">
-                      {initiatives.map((p) => (
+                      {initiatives.map(p => (
                         <li key={p.slug}>
-                          <Link href={localizedLinkPath(`/projects/${p.slug}`, lang)}>
+                          <Link
+                            asChild
+                            href={localizedLinkPath(
+                              `/projects/${p.slug}`,
+                              lang
+                            )}
+                          >
                             <a className="t-meta inline-block border border-black/15 px-3 py-2 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] transition-colors text-xs">
                               {p.title[locale]}
                             </a>

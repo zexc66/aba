@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Lock, Mail, KeyRound, ArrowRight, ShieldCheck, ArrowLeft, UserPlus } from "lucide-react";
+import { Lock, Mail, KeyRound, ArrowRight, ShieldCheck, ArrowLeft, UserPlus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { catalogProjectOptions } from "@/platform";
 import { trackEvent } from "@/services/analytics";
-import { localizedLinkPath, localizedPath } from "@/localePath";
+import { localizedLinkPath } from "@/localePath";
 
 const VAULT_TOKEN_KEY = "aiabasd-vault-token";
 
@@ -121,15 +121,15 @@ export default function InvestorLogin() {
       />
 
       <header className="w-full max-w-6xl mx-auto flex items-center justify-between z-10 py-4">
-         <Link href={localizedLinkPath("/", lang)}>
-          <div className="flex items-center gap-3 text-sm font-semibold text-white/70 hover:text-white transition-colors cursor-pointer">
-            <ArrowLeft size={18} className={`${isRTL ? "rotate-180" : ""} rtl:-scale-x-100`} />
+        <Link href={localizedLinkPath("/", lang)} asChild>
+          <a className="inline-flex items-center gap-2 t-meta text-xs text-[#fdfcfb]/70 hover:text-[#f2a007] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2">
+            <ArrowLeft size={14} className="rtl:-scale-x-100 shrink-0" aria-hidden="true" />
             <span>{t.backLabel}</span>
-          </div>
+          </a>
         </Link>
 
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#f2a007]">
-          <ShieldCheck size={16} />
+        <div className="flex items-center gap-2 t-meta text-xs font-semibold text-[#f2a007]">
+          <ShieldCheck size={16} aria-hidden="true" />
           <span>{t.secureLabel}</span>
         </div>
       </header>
@@ -139,61 +139,63 @@ export default function InvestorLogin() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="bg-[#11111a] p-8 md:p-10 border border-white/15 shadow-2xl space-y-8"
+          className="bg-[#11111a] p-8 md:p-10 border border-white/15 shadow-[0_24px_48px_-12px_rgba(90,31,46,0.25)] space-y-8"
         >
           <div className="text-center space-y-3">
-            <div className="w-14 h-14 rounded-full bg-[#5a1f2e]/20 text-[#f2a007] border border-[#5a1f2e]/40 flex items-center justify-center mx-auto">
-              {mode === "auth" ? <Lock size={24} /> : <UserPlus size={24} />}
+            <div className="w-12 h-12 bg-[#5a1f2e]/20 text-[#f2a007] border border-[#5a1f2e]/40 flex items-center justify-center mx-auto">
+              {mode === "auth" ? <Lock size={22} aria-hidden="true" /> : <UserPlus size={22} aria-hidden="true" />}
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-bold text-[#fdfcfb] tracking-tight">
               {mode === "auth" ? t.vaultTitle : t.requestAccessTitle}
             </h1>
-            <p className="text-sm text-white/60">
+            <p className="text-sm text-[#fdfcfb]/60 leading-relaxed">
               {mode === "auth" ? t.vaultSubtitle : t.requestAccessNote}
             </p>
           </div>
 
           {mode === "auth" ? (
             <form onSubmit={handleAuth} className="space-y-5">
-              <div className="space-y-2">
-                 <label htmlFor="investor-auth-email" className="text-xs font-semibold text-white/70">
+              <div className="space-y-1.5">
+                <label htmlFor="investor-auth-email" className="block t-meta text-[10px] text-[#fdfcfb]/70">
                   {t.emailLabel}
                 </label>
                 <div className="relative">
                   <Mail
-                    size={18}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
+                    size={16}
+                    className="absolute start-3.5 top-1/2 -translate-y-1/2 text-[#fdfcfb]/40 pointer-events-none"
+                    aria-hidden="true"
                   />
                   <input
-                     id="investor-auth-email"
-                     type="email"
+                    id="investor-auth-email"
+                    type="email"
                     required
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder={t.emailPlaceholder}
-                    className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
+                    className="w-full bg-white/[0.06] border border-white/15 ps-11 pe-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                 <label htmlFor="investor-access-key" className="text-xs font-semibold text-white/70">
+              <div className="space-y-1.5">
+                <label htmlFor="investor-access-key" className="block t-meta text-[10px] text-[#fdfcfb]/70">
                   {t.keyLabel}
                 </label>
                 <div className="relative">
                   <KeyRound
-                    size={18}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
+                    size={16}
+                    className="absolute start-3.5 top-1/2 -translate-y-1/2 text-[#fdfcfb]/40 pointer-events-none"
+                    aria-hidden="true"
                   />
                   <input
-                     id="investor-access-key"
-                     type="password"
+                    id="investor-access-key"
+                    type="password"
                     required
                     value={key}
                     onChange={e => setKey(e.target.value)}
                     placeholder={t.keyPlaceholder}
                     autoComplete="off"
-                    className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
+                    className="w-full bg-white/[0.06] border border-white/15 ps-11 pe-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
                   />
                 </div>
               </div>
@@ -201,92 +203,189 @@ export default function InvestorLogin() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-sm py-3.5 rounded-lg uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+                className="w-full min-h-12 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 active:bg-[#5a1f2e]/80 active:scale-[0.99] text-[#fdfcfb] t-meta text-xs font-bold uppercase tracking-wider py-3 px-6 transition-[color,background-color,border-color,transform] shadow-[0_4px_12px_rgba(90,31,46,0.3)] flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-40 mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
               >
-                <span>{isLoading ? t.verifying : t.cta}</span>
-                <ArrowRight size={16} className={isRTL ? "rotate-180" : ""} />
+                {isLoading ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" aria-hidden="true" />
+                    <span className="whitespace-nowrap">{t.verifying}</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="whitespace-nowrap">{t.cta}</span>
+                    <ArrowRight size={16} className="rtl:-scale-x-100 shrink-0" aria-hidden="true" />
+                  </>
+                )}
               </button>
 
               <button
                 type="button"
                 onClick={() => setMode("request")}
-                className="w-full text-center text-xs font-semibold text-[#f2a007]/90 hover:text-[#f2a007] transition-colors cursor-pointer"
+                className="w-full text-center t-meta text-xs text-[#f2a007] hover:text-[#f2a007]/80 transition-colors cursor-pointer py-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
               >
                 {t.requestCta}
               </button>
             </form>
           ) : (
-             <form onSubmit={handleRequest} className="space-y-5">
-               <div className="space-y-2">
-                 <label htmlFor="investor-request-email" className="text-xs font-semibold text-white/70">
+            <form onSubmit={handleRequest} className="space-y-5">
+              <div className="space-y-1.5">
+                <label htmlFor="investor-request-email" className="block t-meta text-[10px] text-[#fdfcfb]/70">
                   {t.emailLabel}
                 </label>
                 <div className="relative">
                   <Mail
-                    size={18}
-                    className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/40"
+                    size={16}
+                    className="absolute start-3.5 top-1/2 -translate-y-1/2 text-[#fdfcfb]/40 pointer-events-none"
+                    aria-hidden="true"
                   />
-                 <input
-                      id="investor-request-email"
-                     type="email"
+                  <input
+                    id="investor-request-email"
+                    type="email"
                     required
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder={t.emailPlaceholder}
-                     className="w-full bg-white/5 border border-white/10 pl-11 pr-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors"
+                    className="w-full bg-white/[0.06] border border-white/15 ps-11 pe-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
                   />
                 </div>
-               </div>
+              </div>
 
-               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                 <div className="space-y-2">
-                   <label htmlFor="investor-organization" className="text-xs font-semibold text-white/70">{t.organizationLabel}</label>
-                   <input id="investor-organization" required value={organization} onChange={e => setOrganization(e.target.value)} placeholder={t.organizationPlaceholder} className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors" />
-                 </div>
-                 <div className="space-y-2">
-                   <label htmlFor="investor-role" className="text-xs font-semibold text-white/70">{t.roleLabel}</label>
-                   <input id="investor-role" required value={role} onChange={e => setRole(e.target.value)} placeholder={t.rolePlaceholder} className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors" />
-                 </div>
-               </div>
-               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                 <div className="space-y-2">
-                   <label htmlFor="investor-party" className="text-xs font-semibold text-white/70">{t.partyTypeLabel}</label>
-                   <input id="investor-party" required value={partyType} onChange={e => setPartyType(e.target.value)} placeholder={t.partyTypePlaceholder} className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors" />
-                 </div>
-                 <div className="space-y-2">
-                   <label htmlFor="investor-interest" className="text-xs font-semibold text-white/70">{t.interestLabel}</label>
-                   <input id="investor-interest" required value={interest} onChange={e => setInterest(e.target.value)} placeholder={t.interestPlaceholder} className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors" />
-                 </div>
-               </div>
-               <div className="space-y-2">
-                 <label htmlFor="investor-project" className="text-xs font-semibold text-white/70">{t.targetProjectLabel}</label>
-                 <select id="investor-project" value={targetProject} onChange={e => setTargetProject(e.target.value)} className="w-full bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white outline-none focus:border-[#f2a007] transition-colors">
-                   <option value="" className="text-black">{t.targetProjectPlaceholder}</option>
-                   {catalogProjectOptions.map(project => <option key={project.slug} value={project.slug} className="text-black">{project.title[lang]}</option>)}
-                 </select>
-               </div>
-               <div className="space-y-2">
-                 <label htmlFor="investor-message" className="text-xs font-semibold text-white/70">{t.messageLabel}</label>
-                 <textarea id="investor-message" required rows={3} value={message} onChange={e => setMessage(e.target.value)} placeholder={t.messagePlaceholder} className="w-full resize-none bg-white/5 border border-white/10 px-4 py-3 rounded-lg text-sm text-white placeholder:text-white/30 outline-none focus:border-[#f2a007] transition-colors" />
-               </div>
-                <label htmlFor="investor-consent" className="flex items-start gap-3 border-t border-white/10 pt-4 text-xs leading-relaxed text-white/65">
-                  <input id="investor-consent" type="checkbox" required checked={consent} onChange={e => setConsent(e.target.checked)} className="mt-0.5 accent-[#f2a007]" />
-                  <span><span className="font-semibold text-white/85">{t.privacyConsentLabel}: </span>{t.privacyConsentText} <Link href={localizedLinkPath("/privacy", lang)} className="text-[#f2a007] underline underline-offset-2 hover:text-white">{t.privacyLinkLabel}</Link></span>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label htmlFor="investor-organization" className="block t-meta text-[10px] text-[#fdfcfb]/70">
+                    {t.organizationLabel}
+                  </label>
+                  <input
+                    id="investor-organization"
+                    required
+                    value={organization}
+                    onChange={e => setOrganization(e.target.value)}
+                    placeholder={t.organizationPlaceholder}
+                    className="w-full bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="investor-role" className="block t-meta text-[10px] text-[#fdfcfb]/70">
+                    {t.roleLabel}
+                  </label>
+                  <input
+                    id="investor-role"
+                    required
+                    value={role}
+                    onChange={e => setRole(e.target.value)}
+                    placeholder={t.rolePlaceholder}
+                    className="w-full bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label htmlFor="investor-party" className="block t-meta text-[10px] text-[#fdfcfb]/70">
+                    {t.partyTypeLabel}
+                  </label>
+                  <input
+                    id="investor-party"
+                    required
+                    value={partyType}
+                    onChange={e => setPartyType(e.target.value)}
+                    placeholder={t.partyTypePlaceholder}
+                    className="w-full bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="investor-interest" className="block t-meta text-[10px] text-[#fdfcfb]/70">
+                    {t.interestLabel}
+                  </label>
+                  <input
+                    id="investor-interest"
+                    required
+                    value={interest}
+                    onChange={e => setInterest(e.target.value)}
+                    placeholder={t.interestPlaceholder}
+                    className="w-full bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="investor-project" className="block t-meta text-[10px] text-[#fdfcfb]/70">
+                  {t.targetProjectLabel}
                 </label>
+                <select
+                  id="investor-project"
+                  value={targetProject}
+                  onChange={e => setTargetProject(e.target.value)}
+                  className="w-full bg-[#11111a] border border-white/15 px-4 py-3 text-sm text-[#fdfcfb] outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
+                >
+                  <option value="" className="bg-[#11111a] text-[#fdfcfb]/60">
+                    {t.targetProjectPlaceholder}
+                  </option>
+                  {catalogProjectOptions.map(project => (
+                    <option key={project.slug} value={project.slug} className="bg-[#11111a] text-[#fdfcfb]">
+                      {project.title[lang]}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-               <button
+              <div className="space-y-1.5">
+                <label htmlFor="investor-message" className="block t-meta text-[10px] text-[#fdfcfb]/70">
+                  {t.messageLabel}
+                </label>
+                <textarea
+                  id="investor-message"
+                  required
+                  rows={3}
+                  value={message}
+                  onChange={e => setMessage(e.target.value)}
+                  placeholder={t.messagePlaceholder}
+                  className="w-full resize-none bg-white/[0.06] border border-white/15 px-4 py-3 text-sm text-[#fdfcfb] placeholder:text-[#fdfcfb]/45 outline-none focus:border-[#f2a007] focus-visible:ring-1 focus-visible:ring-[#f2a007] transition-colors"
+                />
+              </div>
+
+              <label htmlFor="investor-consent" className="flex items-start gap-3 border-t border-white/10 pt-4 text-xs leading-relaxed text-[#fdfcfb]/70 cursor-pointer">
+                <input
+                  id="investor-consent"
+                  type="checkbox"
+                  required
+                  checked={consent}
+                  onChange={e => setConsent(e.target.checked)}
+                  className="mt-0.5 accent-[#f2a007] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-1"
+                />
+                <span>
+                  <span className="font-semibold text-[#fdfcfb]">{t.privacyConsentLabel}: </span>
+                  {t.privacyConsentText}{" "}
+                  <Link href={localizedLinkPath("/privacy", lang)} asChild>
+                    <a className="text-[#f2a007] underline underline-offset-2 hover:text-[#fdfcfb] transition-colors">
+                      {t.privacyLinkLabel}
+                    </a>
+                  </Link>
+                </span>
+              </label>
+
+              <button
                 type="submit"
-                disabled={isLoading}
-                className="w-full bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 text-white font-semibold text-sm py-3.5 rounded-lg uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 disabled:opacity-50 mt-2"
+                disabled={isLoading || !consent}
+                className="w-full min-h-12 bg-[#5a1f2e] hover:bg-[#5a1f2e]/90 active:bg-[#5a1f2e]/80 active:scale-[0.99] text-[#fdfcfb] t-meta text-xs font-bold uppercase tracking-wider py-3 px-6 transition-[color,background-color,border-color,transform] shadow-[0_4px_12px_rgba(90,31,46,0.3)] flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-40 mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
               >
-                <span>{isLoading ? t.verifying : t.requestCta}</span>
-                <ArrowRight size={16} className={isRTL ? "rotate-180" : ""} />
+                {isLoading ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" aria-hidden="true" />
+                    <span className="whitespace-nowrap">{t.verifying}</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="whitespace-nowrap">{t.requestCta}</span>
+                    <ArrowRight size={16} className="rtl:-scale-x-100 shrink-0" aria-hidden="true" />
+                  </>
+                )}
               </button>
 
               <button
                 type="button"
                 onClick={() => setMode("auth")}
-                className="w-full text-center text-xs font-semibold text-[#f2a007]/90 hover:text-[#f2a007] transition-colors cursor-pointer"
+                className="w-full text-center t-meta text-xs text-[#f2a007] hover:text-[#f2a007]/80 transition-colors cursor-pointer py-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
               >
                 {t.backLabel}
               </button>
@@ -296,30 +395,30 @@ export default function InvestorLogin() {
           <div className="pt-4 border-t border-white/10 space-y-3">
             <dl className="grid grid-cols-3 gap-px bg-white/10 border border-white/10 text-center">
               <div className="bg-[#11111a] px-2 py-3">
-                <dt className="t-meta text-white/40">REVIEW</dt>
-                <dd className="t-data text-xs text-white mt-1">DIRECTORIAL</dd>
+                <dt className="t-meta text-[#fdfcfb]/40">REVIEW</dt>
+                <dd className="t-data text-xs text-[#fdfcfb] mt-1">DIRECTORIAL</dd>
               </div>
               <div className="bg-[#11111a] px-2 py-3">
-                <dt className="t-meta text-white/40">RESPONSE</dt>
-                <dd className="t-data text-xs text-white mt-1">REF-ID</dd>
+                <dt className="t-meta text-[#fdfcfb]/40">RESPONSE</dt>
+                <dd className="t-data text-xs text-[#fdfcfb] mt-1">REF-ID</dd>
               </div>
               <div className="bg-[#11111a] px-2 py-3">
-                <dt className="t-meta text-white/40">DISCLOSURE</dt>
-                <dd className="t-data text-xs text-white mt-1">POST-VERIFY</dd>
+                <dt className="t-meta text-[#fdfcfb]/40">DISCLOSURE</dt>
+                <dd className="t-data text-xs text-[#fdfcfb] mt-1">POST-VERIFY</dd>
               </div>
             </dl>
-            <p className="text-xs text-white/50 leading-relaxed">
+            <p className="text-xs text-[#fdfcfb]/55 leading-relaxed">
               {t.auditNote}
             </p>
-            <p className="text-[11px] text-[#f2a007]/80 leading-relaxed" dir="ltr">
+            <p className="t-data text-[11px] text-[#f2a007]/85 leading-relaxed tabular-nums" dir="ltr">
               {t.rangeNote}
             </p>
           </div>
         </motion.div>
       </div>
 
-      <footer className="w-full max-w-6xl mx-auto text-center text-xs text-white/40 z-10 py-4">
-        © {new Date().getFullYear()} {t.footerLine}
+      <footer className="w-full max-w-6xl mx-auto text-center t-meta text-[11px] text-[#fdfcfb]/40 z-10 py-4 tabular-nums">
+        © <span className="t-data">{new Date().getFullYear()}</span> {t.footerLine}
       </footer>
     </div>
   );

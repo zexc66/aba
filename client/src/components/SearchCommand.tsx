@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Command } from "cmdk";
-import { Search, Home, Image, Mail, Globe, FileText, Users, Building2, Briefcase, X, Eye, FolderOpen } from "lucide-react";
+import { useReducedMotion } from "framer-motion";
+import { Search, Home, Image, Mail, Globe, FileText, Users, Briefcase, X, Eye, FolderOpen } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { PROJECTS, PROJECTS_UI, COUNTRIES, type Locale3 } from "@/projects";
@@ -16,10 +17,13 @@ interface SearchCommandProps {
 export default function SearchCommand({ open, onOpenChange, toggleLang, currentLang }: SearchCommandProps) {
     const [, setLocation] = useLocation();
     const [search, setSearch] = useState("");
-    const { lang } = useLanguageContext();
+    const shouldReduceMotion = useReducedMotion();
+    const { lang, isRTL } = useLanguageContext();
     const locale = lang as Locale3;
     const projectUI = PROJECTS_UI[locale];
     const copy = LOCALIZED_COPY[lang].search;
+    const itemClassName = "flex min-w-0 cursor-pointer items-center gap-3 px-3 py-2.5 text-sm text-[#0b0b10] transition-[background-color,color,transform] duration-200 hover:bg-[#5a1f2e]/10 active:translate-y-px aria-selected:bg-[#5a1f2e] aria-selected:text-[#fdfcfb] data-[selected=true]:bg-[#5a1f2e] data-[selected=true]:text-[#fdfcfb] motion-reduce:transition-none";
+    const groupLabelClassName = "px-2 py-1.5 t-meta text-[10px] font-semibold text-[#5a1f2e]";
 
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
@@ -53,7 +57,7 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
                 }
                 const target = document.getElementById(id);
                 if (target) {
-                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    target.scrollIntoView({ behavior: shouldReduceMotion ? "auto" : "smooth", block: "start" });
                     return;
                 }
                 if (attempts++ < 60) window.setTimeout(scrollToTarget, 50);
@@ -73,107 +77,107 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] px-4">
-            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => onOpenChange(false)} />
-            <Command className="relative w-full max-w-2xl rounded-sm border border-neutral-200 bg-white overflow-hidden">
-                <div className="flex items-center border-b border-neutral-200 px-4">
-                    <Search className="mr-2 h-5 w-5 shrink-0 text-neutral-400" />
+        <div className="fixed inset-0 z-[80] flex items-start justify-center px-4 pt-[15vh]" role="dialog" aria-modal="false" aria-label={copy.placeholder}>
+            <div className="fixed inset-0 bg-[#0b0b10]/55 backdrop-blur-sm" onClick={() => onOpenChange(false)} />
+            <Command className="relative w-full max-w-2xl overflow-hidden border border-[#0b0b10]/15 bg-[#fdfcfb] text-[#0b0b10] shadow-[0_26px_80px_rgba(90,31,46,0.22)]" dir={isRTL ? "rtl" : "ltr"}>
+                <div className="flex items-center border-b border-[#0b0b10]/15 px-4">
+                    <Search className="me-2 h-5 w-5 shrink-0 text-[#5a1f2e]" strokeWidth={1.75} />
                     <Command.Input
                         value={search}
                         onValueChange={setSearch}
                          placeholder={copy.placeholder}
-                        className="flex h-14 w-full bg-transparent py-3 text-base outline-none placeholder:text-neutral-400"
+                        className="flex h-14 min-w-0 w-full bg-transparent py-3 text-base outline-none placeholder:text-[#0b0b10]/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e]"
                     />
                     <button
                         onClick={() => onOpenChange(false)}
-                        className="ml-2 rounded-sm p-1.5 hover:bg-neutral-100 transition"
+                        className="ms-2 p-1.5 text-[#0b0b10]/60 transition-[background-color,color,transform] duration-200 hover:bg-[#5a1f2e]/10 hover:text-[#5a1f2e] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e] motion-reduce:transition-none"
                          aria-label={copy.close}
                     >
-                        <X className="h-4 w-4 text-neutral-500" />
+                        <X className="h-4 w-4" strokeWidth={1.75} />
                     </button>
                 </div>
                 <Command.List className="max-h-[400px] overflow-y-auto p-2">
-                    <Command.Empty className="py-6 text-center text-sm text-neutral-500">
+                    <Command.Empty className="py-6 text-center text-sm text-[#0b0b10]/55 text-pretty">
                         {copy.noResults}
                     </Command.Empty>
 
                      <Command.Group heading={copy.navigation} className="mb-2">
-                         <div className="px-2 py-1.5 text-xs font-semibold text-neutral-500">{copy.navigation}</div>
-                        <Command.Item onSelect={() => handleNavigate("/")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Home className="h-4 w-4" />
-                             <span>{copy.home}</span>
+                         <div className={groupLabelClassName}>{copy.navigation}</div>
+                        <Command.Item onSelect={() => handleNavigate("/")} className={itemClassName}>
+                            <Home className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.home}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/#about")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <FileText className="h-4 w-4" />
-                             <span>{copy.about}</span>
+                        <Command.Item onSelect={() => handleNavigate("/#about")} className={itemClassName}>
+                            <FileText className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.about}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/#programs")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Briefcase className="h-4 w-4" />
-                             <span>{copy.programs}</span>
+                        <Command.Item onSelect={() => handleNavigate("/#programs")} className={itemClassName}>
+                            <Briefcase className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.programs}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/#team")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Users className="h-4 w-4" />
-                             <span>{copy.team}</span>
+                        <Command.Item onSelect={() => handleNavigate("/#team")} className={itemClassName}>
+                            <Users className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.team}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/visions")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Eye className="h-4 w-4" />
-                             <span>{copy.visions}</span>
+                        <Command.Item onSelect={() => handleNavigate("/visions")} className={itemClassName}>
+                            <Eye className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.visions}</span>
                         </Command.Item>
-                         <Command.Item onSelect={() => handleNavigate("/intelligence")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Globe className="h-4 w-4" />
-                             <span>{copy.intelligence}</span>
+                         <Command.Item onSelect={() => handleNavigate("/intelligence")} className={itemClassName}>
+                            <Globe className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.intelligence}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/projects")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <FolderOpen className="h-4 w-4" />
-                             <span>{copy.projects}</span>
+                        <Command.Item onSelect={() => handleNavigate("/projects")} className={itemClassName}>
+                            <FolderOpen className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.projects}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/gallery")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Image className="h-4 w-4" />
-                             <span>{copy.gallery}</span>
+                        <Command.Item onSelect={() => handleNavigate("/gallery")} className={itemClassName}>
+                            <Image className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.gallery}</span>
                         </Command.Item>
-                        <Command.Item onSelect={() => handleNavigate("/#contact")} className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100">
-                            <Mail className="h-4 w-4" />
-                             <span>{copy.contact}</span>
+                        <Command.Item onSelect={() => handleNavigate("/#contact")} className={itemClassName}>
+                            <Mail className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.contact}</span>
                         </Command.Item>
                     </Command.Group>
 
-                    <Command.Separator className="my-2 h-px bg-neutral-200" />
+                    <Command.Separator className="my-2 h-px bg-[#0b0b10]/15" />
 
                     <Command.Group heading={projectUI.headerTitle}>
-                        <div className="px-2 py-1.5 text-xs font-semibold text-neutral-500">{projectUI.headerTitle}</div>
+                        <div className={groupLabelClassName}>{projectUI.headerTitle}</div>
                         {PROJECTS.map((p) => (
                             <Command.Item
                                 key={p.slug}
                                 value={`${p.title[locale]} ${COUNTRIES[p.country][locale]}`}
                                 onSelect={() => handleNavigate(`/projects/${p.slug}`)}
-                                className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100"
+                                className={itemClassName}
                             >
-                                <FolderOpen className="h-4 w-4 shrink-0 text-[#5a1f2e]" />
-                                <span className="truncate">{p.title[locale]}</span>
-                                <span className="ml-auto t-meta text-[10px] text-neutral-400 shrink-0">
+                                <FolderOpen className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                                <span className="min-w-0 truncate">{p.title[locale]}</span>
+                                <span className="ms-auto shrink-0 t-meta text-[10px] opacity-65">
                                     {COUNTRIES[p.country][locale]}
                                 </span>
                             </Command.Item>
                         ))}
                     </Command.Group>
 
-                    <Command.Separator className="my-2 h-px bg-neutral-200" />
+                    <Command.Separator className="my-2 h-px bg-[#0b0b10]/15" />
 
                      <Command.Group heading={copy.actions}>
-                         <div className="px-2 py-1.5 text-xs font-semibold text-neutral-500">{copy.actions}</div>
+                         <div className={groupLabelClassName}>{copy.actions}</div>
                         <Command.Item
                             onSelect={() => {
                                 toggleLang();
                                 onOpenChange(false);
                             }}
-                            className="flex items-center gap-3 rounded-sm px-3 py-2 text-sm cursor-pointer hover:bg-neutral-100 aria-selected:bg-neutral-100"
+                            className={itemClassName}
                         >
-                            <Globe className="h-4 w-4" />
-                             <span>{copy.switchLanguage} ({currentLang.toUpperCase()})</span>
+                            <Globe className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+                             <span className="min-w-0 break-words">{copy.switchLanguage} ({currentLang.toUpperCase()})</span>
                         </Command.Item>
                     </Command.Group>
                 </Command.List>
-                <div className="border-t border-neutral-200 px-4 py-2 text-xs text-neutral-500">
+                <div className="border-t border-[#0b0b10]/15 px-4 py-2 text-xs text-[#0b0b10]/55">
                      {copy.toggleHint}
                 </div>
             </Command>

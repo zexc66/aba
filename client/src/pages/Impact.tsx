@@ -197,15 +197,15 @@ export default function Impact() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-black/10 border border-black/10">
               <div className="bg-white p-8">
                 <div className="t-data text-3xl font-semibold text-[#5a1f2e]" dir="ltr"><bdi>{agg.pipeline}</bdi></div>
-                <div className="t-meta text-black/55 mt-2">{t.pipelineLabel}</div>
+                <div className="t-meta text-black/65 mt-2">{t.pipelineLabel}</div>
               </div>
               <div className="bg-white p-8">
                 <div className="t-data text-3xl font-semibold text-[#5a1f2e]" dir="ltr"><bdi>{agg.jobs}</bdi></div>
-                <div className="t-meta text-black/55 mt-2">{t.jobsLabel}</div>
+                <div className="t-meta text-black/65 mt-2">{t.jobsLabel}</div>
               </div>
               <div className="bg-white p-8">
                 <div className="t-data text-3xl font-semibold text-[#5a1f2e]" dir="ltr"><bdi>{agg.corridors}</bdi></div>
-                <div className="t-meta text-black/55 mt-2">{t.corridorsLabel}</div>
+                <div className="t-meta text-black/65 mt-2">{t.corridorsLabel}</div>
               </div>
             </div>
           </div>
@@ -214,45 +214,47 @@ export default function Impact() {
         {/* Indicators */}
         <Section className="pb-14">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-0">
+            <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-8">
               {t.indicatorLabel}
             </h2>
-            <ul className="divide-y divide-black/10 border-x border-b border-black/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10">
               {INDICATORS.map((ind) => {
                 const project = projectBySlug(ind.projectSlug);
                 return (
-                  <li
+                  <article
                     key={ind.label.en + ind.projectSlug}
-                    className="grid md:grid-cols-[1fr_auto_auto] gap-x-8 gap-y-2 items-center py-5 px-1"
+                    className="bg-white p-6 flex flex-col justify-between"
                   >
                     <div>
                       <p className="text-sm font-semibold text-[#0b0b10] leading-snug">
                         {ind.label[locale]}
                       </p>
                       {project && (
-                        <Link href={localizedLinkPath(`/projects/${project.slug}`, lang)}>
+                        <Link asChild href={localizedLinkPath(`/projects/${project.slug}`, lang)}>
                           <a className="t-meta text-[10px] text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mt-1 inline-block">
                             {project.title[locale]}
                           </a>
                         </Link>
                       )}
                     </div>
-                    <div className="text-start md:text-end">
-                      <div className="t-meta text-black/50 text-[10px] md:hidden mb-0.5">{t.valueLabel}</div>
-                      <span className="t-data text-base font-semibold text-[#0b0b10]" dir="ltr">
-                        <bdi>{ind.value[locale]}</bdi>
-                      </span>
+                    <div className="mt-5 pt-4 border-t border-black/10 flex items-baseline justify-between gap-4">
+                      <div>
+                        <div className="t-meta text-black/60 text-[10px] mb-1">{t.valueLabel}</div>
+                        <span className="t-data text-xl font-semibold text-[#5a1f2e]" dir="ltr">
+                          <bdi>{ind.value[locale]}</bdi>
+                        </span>
+                      </div>
+                      <div className="text-end">
+                        <div className="t-meta text-black/60 text-[10px] mb-1">{t.measuredLabel}</div>
+                        <span className="t-meta text-[10px] text-black/60 border border-black/15 px-2 py-1 inline-block">
+                          {t.measuredPlaceholder}
+                        </span>
+                      </div>
                     </div>
-                    <div className="md:text-end">
-                      <div className="t-meta text-black/50 text-[10px] md:hidden mb-0.5">{t.measuredLabel}</div>
-                      <span className="t-meta text-[10px] text-black/45 border border-black/15 px-2 py-1 inline-block">
-                        {t.measuredPlaceholder}
-                      </span>
-                    </div>
-                  </li>
+                  </article>
                 );
               })}
-            </ul>
+            </div>
           </div>
         </Section>
 
@@ -262,7 +264,7 @@ export default function Impact() {
             <div role="note" className="border border-black/10 bg-white p-6 flex items-start gap-4">
               <div>
                 <p className="t-meta text-[#5a1f2e] mb-2">{t.disclaimerLabel}</p>
-                <p className="text-sm text-black/65 leading-relaxed">{t.disclaimer}</p>
+                <p className="text-sm text-black/70 leading-relaxed">{t.disclaimer}</p>
               </div>
             </div>
           </div>

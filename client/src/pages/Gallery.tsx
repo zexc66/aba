@@ -1,9 +1,10 @@
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Section } from "@/components/ui/section";
 import SEO from "@/components/SEO";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Camera } from "lucide-react";
 
 const GALLERY_ARTIFACTS = [
@@ -11,11 +12,12 @@ const GALLERY_ARTIFACTS = [
 ];
 
 export default function Gallery() {
-    const { lang, toggleLang, langLabel, content } = useLanguageContext();
+    const { lang, content, isRTL } = useLanguageContext();
+    const shouldReduceMotion = useReducedMotion();
     const t = content.gallery;
 
     return (
-        <div className="min-h-screen bg-[#fdfcfb] text-[#0b0b10]">
+        <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}>
             <SEO title={`${t.title} | AIABASD`} description={t.subtitle} lang={lang} url="/gallery" />
             <Header nav={content.nav} />
 
@@ -41,15 +43,15 @@ export default function Gallery() {
 
                 <Section className="py-16">
                     <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
                             {GALLERY_ARTIFACTS.map((item, i) => (
                                 <motion.figure
                                     key={item.src}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: i * 0.05 }}
-                                    className="group bg-white rounded-sm border border-black/5 overflow-hidden hover:shadow-md hover:border-[#5a1f2e]/30 transition-[color,background-color,border-color,transform] duration-300 flex flex-col justify-between"
+                                    transition={{ duration: shouldReduceMotion ? 0 : 0.5, delay: shouldReduceMotion ? 0 : i * 0.05 }}
+                                    className="group bg-white border border-black/10 overflow-hidden hover:shadow-[0_4px_20px_rgba(90,31,46,0.06)] hover:border-[#5a1f2e]/30 transition-[color,background-color,border-color,box-shadow,transform] duration-300 flex flex-col justify-between"
                                 >
                                     <div className="aspect-[4/3] overflow-hidden relative bg-black/5">
                                         <img
@@ -59,8 +61,8 @@ export default function Gallery() {
                                             decoding="async"
                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
-                                        <div className="absolute top-4 left-4">
-                                            <span className="text-[11px] font-semibold text-white bg-[#5a1f2e] px-2.5 py-1 rounded-full">
+                                        <div className="absolute top-4 start-4">
+                                            <span className="t-meta text-[10px] text-white bg-[#5a1f2e] px-2.5 py-1">
                                                 {item.category}
                                             </span>
                                         </div>
@@ -78,16 +80,16 @@ export default function Gallery() {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: 0.1 }}
-                                className="border border-dashed border-black/15 rounded-sm px-8 py-12 flex flex-col items-center text-center bg-black/[0.015]"
+                                transition={{ duration: shouldReduceMotion ? 0 : 0.4, delay: shouldReduceMotion ? 0 : 0.1 }}
+                                className="border border-dashed border-black/15 px-8 py-12 flex flex-col items-center text-center bg-black/[0.015]"
                             >
-                                <div className="w-12 h-12 rounded-full bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-5">
-                                    <Camera size={20} />
+                                <div className="w-12 h-12 bg-[#5a1f2e]/5 text-[#5a1f2e] border border-[#5a1f2e]/20 flex items-center justify-center mb-5">
+                                    <Camera size={20} strokeWidth={1.5} />
                                 </div>
                                 <h2 className="text-base font-bold text-[#0b0b10] mb-2">
                                     {t.emptyTitle}
                                 </h2>
-                                <p className="text-xs text-black/60 leading-relaxed max-w-xs">
+                                <p className="text-xs text-black/70 leading-relaxed max-w-xs">
                                     {t.emptyText}
                                 </p>
                             </motion.div>
@@ -97,6 +99,7 @@ export default function Gallery() {
             </div>
 
             <Footer data={content.footer} newsroom={content.newsroom} lang={lang} />
+            <ScrollToTop />
         </div>
     );
 }

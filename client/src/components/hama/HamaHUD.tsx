@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Globe } from "lucide-react";
 import { useLocation } from "wouter";
 import { useLanguageContext } from "@/contexts/LanguageContext";
@@ -11,50 +11,80 @@ interface HamaHUDProps {
 export default function HamaHUD({ backLabel, isRTL }: HamaHUDProps) {
     const [, setLocation] = useLocation();
     const { langLabel, toggleLang } = useLanguageContext();
+    const reduceMotion = useReducedMotion();
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[100]">
-            <div className="absolute inset-8 lg:inset-16 border border-black/[0.03] flex flex-col justify-between p-8">
-                <div className="flex justify-between items-start">
-                    <div className="flex flex-col gap-2">
-                        <span className="text-[7px] font-black tracking-[1em] opacity-20 uppercase font-sans">PROTOCOL_ID: HMA-RESTORE-077</span>
-                        <div className="flex items-center gap-4">
-                            <div className="w-8 h-[1px] bg-[#5a1f2e]" />
-                            <span className="text-[8px] font-black tracking-[0.5em] text-[#5a1f2e] uppercase font-sans">AUTHORIZED_ACCESS</span>
+        <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
+            <motion.div
+                initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+                className="absolute inset-5 sm:inset-8 lg:inset-16 border border-black/[0.035] flex flex-col justify-between p-4 sm:p-6 lg:p-8"
+            >
+                <div className="flex justify-between items-start gap-5">
+                    <div className="flex flex-col gap-2 min-w-0">
+                        <span className="t-data text-[7px] font-black tracking-[0.65em] opacity-25 font-sans tabular-nums" dir="ltr">
+                            PROTOCOL_ID: HMA-RESTORE-077
+                        </span>
+                        <div className="flex items-center gap-4 min-w-0">
+                            <div className="w-8 h-px bg-[#5a1f2e] shrink-0" />
+                            <span className="t-meta text-[8px] font-black tracking-[0.42em] text-[#5a1f2e] font-sans truncate">
+                                AUTHORIZED_ACCESS
+                            </span>
                         </div>
                     </div>
-                    <div className="flex flex-col items-end gap-1">
-                        <span className="text-[7px] font-black tracking-[0.8em] opacity-20 font-sans">SYS_NODE: 0x82_HAMA</span>
-                        <span className="text-[7px] font-black tracking-[0.8em] text-[#5a1f2e] uppercase font-sans">CRYPTO_VERIFIED</span>
+                    <div className="flex flex-col items-end gap-1 min-w-0">
+                        <span className="t-data text-[7px] font-black tracking-[0.55em] opacity-25 font-sans tabular-nums text-end" dir="ltr">
+                            SYS_NODE: 0x82_HAMA
+                        </span>
+                        <span className="t-meta text-[7px] font-black tracking-[0.45em] text-[#5a1f2e] font-sans text-end">
+                            CRYPTO_VERIFIED
+                        </span>
                         <button
+                            type="button"
                             onClick={toggleLang}
                             aria-label="Switch language"
-                            className="pointer-events-auto mt-1 flex items-center gap-1.5 text-[8px] font-black tracking-[0.4em] uppercase font-sans text-black/55 hover:text-[#5a1f2e] transition-colors"
+                            className="pointer-events-auto mt-1 flex items-center gap-2 border border-black/[0.06] bg-[#fdfcfb]/90 px-2.5 py-2 text-[8px] font-black tracking-[0.28em] uppercase font-sans text-black/60 hover:text-[#5a1f2e] hover:border-[#5a1f2e]/35 active:scale-[0.98] transition-[color,border-color,transform] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 shadow-[0_12px_24px_-18px_rgba(90,31,46,0.45)]"
                         >
-                            <Globe size={10} />
-                            <span>{langLabel}</span>
+                            <Globe size={11} strokeWidth={1.75} />
+                            <span className="t-data tabular-nums">{langLabel}</span>
                         </button>
                     </div>
                 </div>
-                
-                <div className="flex justify-between items-end">
-                    <div className="flex items-center gap-12 group pointer-events-auto cursor-pointer" onClick={() => setLocation('/')}>
-                        <div className="w-20 h-20 rounded-full border border-black/5 flex items-center justify-center bg-white shadow-premium group-hover:bg-[#0b0b10] transition-[color,background-color,border-color,transform] duration-700">
-                            <ArrowRight className={`w-8 h-8 transition-transform duration-700 ${isRTL ? 'rotate-0 group-hover:-translate-x-2' : 'rotate-180 group-hover:translate-x-2'} group-hover:text-white`} />
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-[10px] font-black tracking-[0.4em] text-black/55 group-hover:text-black transition-colors uppercase font-sans">{backLabel}</span>
-                            <span className="text-[8px] font-black tracking-[0.8em] text-[#5a1f2e] opacity-0 group-hover:opacity-100 transition-opacity uppercase font-sans">SECURE_REENTRY</span>
-                        </div>
-                    </div>
-                    
-                    <div className="hidden lg:flex flex-col items-end opacity-20 transform-gpu">
-                        <span className="text-[7px] font-black tracking-[2em] mr-[-2em] font-sans">AFRICA_INSTITUTIONAL_ASSET_BANK</span>
-                        <div className="w-64 h-[1px] bg-black my-4 opacity-10" />
-                        <span className="text-[6px] font-black tracking-[1em] font-sans">© 2026_AIABASD_SOVEREIGN_INFRASTRUCTURE</span>
+
+                <div className="flex justify-between items-end gap-6">
+                    <button
+                        type="button"
+                        className="flex items-center gap-5 sm:gap-8 group pointer-events-auto text-start active:scale-[0.99] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-4"
+                        onClick={() => setLocation("/")}
+                    >
+                        <span className="w-16 h-16 sm:w-20 sm:h-20 border border-black/[0.06] flex items-center justify-center bg-[#fdfcfb] shadow-premium-2xl group-hover:bg-[#0b0b10] group-hover:border-[#5a1f2e]/60 transition-[color,background-color,border-color,transform] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                            <ArrowRight
+                                className={`w-7 h-7 sm:w-8 sm:h-8 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${isRTL ? "rotate-0 group-hover:-translate-x-1.5" : "rotate-180 group-hover:translate-x-1.5"} group-hover:text-[#fdfcfb]`}
+                                strokeWidth={1.75}
+                            />
+                        </span>
+                        <span className="flex flex-col min-w-0">
+                            <span className="t-meta text-[10px] font-black tracking-[0.32em] text-black/60 group-hover:text-[#0b0b10] transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] font-sans break-words">
+                                {backLabel}
+                            </span>
+                            <span className="t-meta text-[8px] font-black tracking-[0.55em] text-[#5a1f2e] opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] font-sans">
+                                SECURE_REENTRY
+                            </span>
+                        </span>
+                    </button>
+
+                    <div className="hidden lg:flex flex-col items-end opacity-25 transform-gpu">
+                        <span className="t-meta text-[7px] font-black tracking-[1.1em] mr-[-1.1em] font-sans">
+                            AFRICA_INSTITUTIONAL_ASSET_BANK
+                        </span>
+                        <div className="w-64 h-px bg-black my-4 opacity-10" />
+                        <span className="t-data text-[6px] font-black tracking-[0.7em] font-sans tabular-nums" dir="ltr">
+                            © 2026_AIABASD_SOVEREIGN_INFRASTRUCTURE
+                        </span>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
