@@ -2,73 +2,11 @@
  *  hreflang alternates, mirroring the prerenderer's route list. */
 
 import { writeFile } from "fs/promises";
+import { sitemapRoutes } from "./routes.mjs";
 
 const SITE_URL = "https://aiabasd.org";
-const ROUTES = [
-  "/",
-  "/pipeline",
-  "/visions",
-  "/services",
-  "/intelligence",
-  "/match",
-  "/gallery",
-  "/hama-project",
-  "/programs/hama-rehabilitation",
-  "/programs/al-arish-hub",
-  "/programs/green-energy",
-  "/programs/digital-africa",
-  "/programs/integrated-cities",
-  "/programs/debris-recycling",
-  "/programs/food-security",
-  "/corridors/gm",
-  "/corridors/sl",
-  "/corridors/ci",
-  "/corridors/bf",
-  "/corridors/gh",
-  "/corridors/ao",
-  "/corridors/sd",
-  "/corridors/eg",
-  "/corridors/jo",
-  "/corridors/sy",
-  "/corridors/sa",
-  "/team/mohammed-abdel-moneim",
-  "/team/faris-safi",
-  "/team/ziad-shneikat",
-  "/governance/esia-esms",
-  "/governance/kyc-aml",
-  "/governance/independent-oversight",
-  "/governance/contracts",
-  "/privacy",
-  "/terms",
-  "/investor-portal",
-  "/impact",
-  "/sectors/housing",
-  "/sectors/energy",
-  "/sectors/infrastructure",
-  "/sectors/circular",
-  "/sectors/industry",
-  "/sectors/agriculture",
-  "/sectors/social",
-  "/sectors/multi",
-  "/projects",
-  "/projects/sudan-productive-housing",
-  "/projects/sudan-reconstruction-vision",
-  "/projects/hama-solar-200mw",
-  "/projects/hama-debris-recycling",
-  "/projects/smart-meters-syria",
-  "/projects/dummar-housing",
-  "/projects/hama-housing",
-  "/projects/schools-health-rehabilitation",
-  "/projects/hasiya-industrial-zone",
-  "/projects/hama-agriculture-water",
-  "/projects/cci-investment-portfolio",
-  "/projects/ghana-cooperation-program",
-  "/projects/angola-vision",
-  "/projects/china-arab-africa-platform",
-  "/projects/china-saudi-africa-gateway",
-  "/projects/cross-border-trade-platform",
-  "/projects/advanced-technology-cooperation",
-];
+const IS_VERCEL = process.env.VERCEL === "1";
+const ROUTES = sitemapRoutes(IS_VERCEL);
 const LOCALES = [
   { code: "en", prefix: "", priority: (r) => (r === "/" ? "1.0" : r.startsWith("/programs") || r.startsWith("/projects") ? "0.7" : "0.6") },
   { code: "ar", prefix: "ar", priority: (r) => (r === "/" ? "0.9" : r.startsWith("/programs") || r.startsWith("/projects") ? "0.6" : "0.5") },
@@ -104,4 +42,4 @@ ${entries}
 </urlset>`;
 
 await writeFile("client/public/sitemap.xml", xml);
-console.log("sitemap written:", ROUTES.length * LOCALES.length, "urls");
+console.log("sitemap written:", ROUTES.length * LOCALES.length, "urls", IS_VERCEL ? "(public Vercel boundary)" : "");

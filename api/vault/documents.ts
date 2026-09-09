@@ -6,6 +6,7 @@ interface ServerlessResponse { setHeader(name: string, value: string): unknown; 
 export default async function handler(req: ServerlessRequest, res: ServerlessResponse) {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("Cache-Control", "private, no-store");
+  if (process.env.VERCEL === "1") { res.status(404).json({ error: "This private route is not available on the public deployment." }); return; }
   if (req.method !== "GET") { res.status(405).json({ error: "Method not allowed" }); return; }
   if (!(await vaultStorageAvailable())) { res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email contact@aiabasd.org." }); return; }
   if (!verifyToken(bearerToken(req.headers.authorization))) { res.status(401).json({ error: "Session expired. Please authenticate again." }); return; }

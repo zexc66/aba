@@ -9,6 +9,7 @@ import {
 import type { ReactNode } from "react";
 import { COPY } from "@/data";
 import { cms } from "@/services/cms";
+import { DEPLOY_BASE_PATH } from "@/localePath";
 
 export type Locale = "en" | "ar" | "fr";
 
@@ -29,7 +30,10 @@ const LANG_STORAGE_KEY = "aiabasd-lang";
 /** Locale implied by a /ar or /fr path prefix (prerendered locale URLs). */
 function pathLocale(): Locale | null {
   try {
-    const m = window.location.pathname.match(/^\/(ar|fr)(?=\/|$)/);
+    const pathname = DEPLOY_BASE_PATH && (window.location.pathname === DEPLOY_BASE_PATH || window.location.pathname.startsWith(`${DEPLOY_BASE_PATH}/`))
+      ? window.location.pathname.slice(DEPLOY_BASE_PATH.length) || "/"
+      : window.location.pathname;
+    const m = pathname.match(/^\/(ar|fr)(?=\/|$)/);
     return m ? (m[1] as Locale) : null;
   } catch {
     return null;
@@ -45,12 +49,14 @@ function initialLang(): Locale {
 }
 
 function localizedBrowserPath(next: Locale): string {
-  const pathname = window.location.pathname;
+  const pathname = DEPLOY_BASE_PATH && (window.location.pathname === DEPLOY_BASE_PATH || window.location.pathname.startsWith(`${DEPLOY_BASE_PATH}/`))
+    ? window.location.pathname.slice(DEPLOY_BASE_PATH.length) || "/"
+    : window.location.pathname;
   const unprefixed = pathname.replace(/^\/(?:ar|fr)(?=\/|$)/, "") || "/";
   const route = next === "en"
     ? unprefixed
     : unprefixed === "/" ? `/${next}/` : `/${next}${unprefixed}`;
-  return `${route}${window.location.search}${window.location.hash}`;
+  return `${DEPLOY_BASE_PATH}${route}${window.location.search}${window.location.hash}`;
 }
 
 export function LanguageProvider({

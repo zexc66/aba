@@ -25,6 +25,36 @@ pnpm build     # vite build → dist/public, esbuild → dist/index.js
 pnpm start     # NODE_ENV=production node dist/index.js (serves site + API on :5000)
 ```
 
+## Deployment boundary
+
+Vercel is the public static deployment: it serves the public trilingual site
+and the supported serverless endpoints `/api/inquiry`, `/api/chat`, and
+`/api/track`. Vercel's built-in `VERCEL=1` signal excludes private pages from
+prerendering and removes investor access from public navigation. Direct
+`/admin`, `/investor-portal`, and `/investor-portal/vault` requests fail as
+unsupported instead of rendering an auth or console shell; private vault API
+routes are also unavailable there. No admin handler is created for Vercel.
+
+Self-hosted Express/Docker is the separate private path. It retains the
+Operations Console and director-issued investor vault, including their file
+storage and authentication code. Do not treat the Vercel filesystem as vault
+storage.
+
+Before a Vercel launch, run the non-network readiness check:
+
+```bash
+pnpm check:vercel
+pnpm check:vercel -- --allow-empty   # intentional empty/mock verification only
+pnpm check:vercel -- --mock          # skip provider shape checks in a mock job
+```
+
+The check reads `RESEND_API_KEY`, `LEAD_NOTIFY_EMAIL`, `LEAD_FROM_EMAIL`, and
+`LEAD_WEBHOOK_URL` without printing values. It returns nonzero when no usable
+lead provider is configured or a configured value has an invalid basic format.
+It is not part of `pnpm build` and makes no external requests. Use
+`pnpm check`, `pnpm check:i18n`, and `pnpm build` for the static/type/parity
+checks; none of these sends an inquiry.
+
 ## Scripts
 
 | Script | Purpose |
@@ -34,6 +64,7 @@ pnpm start     # NODE_ENV=production node dist/index.js (serves site + API on :5
 | `pnpm start` | Run production server |
 | `pnpm check` | TypeScript check (`tsc --noEmit`) |
 | `pnpm check:i18n` | Locale parity check — EN/AR/FR key shapes and program slugs must match |
+| `pnpm check:vercel` | Static Vercel lead-delivery readiness check |
 | `pnpm format` | Prettier |
 
 ## Docker
@@ -78,7 +109,7 @@ Slack-compatible JSON webhook (`LEAD_WEBHOOK_URL`) — see `server/notify.ts`.
 Without that setting, operators must apply their approved retention schedule.
 Check the file regularly.
 
-**Vercel (serverless `api/inquiry.ts`):** there is no durable disk, so leads are emailed via Resend (and optionally the webhook) and the endpoint fails honestly (503) when no channel is configured — it never fakes success. Set these environment variables in the Vercel project:
+**Vercel (serverless `api/inquiry.ts`):** there is no durable disk, so at least one configured provider must return a successful HTTP response before the endpoint returns success. If neither provider is configured, or all configured delivery attempts fail or time out, the endpoint returns a safe `503` and never fakes success. Set these environment variables in the Vercel project:
 
 | Variable | Purpose |
 |---|---|
@@ -86,26 +117,28 @@ Check the file regularly.
 | `LEAD_NOTIFY_EMAIL` | Inbox that receives every lead |
 | `LEAD_FROM_EMAIL` | Optional verified sender (defaults to `onboarding@resend.dev`) |
 | `LEAD_WEBHOOK_URL` | Optional JSON webhook (posted on every lead) |
-| `INQUIRY_RETENTION_DAYS` | Optional positive integer for opt-in plaintext inquiry cleanup on read/write; unset means no automatic deletion |
+
+Visitor acknowledgements use Resend when its key is present, are bounded by
+the same request timeout, and are best-effort after lead delivery succeeds.
+Provider failures are not exposed in the public response or logs. A retry gets
+a new reference: safe idempotency is deferred until a durable idempotency
+store or provider contract is selected.
 
 ## Investor data room (`/investor-portal`)
 
-Authenticated document vault for verified institutions. Access is **director-issued, never self-serve**: an invited investor authenticates with institutional email + access key and receives an HMAC-signed 8-hour session token; the vault lists and serves files from `data-room/` (see `data-room/README.md`). Without `VAULT_ACCESS_KEYS` / `VAULT_SESSION_SECRET` the auth endpoint fails honestly with 503. On Vercel, `VAULT_STORAGE_MODE=filesystem` and an explicit mounted `VAULT_DATA_ROOM_DIR` are also required; an unavailable or ephemeral filesystem returns 503 instead of authenticating into an empty vault.
+Authenticated document vault for verified institutions. Access is **director-issued, never self-serve**: an invited investor authenticates with institutional email + access key and receives an HMAC-signed 8-hour session token; the vault lists and serves files from `data-room/` (see `data-room/README.md`). Without `VAULT_ACCESS_KEYS` / `VAULT_SESSION_SECRET` the self-hosted auth endpoint fails honestly with 503. This section applies to the self-hosted path only; the public Vercel deployment does not serve vault pages or vault API routes.
 
 | Variable | Purpose |
 |---|---|
 | `VAULT_ACCESS_KEYS` | `"email:KEY"` pairs, comma-separated |
 | `VAULT_SESSION_SECRET` | Random 32+ char HMAC secret |
-| `VAULT_STORAGE_MODE` | Set to `filesystem` on Vercel only when a mounted data-room path is actually available |
-| `VAULT_DATA_ROOM_DIR` | Explicit mounted data-room path required for Vercel vault access |
-| `VAULT_STORAGE_SENTINEL` | Required on Vercel; mounted file name whose contents must be `AIABASD_VAULT_READY` |
+| `VAULT_STORAGE_MODE` | Self-hosted filesystem storage mode |
+| `VAULT_DATA_ROOM_DIR` | Optional explicit self-hosted data-room path |
+| `VAULT_STORAGE_SENTINEL` | Optional mounted-file readiness sentinel |
 
-The Express and Vercel handlers both support the vault endpoints. Vercel
-deployments can only serve documents that are present in the deployment
-filesystem; durable private document storage still belongs in an object-storage
-service (with signed URLs or a server-side proxy) before sensitive files are
-added to a repository or deployment artifact. `data-room/README.md` is never
-listed or served, and hidden files are excluded.
+The Express handler supports the vault endpoints. `data-room/README.md` is
+never listed or served, and hidden files are excluded. Durable private storage
+still belongs in object storage with signed URLs or a server-side proxy.
 
 | Endpoint | Notes |
 |---|---|
@@ -180,11 +213,24 @@ public chat handler.
 | `/api/inquiry` | POST | `{ type, email, consent: true, name?, organization?, partyType?, role?, interest?, targetProject?, targetService?, sector?, region?, ticket?, timeline?, sectors?, countries?, capabilities?, capitalBand?, locale?, message? }` → `{ success, reference }`; consent is required for all contact, newsletter, partner-match, and investor-access submissions |
 | `/api/chat` | POST | `{ message, locale? }` → `{ response, source: "rules" }` — deterministic localized responses only; Gemini is deferred |
 | `/api/track` | POST | `{ consent: true, path, event? }` — anonymous pageview or allow-listed event, consent-gated; Vercel uses no storage unless a webhook is configured |
-| `/api/admin/stats` | GET | `x-admin-token` header → pageview buckets |
-| `/api/admin/leads` | GET | `x-admin-token` header → all leads, newest first |
-| `/api/vault/*` | — | See [Investor data room](#investor-data-room-investor-portal) |
+| `/api/admin/stats` | GET | Self-hosted only; `x-admin-token` header → pageview buckets |
+| `/api/admin/leads` | GET | Self-hosted only; `x-admin-token` header → all leads, newest first |
+| `/api/vault/*` | — | Self-hosted only; see [Investor data room](#investor-data-room-investor-portal) |
 | `/rss.xml` | GET | Newsroom feed (Contentful when server env configured; honest empty channel otherwise) |
 | `/api/*` (other) | GET | 404 JSON — never the SPA shell |
+
+## Post-deploy checks and rollback
+
+After a Vercel deployment, manually verify the public home page and `/ar/` and
+`/fr/` equivalents, submit a safe test inquiry only when a real test provider
+is intentionally configured, confirm an expected `200` reference, and verify
+that `/admin` and `/investor-portal` return an unsupported/404 response. If
+lead delivery is deliberately absent, verify the inquiry response is `503`
+and that the visitor-facing contact flow remains available for direct email.
+For rollback, promote the last known-good Vercel deployment in the Vercel
+dashboard (or redeploy that revision); for self-hosting, restore the previous
+image and keep the writable data volume intact. Do not roll back by exposing
+the private routes on the public deployment.
 
 ## Structure
 

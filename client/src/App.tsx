@@ -8,8 +8,12 @@ import Chatbot from "./components/Chatbot";
 import ConsentBanner from "./components/ConsentBanner";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider, useLanguageContext } from "./contexts/LanguageContext";
+import { WatchlistProvider } from "./contexts/WatchlistContext";
 import PageLoader from "./components/PageLoader";
 import GlobalLayout from "./components/layout/GlobalLayout";
+import { DEPLOY_BASE_PATH } from "./localePath";
+import DeploymentUnavailable from "./pages/DeploymentUnavailable";
+import { isVercelDeployment } from "./deployment";
 
 const Home = lazy(() => import("./pages/Home"));
 const Gallery = lazy(() => import("./pages/Gallery"));
@@ -23,6 +27,8 @@ const InvestorLogin = lazy(() => import("./pages/InvestorLogin"));
 const Vault = lazy(() => import("./pages/Vault"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Projects = lazy(() => import("./pages/Projects"));
+const SubmitProject = lazy(() => import("./pages/SubmitProject"));
+const OpportunityMap = lazy(() => import("./pages/OpportunityMap"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const SectorPage = lazy(() => import("./pages/SectorPage"));
 const Impact = lazy(() => import("./pages/Impact"));
@@ -33,6 +39,10 @@ const Services = lazy(() => import("./pages/Services"));
 const Intelligence = lazy(() => import("./pages/Intelligence"));
 const Match = lazy(() => import("./pages/Match"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+const InvestorLoginRoute = isVercelDeployment ? DeploymentUnavailable : InvestorLogin;
+const VaultRoute = isVercelDeployment ? DeploymentUnavailable : Vault;
+const AdminRoute = isVercelDeployment ? DeploymentUnavailable : Admin;
 
 function SkipLink() {
   const { content } = useLanguageContext();
@@ -55,6 +65,8 @@ function RouterSwitch() {
         <Route path={"/hama-project"} component={HamaProject} />
         <Route path={"/programs/:slug"} component={ProgramDetail} />
         <Route path={"/projects"} component={Projects} />
+        <Route path={"/submit-project"} component={SubmitProject} />
+        <Route path={"/opportunity-map"} component={OpportunityMap} />
         <Route path={"/projects/:slug"} component={ProjectDetail} />
         <Route path={"/sectors/:sector"} component={SectorPage} />
         <Route path={"/impact"} component={Impact} />
@@ -62,9 +74,9 @@ function RouterSwitch() {
         <Route path={"/corridors/:iso"} component={Corridor} />
         <Route path={"/team/:slug"} component={TeamMember} />
         <Route path={"/governance/:slug"} component={GovernanceArticle} />
-        <Route path={"/investor-portal"} component={InvestorLogin} />
-        <Route path={"/investor-portal/vault"} component={Vault} />
-        <Route path={"/admin"} component={Admin} />
+        <Route path={"/investor-portal"} component={InvestorLoginRoute} />
+        <Route path={"/investor-portal/vault"} component={VaultRoute} />
+        <Route path={"/admin"} component={AdminRoute} />
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />
         <Route path={"/visions"} component={Visions} />
@@ -82,7 +94,8 @@ function RouterSwitch() {
  *  client routing so /ar/pipeline matches the /pipeline route. */
 function Router() {
   const { lang } = useLanguageContext();
-  const base = lang === "en" ? undefined : `/${lang}`;
+  const localeBase = lang === "en" ? "" : `/${lang}`;
+  const base = `${DEPLOY_BASE_PATH}${localeBase}` || undefined;
 
   return (
     <Suspense fallback={<PageLoader />}>
@@ -102,15 +115,17 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <LanguageProvider>
-          <TooltipProvider>
-            <Toaster />
-            <SkipLink />
-            <GlobalLayout>
-              <Router />
-            </GlobalLayout>
-            <Chatbot />
-            <ConsentBanner />
-          </TooltipProvider>
+          <WatchlistProvider>
+            <TooltipProvider>
+              <Toaster />
+              <SkipLink />
+              <GlobalLayout>
+                <Router />
+              </GlobalLayout>
+              <Chatbot />
+              <ConsentBanner />
+            </TooltipProvider>
+          </WatchlistProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "vite --host",
     "dev:server": "tsx server/index.ts",
-    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node scripts/prerender.mjs",
+    "build": "node scripts/generate-sitemap.mjs && vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist && node scripts/prerender.mjs",
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "test": "tsx --test tests/*",
     "check:i18n": "esbuild scripts/check-i18n-parity.ts --bundle --platform=node --format=esm --jsx=automatic --outfile=node_modules/.parity.mjs --log-level=error && node node_modules/.parity.mjs",
+    "check:vercel": "node scripts/check-vercel-readiness.mjs",
+    "check:vercel:flow": "tsx scripts/check-vercel-flow.ts",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "check:chat": "tsx scripts/check-chat-fallback.ts",
     "check:cms": "tsx scripts/check-cms-fallback.ts",
     "format": "prettier --write ."

@@ -841,30 +841,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://aiabasd.org/investor-portal</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/ar/investor-portal</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://aiabasd.org/fr/investor-portal</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/investor-portal"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/investor-portal"/>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://aiabasd.org/impact</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/impact"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/impact"/>
@@ -1103,6 +1079,54 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/projects"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/projects"/>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/submit-project</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/submit-project"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/submit-project</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/submit-project"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/submit-project</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/submit-project"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/submit-project"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/opportunity-map</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/opportunity-map"/>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/opportunity-map</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/opportunity-map"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/opportunity-map</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/opportunity-map"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/opportunity-map"/>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://aiabasd.org/projects/sudan-productive-housing</loc>

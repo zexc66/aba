@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 import { z } from "zod";
 import { allowConfiguredOrigin, requestClientIp } from "./cors.js";
+import { inquirySchema, projectSubmissionSchema } from "../server/inquirySchema.js";
 
 interface ServerlessRequest {
   method?: string;
@@ -13,42 +14,19 @@ interface ServerlessResponse {
   status(code: number): { json(payload: unknown): void; end(): void };
 }
 
-const label = z
-  .string()
-  .trim()
-  .max(60)
-  .regex(/^[^<>{};$`\\]*$/)
-  .optional();
-const longLabel = z.string().trim().max(500).regex(/^[^<>{};$`\\]*$/).optional();
-
-const inquirySchema = z.object({
-  type: z
-    .string()
-    .trim()
-    .regex(/^[A-Za-z0-9_-]{2,40}$/)
-    .default("GENERAL"),
-  email: z.email().max(254),
-  name: z.string().trim().max(120).optional(),
-  organization: z.string().trim().max(160).optional(),
-  sector: label,
-  region: label,
-  ticket: label,
-  timeline: label,
-  partyType: label,
-  sectors: longLabel,
-  countries: longLabel,
-  capabilities: longLabel,
-  capitalBand: label,
-  targetProject: z.string().trim().max(160).optional(),
-  targetService: label,
-  role: label,
-  interest: z.string().trim().max(500).optional(),
-  consent: z.literal(true),
-  locale: z.enum(["en", "ar", "fr"]).optional(),
-  message: z.string().trim().max(4000).optional(),
-});
 
 const hits = new Map<string, { count: number; resetAt: number }>();
+const PROVIDER_TIMEOUT_MS = 8_000;
+
+async function fetchWithTimeout(input: string, init: RequestInit): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), PROVIDER_TIMEOUT_MS);
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 function rateLimited(ip: string): boolean {
   const now = Date.now();
@@ -118,13 +96,10 @@ function deliveryPayload(id: string, data: z.infer<typeof inquirySchema>): Inqui
 async function notifyByEmail(payload: InquiryDeliveryPayload): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_NOTIFY_EMAIL;
-  if (!apiKey || !to) {
-    console.error(`[PROTOCOL][EMAIL_CONFIG] Missing ${!apiKey ? "RESEND_API_KEY" : "LEAD_NOTIFY_EMAIL"}`);
-    return false;
-  }
+  if (!apiKey || !to) return false;
 
   try {
-    const response = await fetch("https://api.resend.com/emails", {
+    const response = await fetchWithTimeout("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -160,10 +135,8 @@ async function notifyByEmail(payload: InquiryDeliveryPayload): Promise<boolean> 
         ].join("\n"),
       }),
     });
-    if (!response.ok) console.error(`[PROTOCOL][EMAIL_REJECTED] Resend returned HTTP ${response.status}`);
     return response.ok;
-  } catch (error) {
-    console.error(`[PROTOCOL][EMAIL_FAILURE] Resend request failed: ${error instanceof Error ? error.name : "unknown"}`);
+  } catch {
     return false;
   }
 }
@@ -172,17 +145,21 @@ async function notifyByWebhook(payload: InquiryDeliveryPayload): Promise<boolean
   const url = process.env.LEAD_WEBHOOK_URL;
   if (!url) return false;
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      text: `New AIABASD lead ${payload.id} [${payload.type}]`,
-      // Explicit delivery shape: accepted inquiry fields only; no raw request
-      // body, access keys, or server secrets are forwarded.
-      lead: payload,
-    }),
-  });
-  return response.ok;
+  try {
+    const response = await fetchWithTimeout(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text: `New AIABASD lead ${payload.id} [${payload.type}]`,
+        // Explicit delivery shape: accepted inquiry fields only; no raw request
+        // body, access keys, or server secrets are forwarded.
+        lead: payload,
+      }),
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
 }
 
 const ACK_COPY: Record<string, { subject: string; body: (id: string) => string }> = {
@@ -227,19 +204,23 @@ async function sendVisitorEmail(
   const localeKey = locale === "ar" || locale === "fr" ? locale : "en";
   const copy = type === "NEWSLETTER" ? WELCOME_COPY[localeKey] : ACK_COPY[localeKey];
   const body = typeof copy.body === "function" ? copy.body(id) : copy.body;
-  await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.LEAD_FROM_EMAIL || "onboarding@resend.dev",
-      to: [to],
-      subject: copy.subject,
-      text: body,
-    }),
-  }).catch(() => undefined);
+  try {
+    await fetchWithTimeout("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.LEAD_FROM_EMAIL || "onboarding@resend.dev",
+        to: [to],
+        subject: copy.subject,
+        text: body,
+      }),
+    });
+  } catch {
+    // Visitor acknowledgement is best-effort and never changes lead status.
+  }
 }
 
 export default async function handler(req: ServerlessRequest, res: ServerlessResponse) {
@@ -272,31 +253,46 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
   const parsed = inquirySchema.safeParse(body);
   if (!parsed.success) {
     const fields = parsed.error.issues.map((issue) => issue.path.join(".") || "payload");
-    console.warn(`[PROTOCOL][REJECT] Inquiry validation failed: ${fields.join(",")}`);
+    console.warn("[PROTOCOL][REJECT][VALIDATION]");
     res.status(400).json({ error: "Invalid inquiry payload.", fields });
     return;
   }
 
+  let data = parsed.data;
+  if (data.type === "PROJECT_SUBMISSION") {
+    const projectParsed = projectSubmissionSchema.safeParse(body);
+    if (!projectParsed.success) {
+      const fields = projectParsed.error.issues.map((issue) => issue.path.join(".") || "payload");
+      console.warn("[PROTOCOL][REJECT][PROJECT_VALIDATION]");
+      res.status(400).json({ error: "Invalid project submission payload.", fields });
+      return;
+    }
+    data = projectParsed.data;
+  }
+
   const id = randomUUID().slice(0, 8);
+
+  // Retries intentionally receive a new reference. Safe deduplication needs a
+  // durable idempotency store or provider contract and is deferred.
 
   // Serverless has no durable disk: without a notification channel configured,
   // admitting the lead would silently lose it — fail honestly instead so the
   // UI shows its error state and the visitor can email directly.
   const delivered = (
     await Promise.all([
-      notifyByEmail(deliveryPayload(id, parsed.data)).catch(() => false),
-      notifyByWebhook(deliveryPayload(id, parsed.data)).catch(() => false),
+      notifyByEmail(deliveryPayload(id, data)).catch(() => false),
+      notifyByWebhook(deliveryPayload(id, data)).catch(() => false),
     ])
   ).some(Boolean);
   if (!delivered) {
-    console.error(`[PROTOCOL][FAILURE] Lead ${id} (${parsed.data.type}) dropped: no delivery channel configured`);
-    res.status(503).json({ error: "Lead capture is not configured on this deployment. Please email contact@aiabasd.org." });
+    console.error("[PROTOCOL][FAILURE][DELIVERY_UNAVAILABLE]");
+    res.status(503).json({ error: "We could not receive this inquiry right now. Please email contact@aiabasd.org." });
     return;
   }
 
-  console.log(`[PROTOCOL][SUCCESS] Lead ${id} captured via ${parsed.data.type}`);
+  console.log("[PROTOCOL][SUCCESS]");
   if (process.env.RESEND_API_KEY) {
-    void sendVisitorEmail(parsed.data.email, parsed.data.locale, parsed.data.type, id);
+    void sendVisitorEmail(data.email, data.locale, data.type, id);
   }
   res.status(200).json({ success: true, message: "Institutional inquiry archived", reference: id });
 }

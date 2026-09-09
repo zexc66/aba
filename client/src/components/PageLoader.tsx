@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { gradient } from "@/data";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { deployAssetPath } from "@/localePath";
 
 interface PageLoaderProps {
     minDuration?: number;
 }
 
 export default function PageLoader({ minDuration = 0 }: PageLoaderProps) {
+    const shouldReduceMotion = useReducedMotion();
     const [isLoading, setIsLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
@@ -38,64 +39,42 @@ export default function PageLoader({ minDuration = 0 }: PageLoaderProps) {
                 <motion.div
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white"
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.3, ease: "easeInOut" }}
+                    className="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden border-[#0b0b10]/10 bg-[#fdfcfb] text-[#0b0b10]"
+                    role="status"
+                    aria-label="AIABASD loading"
+                    aria-live="polite"
                 >
-                    <div className="absolute inset-0 overflow-hidden">
-                        <motion.div
-                            className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-[#5a1f2e]/15 to-[#f2a007]/15 rounded-full blur-3xl"
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                x: [0, 50, 0],
-                                y: [0, -30, 0],
-                            }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                        />
-                        <motion.div
-                            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-[#f2a007]/15 to-[#5a1f2e]/15 rounded-full blur-3xl"
-                            animate={{
-                                scale: [1.2, 1, 1.2],
-                                x: [0, -50, 0],
-                                y: [0, 30, 0],
-                            }}
-                            transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                            }}
-                        />
+                    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+                        <div className="absolute inset-x-0 top-1/3 h-px bg-[#5a1f2e]/10" />
+                        <div className="absolute inset-x-0 bottom-1/3 h-px bg-[#f2a007]/20" />
+                        <div className="absolute inset-y-0 start-1/4 w-px bg-[#0b0b10]/5" />
+                        <div className="absolute inset-y-0 end-1/4 w-px bg-[#0b0b10]/5" />
+                        <div className="absolute inset-10 border border-[#0b0b10]/5" />
                     </div>
 
                     <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
+                        initial={{ scale: shouldReduceMotion ? 1 : 0.92, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.1, duration: 0.5 }}
+                        transition={{ delay: shouldReduceMotion ? 0 : 0.1, duration: shouldReduceMotion ? 0 : 0.25 }}
                         className="relative z-10 mb-8"
                     >
                         <motion.img
-                            src="/logo.png"
+                            src={deployAssetPath("/logo.png")}
                             alt="AIABASD"
-                            className="h-24 w-auto rounded-sm"
-                            animate={{
-                                y: [0, -5, 0],
-                            }}
-                            transition={{
-                                duration: 2,
+                            className="h-24 w-auto"
+                            animate={shouldReduceMotion ? undefined : { y: [0, -4, 0] }}
+                            transition={shouldReduceMotion ? undefined : {
+                                duration: 2.4,
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
                         />
                         <motion.div
-                            className="absolute -inset-2 bg-gradient-to-r from-[#5a1f2e]/20 to-[#f2a007]/20 rounded-sm blur-xl -z-10"
-                            animate={{
-                                opacity: [0.3, 0.6, 0.3],
-                            }}
-                            transition={{
-                                duration: 2,
+                            className="absolute -inset-3 -z-10 border border-[#5a1f2e]/20 shadow-[0_18px_45px_rgba(90,31,46,0.12)]"
+                            animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.7, 0.35] }}
+                            transition={shouldReduceMotion ? undefined : {
+                                duration: 2.4,
                                 repeat: Infinity,
                                 ease: "easeInOut",
                             }}
@@ -103,33 +82,33 @@ export default function PageLoader({ minDuration = 0 }: PageLoaderProps) {
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
+                        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
+                        transition={{ delay: shouldReduceMotion ? 0 : 0.2, duration: shouldReduceMotion ? 0 : 0.25 }}
                         className="relative z-10 text-center mb-8"
                     >
-                        <div className="text-2xl font-bold text-[#0b0b10]">
+                        <div className="text-2xl font-bold text-[#0b0b10] text-balance">
                             AIABASD
                         </div>
-                        <div className="text-sm text-gray-500 mt-1">
+                        <div className="mt-1 text-sm text-[#0b0b10]/55 text-pretty">
                             African International Business Alliance
                         </div>
                     </motion.div>
 
                     <motion.div
-                        initial={{ opacity: 0, width: 0 }}
-                        animate={{ opacity: 1, width: 200 }}
-                        transition={{ delay: 0.4, duration: 0.5 }}
-                        className="relative z-10"
+                        initial={{ opacity: 0, scaleX: shouldReduceMotion ? 1 : 0.96 }}
+                        animate={{ opacity: 1, scaleX: 1 }}
+                        transition={{ delay: shouldReduceMotion ? 0 : 0.25, duration: shouldReduceMotion ? 0 : 0.25 }}
+                        className="relative z-10 origin-center"
                     >
-                        <div className="w-[200px] h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-1.5 w-[200px] origin-start overflow-hidden bg-[#0b0b10]/10">
                             <motion.div
-                                className={`h-full ${gradient} rounded-full`}
-                                style={{ width: `${progress}%` }}
-                                transition={{ duration: 0.1 }}
+                                className="h-full origin-start bg-[#5a1f2e]"
+                                style={{ scaleX: progress / 100 }}
+                                transition={{ duration: shouldReduceMotion ? 0 : 0.1 }}
                             />
                         </div>
-                        <div className="text-xs text-gray-400 text-center mt-3">
+                        <div className="mt-3 text-center text-xs tabular-nums text-[#0b0b10]/45">
                             Loading experience...
                         </div>
                     </motion.div>
@@ -137,16 +116,16 @@ export default function PageLoader({ minDuration = 0 }: PageLoaderProps) {
                     {[...Array(5)].map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-[#5a1f2e]/30 to-[#f2a007]/30"
+                            className="absolute h-2 w-2 rounded-full bg-[#f2a007]/55"
                             style={{
                                 left: `${20 + i * 15}%`,
                                 top: `${30 + i * 10}%`,
                             }}
-                            animate={{
+                            animate={shouldReduceMotion ? undefined : {
                                 y: [0, -20, 0],
                                 opacity: [0.3, 0.7, 0.3],
                             }}
-                            transition={{
+                            transition={shouldReduceMotion ? undefined : {
                                 duration: 2 + i * 0.3,
                                 repeat: Infinity,
                                 ease: "easeInOut",

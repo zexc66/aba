@@ -6,76 +6,12 @@
 import { build } from "esbuild";
 import { readFile, writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { publicRoutes } from "./routes.mjs";
 
 const OUT_DIR = path.resolve("dist/public");
-const ROUTES = [
-  "/",
-  "/pipeline",
-  "/visions",
-  "/services",
-  "/intelligence",
-  "/match",
-  "/gallery",
-  "/hama-project",
-  "/programs/hama-rehabilitation",
-  "/programs/al-arish-hub",
-  "/programs/green-energy",
-  "/programs/digital-africa",
-  "/programs/integrated-cities",
-  "/programs/debris-recycling",
-  "/programs/food-security",
-  "/corridors/gm",
-  "/corridors/sl",
-  "/corridors/ci",
-  "/corridors/bf",
-  "/corridors/gh",
-  "/corridors/ao",
-  "/corridors/sd",
-  "/corridors/eg",
-  "/corridors/jo",
-  "/corridors/sy",
-  "/corridors/sa",
-  "/team/mohammed-abdel-moneim",
-  "/team/faris-safi",
-  "/team/ziad-shneikat",
-  "/governance/esia-esms",
-  "/governance/kyc-aml",
-  "/governance/independent-oversight",
-  "/governance/contracts",
-  "/privacy",
-  "/terms",
-  "/404",
-  "/investor-portal",
-  "/investor-portal/vault",
-  "/admin",
-  "/impact",
-  "/sectors/housing",
-  "/sectors/energy",
-  "/sectors/infrastructure",
-  "/sectors/circular",
-  "/sectors/industry",
-  "/sectors/agriculture",
-  "/sectors/social",
-  "/sectors/multi",
-  "/projects",
-  "/projects/sudan-productive-housing",
-  "/projects/sudan-reconstruction-vision",
-  "/projects/hama-solar-200mw",
-  "/projects/hama-debris-recycling",
-  "/projects/smart-meters-syria",
-  "/projects/dummar-housing",
-  "/projects/hama-housing",
-  "/projects/schools-health-rehabilitation",
-  "/projects/hasiya-industrial-zone",
-  "/projects/hama-agriculture-water",
-  "/projects/cci-investment-portfolio",
-  "/projects/ghana-cooperation-program",
-  "/projects/angola-vision",
-  "/projects/china-arab-africa-platform",
-  "/projects/china-saudi-africa-gateway",
-  "/projects/cross-border-trade-platform",
-  "/projects/advanced-technology-cooperation",
-];
+const DEPLOY_BASE = process.env.VITE_BASE || "/";
+const IS_VERCEL = process.env.VERCEL === "1";
+const ROUTES = publicRoutes(IS_VERCEL);
 
 const LOCALES = [
   { code: "en", prefix: "", ogLocale: "en_US", lang: "en", dir: "ltr" },
@@ -94,9 +30,9 @@ await build({
   logLevel: "silent",
   define: {
     "process.env.NODE_ENV": '"production"',
-    // Vite env is a build-time concept; at prerender time there is none, so
-    // cms.configured is false and pages bake the static trilingual copy.
-    "import.meta.env": "{}",
+    // Pass the deployment base into the SSR bundle so prerendered links and
+    // asset URLs match the client bundle on GitHub Pages.
+    "import.meta.env": JSON.stringify({ BASE_URL: DEPLOY_BASE, VERCEL: IS_VERCEL }),
   },
   // Bundled CJS deps (react-dom/server) require node builtins dynamically.
   banner: {
@@ -198,4 +134,4 @@ await writeFile(
   path.join(OUT_DIR, "404.html"),
   await readFile(path.join(OUT_DIR, "404", "index.html"), "utf-8")
 );
-console.log(`prerender: ${written}/${total} routes rendered`);
+console.log(`prerender: ${written}/${total} routes rendered${IS_VERCEL ? " (public Vercel boundary)" : ""}`);

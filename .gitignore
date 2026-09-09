@@ -123,3 +123,9 @@ data-room/*
 # Env — Vite envDir is repo root
 .env.*
 !.env.example
+
+# Agent tool state (per-machine, regenerated) — .claude/skills stays tracked
+.claude-flow/
+.refact/
+.claude/proven-config.json
+.claude/.proven-config-version

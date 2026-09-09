@@ -11,10 +11,13 @@ import { MotionConfig } from "framer-motion";
 import { TooltipProvider } from "../client/src/components/ui/tooltip";
 import { ThemeProvider } from "../client/src/contexts/ThemeContext";
 import { LanguageProvider } from "../client/src/contexts/LanguageContext";
+import { WatchlistProvider } from "../client/src/contexts/WatchlistContext";
 import GlobalLayout from "../client/src/components/layout/GlobalLayout";
 import Home from "../client/src/pages/Home";
 import Pipeline from "../client/src/pages/Pipeline";
 import Projects from "../client/src/pages/Projects";
+import SubmitProject from "../client/src/pages/SubmitProject";
+import OpportunityMap from "../client/src/pages/OpportunityMap";
 import ProjectDetail from "../client/src/pages/ProjectDetail";
 import SectorPage from "../client/src/pages/SectorPage";
 import Impact from "../client/src/pages/Impact";
@@ -38,6 +41,8 @@ import { COPY } from "../client/src/data";
 import { PROJECTS, PROJECTS_UI, SECTORS, projectBySlug } from "../client/src/projects";
 import { PLATFORM_COPY } from "../client/src/platform";
 import { LOCALIZED_COPY } from "../client/src/localizedCopy";
+import { SUBMISSION_COPY } from "../client/src/submissionCopy";
+import { MAP_COPY } from "../client/src/mapCopy";
 
 export const SITE_URL = "https://aiabasd.org";
 export type PrerenderLocale = "en" | "ar" | "fr";
@@ -63,6 +68,8 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
     const p = projectBySlug(seg[1]);
     if (p) return { title: `${p.title[locale]} | AIABASD`, description: p.description[locale] };
   }
+  if (clean === "/submit-project") return { title: `${SUBMISSION_COPY[locale].title} | AIABASD`, description: SUBMISSION_COPY[locale].intro };
+  if (clean === "/opportunity-map") return { title: `${MAP_COPY[locale].title} | AIABASD`, description: MAP_COPY[locale].intro };
   if (seg[0] === "sectors" && seg[1]) {
     const sectorName = SECTORS[seg[1] as keyof typeof SECTORS];
     if (sectorName) return { title: `${sectorName[locale]} | AIABASD`, description: PROJECTS_UI[locale].headerNote };
@@ -135,12 +142,15 @@ export function renderRoute(
                   LanguageProvider,
                   {
                     initialLocale: locale,
-                    children: createElement(
-                      TooltipProvider,
-                      {
-                        children: createElement(
-                          Router,
-                          {
+                     children: createElement(
+                       WatchlistProvider,
+                       {
+                         children: createElement(
+                           TooltipProvider,
+                           {
+                             children: createElement(
+                               Router,
+                               {
                             base: basePath || undefined,
                             ssrPath: path,
                             children: createElement(
@@ -152,6 +162,8 @@ export function renderRoute(
                                 createElement(Route, { path: "/", component: Home }),
                                 createElement(Route, { path: "/programs/:slug", component: ProgramDetail }),
                                 createElement(Route, { path: "/projects", component: Projects }),
+                                createElement(Route, { path: "/submit-project", component: SubmitProject }),
+                                createElement(Route, { path: "/opportunity-map", component: OpportunityMap }),
                                 createElement(Route, { path: "/projects/:slug", component: ProjectDetail }),
                                 createElement(Route, { path: "/sectors/:sector", component: SectorPage }),
                                 createElement(Route, { path: "/impact", component: Impact }),
@@ -173,10 +185,12 @@ export function renderRoute(
                                  ,createElement(Route, { component: NotFound })
                               )
                             ),
-                          }
-                        ),
-                      }
-                    ),
+                               }
+                             ),
+                           }
+                         ),
+                       }
+                     ),
                   }
                 ),
               }

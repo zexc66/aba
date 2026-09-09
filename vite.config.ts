@@ -81,6 +81,11 @@ const plugins = [
 
 export default defineConfig(({ mode }) => ({
   base: process.env.VITE_BASE || "/",
+  // Vercel's built-in signal is intentionally passed to the client only as a
+  // boolean. It gates private UI routes; no server secret is exposed.
+  define: {
+    "import.meta.env.VERCEL": JSON.stringify(process.env.VERCEL === "1"),
+  },
   plugins,
   resolve: {
     alias: {

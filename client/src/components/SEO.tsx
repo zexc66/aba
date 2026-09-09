@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { DEPLOY_BASE_PATH, deployAssetPath } from "@/localePath";
 
 interface SEOProps {
     title: string;
@@ -35,12 +36,15 @@ export default function SEO({
     // Locale path prefix (/ar, /fr) for prerendered locale URLs
     let prefix = "";
     try {
-        const m = window.location.pathname.match(/^\/(ar|fr)(?=\/|$)/);
+        const pathname = DEPLOY_BASE_PATH && (window.location.pathname === DEPLOY_BASE_PATH || window.location.pathname.startsWith(`${DEPLOY_BASE_PATH}/`))
+            ? window.location.pathname.slice(DEPLOY_BASE_PATH.length) || "/"
+            : window.location.pathname;
+        const m = pathname.match(/^\/(ar|fr)(?=\/|$)/);
         if (m) prefix = `/${m[1]}`;
     } catch {
     }
     const fullUrl = url ? `${SITE_URL}${prefix}${url}` : `${SITE_URL}${prefix}/`;
-    const fullImage = image.startsWith("http") ? image : `${SITE_URL}${image}`;
+    const fullImage = image.startsWith("http") ? image : `${SITE_URL}${deployAssetPath(image)}`;
 
     return (
         <Helmet>
