@@ -2068,7 +2068,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     pipeline: {
       title: "Intelligence des Programmes",
       eyebrow: "EXPLORATEUR_PIPELINE",
-      note: "Le portefeuille de programmes de l'Alliance — filtrez par corridor, secteur et étape de réalisation. Toutes les données sont vérifiées par le propriétaire.",
+      note: "Portefeuille de programmes de l'Alliance — filtrez par corridor, secteur et étape. Données vérifiées par le propriétaire.",
       filterAll: "Tous",
       filterCountry: "Corridor",
       filterSector: "Secteur",
@@ -2114,7 +2114,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       title: "Visions",
       eyebrow: "HORIZON_STRATÉGIQUE",
       heroStatement: "Un continent où les infrastructures servent la dignité, le capital sert le développement, et la gouvernance sert les populations.",
-      heroNote: "L'horizon stratégique de l'Alliance jusqu'en 2030 et au-delà — aligné sur les ODD 2030 et l'Agenda 2063 de l'Union Africaine.",
+      heroNote: "Horizon stratégique de l'Alliance jusqu'en 2030 et au-delà — aligné sur les ODD 2030 et l'Agenda 2063 de l'Union Africaine.",
       missionTitle: "Mission",
       missionStatement: "Orchestrer des partenariats public-privé finançables qui comblent le déficit de financement des infrastructures africaines — estimé jusqu'à 170 milliards de dollars par an par la BAD — grâce à une gouvernance rigoureuse, une réalisation vérifiée, et des structures de frais de succès transparentes.",
       pillarsTitle: "Piliers Stratégiques",
