@@ -102,6 +102,49 @@ export default function ProjectDetail({
       )
     : "";
 
+  const verificationScope: string[] = useMemo(() => {
+    if (!project) return [];
+    if (project.verification?.scope && project.verification.scope.length > 0) {
+      return project.verification.scope.map((entry) => entry[locale]);
+    }
+    const derived: string[] = [
+      `${t.countryLabel}: ${COUNTRIES[project.country][locale]}`,
+      `${t.sectorLabel}: ${SECTORS[project.sector][locale]}`,
+      t.detailTitle,
+      `${t.objectivesLabel} (${project.objectives.length})`,
+      `${t.partnershipLabel} (${project.partnership.length})`,
+    ];
+    if (project.location) derived.splice(2, 0, `${t.locationLabel}: ${project.location[locale]}`);
+    if (project.scale) derived.push(`${t.scaleLabel}: ${project.scale[locale]}`);
+    if (project.model) derived.push(`${t.modelLabel}: ${project.model[locale]}`);
+    return derived;
+  }, [project, locale, t]);
+
+  const changeHistory = useMemo(() => {
+    if (!project) return [];
+    if (project.updates && project.updates.length > 0) {
+      return project.updates.map((u) => ({
+        date: u.date,
+        formattedDate: new Date(u.date).toLocaleDateString(
+          locale === "ar" ? "ar" : locale === "fr" ? "fr-FR" : "en-GB",
+          { day: "numeric", month: "long", year: "numeric" }
+        ),
+        label: u.label[locale],
+      }));
+    }
+    const iso = project.verification?.profileReviewed ?? projectLastReviewed(project);
+    return [
+      {
+        date: iso,
+        formattedDate: new Date(iso).toLocaleDateString(
+          locale === "ar" ? "ar" : locale === "fr" ? "fr-FR" : "en-GB",
+          { day: "numeric", month: "long", year: "numeric" }
+        ),
+        label: t.historyInitialEntry,
+      },
+    ];
+  }, [project, locale, t]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -352,6 +395,79 @@ export default function ProjectDetail({
                         </li>
                       ))}
                     </ul>
+                  </div>
+
+                  {/* Verification Record & Change History */}
+                  <div className="border border-[#0b0b10]/10 bg-white p-7 shadow-premium space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-[#0b0b10]/10 pb-4">
+                      <div>
+                        <h2 className="t-meta text-[#5a1f2e]">
+                          {t.verificationTitle}
+                        </h2>
+                        <p className="text-xs text-[#0b0b10]/60 mt-1 flex items-center gap-1.5 flex-wrap">
+                          <span>{t.lastReviewedLabel}:</span>
+                          <span dir="ltr"><bdi>{reviewedDate}</bdi></span>
+                        </p>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 t-meta text-[10px] px-2.5 py-1.5 border text-[#6b4a00] bg-[#f2a007]/[0.12] border-[#f2a007]/30 self-start sm:self-auto">
+                        <span className="w-1.5 h-1.5 bg-[#f2a007]" aria-hidden="true" />
+                        {t.verificationBadge}
+                      </span>
+                    </div>
+
+                    <p className="text-sm text-[#0b0b10]/75 leading-relaxed">
+                      {t.verificationStatus}
+                    </p>
+
+                    <div>
+                      <h3 className="t-meta text-[10px] text-[#0b0b10]/60 uppercase tracking-wider mb-3">
+                        {t.verificationScopeLabel}
+                      </h3>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        {verificationScope.map((item, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-center gap-2.5 text-xs text-[#0b0b10]/75"
+                          >
+                            <span className="w-1.5 h-1.5 bg-[#5a1f2e] shrink-0" aria-hidden="true" />
+                            <span className="leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {project.verification?.notes && (
+                      <div className="pt-3 border-t border-[#0b0b10]/10">
+                        <h4 className="t-meta text-[10px] text-[#0b0b10]/60 uppercase tracking-wider mb-1.5">
+                          {t.verificationNotesLabel}
+                        </h4>
+                        <p className="text-xs text-[#0b0b10]/70 leading-relaxed">
+                          {project.verification.notes[locale]}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Change History */}
+                    <div className="pt-4 border-t border-[#0b0b10]/10">
+                      <h3 className="t-meta text-[10px] text-[#0b0b10]/60 uppercase tracking-wider mb-3">
+                        {t.historyTitle}
+                      </h3>
+                      <div className="border border-[#0b0b10]/10 divide-y divide-[#0b0b10]/10 bg-[#fdfcfb]">
+                        {changeHistory.map((entry, idx) => (
+                          <div
+                            key={idx}
+                            className="grid grid-cols-1 sm:grid-cols-[10rem_1fr] items-baseline px-4 py-3 text-xs gap-1 sm:gap-4"
+                          >
+                            <span className="t-data text-[#0b0b10]/60 tabular-nums" dir="ltr">
+                              <bdi>{entry.formattedDate}</bdi>
+                            </span>
+                            <span className="text-[#0b0b10]/80 font-medium leading-relaxed">
+                              {entry.label}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 

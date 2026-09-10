@@ -40,6 +40,22 @@ export type SectorKey =
 
 export type CountryKey = "sd" | "sy" | "ci" | "gh" | "ao" | "intl";
 
+export interface ProjectVerification {
+  /** ISO date the published profile was reviewed. Defaults to projectLastReviewed. */
+  profileReviewed?: string;
+  /** Localized statements describing which fields/aspects the published profile covers. */
+  scope?: L[];
+  /** Optional localized notes regarding the verification or study phase. */
+  notes?: L;
+}
+
+export interface ProjectUpdate {
+  /** ISO date of the update. */
+  date: string;
+  /** Localized change label. */
+  label: L;
+}
+
 export interface Project {
   slug: string;
   type: ProjectType;
@@ -56,6 +72,8 @@ export interface Project {
   description: L;
   objectives: L[];
   partnership: L[];
+  verification?: ProjectVerification;
+  updates?: ProjectUpdate[];
 }
 
 /** Fallback review date for entries without an individual one. Updated when
@@ -161,6 +179,16 @@ export const PROJECTS_UI: Record<Locale3, {
   compareFactLabel: string;
   submitOpportunityLabel: string;
   opportunityMapLabel: string;
+  verificationTitle: string;
+  verificationStatus: string;
+  verificationScopeLabel: string;
+  verificationStatusLabel: string;
+  verificationBadge: string;
+  verificationNotesLabel: string;
+  historyTitle: string;
+  historyInitialEntry: string;
+  historyDateLabel: string;
+  historyEventLabel: string;
 }> = {
   en: {
     pageTitle: "Strategic Projects & Investment Opportunities | AIABASD",
@@ -227,6 +255,16 @@ export const PROJECTS_UI: Record<Locale3, {
     compareFactLabel: "Published fact",
     submitOpportunityLabel: "Submit an opportunity",
     opportunityMapLabel: "View opportunity map",
+    verificationTitle: "Verification Record",
+    verificationStatus: "Profile published and maintained by AIABASD; independent third-party verification pending unless explicitly stated.",
+    verificationScopeLabel: "Published Profile Scope",
+    verificationStatusLabel: "Verification Status",
+    verificationBadge: "Publisher verified · Independent review pending",
+    verificationNotesLabel: "Verification Notes",
+    historyTitle: "Change History",
+    historyInitialEntry: "Profile reviewed",
+    historyDateLabel: "Date",
+    historyEventLabel: "Event",
   },
   ar: {
     pageTitle: "المشاريع الاستراتيجية والفرص الاستثمارية | AIABASD",
@@ -293,6 +331,16 @@ export const PROJECTS_UI: Record<Locale3, {
     compareFactLabel: "البيان المنشور",
     submitOpportunityLabel: "تقديم فرصة",
     opportunityMapLabel: "عرض خريطة الفرص",
+    verificationTitle: "سجل التحقق",
+    verificationStatus: "تم نشر الملف التعريفي وتتولى منظمة AIABASD إدارته؛ والتحقق المستقل من طرف ثالث قيد الانتظار ما لم يُنص على خلاف ذلك صراحة.",
+    verificationScopeLabel: "نطاق الملف المنشور",
+    verificationStatusLabel: "حالة التحقق",
+    verificationBadge: "تم التحقق من الناشر · المراجعة المستقلة قيد الانتظار",
+    verificationNotesLabel: "ملاحظات التحقق",
+    historyTitle: "سجل التغييرات",
+    historyInitialEntry: "مراجعة الملف التعريفي",
+    historyDateLabel: "التاريخ",
+    historyEventLabel: "الحدث",
   },
   fr: {
     pageTitle: "Projets stratégiques & Opportunités d'investissement | AIABASD",
@@ -359,6 +407,16 @@ export const PROJECTS_UI: Record<Locale3, {
     compareFactLabel: "Fait publié",
     submitOpportunityLabel: "Soumettre une opportunité",
     opportunityMapLabel: "Voir la carte des opportunités",
+    verificationTitle: "Registre de vérification",
+    verificationStatus: "Profil publié et tenu à jour par l'AIABASD ; vérification indépendante par un tiers en attente, sauf indication contraire explicite.",
+    verificationScopeLabel: "Périmètre du profil publié",
+    verificationStatusLabel: "Statut de vérification",
+    verificationBadge: "Vérifié par l'éditeur · Examen indépendant en attente",
+    verificationNotesLabel: "Notes de vérification",
+    historyTitle: "Historique des modifications",
+    historyInitialEntry: "Révision du profil",
+    historyDateLabel: "Date",
+    historyEventLabel: "Événement",
   },
 };
 
@@ -452,6 +510,32 @@ export const PROJECTS: Project[] = [
     partnership: [
       { en: "Technical and engineering partners", ar: "شركاء تقنيون وهندسيون", fr: "Partenaires techniques et ingénierie" },
       { en: "Investment partners", ar: "شركاء استثمار", fr: "Partenaires investisseurs" },
+    ],
+    verification: {
+      profileReviewed: "2026-08-29",
+      scope: [
+        { en: "Project overview and renewable energy sector classification", ar: "نظرة عامة على المشروع وتصنيف قطاع الطاقة المتجددة", fr: "Aperçu du projet et classification dans le secteur des énergies renouvelables" },
+        { en: "Geographic location: Hama Governorate", ar: "الموقع الجغرافي: محافظة حماة", fr: "Localisation géographique : gouvernorat de Hama" },
+        { en: "Indicative capacity: Up to 200 MW", ar: "القدرة الاسترشادية: حتى 200 ميجاواط", fr: "Capacité indicative : jusqu'à 200 MW" },
+        { en: "Proposed cooperation model: BOT", ar: "نموذج التعاون المقترح: البناء والتشغيل والتحويل (BOT)", fr: "Modèle de coopération proposé : BOT" },
+        { en: "Strategic objectives and clean energy targets", ar: "الأهداف الاستراتيجية ومستهدفات الطاقة النظيفة", fr: "Objectifs stratégiques et cibles d'énergie propre" },
+        { en: "Technical, engineering, and investment partnership scope", ar: "نطاق الشراكة التقنية والهندسية والاستثمارية", fr: "Périmètre de partenariat technique, d'ingénierie et d'investissement" },
+      ],
+      notes: {
+        en: "Parameters reflect indicative structuring for strategic partnership exploration. Independent technical studies, environmental assessment, and grid interconnection review are pending.",
+        ar: "تعكس المعطيات هيكلاً استرشادياً لاستكشاف الشراكات الاستراتيجية. والدراسات التقنية المستقلة والتقييم البيئي ومراجعة الربط بالشبكة قيد الإنجاز.",
+        fr: "Les paramètres reflètent une structuration indicative aux fins d'exploration de partenariats stratégiques. Les études techniques indépendantes, l'évaluation environnementale et l'examen du raccordement au réseau sont en attente.",
+      },
+    },
+    updates: [
+      {
+        date: "2026-08-29",
+        label: {
+          en: "Published project profile for partnership exploration",
+          ar: "تم نشر الملف التعريفي للمشروع لاستكشاف الشراكات",
+          fr: "Publication du profil de projet pour l'exploration de partenariats",
+        },
+      },
     ],
   },
   {

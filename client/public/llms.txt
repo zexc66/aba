@@ -1,0 +1,84 @@
+# AIABASD — African International Alliance for Business & Sustainable Development
+
+> AIABASD (African International Alliance for Business & Sustainable Development) is a non-commercial institutional coordination platform and consortium network operating across African and Arab reconstruction and development corridors, including Syria, Sudan, the Gulf Cooperation Council (GCC), and Sub-Saharan Africa. The platform is strictly non-custodial: no funds, deposits, capital transactions, or banking balances are handled directly through this platform. All financial engagements and sovereign agreements operate through authorized commercial banks, multilateral development entities, and licensed institutional stakeholders.
+
+## Locales
+
+- [English Platform](https://aiabasd.org/): Primary English language interface.
+- [Arabic Platform (المنصة العربية)](https://aiabasd.org/ar/): Arabic language interface with full Right-to-Left (RTL) localization.
+- [French Platform (Plateforme Française)](https://aiabasd.org/fr/): French language interface for Francophone corridors.
+
+## Core Platform
+
+- [/projects](https://aiabasd.org/projects): Multi-sector directory of capital, reconstruction, and development projects across African and Arab corridors.
+- [/pipeline](https://aiabasd.org/pipeline): Active and staged project pipeline categorized by development status, corridor, and readiness.
+- [/visions](https://aiabasd.org/visions): Strategic reconstruction and sustainable development vision frameworks for post-conflict and emerging markets.
+- [/services](https://aiabasd.org/services): Advisory, consortium assembly, project structuring, and technical coordination services for institutional partners.
+- [/intelligence](https://aiabasd.org/intelligence): Economic intelligence, corridor assessments, and regulatory analysis for regional reconstruction and infrastructure.
+- [/match](https://aiabasd.org/match): Institutional matching interface aligning project sponsors with qualified consortium partners and EPC contractors.
+- [/opportunity-map](https://aiabasd.org/opportunity-map): Interactive geographic visualization of infrastructure projects and investment opportunities across corridors.
+
+## Governance & Trust
+
+- [/trust](https://aiabasd.org/trust): Centralized trust and verification repository detailing institutional oversight, data privacy practices, and contact directory.
+- [/governance/esia-esms](https://aiabasd.org/governance/esia-esms): Environmental and Social Impact Assessment (ESIA) and Environmental and Social Management System (ESMS) compliance protocols.
+- [/governance/kyc-aml](https://aiabasd.org/governance/kyc-aml): Know Your Customer (KYC) and Anti-Money Laundering (AML) standards aligned with international banking norms.
+- [/governance/independent-oversight](https://aiabasd.org/governance/independent-oversight): Multi-tiered oversight architecture featuring independent technical, environmental, and financial verification.
+- [/governance/contracts](https://aiabasd.org/governance/contracts): Standardized legal and contractual frameworks safeguarding transparency, stakeholder rights, and cross-border execution.
+
+## Regional Programs
+
+- [/programs/hama-rehabilitation](https://aiabasd.org/programs/hama-rehabilitation): Comprehensive municipal infrastructure and housing rehabilitation initiative in Hama, Syria.
+- [/programs/al-arish-hub](https://aiabasd.org/programs/al-arish-hub): Strategic logistics, humanitarian transshipment, and supply chain corridor hub in Al-Arish, Egypt.
+- [/programs/green-energy](https://aiabasd.org/programs/green-energy): Renewable energy transition initiatives deploying utility-scale solar and distributed clean grids.
+- [/programs/digital-africa](https://aiabasd.org/programs/digital-africa): Digital transformation program supporting telecommunications, data infrastructure, and digital governance in Africa.
+- [/programs/integrated-cities](https://aiabasd.org/programs/integrated-cities): Master-planned sustainable urban communities integrating housing, clean energy, and municipal services.
+- [/programs/debris-recycling](https://aiabasd.org/programs/debris-recycling): Industrial circular economy program processing conflict rubble into certified construction aggregates.
+- [/programs/food-security](https://aiabasd.org/programs/food-security): Modern agricultural infrastructure, cold-chain logistics, and solar irrigation systems to enhance food resilience.
+- [/hama-project](https://aiabasd.org/hama-project): Integrated municipal reconstruction master plan for the historical city of Hama, Syria.
+
+## Country Corridors
+
+- [/corridors/sy](https://aiabasd.org/corridors/sy): Syria Corridor — Infrastructure reconstruction, urban housing, renewable energy, and industrial revitalization.
+- [/corridors/sd](https://aiabasd.org/corridors/sd): Sudan Corridor — Post-conflict reconstruction vision, productive housing, and agricultural corridor rehabilitation.
+- [/corridors/jo](https://aiabasd.org/corridors/jo): Jordan Corridor — Regional logistics connectivity, water infrastructure, and energy transit networks.
+- [/corridors/eg](https://aiabasd.org/corridors/eg): Egypt Corridor — Cross-border logistics, industrial integration, and maritime transit hubs.
+- [/corridors/sa](https://aiabasd.org/corridors/sa): Saudi Arabia Corridor — GCC capital alignment, industrial manufacturing hubs, and energy transition partnerships.
+- [/corridors/gh](https://aiabasd.org/corridors/gh): Ghana Corridor — West African trade infrastructure, agro-processing, and renewable power.
+- [/corridors/ci](https://aiabasd.org/corridors/ci): Côte d'Ivoire Corridor — Transport corridors, agricultural value addition, and commercial logistics.
+- [/corridors/ao](https://aiabasd.org/corridors/ao): Angola Corridor — Mineral logistics, infrastructure development, and industrial diversification.
+- [/corridors/bf](https://aiabasd.org/corridors/bf): Burkina Faso Corridor — Resilient infrastructure, decentralized solar energy, and community development.
+- [/corridors/gm](https://aiabasd.org/corridors/gm): The Gambia Corridor — Maritime logistics, coastal infrastructure, and digital connectivity.
+- [/corridors/sl](https://aiabasd.org/corridors/sl): Sierra Leone Corridor — Sustainable resource management, port logistics, and power grid expansion.
+
+## Key Public Projects
+
+- [/projects/hama-solar-200mw](https://aiabasd.org/projects/hama-solar-200mw): 200MW photovoltaic solar power plant in Hama province, Syria.
+- [/projects/sudan-productive-housing](https://aiabasd.org/projects/sudan-productive-housing): Reconstruction of productive housing communities with integrated agricultural plots and solar microgrids in Sudan.
+- [/projects/sudan-reconstruction-vision](https://aiabasd.org/projects/sudan-reconstruction-vision): National reconstruction blueprint across urban recovery, critical infrastructure, and supply corridor rehabilitation in Sudan.
+- [/projects/hama-debris-recycling](https://aiabasd.org/projects/hama-debris-recycling): Concrete and masonry rubble recycling facility converting urban debris into certified aggregates for reconstruction in Hama, Syria.
+- [/projects/smart-meters-syria](https://aiabasd.org/projects/smart-meters-syria): Deployment of digital electricity metering infrastructure and grid monitoring across municipal networks in Syria.
+- [/projects/dummar-housing](https://aiabasd.org/projects/dummar-housing): Sustainable residential complex with integrated public services, energy-efficient building systems, and community amenities in Dummar, Syria.
+- [/projects/hama-housing](https://aiabasd.org/projects/hama-housing): Multi-phase residential reconstruction program providing durable housing and municipal infrastructure in Hama, Syria.
+- [/projects/schools-health-rehabilitation](https://aiabasd.org/projects/schools-health-rehabilitation): Reconstruction and structural modernization of public schools and primary healthcare clinics in conflict-affected communities in Syria.
+- [/projects/hasiya-industrial-zone](https://aiabasd.org/projects/hasiya-industrial-zone): Industrial park infrastructure rehabilitation, reliable power feeds, and logistics hubs in Hasiya, Syria.
+- [/projects/hama-agriculture-water](https://aiabasd.org/projects/hama-agriculture-water): Solar-powered irrigation networks, water management infrastructure, and agricultural logistics support in Hama rural areas.
+- [/projects/cci-investment-portfolio](https://aiabasd.org/projects/cci-investment-portfolio): Strategic investment framework connecting GCC institutional capital with productive infrastructure assets across Africa and the Arab region.
+- [/projects/ghana-cooperation-program](https://aiabasd.org/projects/ghana-cooperation-program): Bilateral development and trade infrastructure initiatives supporting agro-processing, energy, and digital connectivity in Ghana.
+- [/projects/angola-vision](https://aiabasd.org/projects/angola-vision): Multi-sector investment and development program focused on agriculture, logistics corridors, and industrial diversification in Angola.
+- [/projects/china-arab-africa-platform](https://aiabasd.org/projects/china-arab-africa-platform): Trilateral industrial cooperation and trade corridor connecting Chinese industrial technology, Arab financing, and African development projects.
+- [/projects/china-saudi-africa-gateway](https://aiabasd.org/projects/china-saudi-africa-gateway): Strategic trade, logistics, and industrial value chain gateway linking Saudi industrial corridors with African markets and Asian manufacturing.
+- [/projects/cross-border-trade-platform](https://aiabasd.org/projects/cross-border-trade-platform): Digital trade facilitation, customs compliance, and logistics tracking for intra-regional commerce across Arab and African states.
+- [/projects/advanced-technology-cooperation](https://aiabasd.org/projects/advanced-technology-cooperation): Technology transfer framework and digital infrastructure development program for sustainable industrial modernization.
+
+## Legal & Policies
+
+- [/privacy](https://aiabasd.org/privacy): Data privacy policy, zero third-party tracking disclosure, and data subject rights.
+- [/terms](https://aiabasd.org/terms): Terms of platform usage, non-commercial institutional coordination framework, and legal disclaimers.
+
+## Contact
+
+- [/trust#contacts](https://aiabasd.org/trust#contacts): Institutional directory and physical bureau coordinates (London & Dakar).
+- Primary Inquiries: contact@aiabasd.org
+- General Secretariat: gs@aiabasd.org
+- Finance & Oversight Bureau: fo@aiabasd.org

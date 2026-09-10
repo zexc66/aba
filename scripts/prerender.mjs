@@ -38,6 +38,36 @@ await build({
   banner: {
     js: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
   },
+  plugins: [
+    {
+      name: "trust-ssr",
+      setup(build) {
+        build.onLoad({ filter: /prerender-entry\.tsx$/ }, async (args) => {
+          let text = await readFile(args.path, "utf-8");
+          text = 'import TrustCenter from "../client/src/pages/TrustCenter";\n' + text;
+          const metaAnchor = 'if (clean === "/privacy")';
+          const routeAnchor = 'createElement(Route, { path: "/privacy", component: Privacy }),';
+          if (!text.includes(metaAnchor) || !text.includes(routeAnchor)) {
+            throw new Error(
+              "prerender: /trust injection anchors not found in prerender-entry.tsx — update the entry file or this plugin"
+            );
+          }
+          text = text.replace(
+            metaAnchor,
+            'if (clean === "/trust") return { title: `${t.trust.metaTitle} | AIABASD`, description: t.trust.metaDescription };\n  if (clean === "/privacy")'
+          );
+          text = text.replace(
+            routeAnchor,
+            'createElement(Route, { path: "/trust", component: TrustCenter }),\ncreateElement(Route, { path: "/privacy", component: Privacy }),'
+          );
+          return {
+            contents: text,
+            loader: "tsx",
+          };
+        });
+      },
+    },
+  ],
 });
 
 // 2. Render all routes (streaming SSR resolves React.lazy natively).
@@ -60,7 +90,7 @@ const STRIP_HEAD = [
 ];
 
 const esc = (s) =>
-  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  (s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const publicPathFor = (route, prefix) =>
   `${prefix ? "/" + prefix : ""}${route === "/" ? "/" : route}`;

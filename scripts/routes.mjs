@@ -32,6 +32,7 @@ export const ALL_ROUTES = [
   "/governance/kyc-aml",
   "/governance/independent-oversight",
   "/governance/contracts",
+  "/trust",
   "/privacy",
   "/terms",
   "/404",

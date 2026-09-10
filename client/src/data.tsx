@@ -382,6 +382,49 @@ export interface Content {
     leadershipNote: string;
     leadershipCta: string;
   };
+  trust: {
+    metaTitle: string;
+    metaDescription: string;
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    lastUpdatedLabel: string;
+    lastUpdatedDate: string;
+    philosophyTitle: string;
+    philosophyText: string;
+    philosophyStatusLabel: string;
+    philosophyStatusBadge: string;
+    philosophyNote: string;
+    privacyTitle: string;
+    privacySubtitle: string;
+    privacyPoints: { title: string; desc: string }[];
+    privacyPolicyLink: string;
+    termsLink: string;
+    securityTitle: string;
+    securitySubtitle: string;
+    securityPoints: { title: string; desc: string }[];
+    governanceTitle: string;
+    governanceSubtitle: string;
+    governancePillars: {
+      slug: string;
+      title: string;
+      desc: string;
+      linkText: string;
+    }[];
+    contactsTitle: string;
+    contactsSubtitle: string;
+    londonTitle: string;
+    londonCountry: string;
+    dakarTitle: string;
+    dakarCountry: string;
+    emailGeneralLabel: string;
+    emailSecretariatLabel: string;
+    emailFieldOpsLabel: string;
+    exclusionsTitle: string;
+    exclusionsText: string;
+    breadcrumbHome: string;
+    breadcrumbTrust: string;
+  };
   skipToContent: string;
   langLabel: string;
 }
@@ -994,6 +1037,99 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       leadershipNote: "The Alliance's direction as articulated by its leadership.",
       leadershipCta: "Request a leadership briefing",
     },
+    trust: {
+      metaTitle: "Institutional Trust Center",
+      metaDescription: "Publisher-verified facts, data privacy commitments, security architecture, and governance frameworks governing AIABASD operations.",
+      eyebrow: "Institutional Integrity & Verification",
+      title: "Trust Center",
+      subtitle: "The verifiable standards, data protection postures, security principles, and governance frameworks that govern AIABASD operations and project profiles.",
+      lastUpdatedLabel: "Standards current as of",
+      lastUpdatedDate: "2026-08-29",
+      philosophyTitle: "Verification Philosophy",
+      philosophyText: "Credibility with governments, development finance institutions, and commercial lenders depends on rigorous factual distinction. AIABASD explicitly differentiates publisher-verified facts from pending independent verification across all portfolio assets. Profile data, indicative parameters, and capacity estimates published on this platform reflect directly reviewed institutional records prepared for partnership exploration. Formal third-party engineering, environmental, and financial audits are conducted prior to definitive agreement execution.",
+      philosophyStatusLabel: "Catalog Status Standard",
+      philosophyStatusBadge: "Publisher Verified · Independent Review Pending",
+      philosophyNote: "No project fact, timeline, approval, or return is published without institutional source derivation.",
+      privacyTitle: "Data & Privacy Posture",
+      privacySubtitle: "A minimal, consent-gated telemetry footprint designed for institutional privacy.",
+      privacyPoints: [
+        {
+          title: "Zero Third-Party Trackers",
+          desc: "We do not deploy third-party analytics scripts, marketing trackers, behavioral pixels, or advertising beacons anywhere on this platform.",
+        },
+        {
+          title: "Consent-Gated First-Party Telemetry",
+          desc: "First-party anonymous pageview beacons are strictly blocked until a visitor provides explicit affirmative consent. Identifying parameters and query strings are stripped prior to beacon delivery.",
+        },
+        {
+          title: "Purpose-Bounded Inquiries",
+          desc: "Executive inquiries and contact submissions are utilized solely to evaluate and respond to the specific request. Data is never sold, traded, or repurposed.",
+        },
+      ],
+      privacyPolicyLink: "Read Privacy Policy",
+      termsLink: "Read Terms of Use",
+      securityTitle: "Technical & Security Posture",
+      securitySubtitle: "Disciplined engineering boundaries protecting institutional communications and data.",
+      securityPoints: [
+        {
+          title: "HTTPS-Only Provider Delivery",
+          desc: "All web traffic is strictly encrypted in transit using modern TLS across global delivery networks.",
+        },
+        {
+          title: "Bounded Outbound Execution",
+          desc: "Outbound integrations are time-bounded on the public deployment: lead-delivery providers enforce an 8-second hard timeout and the assistant service a 15-second timeout. Self-hosted notification hooks are queued for the same bound.",
+        },
+        {
+          title: "Same-Origin API Architecture",
+          desc: "Client interactions are constrained to same-origin /api/* routes with structured Zod schema validation on every inbound request payload.",
+        },
+        {
+          title: "Zero Credentials in Client Bundles",
+          desc: "Operational secrets, provider credentials, and vault signing keys are strictly confined to server-side environments and never emitted into browser bundles.",
+        },
+      ],
+      governanceTitle: "Governance & Fiduciary Frameworks",
+      governanceSubtitle: "Four institutional governance pillars governing every mandate from screening through execution.",
+      governancePillars: [
+        {
+          slug: "esia-esms",
+          title: "ESIA / ESMS Safeguards",
+          desc: "Environmental and social screening aligned with international development-finance safeguards prior to capital commitment.",
+          linkText: "View ESIA/ESMS Framework",
+        },
+        {
+          slug: "kyc-aml",
+          title: "KYC / AML & Sanctions Screening",
+          desc: "Counterparty diligence, ultimate beneficial ownership verification, and sanctions checks on all participating entities.",
+          linkText: "View KYC/AML Standards",
+        },
+        {
+          slug: "independent-oversight",
+          title: "Independent Technical & Financial Oversight",
+          desc: "Third-party engineering validation, milestone disbursement controls, and audit routines across execution phases.",
+          linkText: "View Oversight Mechanisms",
+        },
+        {
+          slug: "contracts",
+          title: "Contract Architecture & Dispute Resolution",
+          desc: "Standardized PPP structures, transparent risk-allocation matrices, and neutral arbitration enforcement.",
+          linkText: "View Contract Architecture",
+        },
+      ],
+      contactsTitle: "Official Institutional Channels",
+      contactsSubtitle: "Direct executive liaisons and regional operating presences.",
+      londonTitle: "Global Headquarters",
+      londonCountry: "London, United Kingdom",
+      dakarTitle: "Regional Secretariat",
+      dakarCountry: "Dakar, Senegal",
+      emailGeneralLabel: "General Inquiries",
+      emailSecretariatLabel: "General Secretariat",
+      emailFieldOpsLabel: "Field Operations",
+      exclusionsTitle: "Intentional Disclosure Boundaries",
+      exclusionsText: "This Trust Center intentionally excludes unverified commercial marketing badges, unbacked certification seals, and speculative regulatory accreditations. Where formal third-party audit reports or statutory approvals are finalized for individual projects, they are published directly in the relevant project record.",
+      breadcrumbHome: "Home",
+      breadcrumbTrust: "Trust Center",
+    },
     skipToContent: "Skip to content",
     langLabel: "العربية",
   },
@@ -1594,6 +1730,99 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       leadershipNote: "توجه التحالف كما تصوغه قيادته.",
       leadershipCta: "اطلب اجتماعاً مع القيادة",
     },
+    trust: {
+      metaTitle: "مركز الثقة المؤسسية",
+      metaDescription: "الحقائق الموثقة، والتزامات خصوصية البيانات، والبنية الأمنية، وأطر الحوكمة التي تحكم عمليات التحالف.",
+      eyebrow: "النزاهة والشفافية المؤسسية",
+      title: "مركز الثقة",
+      subtitle: "المعايير المعتمدة في حوكمة البيانات، وأمن المنظومة، ومسارات التواصل، والتحقق المستقل في مشاريع التحالف.",
+      lastUpdatedLabel: "المعايير سارية اعتباراً من",
+      lastUpdatedDate: "2026-08-29",
+      philosophyTitle: "فلسفة التحقق والشفافية",
+      philosophyText: "تعتمد المصداقية المؤسسية لدى الحكومات ومؤسسات تمويل التنمية والمصارف على الدقة التامة في تمييز الحقائق. يفصل التحالف بدقة ووضوح بين البيانات المعتمدة من الناشر والمراجعة المستقلة قيد الانتظار في جميع المشاريع المنشورة. تعكس بيانات المشاريع والنطاقات الاسترشادية سجلات مؤسسية تمت مراجعتها لاستكشاف الشراكات، في حين تُجرى الدراسات الفنية والبيئية والمالية المستقلة قبل توقيع العقود النهائية الملزمة.",
+      philosophyStatusLabel: "معيار حالة الدليل",
+      philosophyStatusBadge: "تم التحقق من الناشر · المراجعة المستقلة قيد الانتظار",
+      philosophyNote: "لا يتم نشر أي حقيقة أو جدول زمني أو موافقة دون الاستناد إلى مصدر مؤسسي مؤكد في سجلات التحالف.",
+      privacyTitle: "سياسة البيانات والخصوصية",
+      privacySubtitle: "نهج منضبط يقتصر على البيانات الضرورية ومشروط بالموافقة الصريحة لضمان الخصوصية.",
+      privacyPoints: [
+        {
+          title: "انعدام أدوات التتبع الخارجية تماماً",
+          desc: "لا نستخدم أي نصوص برمجية لتحليلات الطرف الثالث، أو متتبعات إعلانية، أو بيكسل سلوكي في أي جزء من المنصة.",
+        },
+        {
+          title: "قياسات التصفح مشروطة بالموافقة الصريحة",
+          desc: "يتم حظر إشارات قياس التصفح مجهولة الهوية بالكامل حتى يمنح الزائر موافقته الصريحة، مع إزالة معاملات البحث والمحددات التعريفية مسبقاً.",
+        },
+        {
+          title: "استخدام الاستفسارات للغرض المحدد فقط",
+          desc: "تُستخدم استفسارات التواصل التنفيذي حصرياً لتقييم الطلب المعني والرد عليه، ولا يتم بيعها أو مشاركتها أو استغلالها تجارياً على الإطلاق.",
+        },
+      ],
+      privacyPolicyLink: "الاطلاع على سياسة الخصوصية",
+      termsLink: "الاطلاع على شروط الاستخدام",
+      securityTitle: "المنظومة الأمنية والتقنية",
+      securitySubtitle: "ضوابط هندسية صارمة لحماية الاتصالات والبيانات المؤسسية.",
+      securityPoints: [
+        {
+          title: "تشفير كامل عبر بروتوكول HTTPS",
+          desc: "يتم تشفير كافة البيانات وحركة المرور أثناء النقل باستخدام أحدث بروتوكولات TLS عبر شبكات التسليم العالمية.",
+        },
+        {
+          title: "تنفيذ مقيد ومحدد زمنياً للطلبات الصادرة",
+          desc: "تخضع عمليات التكامل الصادرة على النشر العام لحدود زمنية صارمة: مهلة قصوى قدرها 8 ثوانٍ لمزودي تسليم الاستفسارات و15 ثانية لخدمة المساعد. أما إشعارات الاستضافة الذاتية فمرشحة للتقييس على المعيار ذاته.",
+        },
+        {
+          title: "سياسة واجهة برمجة التطبيقات من نفس المصدر",
+          desc: "تقتصر طلبات العميل على مسارات /api/* التابعة للموقع حصراً، مع فحص دقيق ومطابقة صارمة لمخططات البيانات المدخلة.",
+        },
+        {
+          title: "خلو حزم المتصفح من أي أسرار برمجية",
+          desc: "تظل مفاتيح الوصول والاعتماد والتوقيع محصورة بالكامل داخل بيئة الخادم ولا تُدرج إطلاقاً في الكود البرمجي المرسل للمتصفح.",
+        },
+      ],
+      governanceTitle: "أطر الحوكمة والمسؤولية الائتمانية",
+      governanceSubtitle: "أربعة ركائز مؤسسية تحكم كل مبادرة من مرحلة الفرز وحتى التنفيذ.",
+      governancePillars: [
+        {
+          slug: "esia-esms",
+          title: "الضمانات البيئية والاجتماعية (ESIA / ESMS)",
+          desc: "فرز بيئي واجتماعي يتوافق مع معايير بنوك التنمية الدولية قبل أي التزام مالي.",
+          linkText: "عرض إطار ESIA/ESMS",
+        },
+        {
+          slug: "kyc-aml",
+          title: "معايير الامتثال ومكافحة غسل الأموال (KYC / AML)",
+          desc: "التحقق من الكيانات المشاركة والمستفيدين النهائيين والتدقيق في قوائم العقوبات الدولية.",
+          linkText: "عرض معايير KYC/AML",
+        },
+        {
+          slug: "independent-oversight",
+          title: "الرقابة الفنية والمالية المستقلة",
+          desc: "تدقيق هندسي محايد، وضوابط صرف مرحلية، ومراجعات منتظمة طوال مراحل التنفيذ.",
+          linkText: "عرض آليات الرقابة",
+        },
+        {
+          slug: "contracts",
+          title: "هندسة العقود وفض النزاعات",
+          desc: "نماذج شراكة قطاع عام وخاص منضبطة، ومصفوفات توزيع مخاطر واضحة، وتحكيم محايد.",
+          linkText: "عرض هيكل العقود",
+        },
+      ],
+      contactsTitle: "القنوات المؤسسية الرسمية",
+      contactsSubtitle: "قنوات التواصل التنفيذي والمقرات الإقليمية المعتمدة للتحالف.",
+      londonTitle: "المقر الرئيسي العالمي",
+      londonCountry: "لندن، المملكة المتحدة",
+      dakarTitle: "الأمانة الإقليمية",
+      dakarCountry: "داكار، السنغال",
+      emailGeneralLabel: "الاستفسارات العامة",
+      emailSecretariatLabel: "الأمانة العامة",
+      emailFieldOpsLabel: "العمليات الميدانية",
+      exclusionsTitle: "حدود الإفصاح والشفافية",
+      exclusionsText: "يتعمد مركز الثقة استبعاد أي أختام تسويقية غير موثقة أو ادعاءات تسجيل غير مدعومة بمستندات قاطعة. وعند اكتمال أي تدقيق مستقل أو اعتماد رسمي لمشروع محدد، يتم نشره مباشرة في سجل ذلك المشروع.",
+      breadcrumbHome: "الرئيسية",
+      breadcrumbTrust: "مركز الثقة",
+    },
     skipToContent: "تخطَّ إلى المحتوى",
     langLabel: "EN",
   },
@@ -2193,6 +2422,99 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       leadershipTitle: "Perspectives de la Direction",
       leadershipNote: "La direction de l'Alliance telle qu'articulée par son leadership.",
       leadershipCta: "Demander un entretien de direction",
+    },
+    trust: {
+      metaTitle: "Centre de confiance institutionnelle",
+      metaDescription: "Faits vérifiés, engagements de confidentialité, architecture de sécurité et cadres de gouvernance régissant l'AIABASD.",
+      eyebrow: "Intégrité et vérification institutionnelles",
+      title: "Centre de confiance",
+      subtitle: "Normes vérifiables, posture de protection des données, principes de sécurité et cadres de gouvernance régissant les opérations de l'AIABASD.",
+      lastUpdatedLabel: "Normes en vigueur au",
+      lastUpdatedDate: "2026-08-29",
+      philosophyTitle: "Philosophie de vérification",
+      philosophyText: "La crédibilité auprès des gouvernements, des institutions de financement du développement et des banques partenaires repose sur une stricte rigueur factuelle. L'AIABASD distingue explicitement les faits vérifiés par l'éditeur des vérifications indépendantes en attente pour l'ensemble du portefeuille. Les profils, capacités indicatives et modèles publiés reflètent des données institutionnelles vérifiées pour l'exploration de partenariats. Les audits techniques, environnementaux et financiers indépendants sont menés préalablement à la conclusion d'accords définitifs.",
+      philosophyStatusLabel: "Norme de statut du catalogue",
+      philosophyStatusBadge: "Vérifié par l'éditeur · Examen indépendant en attente",
+      philosophyNote: "Aucun fait, calendrier, approbation ou rendement n'est publié sans dérivation d'une source institutionnelle vérifiée.",
+      privacyTitle: "Posture de confidentialité des données",
+      privacySubtitle: "Une télémétrie minimale et strictement conditionnée au consentement explicite des visiteurs.",
+      privacyPoints: [
+        {
+          title: "Zéro traceur tiers",
+          desc: "Nous ne déployons aucun script d'analyse tiers, traceur publicitaire ou pixel comportemental sur l'ensemble de notre plateforme.",
+        },
+        {
+          title: "Télémétrie interne soumise au consentement",
+          desc: "Les balises anonymes de consultation de page sont bloquées jusqu'à l'obtention d'un consentement explicite. Les paramètres d'URL et identifiants sont purgés avant transmission.",
+        },
+        {
+          title: "Usage strictement délimité des demandes",
+          desc: "Les demandes de contact institutionnelles sont utilisées exclusivement pour évaluer et traiter la sollicitation concernée. Aucune donnée n'est vendue ou réutilisée.",
+        },
+      ],
+      privacyPolicyLink: "Consulter la politique de confidentialité",
+      termsLink: "Consulter les conditions d'utilisation",
+      securityTitle: "Posture technique et sécuritaire",
+      securitySubtitle: "Des frontières d'ingénierie rigoureuses pour protéger les communications et les données institutionnelles.",
+      securityPoints: [
+        {
+          title: "Distribution exclusivement en HTTPS",
+          desc: "L'ensemble du trafic web est chiffré de bout en bout en transit via les protocoles TLS modernes sur les réseaux de diffusion mondiaux.",
+        },
+        {
+          title: "Exécution sortante strictement bornée",
+          desc: "Les intégrations sortantes sont limitées dans le temps sur le déploiement public : 8 secondes maximum pour les prestataires de transmission des demandes et 15 secondes pour le service d'assistance. Les webhooks auto-hébergés sont en attente du même standard.",
+        },
+        {
+          title: "Architecture API de même origine",
+          desc: "Les interactions clientes sont restreintes aux routes /api/* de même origine avec validation stricte des charges utiles via des schémas Zod.",
+        },
+        {
+          title: "Aucun secret dans les paquets clients",
+          desc: "Les clés d'accès opérationnelles, secrets de fournisseurs et jetons de signature sont strictement confinés aux environnements serveurs.",
+        },
+      ],
+      governanceTitle: "Cadres de gouvernance et responsabilité fiduciaire",
+      governanceSubtitle: "Quatre piliers institutionnels régissant chaque mandat, de la sélection initiale jusqu'à la mise en œuvre.",
+      governancePillars: [
+        {
+          slug: "esia-esms",
+          title: "Sauvegardes EISE / SGES",
+          desc: "Filtrage environnemental et social conforme aux normes internationales de financement du développement avant tout engagement de capital.",
+          linkText: "Consulter le cadre EISE/SGES",
+        },
+        {
+          slug: "kyc-aml",
+          title: "Conformité KYC / LBC & Filtrage des sanctions",
+          desc: "Diligence raisonnable sur les contreparties, vérification des bénéficiaires effectifs et contrôle systématique des listes de sanctions.",
+          linkText: "Consulter les normes KYC/LBC",
+        },
+        {
+          slug: "independent-oversight",
+          title: "Supervision technique et financière indépendante",
+          desc: "Validation technique par des tiers, contrôle des décaissements par étapes et audits réguliers tout au long de l'exécution.",
+          linkText: "Consulter les mécanismes de supervision",
+        },
+        {
+          slug: "contracts",
+          title: "Architecture contractuelle et règlement des différends",
+          desc: "Structures de PPP standardisées, matrices d'allocation des risques transparentes et clauses d'arbitrage neutres.",
+          linkText: "Consulter l'architecture contractuelle",
+        },
+      ],
+      contactsTitle: "Canaux institutionnels officiels",
+      contactsSubtitle: "Liaisons de direction et représentations régionales officielles de l'Alliance.",
+      londonTitle: "Siège mondial",
+      londonCountry: "Londres, Royaume-Uni",
+      dakarTitle: "Secrétariat régional",
+      dakarCountry: "Dakar, Sénégal",
+      emailGeneralLabel: "Renseignements généraux",
+      emailSecretariatLabel: "Secrétariat général",
+      emailFieldOpsLabel: "Opérations sur le terrain",
+      exclusionsTitle: "Limites délibérées de divulgation",
+      exclusionsText: "Ce Centre de confiance omet délibérément tout badge marketing commercial, sceau de certification non vérifié ou allégation d'agrément non étayée. Lorsque des rapports d'audit indépendants ou des approbations formelles sont finalisés pour un projet donné, ils sont publiés directement dans le dossier du projet concerné.",
+      breadcrumbHome: "Accueil",
+      breadcrumbTrust: "Centre de confiance",
     },
     skipToContent: "Aller au contenu",
     langLabel: "FR",

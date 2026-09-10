@@ -34,6 +34,7 @@ const SectorPage = lazy(() => import("./pages/SectorPage"));
 const Impact = lazy(() => import("./pages/Impact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
+const TrustCenter = lazy(() => import("./pages/TrustCenter"));
 const Visions = lazy(() => import("./pages/Visions"));
 const Services = lazy(() => import("./pages/Services"));
 const Intelligence = lazy(() => import("./pages/Intelligence"));
@@ -79,6 +80,7 @@ function RouterSwitch() {
         <Route path={"/admin"} component={AdminRoute} />
         <Route path={"/privacy"} component={Privacy} />
         <Route path={"/terms"} component={Terms} />
+        <Route path={"/trust"} component={TrustCenter} />
         <Route path={"/visions"} component={Visions} />
         <Route path={"/services"} component={Services} />
         <Route path={"/intelligence"} component={Intelligence} />
