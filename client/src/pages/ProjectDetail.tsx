@@ -108,7 +108,7 @@ export default function ProjectDetail({
 
   return (
     <div
-      className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}
+      className={`min-h-[100dvh] bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}
     >
       <SEO
         title={project ? `${project.title[locale]} | AIABASD` : t.pageTitle}
@@ -152,29 +152,29 @@ export default function ProjectDetail({
             aria-label="Breadcrumb"
             className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 pt-6"
           >
-            <ol className="t-meta text-[10px] text-black/45 flex items-center gap-1.5 flex-wrap">
+            <ol className="t-meta text-[11px] text-[#0b0b10]/60 flex items-center gap-1.5 flex-wrap">
               <li>
                 <a
                   href={localizedPath("/", lang)}
-                  className="hover:text-[#5a1f2e] transition-colors"
+                  className="hover:text-[#5a1f2e] transition-[color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px"
                 >
                   {t.homeCrumb}
                 </a>
               </li>
               <li aria-hidden="true">
-                <ChevronRight size={11} className="rtl:-scale-x-100" />
+                <ChevronRight size={11} className="rtl:-scale-x-100 text-[#0b0b10]/40" />
               </li>
               <li>
                 <Link href={localizedLinkPath("/projects", lang)} asChild>
-                  <a className="hover:text-[#5a1f2e] transition-colors">
+                  <a className="hover:text-[#5a1f2e] transition-[color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                     {t.backLabel}
                   </a>
                 </Link>
               </li>
               <li aria-hidden="true">
-                <ChevronRight size={11} className="rtl:-scale-x-100" />
+                <ChevronRight size={11} className="rtl:-scale-x-100 text-[#0b0b10]/40" />
               </li>
-              <li aria-current="page" className="text-[#5a1f2e]">
+              <li aria-current="page" className="text-[#5a1f2e] font-semibold">
                 {project.title[locale]}
               </li>
             </ol>
@@ -183,16 +183,16 @@ export default function ProjectDetail({
         {!project ? (
           <Section className="py-24">
             <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 text-center space-y-6">
-              <h1 className="text-2xl font-bold">{t.detailTitle}</h1>
-              <p className="t-meta text-black/50">404</p>
+              <h1 className="text-2xl font-bold text-[#0b0b10]">{t.detailTitle}</h1>
+              <p className="t-meta text-[#5a1f2e]" dir="ltr"><bdi>404</bdi></p>
               <Link href={localizedLinkPath("/projects", lang)} asChild>
-                <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-colors">
+                <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                   <ArrowLeft
                     size={14}
                     className="rtl:-scale-x-100"
                     aria-hidden="true"
                   />
-                  {t.backLabel}
+                  <span>{t.backLabel}</span>
                 </a>
               </Link>
             </div>
@@ -200,14 +200,14 @@ export default function ProjectDetail({
         ) : (
           <>
             {/* Header */}
-            <Section className="relative py-12 border-b border-black/10 bg-white">
+            <Section className="relative py-12 border-b border-[#0b0b10]/10 bg-white">
               <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                 <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                     <span className="t-meta text-[#5a1f2e]">
                       {t.detailTitle}
                     </span>
-                    <span className="t-meta text-black/40">{t.detailNote}</span>
+                    <span className="t-meta text-[#0b0b10]/60">{t.detailNote}</span>
                   </div>
                   <StatusBadge status={project.status} locale={locale} />
                 </div>
@@ -219,16 +219,16 @@ export default function ProjectDetail({
             </Section>
 
             {/* Fact strip */}
-            <div className="border-b border-black/10 bg-[#fdfcfb]">
+            <div className="border-b border-[#0b0b10]/10 bg-[#fdfcfb]">
               <div
                 className={`mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 grid grid-cols-2 md:grid-cols-3 ${FACT_COLS[facts.length] ?? "lg:grid-cols-6"}`}
               >
                 {facts.map(item => (
                   <div
                     key={item.label}
-                    className="border-b border-e border-black/10 last:border-e-0 px-4 py-5"
+                    className="border-b border-e border-[#0b0b10]/10 last:border-e-0 px-4 py-5"
                   >
-                    <div className="t-meta text-black/50 text-[10px] mb-1.5">
+                    <div className="t-meta text-[#0b0b10]/60 text-[10px] mb-1.5">
                       {item.label}
                     </div>
                     <div className="text-sm font-semibold text-[#0b0b10] leading-snug">
@@ -245,18 +245,18 @@ export default function ProjectDetail({
                 <div className="lg:col-span-7 space-y-10">
                   <div>
                     {readiness && (
-                      <div className="mb-10 border border-black/10 bg-white p-6 md:p-7">
+                      <div className="mb-10 border border-[#0b0b10]/10 bg-white p-6 md:p-7 shadow-[0_4px_12px_-4px_rgba(90,31,46,0.08)]">
                         <div className="flex items-start justify-between gap-5">
                           <div>
                             <h2 className="t-meta text-[#5a1f2e]">
                               {t.readinessLabel}
                             </h2>
-                            <p className="mt-2 max-w-xl text-xs leading-relaxed text-black/55">
+                            <p className="mt-2 max-w-xl text-xs leading-relaxed text-[#0b0b10]/70">
                               {t.readinessNote}
                             </p>
                           </div>
-                          <span className="t-data text-2xl font-semibold text-[#5a1f2e]">
-                            {readiness.score}%
+                          <span className="t-data tabular-nums text-2xl font-bold text-[#5a1f2e]" dir="ltr">
+                            <bdi>{readiness.score}%</bdi>
                           </span>
                         </div>
                         <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-4 md:grid-cols-3">
@@ -271,18 +271,18 @@ export default function ProjectDetail({
                             };
                             return (
                               <div key={factor.key}>
-                                <div className="mb-1 flex items-center justify-between gap-2 text-[10px] text-black/50">
+                                <div className="mb-1.5 flex items-center justify-between gap-2 t-meta text-[10px] text-[#0b0b10]/60">
                                   <span>{labels[factor.key]}</span>
-                                  <span className="t-data">
-                                    {factor.points}/{factor.max}
+                                  <span className="t-data tabular-nums" dir="ltr">
+                                    <bdi>{factor.points}/{factor.max}</bdi>
                                   </span>
                                 </div>
                                 <div
-                                  className="h-1 bg-black/[0.06]"
+                                  className="h-1.5 bg-[#0b0b10]/[0.06]"
                                   aria-hidden="true"
                                 >
                                   <div
-                                    className="h-full bg-[#5a1f2e]"
+                                    className="h-full bg-[#f2a007]"
                                     style={{
                                       width: `${(factor.points / factor.max) * 100}%`,
                                     }}
@@ -297,12 +297,12 @@ export default function ProjectDetail({
                     <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-5">
                       {t.detailTitle}
                     </h2>
-                    <p className="text-base text-black/75 leading-relaxed">
+                    <p className="text-base text-[#0b0b10]/75 leading-relaxed">
                       {project.description[locale]}
                     </p>
                     {project.model && (
-                      <p className="text-sm text-black/60 leading-relaxed mt-4">
-                        <span className="t-meta text-black/50 text-[10px] me-2">
+                      <p className="text-sm text-[#0b0b10]/70 leading-relaxed mt-4">
+                        <span className="t-meta text-[#0b0b10]/60 text-[10px] me-2">
                           {t.modelLabel}:
                         </span>
                         {project.model[locale]}
@@ -318,7 +318,7 @@ export default function ProjectDetail({
                       {project.objectives.map((o, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-sm text-black/70 leading-relaxed"
+                          className="flex items-start gap-3 text-sm text-[#0b0b10]/75 leading-relaxed"
                         >
                           <CheckCircle2
                             size={16}
@@ -326,7 +326,7 @@ export default function ProjectDetail({
                             className="text-[#5a1f2e] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
-                          {o[locale]}
+                          <span>{o[locale]}</span>
                         </li>
                       ))}
                     </ul>
@@ -340,7 +340,7 @@ export default function ProjectDetail({
                       {project.partnership.map((o, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 border-s-2 border-[#5a1f2e]/25 ps-3.5 text-sm text-black/70 leading-relaxed"
+                          className="flex items-start gap-3 border-s-2 border-[#5a1f2e]/25 ps-3.5 text-sm text-[#0b0b10]/75 leading-relaxed"
                         >
                           <Handshake
                             size={16}
@@ -348,7 +348,7 @@ export default function ProjectDetail({
                             className="text-[#5a1f2e] shrink-0 mt-0.5"
                             aria-hidden="true"
                           />
-                          {o[locale]}
+                          <span>{o[locale]}</span>
                         </li>
                       ))}
                     </ul>
@@ -356,38 +356,39 @@ export default function ProjectDetail({
                 </div>
 
                 <aside className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-                  <div className="bg-[#0b0b10] text-[#fdfcfb] p-8">
+                  <div className="relative bg-[#0b0b10] text-[#fdfcfb] p-8 border border-white/10 shadow-[0_18px_40px_rgba(90,31,46,0.22)]">
                     <h2 className="t-meta text-[#f2a007] mb-4">{t.discuss}</h2>
-                    <p className="text-sm text-white/65 leading-relaxed mb-6">
+                    <p className="text-sm text-[#fdfcfb]/75 leading-relaxed mb-6">
                       {STATUSES[project.status][locale]}
                     </p>
                     <div className="space-y-3">
                       <button
                         type="button"
                         onClick={() => window.print()}
-                        className="w-full inline-flex items-center justify-center gap-2 border border-white/25 hover:border-[#f2a007] text-[#fdfcfb] font-semibold text-xs uppercase tracking-wider px-6 py-3.5 transition-colors cursor-pointer print:hidden"
+                        className="w-full inline-flex items-center justify-center gap-2 border border-white/25 hover:border-[#f2a007] hover:bg-white/[0.06] text-[#fdfcfb] t-meta text-xs px-6 py-3.5 transition-[color,border-color,background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px cursor-pointer print:hidden"
                       >
                         <Download size={14} aria-hidden="true" />
-                        {t.downloadBrief}
+                        <span>{t.downloadBrief}</span>
                       </button>
                       <a
                         href={contactHref}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-[#f2a007] hover:bg-[#fdfcfb] text-[#0b0b10] font-semibold text-xs uppercase tracking-wider px-6 py-3.5 transition-colors"
+                        className="w-full inline-flex items-center justify-center gap-2 bg-[#f2a007] hover:bg-[#fdfcfb] text-[#0b0b10] t-meta text-xs px-6 py-3.5 transition-[color,background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px shadow-[0_4px_12px_rgba(90,31,46,0.25)]"
                       >
-                        {t.discuss}
+                        <span>{t.discuss}</span>
                       </a>
                     </div>
-                    <p className="text-xs text-white/45 leading-relaxed mt-5">
-                      {t.lastReviewedLabel}: {reviewedDate}
+                    <p className="text-xs text-[#fdfcfb]/60 leading-relaxed mt-5 flex items-center gap-1.5 flex-wrap">
+                      <span>{t.lastReviewedLabel}:</span>
+                      <span dir="ltr"><bdi>{reviewedDate}</bdi></span>
                     </p>
-                    <p className="text-xs text-white/45 leading-relaxed mt-2">
+                    <p className="text-xs text-[#fdfcfb]/60 leading-relaxed mt-2">
                       {t.detailNote}
                     </p>
                   </div>
 
                   <div
                     role="note"
-                    className="border border-black/10 bg-white p-6 flex items-start gap-3.5"
+                    className="border border-[#0b0b10]/10 bg-white p-6 flex items-start gap-3.5 shadow-[0_4px_12px_-4px_rgba(90,31,46,0.06)]"
                   >
                     <ShieldAlert
                       size={16}
@@ -398,7 +399,7 @@ export default function ProjectDetail({
                       <p className="t-meta text-[#5a1f2e] mb-2 text-[10px]">
                         {t.disclaimerLabel}
                       </p>
-                      <p className="text-xs text-black/60 leading-relaxed">
+                      <p className="text-xs text-[#0b0b10]/70 leading-relaxed">
                         {t.disclaimer}
                       </p>
                     </div>
@@ -408,7 +409,7 @@ export default function ProjectDetail({
             </Section>
             {/* Related projects */}
             {related.length > 0 && (
-              <Section className="py-14 border-t border-black/10">
+              <Section className="py-14 border-t border-[#0b0b10]/10">
                 <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                   <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-8">
                     {t.relatedLabel}

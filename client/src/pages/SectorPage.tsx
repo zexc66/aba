@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link, useParams } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import SEO from "@/components/SEO";
@@ -97,9 +98,15 @@ export default function SectorPage({
       )
     : [];
 
+  // Subtext discipline: institutional focus statement (<= 20 words across EN, AR, FR)
+  const headerSubtext = useMemo(() => {
+    const parts = t.headerNote.split(/(?<=[.!?\u06D4])\s+/);
+    return parts.length > 1 ? parts[1] : t.headerNote;
+  }, [t.headerNote]);
+
   return (
     <div
-      className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}
+      className={`min-h-[100dvh] bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}
     >
       <SEO
         title={sectorName ? `${sectorName} | AIABASD` : t.pageTitle}
@@ -117,37 +124,37 @@ export default function SectorPage({
         {!known ? (
           <Section className="py-24">
             <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24 text-center">
-              <p className="t-meta text-[#5a1f2e] mb-6">404</p>
+              <p className="t-meta text-[#5a1f2e] mb-6" dir="ltr"><bdi>404</bdi></p>
               <Link href={localizedLinkPath("/projects", lang)} asChild>
-                <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-colors">
+                <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                   <ArrowLeft
                     size={14}
                     className="rtl:-scale-x-100"
                     aria-hidden="true"
                   />
-                  {u.allProjects}
+                  <span>{u.allProjects}</span>
                 </a>
               </Link>
             </div>
           </Section>
         ) : (
           <>
-            <Section className="relative py-12 border-b border-black/10 bg-white">
+            <Section className="relative py-12 border-b border-[#0b0b10]/10 bg-white">
               <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
                 <Link href={localizedLinkPath("/projects", lang)} asChild>
-                  <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 mb-6 transition-colors">
+                  <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 mb-6 transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                     <ArrowLeft
                       size={14}
                       className="rtl:-scale-x-100"
                       aria-hidden="true"
                     />
-                    {u.backLabel}
+                    <span>{u.backLabel}</span>
                   </a>
                 </Link>
                 <SectionHeader
                   index="S"
                   title={sectorName}
-                  note={t.headerNote}
+                  note={headerSubtext}
                   meta="SECTOR_PORTFOLIO"
                   titleAs="h1"
                 />
@@ -161,7 +168,7 @@ export default function SectorPage({
                     {u.projectsLabel}
                   </h2>
                   {projects.length === 0 ? (
-                    <p className="t-meta text-black/50 py-8">{u.emptyLabel}</p>
+                    <p className="t-meta text-[#0b0b10]/60 py-8">{u.emptyLabel}</p>
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                       {projects.map((p, i) => (
@@ -181,10 +188,10 @@ export default function SectorPage({
                     <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-4">
                       {u.programsLabel}
                     </h2>
-                    <p className="text-sm text-black/55 mb-4">
+                    <p className="text-sm text-[#0b0b10]/70 mb-4">
                       {u.programsNote}
                     </p>
-                    <ul className="divide-y divide-black/10 border-y border-black/10">
+                    <ul className="divide-y divide-[#0b0b10]/10 border-y border-[#0b0b10]/10">
                       {programs.map(p => (
                         <li key={p.slug}>
                           <Link
@@ -194,11 +201,15 @@ export default function SectorPage({
                               lang
                             )}
                           >
-                            <a className="flex items-center justify-between gap-4 py-4 group">
-                              <span className="text-sm font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors">
+                            <a className="relative flex items-center justify-between gap-4 py-4 px-3 -mx-3 group hover:bg-[#5a1f2e]/[0.035] active:translate-y-px transition-[color,background-color,transform] duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                              <span
+                                className="absolute bottom-0 start-0 h-px w-0 bg-[#f2a007] transition-[width] duration-500 group-hover:w-full pointer-events-none"
+                                aria-hidden="true"
+                              />
+                              <span className="text-sm font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors leading-snug">
                                 {p.name}
                               </span>
-                              <span className="t-meta text-black/50">
+                              <span className="t-meta text-[#0b0b10]/60">
                                 {p.status}
                               </span>
                             </a>
@@ -224,7 +235,7 @@ export default function SectorPage({
                               lang
                             )}
                           >
-                            <a className="t-meta inline-block border border-black/15 px-3 py-2 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] transition-colors text-xs">
+                            <a className="t-meta text-[11px] inline-block border border-[#0b0b10]/15 bg-white px-3 py-2 text-[#0b0b10]/75 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] active:translate-y-px transition-[color,border-color,transform] duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
                               {p.title[locale]}
                             </a>
                           </Link>
