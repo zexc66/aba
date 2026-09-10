@@ -127,7 +127,13 @@ export default function Projects() {
   );
 
   const selectClass =
-    "w-full min-h-11 bg-[#fdfcfb] border border-black/10 px-4 py-2.5 text-sm text-[#0b0b10] transition-colors cursor-pointer focus:border-[#5a1f2e] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2";
+    "w-full min-h-11 bg-[#fdfcfb] border border-[#0b0b10]/10 px-4 py-2.5 text-sm text-[#0b0b10] transition-colors cursor-pointer hover:border-[#0b0b10]/25 focus:border-[#5a1f2e] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2";
+
+  // Subtext discipline: institutional focus statement (<= 20 words across EN, AR, FR)
+  const headerSubtext = useMemo(() => {
+    const parts = t.headerNote.split(/(?<=[.!?\u06D4])\s+/);
+    return parts.length > 1 ? parts[1] : t.headerNote;
+  }, [t.headerNote]);
 
   return (
     <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}>
@@ -136,24 +142,24 @@ export default function Projects() {
 
       <div className="pt-24">
         {/* Header */}
-        <Section className="relative py-12 border-b border-black/10 bg-white">
+        <Section className="relative py-12 border-b border-[#0b0b10]/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <SectionHeader
               index="P"
               title={t.headerTitle}
-              note={t.headerNote}
+              note={headerSubtext}
               meta="PROJECT_PORTFOLIO"
               titleAs="h1"
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <Link asChild href={localizedLinkPath("/submit-project", lang)}>
-                <a className="inline-flex min-h-11 items-center gap-2 bg-[#5a1f2e] px-5 py-3 t-meta text-[10px] text-white transition-colors hover:bg-black active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                <a className="inline-flex min-h-11 items-center gap-2 bg-[#5a1f2e] px-5 py-3 t-meta text-[10px] text-[#fdfcfb] transition-[color,background-color,transform] duration-200 hover:bg-[#0b0b10] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
                   {t.submitOpportunityLabel}
                   <Plus size={14} strokeWidth={2} aria-hidden="true" />
                 </a>
               </Link>
               <Link asChild href={localizedLinkPath("/opportunity-map", lang)}>
-                <a className="inline-flex min-h-11 items-center gap-2 border border-black/15 bg-white px-5 py-3 t-meta text-[10px] text-[#5a1f2e] transition-colors hover:border-[#5a1f2e] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                <a className="inline-flex min-h-11 items-center gap-2 border border-[#0b0b10]/15 bg-white px-5 py-3 t-meta text-[10px] text-[#5a1f2e] transition-[color,border-color,background-color,transform] duration-200 hover:border-[#5a1f2e] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
                   {t.opportunityMapLabel}
                   <ArrowUpRight size={14} strokeWidth={2} className="rtl:-scale-x-100" aria-hidden="true" />
                 </a>
@@ -163,11 +169,11 @@ export default function Projects() {
         </Section>
 
         {/* Filters */}
-        <Section className="py-8 border-b border-black/10">
+        <Section className="py-8 border-b border-[#0b0b10]/10 bg-[#fdfcfb]">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10 border border-black/10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#0b0b10]/10 border border-[#0b0b10]/10">
               <label htmlFor="filter-country" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/70 text-[10px]">{t.filterCountry}</span>
+                <span className="t-meta text-[#0b0b10]/70 text-[10px]">{t.filterCountry}</span>
                 <select
                   id="filter-country"
                   value={country}
@@ -181,7 +187,7 @@ export default function Projects() {
                 </select>
               </label>
               <label htmlFor="filter-sector" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/70 text-[10px]">{t.filterSector}</span>
+                <span className="t-meta text-[#0b0b10]/70 text-[10px]">{t.filterSector}</span>
                 <select
                   id="filter-sector"
                   value={sector}
@@ -195,7 +201,7 @@ export default function Projects() {
                 </select>
               </label>
               <label htmlFor="filter-type" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/70 text-[10px]">{t.filterType}</span>
+                <span className="t-meta text-[#0b0b10]/70 text-[10px]">{t.filterType}</span>
                 <select
                   id="filter-type"
                   value={type}
@@ -209,7 +215,7 @@ export default function Projects() {
                 </select>
               </label>
               <label htmlFor="filter-status" className="bg-[#fdfcfb] p-4 flex flex-col gap-2">
-                <span className="t-meta text-black/70 text-[10px]">{t.filterStatus}</span>
+                <span className="t-meta text-[#0b0b10]/70 text-[10px]">{t.filterStatus}</span>
                 <select
                   id="filter-status"
                   value={status}
@@ -232,7 +238,7 @@ export default function Projects() {
                   type="button"
                   aria-pressed={status === s}
                   onClick={() => setFilter("status", status === s ? "all" : s)}
-                  className={`inline-flex min-h-11 items-center cursor-pointer transition-opacity active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${status === "all" || status === s ? "" : "opacity-40"}`}
+                  className={`inline-flex min-h-11 items-center cursor-pointer transition-[opacity,transform] duration-200 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${status === "all" || status === s ? "" : "opacity-60 hover:opacity-100"}`}
                 >
                   <StatusBadge status={s} locale={locale} />
                 </button>
@@ -241,31 +247,32 @@ export default function Projects() {
                 type="button"
                 aria-pressed={showSavedOnly}
                 onClick={() => setShowSavedOnly((current) => !current)}
-                className={`inline-flex min-h-11 items-center gap-2 border px-3 py-2 t-meta text-[10px] transition-colors active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${showSavedOnly ? "border-[#f2a007] bg-[#f2a007]/10 text-[#6b4a00]" : "border-black/10 text-black/60 hover:border-[#5a1f2e]/30 hover:text-[#5a1f2e]"}`}
+                className={`inline-flex min-h-11 items-center gap-2 border px-3 py-2 t-meta text-[10px] transition-[color,border-color,background-color,transform] duration-200 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${showSavedOnly ? "border-[#f2a007] bg-[#f2a007]/10 text-[#6b4a00]" : "border-[#0b0b10]/10 text-[#0b0b10]/65 bg-white hover:border-[#5a1f2e]/30 hover:text-[#5a1f2e]"}`}
               >
                 <Bookmark size={12} aria-hidden="true" />
-                {t.watchlistLabel} ({savedSlugs.length})
+                <span>{t.watchlistLabel}</span>
+                <span className="t-data tabular-nums" dir="ltr">({savedSlugs.length})</span>
               </button>
             </div>
           </div>
         </Section>
 
         {comparedProjects.length > 0 && (
-          <Section className="border-b border-black bg-[#0b0b10] py-10 text-white">
+          <Section className="border-b border-[#0b0b10] bg-[#0b0b10] py-10 text-[#fdfcfb]">
             <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
               <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <div className="mb-2 flex items-center gap-2 text-[#f2a007]">
                     <GitCompareArrows size={16} aria-hidden="true" />
                     <span className="t-meta text-[10px]">{t.compareTitle}</span>
-                    <span className="t-data text-[10px] text-[#f2a007]/80">({comparedProjects.length}/3)</span>
+                    <span className="t-data tabular-nums text-[10px] text-[#f2a007]" dir="ltr">({comparedProjects.length}/3)</span>
                   </div>
-                  <p className="max-w-2xl text-sm leading-relaxed text-[#fdfcfb]/70">{t.compareNote}</p>
+                  <p className="max-w-2xl text-sm leading-relaxed text-[#fdfcfb]/75">{t.compareNote}</p>
                 </div>
                  <button
                    type="button"
                    onClick={clearCompare}
-                   className="inline-flex min-h-11 items-center t-meta border-b border-white/30 px-2 pb-1 text-[10px] text-white/70 transition-colors hover:border-white hover:text-white active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
+                   className="inline-flex min-h-11 items-center t-meta border-b border-white/30 px-2 pb-1 text-[10px] text-[#fdfcfb]/75 transition-[color,border-color,transform] duration-200 hover:border-white hover:text-[#fdfcfb] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
                  >
                   {t.compareClearLabel}
                 </button>
@@ -283,20 +290,20 @@ export default function Projects() {
                     <tr className="border-b border-white/10">
                       <th
                         scope="col"
-                        className="sticky start-0 z-10 w-44 min-w-44 bg-[#0b0b10] p-4 text-start align-top text-[10px] uppercase tracking-wider text-white/60 border-e border-white/10 break-words"
+                        className="sticky start-0 z-10 w-44 min-w-44 bg-[#0b0b10] p-4 text-start align-top text-[10px] uppercase tracking-wider text-[#fdfcfb]/70 border-e border-white/10 break-words"
                       >
                         {t.compareFactLabel}
                       </th>
                       {comparedProjects.map((project) => (
                         <th key={project.slug} scope="col" className="min-w-[200px] max-w-[320px] border-s border-white/10 p-4 text-start align-top break-words">
                           <div className="flex items-start justify-between gap-3">
-                            <span className="font-semibold leading-snug text-white break-words">{project.title[locale]}</span>
+                            <span className="font-semibold leading-snug text-[#fdfcfb] break-words">{project.title[locale]}</span>
                              <button
                                type="button"
                                onClick={() => toggleCompare(project.slug)}
                                aria-label={t.removeComparedProjectLabel}
                                title={t.removeComparedProjectLabel}
-                               className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-white/50 transition-colors hover:text-[#f2a007] active:scale-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
+                               className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-[#fdfcfb]/60 transition-[color,transform] duration-200 hover:text-[#f2a007] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
                              >
                               <X size={15} aria-hidden="true" />
                             </button>
@@ -306,8 +313,8 @@ export default function Projects() {
                       {comparedProjects.length === 1 && (
                         <th scope="col" className="min-w-[200px] max-w-[320px] border-s border-dashed border-white/15 p-4 text-start align-top bg-white/[0.02]">
                           <div className="flex flex-col gap-1.5">
-                            <span className="t-meta text-[10px] text-[#f2a007]/80 font-semibold">{t.compareTitle}</span>
-                            <span className="text-xs text-white/50 leading-snug break-words">{t.compareNote}</span>
+                            <span className="t-meta text-[10px] text-[#f2a007] font-semibold">{t.compareTitle}</span>
+                            <span className="text-xs text-[#fdfcfb]/70 leading-snug break-words">{t.compareNote}</span>
                           </div>
                         </th>
                       )}
@@ -318,15 +325,15 @@ export default function Projects() {
                       <tr key={row.label} className="border-b border-white/10 last:border-0">
                         <th
                           scope="row"
-                          className="sticky start-0 z-10 w-44 min-w-44 bg-[#0b0b10] p-4 text-start align-top text-[10px] uppercase tracking-wider text-white/60 border-e border-white/10 font-normal break-words"
+                          className="sticky start-0 z-10 w-44 min-w-44 bg-[#0b0b10] p-4 text-start align-top text-[10px] uppercase tracking-wider text-[#fdfcfb]/70 border-e border-white/10 font-normal break-words"
                         >
                           {row.label}
                         </th>
                         {comparedProjects.map((project) => (
-                          <td key={project.slug} className="border-s border-white/10 p-4 align-top leading-relaxed text-[#fdfcfb]/80 break-words">{row.get(project)}</td>
+                          <td key={project.slug} className="border-s border-white/10 p-4 align-top leading-relaxed text-[#fdfcfb]/85 break-words">{row.get(project)}</td>
                         ))}
                         {comparedProjects.length === 1 && (
-                          <td className="border-s border-dashed border-white/15 p-4 align-top text-white/30 text-xs bg-white/[0.01]">
+                          <td className="border-s border-dashed border-white/15 p-4 align-top text-[#fdfcfb]/45 text-xs bg-white/[0.01]">
                             —
                           </td>
                         )}
@@ -343,15 +350,15 @@ export default function Projects() {
         <Section className="py-12">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             {projects.length === 0 ? (
-              <div className="border border-black/10 bg-white p-10 md:p-14 text-center max-w-2xl mx-auto my-4">
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center border border-black/10 bg-[#fdfcfb] text-[#5a1f2e]">
+              <div className="border border-[#0b0b10]/10 bg-white p-10 md:p-14 text-center max-w-2xl mx-auto my-4">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center border border-[#0b0b10]/10 bg-[#fdfcfb] text-[#5a1f2e]">
                   {showSavedOnly ? (
                     <Bookmark size={20} className="text-[#f2a007]" aria-hidden="true" />
                   ) : (
                     <ShieldAlert size={20} className="text-[#5a1f2e]" aria-hidden="true" />
                   )}
                 </div>
-                <p className="t-meta text-black/70 text-xs leading-relaxed max-w-md mx-auto mb-2">
+                <p className="t-meta text-[#0b0b10]/70 text-xs leading-relaxed max-w-md mx-auto mb-2">
                   {showSavedOnly ? t.watchlistEmpty : t.emptyLabel}
                 </p>
                 <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -359,7 +366,7 @@ export default function Projects() {
                     <button
                       type="button"
                       onClick={() => setShowSavedOnly(false)}
-                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-5 py-2.5 t-meta text-[10px] text-white hover:bg-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:scale-95"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-5 py-2.5 t-meta text-[10px] text-[#fdfcfb] hover:bg-[#0b0b10] transition-[color,background-color,transform] duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px"
                     >
                       {t.viewAll}
                       <ArrowRight size={13} className="rtl:-scale-x-100" aria-hidden="true" />
@@ -371,7 +378,7 @@ export default function Projects() {
                         setFilters({ country: "all", sector: "all", type: "all", status: "all" });
                         window.history.replaceState(null, "", window.location.pathname);
                       }}
-                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-5 py-2.5 t-meta text-[10px] text-white hover:bg-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:scale-95"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-5 py-2.5 t-meta text-[10px] text-[#fdfcfb] hover:bg-[#0b0b10] transition-[color,background-color,transform] duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px"
                     >
                       {t.viewAll}
                       <ArrowRight size={13} className="rtl:-scale-x-100" aria-hidden="true" />
@@ -390,14 +397,14 @@ export default function Projects() {
         </Section>
 
         {/* Strategic initiatives */}
-        <Section className="relative py-16 bg-[#0b0b10] text-[#fdfcfb] border-y border-black">
+        <Section className="relative py-16 bg-[#0b0b10] text-[#fdfcfb] border-y border-[#0b0b10]">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <div className="mb-12">
               <p className="t-meta text-[#f2a007] mb-3">STRATEGIC_INITIATIVES</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#fdfcfb] leading-tight">
                 {t.initiativesTitle}
               </h2>
-              <p className="text-sm text-[#fdfcfb]/70 leading-relaxed mt-3 max-w-3xl">
+              <p className="text-sm text-[#fdfcfb]/75 leading-relaxed mt-3 max-w-3xl">
                 {t.initiativesNote}
               </p>
             </div>
@@ -415,18 +422,18 @@ export default function Projects() {
                       ? { duration: 0 }
                       : { duration: 0.35, delay: Math.min(i * 0.05, 0.2) }
                   }
-                  className="bg-[#11111a] p-7 flex flex-col hover:bg-white/[0.04] active:scale-[0.99] transition-colors group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
+                  className="bg-[#11111a] p-7 flex flex-col hover:bg-white/[0.04] active:translate-y-px transition-[color,background-color,transform] duration-200 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
                 >
                   <div className="flex items-center justify-between gap-3 mb-4">
-                    <StatusBadge status={p.status} locale={locale} />
-                    <span className="t-data text-[10px] text-white/50" dir="ltr">
+                    <StatusBadge status={p.status} locale={locale} dark={true} />
+                    <span className="t-data tabular-nums text-[10px] text-[#fdfcfb]/60" dir="ltr">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#f2a007] transition-colors leading-snug mb-3">
+                  <h3 className="text-lg font-bold text-[#fdfcfb] group-hover:text-[#f2a007] transition-colors leading-snug mb-3">
                     {p.title[locale]}
                   </h3>
-                  <p className="text-sm text-[#fdfcfb]/70 leading-relaxed">
+                  <p className="text-sm text-[#fdfcfb]/75 leading-relaxed">
                     {p.description[locale]}
                   </p>
                 </motion.a>
@@ -435,13 +442,13 @@ export default function Projects() {
 
             {/* Advanced technology cooperation areas */}
             <div className="border border-white/10 p-6 md:p-8">
-              <h3 className="text-base font-bold text-white mb-2">{t.techTitle}</h3>
-              <p className="t-meta text-white/60 text-[10px] mb-5">{t.techNote}</p>
+              <h3 className="text-base font-bold text-[#fdfcfb] mb-2">{t.techTitle}</h3>
+              <p className="t-meta text-[#fdfcfb]/70 text-[10px] mb-5">{t.techNote}</p>
               <ul className="flex flex-wrap gap-2" role="list">
                 {t.techAreas.map((area) => (
                   <li
                     key={area}
-                    className="t-meta text-[10px] text-[#fdfcfb]/80 border border-white/15 px-3 py-2 bg-white/[0.03]"
+                    className="t-meta text-[10px] text-[#fdfcfb]/85 border border-white/15 px-3 py-2 bg-white/[0.04]"
                   >
                     {area}
                   </li>
@@ -452,16 +459,16 @@ export default function Projects() {
         </Section>
 
         {/* Disclaimer */}
-        <Section className="py-10">
+        <Section className="py-10 bg-[#fdfcfb]">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <div
               role="note"
-              className="border border-black/10 bg-white p-6 flex items-start gap-4"
+              className="border border-[#0b0b10]/10 bg-white p-6 flex items-start gap-4"
             >
               <ShieldAlert size={18} className="text-[#5a1f2e] shrink-0 mt-0.5" aria-hidden="true" />
               <div>
-                <p className="t-meta text-[#5a1f2e] mb-2">{t.disclaimerLabel}</p>
-                <p className="text-sm text-black/75 leading-relaxed">{t.disclaimer}</p>
+                <p className="t-meta text-[#5a1f2e] mb-1.5">{t.disclaimerLabel}</p>
+                <p className="text-sm text-[#0b0b10]/75 leading-relaxed">{t.disclaimer}</p>
               </div>
             </div>
           </div>

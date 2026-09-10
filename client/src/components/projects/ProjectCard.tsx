@@ -43,21 +43,41 @@ export const SECTOR_ICONS: Record<SectorKey, LucideIcon> = {
 };
 
 /** Restrained status tones — subtle tints only, never promotional buttons. */
-const STATUS_TONE: Record<ProjectStatus, string> = {
-  "under-development": "text-[#5a1f2e] bg-[#5a1f2e]/[0.06] border-[#5a1f2e]/20",
-  "cooperation-framework": "text-[#5a1f2e] bg-[#5a1f2e]/[0.06] border-[#5a1f2e]/20",
-  "seeking-partners": "text-[#6b4a00] bg-[#f2a007]/[0.12] border-[#f2a007]/30",
-  "investment-opportunity": "text-[#6b4a00] bg-[#f2a007]/[0.12] border-[#f2a007]/30",
-  "technical-assessment": "text-black/60 bg-black/[0.03] border-black/15",
-  "seeking-financing": "text-black/60 bg-black/[0.03] border-black/15",
-  "procurement-opportunity": "text-black/60 bg-black/[0.03] border-black/15",
-  "strategic-vision": "text-black/60 bg-black/[0.03] border-black/15",
+const STATUS_TONE_LIGHT: Record<ProjectStatus, string> = {
+  "under-development": "text-[#5a1f2e] bg-[#5a1f2e]/[0.08] border-[#5a1f2e]/25",
+  "cooperation-framework": "text-[#5a1f2e] bg-[#5a1f2e]/[0.08] border-[#5a1f2e]/25",
+  "seeking-partners": "text-[#6b4a00] bg-[#f2a007]/[0.14] border-[#f2a007]/35",
+  "investment-opportunity": "text-[#6b4a00] bg-[#f2a007]/[0.14] border-[#f2a007]/35",
+  "technical-assessment": "text-[#0b0b10]/70 bg-[#0b0b10]/[0.04] border-[#0b0b10]/15",
+  "seeking-financing": "text-[#0b0b10]/70 bg-[#0b0b10]/[0.04] border-[#0b0b10]/15",
+  "procurement-opportunity": "text-[#0b0b10]/70 bg-[#0b0b10]/[0.04] border-[#0b0b10]/15",
+  "strategic-vision": "text-[#0b0b10]/70 bg-[#0b0b10]/[0.04] border-[#0b0b10]/15",
 };
 
-export function StatusBadge({ status, locale }: { status: ProjectStatus; locale: Locale3 }) {
+const STATUS_TONE_DARK: Record<ProjectStatus, string> = {
+  "under-development": "text-[#fdfcfb] bg-[#5a1f2e]/40 border-[#5a1f2e]/60",
+  "cooperation-framework": "text-[#fdfcfb] bg-[#5a1f2e]/40 border-[#5a1f2e]/60",
+  "seeking-partners": "text-[#f2a007] bg-[#f2a007]/15 border-[#f2a007]/40",
+  "investment-opportunity": "text-[#f2a007] bg-[#f2a007]/15 border-[#f2a007]/40",
+  "technical-assessment": "text-[#fdfcfb]/80 bg-white/[0.05] border-white/20",
+  "seeking-financing": "text-[#fdfcfb]/80 bg-white/[0.05] border-white/20",
+  "procurement-opportunity": "text-[#fdfcfb]/80 bg-white/[0.05] border-white/20",
+  "strategic-vision": "text-[#fdfcfb]/80 bg-white/[0.05] border-white/20",
+};
+
+export function StatusBadge({
+  status,
+  locale,
+  dark = false,
+}: {
+  status: ProjectStatus;
+  locale: Locale3;
+  dark?: boolean;
+}) {
+  const tones = dark ? STATUS_TONE_DARK : STATUS_TONE_LIGHT;
   return (
     <span
-      className={`inline-flex items-center t-meta text-[10px] px-2.5 py-1 border ${STATUS_TONE[status]}`}
+      className={`inline-flex items-center t-meta text-[10px] px-2.5 py-1 border ${tones[status]}`}
     >
       {STATUSES[status][locale]}
     </span>
@@ -90,7 +110,7 @@ export function ProjectCard({
           ? { duration: 0 }
           : { duration: 0.4, delay: Math.min((index % 3) * 0.05, 0.15) }
       }
-      className="group relative bg-white border border-black/10 p-7 flex flex-col hover:border-[#5a1f2e]/40 transition-colors duration-300"
+      className="group relative bg-white border border-[#0b0b10]/10 p-7 flex flex-col hover:border-[#5a1f2e]/40 transition-[border-color,box-shadow] duration-300"
     >
       <span
         aria-hidden="true"
@@ -100,7 +120,7 @@ export function ProjectCard({
       <div className="flex items-start justify-between gap-3 mb-5">
         <div className="flex items-center gap-3 min-w-0">
           <div
-            className="w-11 h-11 shrink-0 bg-[#5a1f2e]/[0.06] border border-[#5a1f2e]/15 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-white transition-colors duration-300"
+            className="w-11 h-11 shrink-0 bg-[#5a1f2e]/[0.06] border border-[#5a1f2e]/15 text-[#5a1f2e] flex items-center justify-center group-hover:bg-[#5a1f2e] group-hover:text-[#fdfcfb] transition-colors duration-300"
             aria-hidden="true"
           >
             {(() => {
@@ -113,7 +133,7 @@ export function ProjectCard({
               {COUNTRIES[project.country][locale]}
             </span>
             <Link asChild href={localizedLinkPath(`/sectors/${project.sector}`, locale)}>
-              <a className="t-meta text-black/60 text-[10px] hover:text-[#5a1f2e] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 transition-colors text-start">
+              <a className="t-meta text-[#0b0b10]/65 text-[10px] hover:text-[#5a1f2e] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 transition-colors text-start">
                 {SECTORS[project.sector][locale]}
               </a>
             </Link>
@@ -128,7 +148,7 @@ export function ProjectCard({
                aria-label={saved ? t.removeSavedProjectLabel : t.saveProjectLabel}
                aria-pressed={saved}
                title={saved ? t.removeSavedProjectLabel : t.saveProjectLabel}
-               className={`inline-flex h-11 w-11 items-center justify-center border transition-colors active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${saved ? "border-[#f2a007] bg-[#f2a007]/10 text-[#6b4a00]" : "border-black/10 text-black/60 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"}`}
+               className={`inline-flex h-11 w-11 items-center justify-center border transition-[color,border-color,background-color,transform] duration-200 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${saved ? "border-[#f2a007] bg-[#f2a007]/10 text-[#6b4a00]" : "border-[#0b0b10]/10 text-[#0b0b10]/65 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"}`}
              >
                {saved ? <BookmarkCheck size={15} aria-hidden="true" /> : <Bookmark size={15} aria-hidden="true" />}
              </button>
@@ -140,7 +160,7 @@ export function ProjectCard({
                  aria-label={compared ? t.removeComparedProjectLabel : (!compared && compareSlugs.length >= 3) ? t.compareLimitLabel : t.compareProjectLabel}
                  aria-pressed={compared}
                  title={compared ? t.removeComparedProjectLabel : (!compared && compareSlugs.length >= 3) ? t.compareLimitLabel : t.compareProjectLabel}
-                 className={`inline-flex h-11 w-11 items-center justify-center border transition-colors active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${compared ? "border-[#5a1f2e] bg-[#5a1f2e] text-white" : (!compared && compareSlugs.length >= 3) ? "border-black/10 text-black/30 bg-black/[0.02] cursor-not-allowed" : "border-black/10 text-black/60 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"}`}
+                 className={`inline-flex h-11 w-11 items-center justify-center border transition-[color,border-color,background-color,transform] duration-200 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${compared ? "border-[#5a1f2e] bg-[#5a1f2e] text-[#fdfcfb]" : (!compared && compareSlugs.length >= 3) ? "border-[#0b0b10]/10 text-[#0b0b10]/35 bg-[#0b0b10]/[0.02] cursor-not-allowed" : "border-[#0b0b10]/10 text-[#0b0b10]/65 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"}`}
                >
                  <GitCompareArrows size={15} aria-hidden="true" />
                </button>
@@ -153,7 +173,7 @@ export function ProjectCard({
         {project.title[locale]}
       </h3>
 
-      <p className="text-sm text-black/65 leading-relaxed line-clamp-2 mb-6">
+      <p className="text-sm text-[#0b0b10]/70 leading-relaxed line-clamp-2 mb-6">
         {project.description[locale]}
       </p>
 
@@ -166,21 +186,21 @@ export function ProjectCard({
         aria-label={`${t.readinessProfileLabel}: ${readiness.score}%`}
       >
         <div className="flex items-center justify-between gap-3">
-          <span className="t-meta text-[10px] text-black/60 min-w-0 break-words">{t.readinessProfileLabel}</span>
-          <span className="t-data text-xs font-semibold text-[#5a1f2e] shrink-0">{readiness.score}%</span>
+          <span className="t-meta text-[10px] text-[#0b0b10]/65 min-w-0 break-words">{t.readinessProfileLabel}</span>
+          <span className="t-data tabular-nums text-xs font-semibold text-[#5a1f2e] shrink-0" dir="ltr">{readiness.score}%</span>
         </div>
-        <div className="h-1.5 bg-black/[0.06]" aria-hidden="true">
+        <div className="h-1.5 bg-[#0b0b10]/[0.06]" aria-hidden="true">
           <div className="h-full bg-[#f2a007]" style={{ width: `${readiness.score}%` }} />
         </div>
       </div>
 
-      <div className="mt-auto pt-5 border-t border-black/5 flex items-center justify-between gap-3">
-        <span className="t-meta text-[10px] text-black/60">
+      <div className="mt-auto pt-5 border-t border-[#0b0b10]/8 flex items-center justify-between gap-3">
+        <span className="t-meta text-[10px] text-[#0b0b10]/65">
           {TYPES[project.type][locale]}
         </span>
         <Link asChild href={localizedLinkPath(`/projects/${project.slug}`, locale)}>
           <a
-            className="inline-flex min-h-11 items-center gap-1.5 t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/30 hover:border-[#5a1f2e] pb-0.5 transition-colors active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
+            className="inline-flex min-h-11 items-center gap-1.5 t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/30 hover:border-[#5a1f2e] pb-0.5 transition-[border-color,transform] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
           >
             {t.explore}
             <ArrowRight size={12} className="rtl:-scale-x-100" strokeWidth={1.5} aria-hidden="true" />

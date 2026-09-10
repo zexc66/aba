@@ -16,7 +16,7 @@ export const MAP_COPY: Record<Locale3, {
 }> = {
   en: {
     title: "Opportunity portfolio map",
-    intro: "Review AIABASD's published project portfolio across markets and regional corridors. Select a location to view the opportunities currently represented in the catalogue.",
+    intro: "Review AIABASD's published project portfolio across markets and regional corridors to inspect active catalogue opportunities.",
     eyebrow: "PORTFOLIO_GEOGRAPHY",
     allLabel: "All locations",
     selectedLabel: "Selected location",
@@ -30,7 +30,7 @@ export const MAP_COPY: Record<Locale3, {
   },
   ar: {
     title: "خريطة محفظة الفرص",
-    intro: "استعرض محفظة المشاريع المنشورة لدى AIABASD عبر الأسواق والممرات الإقليمية. اختر موقعًا لعرض الفرص المدرجة حاليًا في الكتالوج.",
+    intro: "استعرض محفظة مشاريع AIABASD عبر الممرات والأسواق الإقليمية للاطلاع على الفرص النشطة في الكتالوج.",
     eyebrow: "جغرافية_المحفظة",
     allLabel: "جميع المواقع",
     selectedLabel: "الموقع المحدد",
@@ -44,7 +44,7 @@ export const MAP_COPY: Record<Locale3, {
   },
   fr: {
     title: "Carte du portefeuille d'opportunités",
-    intro: "Consultez le portefeuille de projets publiés par AIABASD à travers les marchés et corridors régionaux. Sélectionnez un site pour voir les opportunités actuellement répertoriées dans le catalogue.",
+    intro: "Consultez le portefeuille de projets d'AIABASD par corridors régionaux pour examiner les opportunités actives du catalogue.",
     eyebrow: "GÉOGRAPHIE_DU_PORTEFEUILLE",
     allLabel: "Tous les sites",
     selectedLabel: "Site sélectionné",
