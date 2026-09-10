@@ -6,7 +6,7 @@ import { localizedLinkPath } from "@/localePath";
 import { LOCALIZED_COPY } from "@/localizedCopy";
 
 export default function NotFound() {
-  const { lang } = useLanguageContext();
+  const { lang, isRTL } = useLanguageContext();
   const copy = LOCALIZED_COPY[lang].notFound;
   const currentRoute =
     typeof window === "undefined"
@@ -14,7 +14,7 @@ export default function NotFound() {
       : window.location.pathname.replace(/^\/(ar|fr)(?=\/|$)/, "") || "/";
 
   return (
-    <div className="min-h-screen bg-[#0b0b10] text-[#fdfcfb] selection:bg-[#5a1f2e] selection:text-[#fdfcfb] overflow-hidden flex items-center justify-center p-8 relative">
+    <div className={`min-h-screen bg-[#0b0b10] text-[#fdfcfb] selection:bg-[#5a1f2e] selection:text-[#fdfcfb] overflow-hidden flex items-center justify-center p-8 relative ${isRTL ? "font-arabic" : ""}`}>
       <SEO
         title={copy.seoTitle}
         description={copy.seoDescription}
@@ -36,11 +36,11 @@ export default function NotFound() {
       <div className="relative z-10 w-full max-w-[1500px] flex flex-col items-center text-center">
         <div className="mb-10">
           <div className="flex items-center justify-center gap-8 mb-10">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#f2a007]">
-              {copy.failureCode}
+            <span className="t-meta text-[10px] text-[#f2a007]" dir="ltr">
+              <bdi>{copy.failureCode}</bdi>
             </span>
             <div className="w-24 h-[1px] bg-[#fdfcfb]/15" aria-hidden="true" />
-            <span className="text-[12px] font-black tracking-[0.8em] uppercase text-[#fdfcfb]/70">
+            <span className="t-meta text-[11px] text-[#fdfcfb]/70">
               {copy.syncFailure}
             </span>
           </div>
@@ -55,24 +55,24 @@ export default function NotFound() {
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-8 mt-12">
-          <Link href={localizedLinkPath("/", lang)}>
-            <button className="px-12 py-6 bg-[#fdfcfb] text-[#0b0b10] hover:bg-[#5a1f2e] hover:text-[#fdfcfb] transition-[color,background-color,border-color,transform] shadow-premium-lg rounded-sm flex items-center gap-5">
+          <Link asChild href={localizedLinkPath("/", lang)}>
+            <a className="px-10 py-4 bg-[#fdfcfb] text-[#0b0b10] hover:bg-[#5a1f2e] hover:text-[#fdfcfb] transition-[color,background-color,transform] duration-300 shadow-premium-lg flex items-center gap-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px">
               <Home size={18} strokeWidth={1.75} aria-hidden="true" />
-              <span className="text-[12px] font-black tracking-[0.8em] uppercase">
+              <span className="t-meta text-[11px] tracking-[0.25em]">
                 {copy.home}
               </span>
-            </button>
+            </a>
           </Link>
 
           <button
             type="button"
             onClick={() => window.location.reload()}
-            className="flex items-center gap-5 text-[#fdfcfb]/70 hover:text-[#fdfcfb] transition-colors group"
+            className="flex items-center gap-4 text-[#fdfcfb]/70 hover:text-[#fdfcfb] transition-[color,transform] duration-300 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px"
           >
-            <span className="w-12 h-12 border border-[#fdfcfb]/25 flex items-center justify-center group-hover:border-[#f2a007]/60 group-hover:bg-[#5a1f2e]/25 transition-colors">
+            <span className="w-11 h-11 border border-[#fdfcfb]/25 flex items-center justify-center group-hover:border-[#f2a007]/60 group-hover:bg-[#5a1f2e]/25 transition-[border-color,background-color] duration-300 active:scale-95">
               <RefreshCw size={14} strokeWidth={1.75} aria-hidden="true" />
             </span>
-            <span className="text-[10px] font-black tracking-[0.5em] uppercase">
+            <span className="t-meta text-[10px] tracking-[0.2em]">
               {copy.rescan}
             </span>
           </button>
@@ -80,7 +80,7 @@ export default function NotFound() {
 
         <div className="mt-24 flex flex-col items-center gap-6">
           <div
-            className="flex items-center gap-16 text-[#fdfcfb]/20"
+            className="flex items-center gap-16 text-[#fdfcfb]/30"
             aria-hidden="true"
           >
             <div className="h-[1px] w-32 bg-current" />
@@ -88,7 +88,7 @@ export default function NotFound() {
             <div className="h-[1px] w-32 bg-current" />
           </div>
 
-          <div className="text-[10px] font-semibold uppercase text-[#fdfcfb]/60 tracking-[0.9em] max-w-lg leading-relaxed">
+          <div className="t-meta text-[10px] text-[#fdfcfb]/60 max-w-lg leading-relaxed">
             {copy.audit}
             <br />
             {copy.redacted}
@@ -98,13 +98,13 @@ export default function NotFound() {
 
       <div
         aria-hidden="true"
-        className="absolute top-12 left-12 hud-label text-[#fdfcfb]/15 tracking-[2em] hidden xl:block uppercase"
+        className="absolute top-12 start-12 hud-label text-[#fdfcfb]/15 tracking-[2em] hidden xl:block uppercase"
       >
         {copy.errorLog}
       </div>
       <div
         aria-hidden="true"
-        className="absolute bottom-12 right-12 hud-label text-[#fdfcfb]/15 tracking-[2.5em] hidden xl:block uppercase"
+        className="absolute bottom-12 end-12 hud-label text-[#fdfcfb]/15 tracking-[2.5em] hidden xl:block uppercase"
       >
         {copy.coreProtect}
       </div>

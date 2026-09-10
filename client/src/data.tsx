@@ -26,6 +26,7 @@ export interface Content {
     eyebrow: string;
     emptyTitle: string;
     emptyText: string;
+    artifacts?: { src: string; alt: string; category: string }[];
   };
   hero: {
     eyebrow: string;
@@ -404,6 +405,13 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       eyebrow: "Media & Visual Gallery",
       emptyTitle: "Our gallery is being curated",
       emptyText: "Authentic photography from our programs, events, and field missions will be published here as it becomes available.",
+      artifacts: [
+        {
+          src: "/gallery/events/event-group.jpg",
+          alt: "Sovereign Community Stakeholder Summit",
+          category: "Summit & Convening",
+        },
+      ],
     },
     nav: {
       about: "About",
@@ -997,6 +1005,13 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       eyebrow: "معرض الوسائط",
       emptyTitle: "المعرض قيد التجهيز",
       emptyText: "سيتم نشر الصور الحقيقية من برامجنا وفعالياتنا ومهامنا الميدانية هنا فور توفرها.",
+      artifacts: [
+        {
+          src: "/gallery/events/event-group.jpg",
+          alt: "قمة أصحاب المصلحة والمجتمع السيادي",
+          category: "قمة واجتماع",
+        },
+      ],
     },
     nav: {
       about: "من نحن",
@@ -1590,6 +1605,13 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       eyebrow: "Galerie Médias",
       emptyTitle: "Notre galerie est en cours de préparation",
       emptyText: "Les photographies authentiques de nos programmes, événements et missions de terrain seront publiées ici dès leur disponibilité.",
+      artifacts: [
+        {
+          src: "/gallery/events/event-group.jpg",
+          alt: "Sommet des parties prenantes de la communauté souveraine",
+          category: "Sommet & Rencontre",
+        },
+      ],
     },
     nav: {
       about: "À propos",

@@ -37,9 +37,9 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                         initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: isRTL ? 20 : -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
-                        className="inline-flex max-w-full items-center gap-6 border border-black/[0.08] bg-black/[0.035] p-1.5 mb-28 md:mb-32 shadow-premium-2xl font-sans"
+                        className="inline-flex max-w-full items-center gap-6 border border-[#0b0b10]/10 bg-[#0b0b10]/[0.035] p-1.5 mb-28 md:mb-32 shadow-premium-2xl font-sans"
                     >
-                        <div className="flex items-center gap-5 bg-[#fdfcfb] border border-black/[0.06] px-7 py-3 shadow-[inset_0_1px_1px_rgba(253,252,251,0.9)]">
+                        <div className="flex items-center gap-5 bg-[#fdfcfb] border border-[#0b0b10]/10 px-7 py-3 shadow-[inset_0_1px_1px_rgba(253,252,251,0.9)]">
                             <div className="relative h-2.5 w-2.5 bg-[#5a1f2e]">
                                 <span className="absolute inset-0 bg-[#5a1f2e] motion-safe:animate-ping" />
                             </div>
@@ -56,7 +56,7 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                                 initial={reduceMotion ? { opacity: 1, y: 0, rotateX: 0, skewY: 0 } : { opacity: 0, y: 120, rotateX: 50, skewY: 8 }}
                                 animate={{ opacity: 1, y: 0, rotateX: 0, skewY: 0 }}
                                 transition={{ duration: 0.95, delay: reduceMotion ? 0 : 0.16 + i * 0.08, ease: [0.32, 0.72, 0, 1] }}
-                                className={`block ${i % 2 === 1 ? (isRTL ? "mr-8 md:mr-44 xl:mr-64" : "ml-8 md:ml-44 xl:ml-64") : ""} ${word.toLowerCase() === "hama" ? "text-[#5a1f2e] font-black" : "text-[#0b0b10]/90"}`}
+                                className={`block ${i % 2 === 1 ? "ms-8 md:ms-44 xl:ms-64" : ""} ${word.toLowerCase() === "hama" ? "text-[#5a1f2e] font-black" : "text-[#0b0b10]/90"}`}
                             >
                                 {word}
                             </motion.span>
@@ -70,14 +70,14 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.45 }}
                         transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.28 }}
-                        className="bg-black/[0.035] border border-black/[0.08] p-1.5 shadow-premium-2xl"
+                        className="bg-[#0b0b10]/[0.035] border border-[#0b0b10]/10 p-1.5 shadow-premium-2xl"
                     >
-                        <div className="bg-[#fdfcfb] border border-black/[0.06] p-8 lg:p-10 shadow-[inset_0_1px_1px_rgba(253,252,251,0.9)]">
+                        <div className="bg-[#fdfcfb] border border-[#0b0b10]/10 p-8 lg:p-10 shadow-[inset_0_1px_1px_rgba(253,252,251,0.9)]">
                             <div className="h-14 w-1 bg-[#5a1f2e] mb-10" />
                             <h2 className="text-4xl lg:text-5xl font-institutional italic text-[#0b0b10] leading-none mb-12 transform-gpu">
                                 {t.subtitle}
                             </h2>
-                            <p className="text-xl lg:text-2xl text-black/60 leading-tight font-institutional italic tracking-tight">
+                            <p className="text-xl lg:text-2xl text-[#0b0b10]/70 leading-tight font-institutional italic tracking-tight">
                                 "{t.description}"
                             </p>
                         </div>
@@ -87,7 +87,7 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                         <motion.button
                             whileHover={reduceMotion ? undefined : { scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group relative flex min-h-16 max-w-full items-center gap-10 border border-[#5a1f2e]/50 bg-[#0b0b10] px-8 py-5 text-[#fdfcfb] shadow-premium-2xl overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-4 active:scale-[0.98]"
+                            className="group relative flex min-h-16 max-w-full items-center gap-10 border border-[#5a1f2e]/50 bg-[#0b0b10] px-8 py-5 text-[#fdfcfb] shadow-premium-2xl overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px"
                             onClick={() => {
                                 const el = document.getElementById("engagement");
                                 if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -98,7 +98,7 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                                 <span className="t-meta text-[12px] font-black tracking-[0.45em] text-[#f2a007] group-hover:text-[#fdfcfb] transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] break-words">
                                     {t.ctaPrimary}
                                 </span>
-                                <span className="text-[8px] opacity-20 tracking-widest uppercase mt-2 group-hover:opacity-40 font-mono">
+                                <span className="text-[8px] opacity-60 tracking-widest uppercase mt-2 group-hover:opacity-80 font-mono text-[#fdfcfb]">
                                     SOVEREIGN_ACCESS_v7
                                 </span>
                             </div>
@@ -117,7 +117,7 @@ export default function HamaHero({ t, isRTL, opacityTransform, scaleTransform, h
                 <div className="font-institutional text-[100vw] leading-none tracking-tightest italic text-[#0b0b10] font-black">H</div>
             </motion.div>
 
-            <div className="absolute bottom-24 right-24 hidden xl:grid grid-cols-1 gap-6 opacity-10 pointer-events-none text-right font-sans">
+            <div className="absolute bottom-24 end-24 hidden xl:grid grid-cols-1 gap-6 opacity-35 pointer-events-none text-end font-sans">
                 <div className="flex flex-col items-end">
                     <span className="t-meta text-[9px] font-black tracking-[1em] text-[#5a1f2e] border-b border-[#5a1f2e]/20 mb-2">
                         GEOSPATIAL_DATALINK

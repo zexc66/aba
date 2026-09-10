@@ -1,5 +1,5 @@
 import { Link, useParams } from "wouter";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, MapPin } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
@@ -63,6 +63,7 @@ const REGION_LABELS: Record<string, Record<"en" | "ar" | "fr", string>> = {
 export default function Corridor() {
   const { iso } = useParams<{ iso: string }>();
   const { lang, isRTL, content } = useLanguageContext();
+  const shouldReduceMotion = useReducedMotion();
   const t = content.corridor;
 
   const node: CountryNode | undefined = COUNTRIES.find(c => c.iso === iso);
@@ -77,13 +78,13 @@ export default function Corridor() {
         <div className="pt-40 pb-24 text-center">
           <p className="t-meta text-[#5a1f2e] mb-6">CORRIDOR_NOT_FOUND</p>
           <Link href={localizedLinkPath("/pipeline", lang)} asChild>
-            <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-colors">
+            <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
               <ArrowLeft
                 size={14}
                 className="rtl:-scale-x-100"
                 aria-hidden="true"
               />
-              {t.backLabel}
+              <span>{t.backLabel}</span>
             </a>
           </Link>
         </div>
@@ -119,10 +120,10 @@ export default function Corridor() {
       <Header nav={content.nav} />
 
       <div className="pt-28 pb-24">
-        <Section className="py-12 border-b border-black/10 bg-white">
+        <Section className="py-12 border-b border-[#0b0b10]/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <Link href={localizedLinkPath("/#countries", lang)} asChild>
-              <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 mb-6 transition-colors">
+              <a className="inline-flex items-center gap-2 t-meta text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-1 mb-6 transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                 <ArrowLeft
                   size={14}
                   className="rtl:-scale-x-100"
@@ -133,9 +134,10 @@ export default function Corridor() {
             </Link>
 
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.4 }}
             >
               <div className="flex items-center gap-4 flex-wrap">
                 <MapPin
@@ -148,21 +150,31 @@ export default function Corridor() {
                   {localizedName}
                 </h1>
                 <span
-                  className={`t-meta px-2.5 py-1.5 border ${
+                  className={`inline-flex items-center gap-1.5 t-meta px-2.5 py-1.5 border ${
                     node.status === "active"
-                      ? "text-emerald-800 bg-emerald-50 border-emerald-300"
-                      : "text-black/60 bg-black/[0.03] border-black/15"
+                      ? "text-[#5a1f2e] bg-[#5a1f2e]/10 border-[#5a1f2e]/25"
+                      : "text-[#0b0b10]/60 bg-[#0b0b10]/5 border-[#0b0b10]/10"
                   }`}
                 >
-                  {node.status === "active"
-                    ? content.countries.activeLabel
-                    : content.countries.pipelineLabel}
+                  <span
+                    className={`w-1.5 h-1.5 ${
+                      node.status === "active"
+                        ? "bg-[#5a1f2e] animate-pulse motion-reduce:animate-none"
+                        : "bg-[#0b0b10]/40"
+                    }`}
+                    aria-hidden="true"
+                  />
+                  <span>
+                    {node.status === "active"
+                      ? content.countries.activeLabel
+                      : content.countries.pipelineLabel}
+                  </span>
                 </span>
               </div>
 
-              <dl className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-black/10 border border-black/10">
+              <dl className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-px bg-[#0b0b10]/10 border border-[#0b0b10]/10">
                 <div className="bg-white p-5">
-                  <dt className="t-meta text-black/55 mb-1.5">
+                  <dt className="t-meta text-[#0b0b10]/60 mb-1.5">
                     {t.regionLabel}
                   </dt>
                   <dd className="text-sm font-semibold text-[#0b0b10]">
@@ -170,26 +182,26 @@ export default function Corridor() {
                   </dd>
                 </div>
                 <div className="bg-white p-5">
-                  <dt className="t-meta text-black/55 mb-1.5">
+                  <dt className="t-meta text-[#0b0b10]/60 mb-1.5">
                     {t.capitalLabel}
                   </dt>
                   <dd
-                    className="t-data text-sm font-semibold text-[#0b0b10]"
+                    className="t-data text-sm font-semibold text-[#0b0b10] tabular-nums"
                     dir="ltr"
                   >
                     <bdi>{lang === "ar" ? node.capitalAr : node.capital}</bdi>
                   </dd>
                 </div>
                 <div className="bg-white p-5">
-                  <dt className="t-meta text-black/55 mb-1.5">
+                  <dt className="t-meta text-[#0b0b10]/60 mb-1.5">
                     {content.pipeline.programsLabel}
                   </dt>
-                  <dd className="t-data text-sm font-semibold text-[#0b0b10]">
+                  <dd className="t-data text-sm font-semibold text-[#0b0b10] tabular-nums" dir="ltr">
                     <bdi>{node.projects}</bdi>
                   </dd>
                 </div>
                 <div className="bg-white p-5">
-                  <dt className="t-meta text-black/55 mb-1.5">
+                  <dt className="t-meta text-[#0b0b10]/60 mb-1.5">
                     {t.statusLabel}
                   </dt>
                   <dd className="t-meta text-[#5a1f2e]">{t.verifiedLabel}</dd>
@@ -204,11 +216,11 @@ export default function Corridor() {
             {countryProjects.length > 0 && (
               <div>
                 <div className="flex items-center justify-between gap-4 mb-8">
-                  <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 flex-1">
+                  <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-[#0b0b10]/10 flex-1">
                     {projectUI.headerTitle}
                   </h2>
                   <Link asChild href={localizedLinkPath("/projects", lang)}>
-                    <a className="t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-colors whitespace-nowrap">
+                    <a className="t-meta text-[10px] text-[#5a1f2e] border-b border-[#5a1f2e]/40 hover:border-[#5a1f2e] pb-0.5 transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px whitespace-nowrap">
                       {projectUI.viewAll}
                     </a>
                   </Link>
@@ -227,10 +239,10 @@ export default function Corridor() {
             )}
 
             <div>
-              <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-0">
+              <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-[#0b0b10]/10 mb-0">
                 {t.programsTitle}
               </h2>
-              <ul className="divide-y divide-black/10 border-b border-black/10">
+              <ul className="divide-y divide-[#0b0b10]/10 border-b border-[#0b0b10]/10">
                 {anchored.map(p => (
                   <li key={p.slug}>
                     <Link
@@ -240,22 +252,26 @@ export default function Corridor() {
                         lang
                       )}
                     >
-                      <a className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center py-5 group">
+                      <a className="relative group grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center py-5 px-3 -mx-3 transition-[background-color,color,transform] hover:bg-[#5a1f2e]/[0.035] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
+                        <span
+                          className="absolute bottom-0 start-0 h-px w-0 bg-[#f2a007] transition-[width] duration-500 group-hover:w-full"
+                          aria-hidden="true"
+                        />
                         <div>
                           <h3 className="text-base font-semibold text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors">
                             {p.name}
                           </h3>
-                          <p className="t-meta text-black/45 mt-1.5" dir="ltr">
-                            {p.tags.join(" · ")}
+                          <p className="t-meta text-[#0b0b10]/60 mt-1.5" dir="ltr">
+                            <bdi>{p.tags.join(" · ")}</bdi>
                           </p>
                         </div>
-                        <span className="t-meta text-black/55">{p.status}</span>
+                        <span className="t-meta text-[#0b0b10]/60">{p.status}</span>
                       </a>
                     </Link>
                   </li>
                 ))}
                 {anchored.length === 0 && (
-                  <li className="py-8 text-sm text-black/55">
+                  <li className="py-8 text-sm text-[#0b0b10]/60">
                     {t.regionalNote}
                   </li>
                 )}
@@ -263,18 +279,18 @@ export default function Corridor() {
             </div>
 
             <div>
-              <h2 className="t-meta text-black/55 border-b border-black/10 pb-3 mb-0">
+              <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-[#0b0b10]/10 mb-0">
                 {content.pipeline.multiRegion} ·{" "}
                 {content.pipeline.programsLabel}
               </h2>
-              <p className="text-sm text-black/60 leading-relaxed max-w-[65ch] pt-5">
+              <p className="text-sm text-[#0b0b10]/70 leading-relaxed max-w-[65ch] pt-5">
                 {t.regionalNote}
               </p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {regional.map(p => (
                   <li key={p.slug}>
                     <Link asChild href={localizedLinkPath(`/programs/${p.slug}`, lang)}>
-                      <a className="t-meta inline-block border border-black/15 px-3 py-2 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] transition-colors">
+                      <a className="t-meta inline-block border border-[#0b0b10]/15 px-3 py-2 hover:border-[#5a1f2e]/50 hover:text-[#5a1f2e] transition-[color,border-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                         {p.name}
                       </a>
                     </Link>

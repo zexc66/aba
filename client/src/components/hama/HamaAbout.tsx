@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { deployAssetPath } from "@/localePath";
 
 interface HamaAboutProps {
     t: {
@@ -27,16 +28,16 @@ export default function HamaAbout({ t, isRTL }: HamaAboutProps) {
                     transition={revealTransition}
                     className="lg:col-span-5 relative group"
                 >
-                    <div className="bg-black/[0.04] border border-black/[0.08] p-1.5 shadow-premium-2xl">
+                    <div className="bg-[#0b0b10]/[0.04] border border-[#0b0b10]/10 p-1.5 shadow-premium-2xl">
                         <motion.div
                             initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 34 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.35 }}
                             transition={{ duration: 0.78, ease: [0.32, 0.72, 0, 1] }}
-                            className="relative aspect-[3/4] overflow-hidden bg-[#0b0b10] border border-black/[0.08] shadow-[inset_0_1px_1px_rgba(253,252,251,0.08)]"
+                            className="relative aspect-[3/4] overflow-hidden bg-[#0b0b10] border border-[#0b0b10]/10 shadow-[inset_0_1px_1px_rgba(253,252,251,0.08)]"
                         >
                             <motion.img
-                                src="/projects/hama-logo.jpg"
+                                src={deployAssetPath("/projects/hama-logo.jpg")}
                                 alt="Mission Landscape"
                                 initial={reduceMotion ? { scale: 1 } : { scale: 1.08 }}
                                 whileInView={{ scale: 1 }}
@@ -65,9 +66,9 @@ export default function HamaAbout({ t, isRTL }: HamaAboutProps) {
                         whileInView={{ opacity: 1, scale: 1, x: 0 }}
                         viewport={{ once: true, amount: 0.35 }}
                         transition={{ duration: 0.72, delay: reduceMotion ? 0 : 0.16, ease: [0.32, 0.72, 0, 1] }}
-                        className={`relative mt-6 lg:mt-0 lg:absolute lg:bottom-[-10%] ${isRTL ? "lg:right-[-18%]" : "lg:left-[-18%]"} w-full max-w-sm bg-black/[0.04] p-1.5 text-[#0b0b10] shadow-premium-2xl z-10 border border-black/[0.08]`}
+                        className="relative mt-6 lg:mt-0 lg:absolute lg:bottom-[-10%] lg:start-[-18%] w-full max-w-sm bg-[#0b0b10]/[0.04] p-1.5 text-[#0b0b10] shadow-premium-2xl z-10 border border-[#0b0b10]/10"
                     >
-                        <div className="bg-[#fdfcfb] p-8 sm:p-12 lg:p-16 border border-black/[0.06] shadow-[inset_0_1px_1px_rgba(253,252,251,0.9)]">
+                        <div className="bg-[#fdfcfb] p-8 sm:p-12 lg:p-16 border border-[#0b0b10]/10 shadow-[inset_0_1px_1px_rgba(253,252,251,0.9)]">
                             <div className="flex items-center gap-6 mb-12">
                                 <div className="w-2 h-16 bg-[#5a1f2e]" />
                                 <div className="flex flex-col min-w-0">
@@ -77,27 +78,27 @@ export default function HamaAbout({ t, isRTL }: HamaAboutProps) {
                                     </h3>
                                 </div>
                             </div>
-                            <p className="text-xl sm:text-2xl text-black/55 leading-tight font-institutional italic">
+                            <p className="text-xl sm:text-2xl text-[#0b0b10]/65 leading-tight font-institutional italic">
                                 "{t.text}"
                             </p>
-                            <div className="mt-16 t-data text-[8px] font-black tracking-[0.6em] opacity-20 font-sans tabular-nums" dir="ltr">
+                            <div className="mt-16 t-data text-[8px] font-black tracking-[0.6em] opacity-40 font-sans tabular-nums" dir="ltr">
                                 0x-PROTO-CORE-HAMA
                             </div>
                         </div>
                     </motion.div>
                 </motion.div>
 
-                <div className="lg:col-span-1 hidden lg:block h-[600px] w-px bg-black/[0.04] mx-auto overflow-hidden relative">
+                <div className="lg:col-span-1 hidden lg:block h-[600px] w-px bg-[#0b0b10]/5 mx-auto overflow-hidden relative">
                     <motion.div
                         initial={{ y: reduceMotion ? "0%" : "-100%" }}
                         animate={{ y: reduceMotion ? "0%" : "100%" }}
                         transition={{ duration: 4.5, repeat: reduceMotion ? 0 : Infinity, ease: [0.32, 0.72, 0, 1] }}
-                        className="absolute top-0 left-0 w-full h-[150px] bg-gradient-to-b from-transparent via-[#5a1f2e] to-transparent"
+                        className="absolute top-0 start-0 w-full h-[150px] bg-gradient-to-b from-transparent via-[#5a1f2e] to-transparent"
                     />
                 </div>
 
-                <div className="lg:col-span-6 lg:pl-12 xl:pl-24">
-                    <div className="grid grid-cols-1 grid-flow-dense gap-px bg-black/[0.08] border border-black/[0.07] shadow-premium-2xl">
+                <div className="lg:col-span-6 lg:ps-12 xl:ps-24">
+                    <div className="grid grid-cols-1 grid-flow-dense gap-px bg-[#0b0b10]/10 border border-[#0b0b10]/10 shadow-premium-2xl">
                         {t.highlights.map((item, i) => (
                             <motion.div
                                 key={item.title}
@@ -107,7 +108,7 @@ export default function HamaAbout({ t, isRTL }: HamaAboutProps) {
                                 transition={{ duration: 0.68, delay: reduceMotion ? 0 : i * 0.09, ease: [0.32, 0.72, 0, 1] }}
                                 className="relative group cursor-default bg-[#fdfcfb] p-8 sm:p-12 lg:p-16 overflow-hidden transition-[background-color,transform] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.995]"
                             >
-                                <div className={`absolute ${isRTL ? "right-6" : "left-6"} top-2 text-[clamp(5rem,14vw,12rem)] font-institutional opacity-[0.025] select-none italic text-[#0b0b10] font-black pointer-events-none group-hover:opacity-[0.045] transition-opacity duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]`}>
+                                <div className="absolute start-6 top-2 text-[clamp(5rem,14vw,12rem)] font-institutional opacity-[0.025] select-none italic text-[#0b0b10] font-black pointer-events-none group-hover:opacity-[0.045] transition-opacity duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
                                     {(i + 1).toString().padStart(2, "0")}
                                 </div>
                                 <div className="relative z-10 flex flex-col gap-7">
@@ -120,7 +121,7 @@ export default function HamaAbout({ t, isRTL }: HamaAboutProps) {
                                     <h4 className="text-4xl sm:text-5xl xl:text-6xl font-institutional italic text-[#0b0b10] group-hover:text-[#5a1f2e] transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] leading-none break-words">
                                         {item.title}
                                     </h4>
-                                    <p className="text-xl sm:text-2xl text-black/45 leading-tight font-institutional italic max-w-xl group-hover:text-black/75 transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                                    <p className="text-xl sm:text-2xl text-[#0b0b10]/60 leading-tight font-institutional italic max-w-xl group-hover:text-[#0b0b10]/80 transition-colors duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]">
                                         {item.desc}
                                     </p>
                                 </div>

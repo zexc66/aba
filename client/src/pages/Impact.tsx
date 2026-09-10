@@ -111,7 +111,7 @@ const UI: Record<Locale, {
   en: {
     title: "Measurement Framework",
     pageTitle: "Measurement Framework | AIABASD",
-    note: "How AIABASD reports progress: published indicators reference the indicative scope of portfolio projects. Measured output is added only after independent verification — we publish baselines, not projections.",
+    note: "Published indicators reference indicative portfolio scope. Measured output is published only after independent verification — baselines, not projections.",
     aggregatesTitle: "Portfolio at a Glance",
     indicatorLabel: "Indicator",
     valueLabel: "Indicative Scope",
@@ -127,7 +127,7 @@ const UI: Record<Locale, {
   ar: {
     title: "إطار القياس",
     pageTitle: "إطار القياس | AIABASD",
-    note: "كيف يعلن التحالف عن التقدم: تشير المؤشرات المنشورة إلى النطاق الاسترشادي لمشاريع المحفظة. وتُضاف المخرجات المقاسة فقط بعد التحقق المستقل — ننشر خطوط الأساس لا التوقعات.",
+    note: "تشير المؤشرات المنشورة إلى النطاق الاسترشادي للمشاريع. تُنشر المخرجات المقاسة بعد التحقق المستقل — خطوط أساس لا توقعات.",
     aggregatesTitle: "المحفظة في لمحة",
     indicatorLabel: "المؤشر",
     valueLabel: "النطاق الاسترشادي",
@@ -143,7 +143,7 @@ const UI: Record<Locale, {
   fr: {
     title: "Cadre de mesure",
     pageTitle: "Cadre de mesure | AIABASD",
-    note: "Comment l'AIABASD rend compte des progrès : les indicateurs publiés renvoient au périmètre indicatif des projets du portefeuille. Les résultats mesurés sont ajoutés uniquement après vérification indépendante — nous publions des références, pas des projections.",
+    note: "Les indicateurs publiés reflètent le périmètre indicatif du portefeuille. Les résultats mesurés sont publiés après vérification indépendante — des références, pas des projections.",
     aggregatesTitle: "Portefeuille en bref",
     indicatorLabel: "Indicateur",
     valueLabel: "Périmètre indicatif",
@@ -165,18 +165,18 @@ const AGGREGATES: Record<Locale, { pipeline: string; jobs: string; corridors: st
 };
 
 export default function Impact() {
-  const { lang, content } = useLanguageContext();
+  const { lang, content, isRTL } = useLanguageContext();
   const locale = lang as Locale;
   const t = UI[locale];
   const agg = AGGREGATES[locale];
 
   return (
-    <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${lang === "ar" ? "font-arabic" : ""}`}>
+    <div className={`min-h-screen bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}>
       <SEO title={t.pageTitle} description={t.note} lang={lang} url="/impact" />
       <Header nav={content.nav} />
 
       <div className="pt-24 pb-24">
-        <Section className="relative py-12 border-b border-black/10 bg-white">
+        <Section className="relative py-12 border-b border-[#0b0b10]/10 bg-white">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <SectionHeader
               index="M"
@@ -191,21 +191,21 @@ export default function Impact() {
         {/* Owner-approved aggregates */}
         <Section className="py-12">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-8">
+            <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-[#0b0b10]/10 mb-8">
               {t.aggregatesTitle}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-black/10 border border-black/10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[#0b0b10]/10 border border-[#0b0b10]/10">
               <div className="bg-white p-8">
-                <div className="t-data text-3xl font-semibold text-[#5a1f2e]" dir="ltr"><bdi>{agg.pipeline}</bdi></div>
-                <div className="t-meta text-black/65 mt-2">{t.pipelineLabel}</div>
+                <div className="t-data text-3xl font-bold text-[#5a1f2e] tabular-nums" dir="ltr"><bdi>{agg.pipeline}</bdi></div>
+                <div className="t-meta text-[#0b0b10]/65 mt-2">{t.pipelineLabel}</div>
               </div>
               <div className="bg-white p-8">
-                <div className="t-data text-3xl font-semibold text-[#5a1f2e]" dir="ltr"><bdi>{agg.jobs}</bdi></div>
-                <div className="t-meta text-black/65 mt-2">{t.jobsLabel}</div>
+                <div className="t-data text-3xl font-bold text-[#5a1f2e] tabular-nums" dir="ltr"><bdi>{agg.jobs}</bdi></div>
+                <div className="t-meta text-[#0b0b10]/65 mt-2">{t.jobsLabel}</div>
               </div>
               <div className="bg-white p-8">
-                <div className="t-data text-3xl font-semibold text-[#5a1f2e]" dir="ltr"><bdi>{agg.corridors}</bdi></div>
-                <div className="t-meta text-black/65 mt-2">{t.corridorsLabel}</div>
+                <div className="t-data text-3xl font-bold text-[#5a1f2e] tabular-nums" dir="ltr"><bdi>{agg.corridors}</bdi></div>
+                <div className="t-meta text-[#0b0b10]/65 mt-2">{t.corridorsLabel}</div>
               </div>
             </div>
           </div>
@@ -214,39 +214,43 @@ export default function Impact() {
         {/* Indicators */}
         <Section className="pb-14">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-8">
+            <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-[#0b0b10]/10 mb-8">
               {t.indicatorLabel}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/10 border border-black/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#0b0b10]/10 border border-[#0b0b10]/10">
               {INDICATORS.map((ind) => {
                 const project = projectBySlug(ind.projectSlug);
                 return (
                   <article
                     key={ind.label.en + ind.projectSlug}
-                    className="bg-white p-6 flex flex-col justify-between"
+                    className="relative group bg-white p-6 flex flex-col justify-between hover:bg-[#5a1f2e]/[0.035] transition-[background-color] duration-300"
                   >
+                    <span
+                      className="absolute top-0 start-0 h-[2px] w-0 bg-[#f2a007] transition-[width] duration-500 group-hover:w-full z-10"
+                      aria-hidden="true"
+                    />
                     <div>
                       <p className="text-sm font-semibold text-[#0b0b10] leading-snug">
                         {ind.label[locale]}
                       </p>
                       {project && (
                         <Link asChild href={localizedLinkPath(`/projects/${project.slug}`, lang)}>
-                          <a className="t-meta text-[10px] text-[#5a1f2e] hover:text-[#0b0b10] transition-colors mt-1 inline-block">
+                          <a className="t-meta text-[10px] text-[#5a1f2e] hover:text-[#0b0b10] transition-[color,transform] duration-300 mt-1 inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 active:translate-y-px">
                             {project.title[locale]}
                           </a>
                         </Link>
                       )}
                     </div>
-                    <div className="mt-5 pt-4 border-t border-black/10 flex items-baseline justify-between gap-4">
+                    <div className="mt-5 pt-4 border-t border-[#0b0b10]/10 flex items-baseline justify-between gap-4">
                       <div>
-                        <div className="t-meta text-black/60 text-[10px] mb-1">{t.valueLabel}</div>
-                        <span className="t-data text-xl font-semibold text-[#5a1f2e]" dir="ltr">
+                        <div className="t-meta text-[#0b0b10]/60 text-[10px] mb-1">{t.valueLabel}</div>
+                        <span className="t-data text-xl font-bold text-[#5a1f2e] tabular-nums" dir="ltr">
                           <bdi>{ind.value[locale]}</bdi>
                         </span>
                       </div>
                       <div className="text-end">
-                        <div className="t-meta text-black/60 text-[10px] mb-1">{t.measuredLabel}</div>
-                        <span className="t-meta text-[10px] text-black/60 border border-black/15 px-2 py-1 inline-block">
+                        <div className="t-meta text-[#0b0b10]/60 text-[10px] mb-1">{t.measuredLabel}</div>
+                        <span className="t-meta text-[10px] text-[#0b0b10]/60 border border-[#0b0b10]/15 bg-[#0b0b10]/[0.02] px-2 py-1 inline-block">
                           {t.measuredPlaceholder}
                         </span>
                       </div>
@@ -261,10 +265,10 @@ export default function Impact() {
         {/* Honest-methods disclaimer */}
         <Section className="pt-4 pb-10">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-            <div role="note" className="border border-black/10 bg-white p-6 flex items-start gap-4">
+            <div role="note" className="border border-[#0b0b10]/10 bg-white p-6 flex items-start gap-4">
               <div>
                 <p className="t-meta text-[#5a1f2e] mb-2">{t.disclaimerLabel}</p>
-                <p className="text-sm text-black/70 leading-relaxed">{t.disclaimer}</p>
+                <p className="text-sm text-[#0b0b10]/70 leading-relaxed">{t.disclaimer}</p>
               </div>
             </div>
           </div>
