@@ -55,7 +55,7 @@ type SubmissionCopy = {
 export const SUBMISSION_COPY: Record<PlatformLocale, SubmissionCopy> = {
   en: {
     title: "Submit an opportunity",
-    intro: "Share a structured project brief for initial review. AIABASD will assess the published information and contact the submitting organization about possible next steps.",
+    intro: "Share a structured project brief for initial review. AIABASD evaluates published information to coordinate possible next steps.",
     eyebrow: "PROJECT_SUBMISSION",
     steps: ["Owner", "Project", "Evidence", "Review"],
     ownerTitle: "Who is submitting this opportunity?",
@@ -106,7 +106,7 @@ export const SUBMISSION_COPY: Record<PlatformLocale, SubmissionCopy> = {
   },
   ar: {
     title: "تقديم فرصة",
-    intro: "شارك موجزاً منظماً لمشروع للمراجعة الأولية. سيقيّم التحالف المعلومات المقدمة ويتواصل مع الجهة المرسلة بشأن الخطوات المحتملة.",
+    intro: "شارك موجز مشروع منظم للمراجعة الأولية. يقيّم التحالف المعلومات المنشورة لتنسيق الخطوات المحتملة.",
     eyebrow: "تقديم_مشروع",
     steps: ["الجهة", "المشروع", "الأدلة", "المراجعة"],
     ownerTitle: "من يقدم هذه الفرصة؟",
@@ -157,7 +157,7 @@ export const SUBMISSION_COPY: Record<PlatformLocale, SubmissionCopy> = {
   },
   fr: {
     title: "Soumettre une opportunité",
-    intro: "Partagez une note de projet structurée pour une première revue. L'AIABASD évaluera les informations fournies et contactera l'organisation soumettrice au sujet des prochaines étapes possibles.",
+    intro: "Partagez une note de projet structurée pour revue. L'AIABASD examine les informations pour coordonner les prochaines étapes.",
     eyebrow: "SOUMISSION_PROJET",
     steps: ["Porteur", "Projet", "Éléments", "Revue"],
     ownerTitle: "Qui soumet cette opportunité ?",

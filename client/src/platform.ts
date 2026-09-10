@@ -442,7 +442,7 @@ export const PLATFORM_COPY: Record<PlatformLocale, PlatformCopy> = {
     },
     match: {
       title: "Find a transparent starting point",
-      intro: "Share your institutional profile and we will compare it with published project metadata. The preview explains its rules and is not an investment or suitability decision.",
+      intro: "Share your institutional profile to compare with published project metadata. The explainable preview clarifies alignment without implying investment decisions.",
       eyebrow: "PARTNER_INTAKE",
       formTitle: "Structured partner intake",
       organizationLabel: "Organization",
@@ -546,7 +546,7 @@ export const PLATFORM_COPY: Record<PlatformLocale, PlatformCopy> = {
     },
     match: {
       title: "اعثر على نقطة بداية شفافة",
-      intro: "شارك ملف مؤسستك وسنقارنه ببيانات المشاريع المنشورة. يشرح العرض قواعده ولا يمثل قراراً استثمارياً أو قرار ملاءمة.",
+      intro: "شارك ملف مؤسستك لمقارنته ببيانات المشاريع المنشورة. يوضح العرض التوافقي مسار التوافق دون أي التزام استثماري.",
       eyebrow: "استقبال_الشركاء",
       formTitle: "استقبال منظم للشركاء",
       organizationLabel: "المؤسسة",
@@ -636,7 +636,7 @@ export const PLATFORM_COPY: Record<PlatformLocale, PlatformCopy> = {
     },
     match: {
       title: "Trouver un premier point de contact transparent",
-      intro: "Partagez votre profil institutionnel et nous le comparerons aux métadonnées publiées des projets. L'aperçu explique ses règles et ne constitue ni une décision d'investissement ni d'adéquation.",
+      intro: "Partagez votre profil institutionnel pour le comparer aux projets publiés. Cet aperçu explicatif clarifie les alignements sans décision d'investissement.",
       eyebrow: "INTAKE_PARTENAIRES",
       formTitle: "Intake partenaire structuré",
       organizationLabel: "Organisation",

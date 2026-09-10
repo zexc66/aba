@@ -167,7 +167,7 @@ export default function SubmitProject() {
     partnership: projectsT.partnershipLabel,
   };
   const fieldClass =
-    "w-full min-h-11 border border-black/10 bg-[#fdfcfb] px-4 py-3 text-sm text-[#0b0b10] transition-colors caret-[#5a1f2e] placeholder:text-black/45 focus:border-[#5a1f2e] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2";
+    "w-full min-h-11 border border-[#0b0b10]/10 bg-[#fdfcfb] px-4 py-3 text-sm text-[#0b0b10] transition-[color,background-color,border-color] duration-150 caret-[#5a1f2e] placeholder:text-[#0b0b10]/45 focus:border-[#5a1f2e] focus:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2";
   const update = <K extends keyof Draft>(key: K, value: Draft[K]) => {
     setDraft(current => ({ ...current, [key]: value }));
     setError(false);
@@ -279,47 +279,47 @@ export default function SubmitProject() {
       />
       <Header nav={content.nav} />
       <div className="pt-24">
-        <Section className="border-b border-black/10 bg-[#0b0b10] py-16 text-white md:py-24">
+        <Section className="border-b border-[#0b0b10]/20 bg-[#0b0b10] py-16 text-[#fdfcfb] md:py-24">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <Link asChild href={localizedLinkPath("/projects", lang)}>
-              <a className="mb-8 inline-flex min-h-11 items-center gap-2 t-meta text-[10px] text-[#f2a007] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2">
-                <ArrowLeft size={14} className="rtl:-scale-x-100" />
+              <a className="mb-8 inline-flex min-h-11 items-center gap-2 t-meta text-[10px] text-[#f2a007] hover:text-[#fdfcfb] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 transition-[color,transform] duration-200">
+                <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
                 {projectsT.backLabel}
               </a>
             </Link>
-            <p className="t-meta mb-5 text-[#f2a007]">{t.eyebrow}</p>
-            <h1 className="max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
+            <p className="t-meta mb-4 text-[#f2a007]">{t.eyebrow}</p>
+            <h1 className="max-w-4xl text-3xl md:text-4xl xl:text-5xl font-bold tracking-tight text-[#fdfcfb] leading-[1.08]">
               {t.title}
             </h1>
-            <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/70 md:text-lg">
+            <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-[#fdfcfb]/75">
               {t.intro}
             </p>
           </div>
         </Section>
 
-        <Section className="py-12 md:py-16">
-          <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-10 px-4 sm:px-6 md:px-12 lg:grid-cols-12 lg:px-24">
-            <div className="lg:col-span-8">
+        <Section className="bg-[#fdfcfb] py-12 md:py-16">
+          <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-10 px-6 md:px-12 lg:grid-cols-12 lg:px-24">
+            <div className="min-w-0 lg:col-span-8">
               {reference ? (
                 <div className="border border-emerald-200 bg-emerald-50 p-8 text-emerald-900" role="status" aria-live="polite">
                   <div className="flex items-center gap-3">
-                    <CheckCircle2 size={20} className="shrink-0 text-emerald-700" />
+                    <CheckCircle2 size={20} className="shrink-0 text-emerald-700" aria-hidden="true" />
                     <h2 className="text-lg font-bold">{t.successTitle}</h2>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed">
                     {t.successNote.replace("{ref}", reference)}
                   </p>
                   <Link asChild href={localizedLinkPath("/projects", lang)}>
-                    <a className="mt-6 inline-flex min-h-11 items-center gap-2 t-meta text-[#5a1f2e] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                    <a className="mt-6 inline-flex min-h-11 items-center gap-2 t-meta text-[10px] text-[#5a1f2e] hover:text-[#0b0b10] hover:underline active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 transition-[color,transform] duration-200">
                       {projectsT.backLabel}
-                      <ArrowRight size={14} className="rtl:-scale-x-100" />
+                      <ArrowRight size={14} className="rtl:-scale-x-100" aria-hidden="true" />
                     </a>
                   </Link>
                 </div>
               ) : (
                 <form
                   onSubmit={submit}
-                  className="border border-black/10 bg-white p-5 sm:p-6 md:p-10"
+                  className="border border-[#0b0b10]/10 bg-white p-6 md:p-10"
                 >
                   {DEPLOY_BASE_PATH && (
                     <p role="note" className="mb-8 border border-[#f2a007]/40 bg-[#f2a007]/10 p-4 text-sm leading-relaxed text-[#6b4a00]">
@@ -334,15 +334,17 @@ export default function SubmitProject() {
                         disabled={index > step}
                         aria-current={index === step ? "step" : undefined}
                         onClick={() => index <= step && setStep(index)}
-                        className={`min-h-11 border-t-2 pt-3 text-start t-meta text-[10px] transition-colors active:scale-[0.99] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${
+                        className={`min-h-11 border-t-2 pt-3 text-start t-meta text-[10px] transition-[color,border-color,transform] duration-150 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${
                           index === step
                             ? "border-[#5a1f2e] text-[#5a1f2e] font-bold"
                             : index < step
-                              ? "border-[#f2a007] text-black/70 hover:text-[#5a1f2e]"
-                              : "border-black/10 text-black/40 cursor-not-allowed"
+                              ? "border-[#f2a007] text-[#0b0b10]/80 hover:text-[#5a1f2e]"
+                              : "border-[#0b0b10]/10 text-[#0b0b10]/40 cursor-not-allowed"
                         }`}
                       >
-                        <span className="me-1.5 font-bold">0{index + 1}</span>
+                        <span className="me-1.5 font-bold t-data" dir="ltr">
+                          <bdi>{String(index + 1).padStart(2, "0")}</bdi>
+                        </span>
                         {label}
                       </button>
                     ))}
@@ -350,13 +352,13 @@ export default function SubmitProject() {
 
                   {step === 0 && (
                     <div className="space-y-7">
-                      <h2 className="text-2xl font-bold">{t.ownerTitle}</h2>
+                      <h2 className="text-2xl font-bold tracking-tight text-[#0b0b10] leading-snug">{t.ownerTitle}</h2>
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-organization"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.organizationLabel} *
+                          {t.organizationLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <input
                           id="submission-organization"
@@ -374,9 +376,9 @@ export default function SubmitProject() {
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-email"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.emailLabel} *
+                          {t.emailLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <input
                           id="submission-email"
@@ -395,9 +397,9 @@ export default function SubmitProject() {
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-party-type"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.partyTypeLabel} *
+                          {t.partyTypeLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <select
                           id="submission-party-type"
@@ -425,13 +427,13 @@ export default function SubmitProject() {
 
                   {step === 1 && (
                     <div className="space-y-7">
-                      <h2 className="text-2xl font-bold">{t.projectTitle}</h2>
+                      <h2 className="text-2xl font-bold tracking-tight text-[#0b0b10] leading-snug">{t.projectTitle}</h2>
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-title"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.titleLabel} *
+                          {t.titleLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <input
                           id="submission-title"
@@ -449,9 +451,9 @@ export default function SubmitProject() {
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-summary"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.summaryLabel} *
+                          {t.summaryLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <textarea
                           id="submission-summary"
@@ -471,9 +473,9 @@ export default function SubmitProject() {
                         <div className="space-y-2">
                           <label
                             htmlFor="submission-country"
-                            className="t-meta text-black/70"
+                            className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                           >
-                            {t.countryLabel} *
+                            {t.countryLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                           </label>
                           <select
                             id="submission-country"
@@ -499,9 +501,9 @@ export default function SubmitProject() {
                         <div className="space-y-2">
                           <label
                             htmlFor="submission-sector"
-                            className="t-meta text-black/70"
+                            className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                           >
-                            {t.sectorLabel} *
+                            {t.sectorLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                           </label>
                           <select
                             id="submission-sector"
@@ -528,9 +530,9 @@ export default function SubmitProject() {
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-status"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.statusLabel} *
+                          {t.statusLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <select
                           id="submission-status"
@@ -558,12 +560,12 @@ export default function SubmitProject() {
 
                   {step === 2 && (
                     <div className="space-y-7">
-                      <h2 className="text-2xl font-bold">{t.evidenceTitle}</h2>
+                      <h2 className="text-2xl font-bold tracking-tight text-[#0b0b10] leading-snug">{t.evidenceTitle}</h2>
                       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <div className="space-y-2">
                           <label
                             htmlFor="submission-location"
-                            className="t-meta text-black/70"
+                            className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                           >
                             {t.locationLabel}
                           </label>
@@ -581,7 +583,7 @@ export default function SubmitProject() {
                         <div className="space-y-2">
                           <label
                             htmlFor="submission-scale"
-                            className="t-meta text-black/70"
+                            className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                           >
                             {t.scaleLabel}
                           </label>
@@ -600,7 +602,7 @@ export default function SubmitProject() {
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-model"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
                           {t.modelLabel}
                         </label>
@@ -618,9 +620,9 @@ export default function SubmitProject() {
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-objectives"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.objectivesLabel} *
+                          {t.objectivesLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <textarea
                           id="submission-objectives"
@@ -636,16 +638,16 @@ export default function SubmitProject() {
                           placeholder={t.objectivesPlaceholder}
                           className={`${fieldClass} resize-y`}
                         />
-                        <p id="submission-objectives-note" className="text-xs text-black/60">
+                        <p id="submission-objectives-note" className="text-xs text-[#0b0b10]/65 mt-1.5">
                           {t.objectivesNote}
                         </p>
                       </div>
                       <div className="space-y-2">
                         <label
                           htmlFor="submission-partnership"
-                          className="t-meta text-black/70"
+                          className="block t-meta text-[10px] text-[#0b0b10]/70 mb-1.5"
                         >
-                          {t.partnershipLabel} *
+                          {t.partnershipLabel} <span className="text-[#5a1f2e] ms-0.5" aria-hidden="true">*</span>
                         </label>
                         <textarea
                           id="submission-partnership"
@@ -661,7 +663,7 @@ export default function SubmitProject() {
                           placeholder={t.partnershipPlaceholder}
                           className={`${fieldClass} resize-y`}
                         />
-                        <p id="submission-partnership-note" className="text-xs text-black/60">
+                        <p id="submission-partnership-note" className="text-xs text-[#0b0b10]/65 mt-1.5">
                           {t.partnershipNote}
                         </p>
                       </div>
@@ -670,44 +672,44 @@ export default function SubmitProject() {
 
                   {step === 3 && (
                     <div className="space-y-7">
-                      <h2 className="text-2xl font-bold">{t.reviewTitle}</h2>
-                      <div className="border border-black/10 bg-[#fdfcfb] p-6">
+                      <h2 className="text-2xl font-bold tracking-tight text-[#0b0b10] leading-snug">{t.reviewTitle}</h2>
+                      <div className="border border-[#0b0b10]/10 bg-[#fdfcfb] p-6">
                         <p className="t-meta text-[#5a1f2e]">{draft.title}</p>
-                        <p className="mt-3 text-sm leading-relaxed text-black/70">
+                        <p className="mt-3 text-sm leading-relaxed text-[#0b0b10]/75">
                           {draft.summary}
                         </p>
-                        <dl className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-black/10 pt-5 text-sm">
+                        <dl className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-[#0b0b10]/10 pt-5 text-sm">
                           <div>
-                            <dt className="t-meta text-[10px] text-black/60">
+                            <dt className="t-meta text-[10px] text-[#0b0b10]/65">
                               {t.organizationLabel}
                             </dt>
-                            <dd className="mt-1 font-semibold">
+                            <dd className="mt-1 font-semibold text-[#0b0b10] break-words">
                               {draft.organization}
                             </dd>
                           </div>
                           <div>
-                            <dt className="t-meta text-[10px] text-black/60">
+                            <dt className="t-meta text-[10px] text-[#0b0b10]/65">
                               {t.emailLabel}
                             </dt>
-                            <dd className="mt-1 break-all font-semibold">
+                            <dd className="mt-1 break-all font-semibold text-[#0b0b10]">
                               {draft.email}
                             </dd>
                           </div>
                           <div>
-                            <dt className="t-meta text-[10px] text-black/60">
+                            <dt className="t-meta text-[10px] text-[#0b0b10]/65">
                               {t.countryLabel}
                             </dt>
-                            <dd className="mt-1 font-semibold">
+                            <dd className="mt-1 font-semibold text-[#0b0b10]">
                               {draft.country
                                 ? COUNTRIES[draft.country][locale]
                                 : "—"}
                             </dd>
                           </div>
                           <div>
-                            <dt className="t-meta text-[10px] text-black/60">
+                            <dt className="t-meta text-[10px] text-[#0b0b10]/65">
                               {t.sectorLabel}
                             </dt>
-                            <dd className="mt-1 font-semibold">
+                            <dd className="mt-1 font-semibold text-[#0b0b10]">
                               {draft.sector
                                 ? SECTORS[draft.sector][locale]
                                 : "—"}
@@ -717,7 +719,7 @@ export default function SubmitProject() {
                       </div>
                       <label
                         htmlFor="submission-consent"
-                        className="flex items-start gap-3 border-t border-black/10 pt-5 text-sm leading-relaxed text-black/75 cursor-pointer"
+                        className="flex items-start gap-3 border-t border-[#0b0b10]/10 pt-5 text-sm leading-relaxed text-[#0b0b10]/80 cursor-pointer"
                       >
                         <input
                           id="submission-consent"
@@ -728,22 +730,22 @@ export default function SubmitProject() {
                           onChange={event =>
                             update("consent", event.target.checked)
                           }
-                          className="mt-1 h-5 w-5 shrink-0 accent-[#5a1f2e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
+                          className="mt-1 h-4 w-4 shrink-0 accent-[#5a1f2e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
                         />
                         <span>
-                          <span className="font-semibold text-black/90">
+                          <span className="font-semibold text-[#0b0b10]">
                             {t.consentLabel}:{" "}
                           </span>
                           {t.consentText}
                         </span>
                       </label>
-                      <p className="flex items-start gap-2 text-xs leading-relaxed text-black/60">
+                      <p className="flex items-start gap-2 text-xs leading-relaxed text-[#0b0b10]/65">
                         <ShieldAlert
                           size={15}
                           className="mt-0.5 shrink-0 text-[#5a1f2e]"
                           aria-hidden="true"
                         />
-                        {t.reviewNote}
+                        <span>{t.reviewNote}</span>
                       </p>
                     </div>
                   )}
@@ -757,13 +759,13 @@ export default function SubmitProject() {
                       {t.error}
                     </p>
                   )}
-                  <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-black/10 pt-6">
+                  <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[#0b0b10]/10 pt-6">
                     <div className="flex flex-wrap items-center gap-3">
                       {step > 0 && (
                         <button
                           type="button"
                           onClick={() => setStep(current => current - 1)}
-                          className="inline-flex min-h-11 items-center gap-2 border border-black/10 bg-white px-4 py-2.5 t-meta text-[10px] text-black/70 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e] active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 transition-colors"
+                          className="inline-flex min-h-11 items-center gap-2 border border-[#0b0b10]/10 bg-white px-4 py-2.5 t-meta text-[10px] text-[#0b0b10]/70 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 transition-[color,border-color,transform] duration-150"
                         >
                           <ArrowLeft size={14} className="rtl:-scale-x-100" aria-hidden="true" />
                           {t.backLabel}
@@ -772,10 +774,10 @@ export default function SubmitProject() {
                       <button
                         type="button"
                         onClick={saveDraft}
-                        className={`inline-flex min-h-11 items-center gap-2 border px-4 py-2.5 t-meta text-[10px] transition-colors active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${
+                        className={`inline-flex min-h-11 items-center gap-2 border px-4 py-2.5 t-meta text-[10px] transition-[color,background-color,border-color,transform] duration-150 active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 ${
                           saved
                             ? "border-emerald-600/40 bg-emerald-50 text-emerald-800"
-                            : "border-black/10 bg-white text-black/70 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
+                            : "border-[#0b0b10]/10 bg-white text-[#0b0b10]/70 hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e]"
                         }`}
                       >
                         {saved ? <CheckCircle2 size={14} aria-hidden="true" /> : <Save size={14} aria-hidden="true" />}
@@ -785,7 +787,7 @@ export default function SubmitProject() {
                     <button
                       type="submit"
                       disabled={Boolean(DEPLOY_BASE_PATH) || !stepValid || sending}
-                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-colors hover:bg-black active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 bg-[#5a1f2e] px-6 py-3 t-meta text-[10px] text-[#fdfcfb] transition-[color,background-color,transform] duration-200 hover:bg-[#0b0b10] active:translate-y-px disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
                     >
                       {sending ? (
                         <>
@@ -807,10 +809,10 @@ export default function SubmitProject() {
                 </form>
               )}
             </div>
-            <aside className="lg:col-span-4">
+            <aside className="min-w-0 lg:col-span-4">
               <div className="sticky top-28 space-y-6">
                 <div
-                  className="bg-[#0b0b10] p-7 text-white"
+                  className="border border-[#0b0b10]/15 bg-[#11111a] p-7 text-[#fdfcfb] shadow-[0_24px_48px_-12px_rgba(90,31,46,0.18)]"
                   role="region"
                   aria-label={t.readinessTitle}
                 >
@@ -819,16 +821,16 @@ export default function SubmitProject() {
                       <p className="t-meta text-[10px] text-[#f2a007]">
                         {t.readinessTitle}
                       </p>
-                      <p className="mt-2 text-xs leading-relaxed text-[#fdfcfb]/70">
+                      <p className="mt-2 text-xs leading-relaxed text-[#fdfcfb]/75">
                         {t.readinessNote}
                       </p>
                     </div>
-                    <span className="t-data text-3xl font-semibold text-[#f2a007]" aria-hidden="true">
-                      {readiness.score}%
+                    <span className="t-data tabular-nums text-3xl font-semibold text-[#f2a007]" dir="ltr" aria-hidden="true">
+                      <bdi>{readiness.score}%</bdi>
                     </span>
                   </div>
                   <div
-                    className="mt-6 h-2 bg-white/10"
+                    className="mt-6 h-1.5 bg-white/10"
                     role="progressbar"
                     aria-valuenow={readiness.score}
                     aria-valuemin={0}
@@ -836,7 +838,7 @@ export default function SubmitProject() {
                     aria-label={`${t.readinessTitle}: ${readiness.score}%`}
                   >
                     <div
-                      className="h-full bg-[#f2a007] transition-all"
+                      className="h-full bg-[#f2a007] transition-[width] duration-300"
                       style={{ width: `${readiness.score}%` }}
                     />
                   </div>
@@ -847,24 +849,24 @@ export default function SubmitProject() {
                         className="flex items-center justify-between gap-4 text-xs text-[#fdfcfb]/75"
                       >
                         <span className="min-w-0 break-words">{readinessLabels[factor.key]}</span>
-                        <span className="t-data text-white/90 shrink-0 font-medium">
-                          {factor.points}/{factor.max}
+                        <span className="t-data tabular-nums text-[#fdfcfb]/90 shrink-0 font-medium" dir="ltr">
+                          <bdi>{factor.points}/{factor.max}</bdi>
                         </span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="border border-black/10 bg-white p-6">
+                <div className="border border-[#0b0b10]/10 bg-white p-6">
                   <p className="t-meta text-[10px] text-[#5a1f2e]">
                     {t.steps[3]}
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-black/60">
+                  <p className="mt-3 text-sm leading-relaxed text-[#0b0b10]/65">
                     {t.reviewNote}
                   </p>
                   <button
                     type="button"
                     onClick={clearDraft}
-                    className="mt-5 inline-flex min-h-11 items-center px-2 t-meta text-[10px] text-black/60 underline underline-offset-4 hover:text-[#5a1f2e] active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2"
+                    className="mt-5 inline-flex min-h-11 items-center px-2 t-meta text-[10px] text-[#0b0b10]/60 underline underline-offset-4 hover:text-[#5a1f2e] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2 transition-[color,transform] duration-150"
                   >
                     {t.clearDraftLabel}
                   </button>
