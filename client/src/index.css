@@ -493,6 +493,126 @@ button:active:not(:disabled):not(.no-press) {
     font-size: 9px;
     color: #666;
   }
+
+  /* ── Print: comparative term sheet (Print Brief → PDF) ───────────────── */
+  .print-compare-brief,
+  .print-compare-brief * {
+    visibility: visible !important;
+  }
+  .print-compare-brief {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    background: #ffffff !important;
+    color: #0b0b10 !important;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .print-compare-brief * {
+    color: #0b0b10 !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  .print-compare-brief .print\:hidden,
+  .print-compare-brief button {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  .print-compare-brief .print-compare-header {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid #5a1f2e;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .print-compare-brief .brief-logo {
+    height: 48px;
+    width: auto;
+  }
+  .print-compare-brief .brief-org {
+    font-weight: 800;
+    font-size: 18px;
+    color: #5a1f2e !important;
+  }
+  .print-compare-brief .brief-org-full {
+    font-size: 10px;
+    color: #444444 !important;
+    max-width: 420px;
+  }
+  .print-compare-brief .brief-ref {
+    margin-inline-start: auto;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b4a00 !important;
+    font-weight: 700;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .print-compare-brief .overflow-x-auto {
+    overflow: visible !important;
+    border: none !important;
+  }
+  .print-compare-brief table {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-collapse: collapse !important;
+    margin-bottom: 16px;
+    table-layout: fixed;
+  }
+  .print-compare-brief th,
+  .print-compare-brief td {
+    border: 1px solid #d8d4d0 !important;
+    padding: 6px 8px !important;
+    font-size: 10px !important;
+    text-align: start !important;
+    vertical-align: top !important;
+    line-height: 1.45 !important;
+  }
+  .print-compare-brief thead th {
+    background-color: #f7f4f1 !important;
+    border-bottom: 2px solid #5a1f2e !important;
+  }
+  .print-compare-brief thead th span {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    color: #5a1f2e !important;
+  }
+  .print-compare-brief th[scope="row"],
+  .print-compare-brief thead th:first-child {
+    width: 24% !important;
+    background-color: #f7f4f1 !important;
+    color: #5a1f2e !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 9px !important;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .print-compare-brief .sticky {
+    position: static !important;
+  }
+  .print-compare-brief .brief-disclaimer {
+    margin-top: 14px;
+    padding: 9px 10px;
+    border: 1px solid #d8d4d0;
+    font-size: 9px;
+    line-height: 1.5;
+    color: #444444 !important;
+  }
+  .print-compare-brief .brief-footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #d8d4d0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #666666 !important;
+  }
 }
 
 /* ── Sovereign terminal surfaces polish pass (additive rules) ──────────── */

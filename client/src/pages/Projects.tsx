@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Bookmark, GitCompareArrows, Plus, ShieldAlert, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Bookmark, GitCompareArrows, Plus, Printer, ShieldAlert, X } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
@@ -24,9 +24,10 @@ import {
   type ProjectStatus,
   type SectorKey,
 } from "@/projects";
-import { localizedLinkPath, localizedPath } from "@/localePath";
+import { deployAssetPath, localizedLinkPath, localizedPath } from "@/localePath";
 import { useWatchlist } from "@/contexts/WatchlistContext";
 import { projectReadiness } from "@/readiness";
+import ReadinessCalculator from "@/components/projects/ReadinessCalculator";
 
 type Filters = {
   country: CountryKey | "all";
@@ -258,9 +259,9 @@ export default function Projects() {
         </Section>
 
         {comparedProjects.length > 0 && (
-          <Section className="border-b border-[#0b0b10] bg-[#0b0b10] py-10 text-[#fdfcfb]">
+          <Section className="border-b border-[#0b0b10] bg-[#0b0b10] py-10 text-[#fdfcfb] print-compare-brief">
             <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
-              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4 print:hidden">
                 <div>
                   <div className="mb-2 flex items-center gap-2 text-[#f2a007]">
                     <GitCompareArrows size={16} aria-hidden="true" />
@@ -269,13 +270,39 @@ export default function Projects() {
                   </div>
                   <p className="max-w-2xl text-sm leading-relaxed text-[#fdfcfb]/75">{t.compareNote}</p>
                 </div>
-                 <button
-                   type="button"
-                   onClick={clearCompare}
-                   className="inline-flex min-h-11 items-center t-meta border-b border-white/30 px-2 pb-1 text-[10px] text-[#fdfcfb]/75 transition-[color,border-color,transform] duration-200 hover:border-white hover:text-[#fdfcfb] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
-                 >
-                  {t.compareClearLabel}
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="inline-flex min-h-11 items-center gap-2 border border-white/20 bg-white/5 hover:border-[#f2a007] hover:bg-white/10 text-[#fdfcfb] t-meta text-[10px] px-4 py-2.5 transition-[color,border-color,background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px cursor-pointer print:hidden"
+                  >
+                    <Printer size={13} aria-hidden="true" />
+                    <span>{t.printCompareBrief}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={clearCompare}
+                    className="inline-flex min-h-11 items-center t-meta border-b border-white/30 px-2 pb-1 text-[10px] text-[#fdfcfb]/75 transition-[color,border-color,transform] duration-200 hover:border-white hover:text-[#fdfcfb] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 print:hidden"
+                  >
+                    {t.compareClearLabel}
+                  </button>
+                </div>
+              </div>
+
+              {/* Print-only term sheet header */}
+              <div className="print-compare-header hidden print:flex brief-header" aria-hidden="true">
+                <img
+                  src={deployAssetPath("/logo.png")}
+                  alt="AIABASD"
+                  className="brief-logo"
+                />
+                <div>
+                  <div className="brief-org">AIABASD</div>
+                  <div className="brief-org-full">
+                    {t.compareTitle} — {t.compareNote}
+                  </div>
+                </div>
+                <div className="brief-ref">INVESTMENT_BRIEF</div>
               </div>
 
               <div
@@ -303,7 +330,7 @@ export default function Projects() {
                                onClick={() => toggleCompare(project.slug)}
                                aria-label={t.removeComparedProjectLabel}
                                title={t.removeComparedProjectLabel}
-                               className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-[#fdfcfb]/60 transition-[color,transform] duration-200 hover:text-[#f2a007] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2"
+                               className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center text-[#fdfcfb]/60 transition-[color,transform] duration-200 hover:text-[#f2a007] active:translate-y-px focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 print:hidden"
                              >
                               <X size={15} aria-hidden="true" />
                             </button>
@@ -311,7 +338,7 @@ export default function Projects() {
                         </th>
                       ))}
                       {comparedProjects.length === 1 && (
-                        <th scope="col" className="min-w-[200px] max-w-[320px] border-s border-dashed border-white/15 p-4 text-start align-top bg-white/[0.02]">
+                        <th scope="col" className="min-w-[200px] max-w-[320px] border-s border-dashed border-white/15 p-4 text-start align-top bg-white/[0.02] print:hidden">
                           <div className="flex flex-col gap-1.5">
                             <span className="t-meta text-[10px] text-[#f2a007] font-semibold">{t.compareTitle}</span>
                             <span className="text-xs text-[#fdfcfb]/70 leading-snug break-words">{t.compareNote}</span>
@@ -333,7 +360,7 @@ export default function Projects() {
                           <td key={project.slug} className="border-s border-white/10 p-4 align-top leading-relaxed text-[#fdfcfb]/85 break-words">{row.get(project)}</td>
                         ))}
                         {comparedProjects.length === 1 && (
-                          <td className="border-s border-dashed border-white/15 p-4 align-top text-[#fdfcfb]/45 text-xs bg-white/[0.01]">
+                          <td className="border-s border-dashed border-white/15 p-4 align-top text-[#fdfcfb]/45 text-xs bg-white/[0.01] print:hidden">
                             —
                           </td>
                         )}
@@ -341,6 +368,17 @@ export default function Projects() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Print-only footer line */}
+              <div className="print-compare-footer hidden print:block" aria-hidden="true">
+                <div className="brief-disclaimer">
+                  {t.comparePrintFooter}
+                </div>
+                <footer className="brief-footer">
+                  <span>aiabasd.org · contact@aiabasd.org</span>
+                  <span>{t.compareTitle}</span>
+                </footer>
               </div>
             </div>
           </Section>
@@ -395,6 +433,9 @@ export default function Projects() {
             )}
           </div>
         </Section>
+
+        {/* Interactive Readiness Methodology Calculator */}
+        <ReadinessCalculator locale={locale} />
 
         {/* Strategic initiatives */}
         <Section className="relative py-16 bg-[#0b0b10] text-[#fdfcfb] border-y border-[#0b0b10]">

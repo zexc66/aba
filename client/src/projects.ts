@@ -164,6 +164,7 @@ export const PROJECTS_UI: Record<Locale3, {
   downloadBrief: string;
   lastReviewedLabel: string;
   readinessLabel: string;
+  readinessActiveLabel: string;
   readinessNote: string;
   readinessProfileLabel: string;
   saveProjectLabel: string;
@@ -189,6 +190,21 @@ export const PROJECTS_UI: Record<Locale3, {
   historyInitialEntry: string;
   historyDateLabel: string;
   historyEventLabel: string;
+  requestTeaser: string;
+  teaserNote: string;
+  teaserRequestPrefill: string;
+  printCompareBrief: string;
+  comparePrintFooter: string;
+  readinessCalculatorTitle: string;
+  readinessCalculatorNote: string;
+  readinessCalculatorCaption: string;
+  readinessResetLabel: string;
+  readinessFactorStatusDesc: string;
+  readinessFactorLocationDesc: string;
+  readinessFactorScaleDesc: string;
+  readinessFactorModelDesc: string;
+  readinessFactorObjectivesDesc: string;
+  readinessFactorPartnershipDesc: string;
 }> = {
   en: {
     pageTitle: "Strategic Projects & Investment Opportunities | AIABASD",
@@ -240,6 +256,7 @@ export const PROJECTS_UI: Record<Locale3, {
     relatedLabel: "Related Projects",
     homeCrumb: "Home",
     readinessLabel: "Readiness signal",
+    readinessActiveLabel: "active factors",
     readinessNote: "Based only on the completeness of the published profile. It is not an investment, legal, or technical due-diligence rating.",
     readinessProfileLabel: "Published profile completeness",
     saveProjectLabel: "Save opportunity",
@@ -265,6 +282,21 @@ export const PROJECTS_UI: Record<Locale3, {
     historyInitialEntry: "Profile reviewed",
     historyDateLabel: "Date",
     historyEventLabel: "Event",
+    requestTeaser: "Request the project teaser",
+    teaserNote: "The teaser is delivered personally by the partnerships team after review — no automated download is provided.",
+    teaserRequestPrefill: "Please send the project teaser for:",
+    printCompareBrief: "Print brief",
+    comparePrintFooter: "Prepared from the published project profiles of AIABASD — indicative scopes, not commitments.",
+    readinessCalculatorTitle: "Interactive Readiness Calculator",
+    readinessCalculatorNote: "Simulate how completeness across published project fields determines the catalog readiness score.",
+    readinessCalculatorCaption: "This illustrates the published readiness methodology used across the catalog; it is indicative and not an assessment of any specific opportunity.",
+    readinessResetLabel: "Reset to complete profile",
+    readinessFactorStatusDesc: "Formal project phase and operating status defined (+15 pts)",
+    readinessFactorLocationDesc: "Country host and specific geographic site / corridor documented (+15 pts)",
+    readinessFactorScaleDesc: "Indicative investment size, throughput, or target capacity specified (+15 pts)",
+    readinessFactorModelDesc: "Delivery structure, partnership framework, or operational model articulated (+15 pts)",
+    readinessFactorObjectivesDesc: "Measurable strategic objectives defined (up to 4 items, 5 pts each, max +20 pts)",
+    readinessFactorPartnershipDesc: "Structured partnership tracks and participant roles identified (up to 4 items, 5 pts each, max +20 pts)",
   },
   ar: {
     pageTitle: "المشاريع الاستراتيجية والفرص الاستثمارية | AIABASD",
@@ -316,6 +348,7 @@ export const PROJECTS_UI: Record<Locale3, {
     relatedLabel: "مشاريع ذات صلة",
     homeCrumb: "الرئيسية",
     readinessLabel: "مؤشر الجاهزية",
+    readinessActiveLabel: "عوامل نشطة",
     readinessNote: "يعتمد فقط على اكتمال الملف المنشور، وليس تقييماً استثمارياً أو قانونياً أو تقنياً للعناية الواجبة.",
     readinessProfileLabel: "اكتمال الملف المنشور",
     saveProjectLabel: "حفظ الفرصة",
@@ -341,6 +374,21 @@ export const PROJECTS_UI: Record<Locale3, {
     historyInitialEntry: "مراجعة الملف التعريفي",
     historyDateLabel: "التاريخ",
     historyEventLabel: "الحدث",
+    requestTeaser: "طلب الملخص التنفيذي للمشروع",
+    teaserNote: "يتم تسليم الملخص التنفيذي شخصياً من قبل فريق الشراكات بعد المراجعة — لا يتوفر تنزيل فوري للملفات.",
+    teaserRequestPrefill: "يرجى إرسال الملخص التنفيذي للمشروع:",
+    printCompareBrief: "طباعة الموجز",
+    comparePrintFooter: "أُعدّت من ملفات المشاريع المنشورة لمنظمة AIABASD — نطاقات إرشادية وليست التزامات.",
+    readinessCalculatorTitle: "حاسبة الجاهزية التفاعلية",
+    readinessCalculatorNote: "محاكاة كيفية تحديد اكتمال بيانات المشروع المنشورة لدرجة الجاهزية في الدليل.",
+    readinessCalculatorCaption: "يوضح هذا النموذج منهجية الجاهزية المنشورة المعتمدة عبر الدليل؛ وهو مؤشر إرشادي وليس تقييماً لأي فرصة محددة.",
+    readinessResetLabel: "إعادة التعيين إلى ملف مكتمل",
+    readinessFactorStatusDesc: "تحديد مرحلة المشروع الرسمية وحالته التشغيلية (+15 نقطة)",
+    readinessFactorLocationDesc: "توثيق الدولة المضيفة والموقع الجغرافي أو الممر المحدد (+15 نقطة)",
+    readinessFactorScaleDesc: "تحديد حجم الاستثمار التقديري أو الطاقة الاستيعابية المستهدفة (+15 نقطة)",
+    readinessFactorModelDesc: "توضيح هيكل التنفيذ أو إطار الشراكة أو نموذج التشغيل المقترح (+15 نقطة)",
+    readinessFactorObjectivesDesc: "أهداف استراتيجية محددة وقابلة للقياس (حتى 4 عناصر، 5 نقاط لكل منها، بحد أقصى +20 نقطة)",
+    readinessFactorPartnershipDesc: "مسارات شراكة مهيكلة وأدوار محددة للأطراف المشاركة (حتى 4 عناصر، 5 نقاط لكل منها، بحد أقصى +20 نقطة)",
   },
   fr: {
     pageTitle: "Projets stratégiques & Opportunités d'investissement | AIABASD",
@@ -392,6 +440,7 @@ export const PROJECTS_UI: Record<Locale3, {
     relatedLabel: "Projets associés",
     homeCrumb: "Accueil",
     readinessLabel: "Indicateur de préparation",
+    readinessActiveLabel: "facteurs actifs",
     readinessNote: "Fondé uniquement sur l'exhaustivité du profil publié. Ce n'est pas une notation d'investissement, juridique ou technique.",
     readinessProfileLabel: "Exhaustivité du profil publié",
     saveProjectLabel: "Enregistrer l'opportunité",
@@ -417,6 +466,21 @@ export const PROJECTS_UI: Record<Locale3, {
     historyInitialEntry: "Révision du profil",
     historyDateLabel: "Date",
     historyEventLabel: "Événement",
+    requestTeaser: "Demander la fiche de présentation",
+    teaserNote: "La fiche de présentation est transmise personnellement par l'équipe des partenariats après examen — aucun téléchargement automatisé n'est proposé.",
+    teaserRequestPrefill: "Veuillez transmettre la fiche de présentation pour :",
+    printCompareBrief: "Imprimer la fiche",
+    comparePrintFooter: "Préparé à partir des profils de projets publiés de l'AIABASD — périmètres indicatifs, sans engagement.",
+    readinessCalculatorTitle: "Calculateur interactif de préparation",
+    readinessCalculatorNote: "Simulez la manière dont l'exhaustivité des champs publiés détermine le score de préparation du catalogue.",
+    readinessCalculatorCaption: "Ceci illustre la méthodologie de préparation publiée utilisée dans tout le catalogue ; il s'agit d'une indication et non d'une évaluation d'une opportunité spécifique.",
+    readinessResetLabel: "Réinitialiser au profil complet",
+    readinessFactorStatusDesc: "Phase formelle du projet et statut opérationnel définis (+15 pts)",
+    readinessFactorLocationDesc: "Pays d'accueil et site géographique ou corridor documentés (+15 pts)",
+    readinessFactorScaleDesc: "Volume d'investissement indicatif, débit ou capacité cible spécifiés (+15 pts)",
+    readinessFactorModelDesc: "Structure de réalisation, cadre partenarial ou modèle d'exploitation articulés (+15 pts)",
+    readinessFactorObjectivesDesc: "Objectifs stratégiques mesurables définis (jusqu'à 4 éléments, 5 pts chacun, max +20 pts)",
+    readinessFactorPartnershipDesc: "Axes de partenariat structurés et rôles des parties prenantes identifiés (jusqu'à 4 éléments, 5 pts chacun, max +20 pts)",
   },
 };
 

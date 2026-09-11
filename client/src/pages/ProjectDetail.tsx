@@ -7,6 +7,7 @@ import {
   Handshake,
   ChevronRight,
   Download,
+  FileText,
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
@@ -74,6 +75,11 @@ export default function ProjectDetail({
 
   const contactHref = localizedPath(
     project ? `/?project=${project.slug}#contact` : "/#contact",
+    lang
+  );
+
+  const teaserHref = localizedPath(
+    project ? `/?project=${project.slug}&intent=teaser#contact` : "/?intent=teaser#contact",
     lang
   );
 
@@ -487,12 +493,22 @@ export default function ProjectDetail({
                         <span>{t.downloadBrief}</span>
                       </button>
                       <a
+                        href={teaserHref}
+                        className="w-full inline-flex items-center justify-center gap-2 border border-[#fdfcfb]/45 bg-[#0b0b10]/35 hover:bg-[#fdfcfb]/10 hover:border-[#fdfcfb] text-[#fdfcfb] t-meta text-xs px-6 py-3.5 transition-[color,border-color,background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px"
+                      >
+                        <FileText size={14} aria-hidden="true" />
+                        <span>{t.requestTeaser}</span>
+                      </a>
+                      <a
                         href={contactHref}
                         className="w-full inline-flex items-center justify-center gap-2 bg-[#f2a007] hover:bg-[#fdfcfb] text-[#0b0b10] t-meta text-xs px-6 py-3.5 transition-[color,background-color,transform] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#f2a007] focus-visible:outline-offset-2 active:translate-y-px shadow-[0_4px_12px_rgba(90,31,46,0.25)]"
                       >
                         <span>{t.discuss}</span>
                       </a>
                     </div>
+                    <p className="text-xs text-[#fdfcfb]/70 leading-relaxed mt-4">
+                      {t.teaserNote}
+                    </p>
                     <p className="text-xs text-[#fdfcfb]/60 leading-relaxed mt-5 flex items-center gap-1.5 flex-wrap">
                       <span>{t.lastReviewedLabel}:</span>
                       <span dir="ltr"><bdi>{reviewedDate}</bdi></span>

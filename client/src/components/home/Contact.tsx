@@ -100,18 +100,27 @@ function ContactComponent({ data, lang }: ContactProps) {
 
     // Deep-link from a project detail page: ?project=slug preselects the
     // audience, prefills the message with the project reference, and brings
-    // the form into view.
+    // the form into view. When intent=teaser is present, a localized request
+    // sentence is prepended to the message.
     useEffect(() => {
       try {
-        const slug = new URLSearchParams(window.location.search).get("project");
+        const searchParams = new URLSearchParams(window.location.search);
+        const slug = searchParams.get("project");
         if (!slug) return;
         const project = projectBySlug(slug);
         if (!project) return;
         const locale3 = (lang === "ar" || lang === "fr" ? lang : "en") as "en" | "ar" | "fr";
         setAudience(project.type === "opportunity" ? 1 : 2);
+        const intent = searchParams.get("intent");
+        const ui = PROJECTS_UI[locale3];
+        const baseMsg = `Regarding: ${project.title[locale3]} (${STATUSES[project.status][locale3]}).\n\n`;
+        const prefillMsg =
+          intent === "teaser"
+            ? `${ui.teaserRequestPrefill} ${project.title[locale3]}.\n\n${baseMsg}`
+            : baseMsg;
         setForm((prev) => ({
           ...prev,
-          msg: `Regarding: ${project.title[locale3]} (${STATUSES[project.status][locale3]}).\n\n`,
+          msg: prefillMsg,
         }));
         document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
       } catch {
