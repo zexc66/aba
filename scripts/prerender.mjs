@@ -100,10 +100,16 @@ const total = ROUTES.length * LOCALES.length;
 
 for (const locale of LOCALES) {
   for (const route of ROUTES) {
-    const { html } = await renderRoute(route, locale.code);
+    const { html, head: ssrHead } = await renderRoute(route, locale.code);
     const { title, description } = routeMeta(route, locale.code);
     const publicPath = publicPathFor(route, locale.prefix);
     const url = `${SITE_URL}${publicPath === "/" ? "/" : publicPath}`;
+
+    // Structured-data scripts rendered by Helmet during SSR (Organization,
+    // FAQPage, BreadcrumbList) — appended after the deterministic head tags.
+    const jsonLdScripts = (ssrHead || "").match(
+      /<script[^>]*application\/ld\+json[^>]*>[\s\S]*?<\/script>/g
+    ) ?? [];
 
     // hreflang alternates across the three locales
     const alternates = LOCALES.map(
@@ -135,7 +141,8 @@ for (const locale of LOCALES) {
       `<meta name="twitter:title" content="${esc(title)}"/>` +
       `<meta name="twitter:description" content="${esc(description)}"/>` +
       `<meta name="twitter:image" content="${SITE_URL}/og-image.jpg"/>` +
-      `<link rel="canonical" href="${url}"/>`;
+      `<link rel="canonical" href="${url}"/>` +
+      jsonLdScripts.join("");
 
     page = page.replace("</head>", `${head}</head>`);
     page = page.replace(

@@ -166,32 +166,35 @@ export default function ProjectDetail({
         url={`/projects/${slug}`}
       />
       {project && (
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: t.homeCrumb,
-                item: `https://aiabasd.org${localizedPath("/", locale)}`,
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: t.backLabel,
-                item: `https://aiabasd.org${localizedPath("/projects", locale)}`,
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: project.title[locale],
-                item: `https://aiabasd.org${localizedPath(`/projects/${project.slug}`, locale)}`,
-              },
-            ],
-          })}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: t.homeCrumb,
+                  item: `https://aiabasd.org${localizedPath("/", locale)}`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: t.backLabel,
+                  item: `https://aiabasd.org${localizedPath("/projects", locale)}`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: project.title[locale],
+                  item: `https://aiabasd.org${localizedPath(`/projects/${project.slug}`, locale)}`,
+                },
+              ],
+            }),
+          }}
+        />
       )}
       <Header nav={content.nav} />
 

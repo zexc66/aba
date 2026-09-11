@@ -48,6 +48,25 @@ export default function ProgramDetail() {
   const uiStages = content.pipeline.stages;
   const stageIdx = stageIndex(tone);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "AIABASD",
+        item: `https://aiabasd.org${localizedPath("/", lang)}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: program.name,
+        item: `https://aiabasd.org${localizedPath(`/programs/${program.slug}`, lang)}`,
+      },
+    ],
+  };
+
   return (
     <div
       className={`min-h-[100dvh] bg-[#fdfcfb] text-[#0b0b10] ${isRTL ? "font-arabic" : ""}`}
@@ -57,6 +76,7 @@ export default function ProgramDetail() {
         description={program.detail.overview.slice(0, 155)}
         lang={lang}
         url={`/programs/${program.slug}`}
+        schema={breadcrumbSchema}
       />
       <Header nav={content.nav} />
 

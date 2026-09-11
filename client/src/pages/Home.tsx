@@ -11,6 +11,7 @@ import Team from "@/components/home/Team";
 import Partners from "@/components/home/Partners";
 import Testimonials from "@/components/home/Testimonials";
 import Newsroom from "@/components/home/Newsroom";
+import Faq from "@/components/home/Faq";
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/home/Footer";
 import AnimatedBackground from "@/components/ui/AnimatedBackground";
@@ -20,9 +21,19 @@ import PageLoader from "@/components/PageLoader";
 export default function Home() {
   const { lang, content: t, isFetchingCMS } = useLanguageContext();
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: t.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <>
-      <SEO title={t.metaTitle} description={t.hero.subtitle} lang={lang} url="/" />
+      <SEO title={t.metaTitle} description={t.hero.subtitle} lang={lang} url="/" schema={faqSchema} />
       {isFetchingCMS && <PageLoader />}
 
       <div className="relative min-h-screen text-[#0b0b10] editorial-theme">
@@ -40,6 +51,7 @@ export default function Home() {
           <Partners data={t.partners} lang={lang} />
           <Testimonials data={t.testimonials} lang={lang} />
           <Newsroom data={t.newsroom} engagements={t.engagements} lang={lang} />
+          <Faq data={t.faq} />
           <Contact data={t.contact} lang={lang} />
         </div>
 

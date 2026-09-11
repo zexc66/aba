@@ -1,6 +1,6 @@
 # AIABASD — African International Alliance for Business & Sustainable Development
 
-> AIABASD (African International Alliance for Business & Sustainable Development) is a non-commercial institutional coordination platform and consortium network operating across African and Arab reconstruction and development corridors, including Syria, Sudan, the Gulf Cooperation Council (GCC), and Sub-Saharan Africa. The platform is strictly non-custodial: no funds, deposits, capital transactions, or banking balances are handled directly through this platform. All financial engagements and sovereign agreements operate through authorized commercial banks, multilateral development entities, and licensed institutional stakeholders.
+> AIABASD (African International Alliance for Business & Sustainable Development; Arabic: التحالف الدولي الأفريقي للأعمال والتنمية المستدامة) is an international platform for economic, investment, and development cooperation. It builds strategic partnerships between Africa, the Arab world, and international markets, and converts economic opportunities and development projects into bankable, executable initiatives — acting as the strategic link between opportunity, capital, technology, market, and execution. Programs are structured as PPP, BOT, EPC+F, joint ventures, and direct investment across sectors including infrastructure, renewable energy, industry, agriculture and food security, health, digital infrastructure and AI, and the circular economy, governed by ESIA/ESMS safeguards, KYC/AML screening, independent engineers and auditors, and success fees tied to verified milestones. The platform operates across eleven sovereign corridors in Africa and the Arab world — including Ghana, Sierra Leone, The Gambia, Côte d'Ivoire, Burkina Faso, Angola, Sudan, Egypt, Jordan, Syria, and Saudi Arabia — with strategic cooperation tracks with China, East Asia, and Europe. The platform is strictly non-custodial: no funds, deposits, capital transactions, or banking balances are handled directly through this platform. All financial engagements and sovereign agreements operate through authorized commercial banks, multilateral development entities, and licensed institutional stakeholders.
 
 ## Locales
 
@@ -10,6 +10,7 @@
 
 ## Core Platform
 
+- [/](https://aiabasd.org/): Institutional overview, flagship programs, and the FAQ section (/#faq) answering the most common questions about coverage, models, governance, and partnership.
 - [/projects](https://aiabasd.org/projects): Multi-sector directory of capital, reconstruction, and development projects across African and Arab corridors.
 - [/pipeline](https://aiabasd.org/pipeline): Active and staged project pipeline categorized by development status, corridor, and readiness.
 - [/visions](https://aiabasd.org/visions): Strategic reconstruction and sustainable development vision frameworks for post-conflict and emerging markets.

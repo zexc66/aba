@@ -14,6 +14,9 @@ const LOCALES = [
 ];
 
 const esc = (s) => s.replace(/&/g, "&amp;");
+// Freshness signal for search engines: the build date reflects when content
+// last changed (the sitemap itself is regenerated on every build).
+const LASTMOD = new Date().toISOString().slice(0, 10);
 const pathFor = (route, prefix) => {
   if (route === "/") return prefix ? `${prefix}/` : "";
   return `${prefix ? prefix + "/" : ""}${route.replace(/^\//, "")}`;
@@ -31,6 +34,7 @@ const entries = ROUTES.map((route) => {
     return `  <url>
     <loc>${SITE_URL}${p ? "/" + p : "/"}</loc>
 ${alts}
+    <lastmod>${LASTMOD}</lastmod>
     <priority>${l.priority(route)}</priority>
   </url>`;
   }).join("\n");

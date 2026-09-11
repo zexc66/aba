@@ -48,6 +48,12 @@ export interface Content {
     ourStoryText?: string;
     ourStoryMilestones?: { year: string; title: string; desc: string }[];
   };
+  faq: {
+    title: string;
+    eyebrow: string;
+    note: string;
+    items: { q: string; a: string }[];
+  };
   programs: {
     title: string;
     sectionEyebrow: string;
@@ -517,6 +523,37 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { year: "02", title: "From Projects to Partnerships", desc: "We bring governments, investors, corporations, and financial institutions together in durable cooperation structures." },
         { year: "03", title: "From Partnerships to Investments", desc: "We turn partnerships into productive financing and delivered projects through PPP/BOT/EPC+F models." },
         { year: "04", title: "From Investments to Sustainable Development", desc: "Measurable economic and developmental impact: jobs, local capacity, and lasting growth." }
+      ],
+    },
+    faq: {
+      title: "Frequently asked questions",
+      eyebrow: "INSTITUTIONAL_BRIEF",
+      note: "Direct answers to the questions governments, investors, and partners ask most.",
+      items: [
+        {
+          q: "What is AIABASD?",
+          a: "The African International Alliance for Business & Sustainable Development (AIABASD) is an international platform for economic, investment, and development cooperation. It builds strategic partnerships between Africa, the Arab world, and international markets, converting opportunities into bankable, executable projects — the strategic link between opportunity, capital, technology, market, and execution.",
+        },
+        {
+          q: "Which regions does the Alliance cover?",
+          a: "The Alliance operates across Africa and the Arab world through eleven sovereign corridors — including Ghana, Sierra Leone, Côte d'Ivoire, Angola, Sudan, Egypt, Jordan, Syria, and Saudi Arabia — and builds strategic cooperation with China, East Asia, and Europe.",
+        },
+        {
+          q: "Which cooperation and financing models does the Alliance use?",
+          a: "Programs are structured as public-private partnerships (PPP), build-operate-transfer (BOT), engineering-procurement-construction with financing (EPC+F), joint ventures, and direct investment — the model selected is the one that fits the project's risk profile and delivery timeline.",
+        },
+        {
+          q: "How does the Alliance take a project from opportunity to execution?",
+          a: "Through an integrated chain: identify the opportunity and real need; assess the project and build the vision and business model; select the financing and delivery model; connect the project to partners, investors, and technology providers; then negotiate, execute, and follow through.",
+        },
+        {
+          q: "How does the Alliance ensure governance and compliance?",
+          a: "Programs are governed by ESIA/ESMS safeguards, KYC/AML screening, independent engineers and auditors, and success fees tied to verified milestones. The platform is strictly non-custodial: all financial engagements operate through authorized commercial banks and licensed institutional stakeholders.",
+        },
+        {
+          q: "How can an organization submit a project or partner with the Alliance?",
+          a: "Institutions can submit projects through the submit-project page or contact the Alliance directly at contact@aiabasd.org. Submissions are reviewed by the institutional team against feasibility and governance criteria.",
+        },
       ],
     },
     programs: {
@@ -1216,6 +1253,37 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { year: "04", title: "من الاستثمارات إلى التنمية المستدامة", desc: "أثر اقتصادي وتنموي قابل للقياس: وظائف، وقدرات محلية، ونمو مستدام." }
       ],
     },
+    faq: {
+      title: "الأسئلة الشائعة",
+      eyebrow: "الملف_المؤسسي",
+      note: "إجابات مباشرة عن الأسئلة التي تطرحها الحكومات والمستثمرون والشركاء.",
+      items: [
+        {
+          q: "ما هو التحالف الدولي الأفريقي للأعمال والتنمية المستدامة؟",
+          a: "التحالف الدولي الأفريقي للأعمال والتنمية المستدامة (AIABASD) منصة دولية للتعاون الاقتصادي والاستثماري والتنموي، تبني شراكات استراتيجية بين أفريقيا والعالم العربي والأسواق الدولية، وتحوّل الفرص إلى مشروعات استثمارية قابلة للتمويل والتنفيذ — حلقة الوصل بين الفرصة ورأس المال والتكنولوجيا والسوق والتنفيذ.",
+        },
+        {
+          q: "ما هي المناطق التي يعمل فيها التحالف؟",
+          a: "يعمل التحالف عبر أفريقيا والعالم العربي من خلال 11 ممراً سيادياً تشمل غانا وسيراليون وساحل العاج وأنغولا والسودان ومصر والأردن وسوريا والسعودية، ويبني تعاوناً استراتيجياً مع الصين وشرق آسيا وأوروبا.",
+        },
+        {
+          q: "ما نماذج التعاون والتمويل التي يعتمدها التحالف؟",
+          a: "تُهيكل المشروعات ضمن صيغ الشراكة بين القطاعين العام والخاص (PPP)، والبناء والتشغيل ونقل الملكية (BOT)، والهندسة والتوريد والإنشاء مع التمويل (EPC+F)، والمشروعات المشتركة والاستثمار المباشر — ويُختار النموذج الأنسب لملف مخاطر المشروع وجدول تنفيذه.",
+        },
+        {
+          q: "كيف ينقل التحالف المشروع من الفرصة إلى التنفيذ؟",
+          a: "عبر سلسلة متكاملة: تحديد الفرصة والاحتياج الحقيقي، تقييم المشروع وبناء الرؤية ونموذج الأعمال، اختيار نموذج التمويل والتنفيذ، ربط المشروع بالشركاء والمستثمرين ومزودي التكنولوجيا، ثم المفاوضات والتنفيذ والمتابعة.",
+        },
+        {
+          q: "كيف يضمن التحالف الحوكمة والامتثال؟",
+          a: "تخضع المشروعات لتقييم الأثر البيئي والاجتماعي (ESIA/ESMS)، وفحص KYC/AML، ومهندس ومدقق مستقلين، وأتعاب نجاح مرتبطة بمعالم تنفيذ موثقة. المنصة غير حافظة للأموال — تتم جميع التعاملات المالية عبر بنوك تجارية مرخصة وجهات مؤسسية معتمدة.",
+        },
+        {
+          q: "كيف يمكن تقديم مشروع أو الشراكة مع التحالف؟",
+          a: "يمكن للمؤسسات تقديم مشروعاتها عبر صفحة تقديم المشاريع أو التواصل مباشرة على contact@aiabasd.org، وتُراجع الطلبات من الفريق المؤسسي وفق معايير الجدوى والحوكمة.",
+        },
+      ],
+    },
     programs: {
       title: "البرامج الرئيسية",
       sectionEyebrow: "مبادرات سيادية ومؤسسية",
@@ -1911,6 +1979,37 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { year: "02", title: "Des Projets aux Partenariats", desc: "Nous réunissons gouvernements, investisseurs, entreprises et institutions financières dans des structures de coopération durables." },
         { year: "03", title: "Des Partenariats aux Investissements", desc: "Nous convertissons les partenariats en financement productif et en projets réalisés via les modèles PPP/BOT/EPC+F." },
         { year: "04", title: "Des Investissements au Développement Durable", desc: "Un impact économique et développemental mesurable : emplois, capacités locales et croissance durable." }
+      ],
+    },
+    faq: {
+      title: "Questions fréquentes",
+      eyebrow: "DOSSIER_INSTITUTIONNEL",
+      note: "Des réponses directes aux questions les plus posées par les gouvernements, les investisseurs et les partenaires.",
+      items: [
+        {
+          q: "Qu'est-ce que l'AIABASD ?",
+          a: "L'Alliance Internationale Africaine pour les Affaires et le Développement Durable (AIABASD) est une plateforme internationale de coopération économique, d'investissement et de développement. Elle construit des partenariats stratégiques entre l'Afrique, le monde arabe et les marchés internationaux, et transforme les opportunités en projets finançables et réalisables — le lien stratégique entre l'opportunité, le capital, la technologie, le marché et l'exécution.",
+        },
+        {
+          q: "Quelles régions l'Alliance couvre-t-elle ?",
+          a: "L'Alliance opère à travers l'Afrique et le monde arabe via onze corridors souverains — dont le Ghana, la Sierra Leone, la Côte d'Ivoire, l'Angola, le Soudan, l'Égypte, la Jordanie, la Syrie et l'Arabie Saoudite — et développe une coopération stratégique avec la Chine, l'Asie de l'Est et l'Europe.",
+        },
+        {
+          q: "Quels modèles de coopération et de financement l'Alliance utilise-t-elle ?",
+          a: "Les programmes sont structurés en partenariats public-privé (PPP), en build-operate-transfer (BOT), en ingénierie-approvisionnement-construction avec financement (EPC+F), en coentreprises et en investissement direct — le modèle retenu correspond au profil de risque et au calendrier de réalisation du projet.",
+        },
+        {
+          q: "Comment l'Alliance conduit-elle un projet de l'opportunité à l'exécution ?",
+          a: "Par une chaîne intégrée : identifier l'opportunité et le besoin réel ; évaluer le projet et construire la vision et le modèle d'affaires ; choisir le modèle de financement et de réalisation ; relier le projet aux partenaires, investisseurs et fournisseurs de technologie ; puis négocier, exécuter et assurer le suivi.",
+        },
+        {
+          q: "Comment l'Alliance garantit-elle la gouvernance et la conformité ?",
+          a: "Les programmes sont encadrés par des garanties EISE/SGES (ESIA/ESMS), un filtrage KYC/AML, des ingénieurs et auditeurs indépendants, et des frais de succès liés à des jalons vérifiés. La plateforme est strictement non conservatrice : toutes les opérations financières passent par des banques commerciales agréées et des parties prenantes institutionnelles licenciées.",
+        },
+        {
+          q: "Comment soumettre un projet ou devenir partenaire de l'Alliance ?",
+          a: "Les institutions peuvent soumettre leurs projets via la page de soumission ou contacter directement l'Alliance à contact@aiabasd.org. Les demandes sont examinées par l'équipe institutionnelle selon des critères de faisabilité et de gouvernance.",
+        },
       ],
     },
     programs: {

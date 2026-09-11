@@ -201,5 +201,10 @@ export function renderRoute(
     )
   );
 
-  return { html, head: "" };
+  // Extract Helmet-rendered head fragments (JSON-LD schema scripts) so the
+  // prerenderer can append them to its deterministic head injection.
+  const helmet = (helmetContext as { helmet?: { script?: { toString(): string } } }).helmet;
+  const head = helmet?.script ? helmet.script.toString() : "";
+
+  return { html, head };
 }
