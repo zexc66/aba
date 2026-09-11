@@ -1,4 +1,4 @@
-import { ShieldCheck, Handshake, Leaf, Building2, Globe2, Heart, Recycle } from "lucide-react";
+import { Leaf, Building2, Globe2, Heart, Recycle, Target, Landmark, Banknote, Factory, Network } from "lucide-react";
 import { ReactNode } from "react";
 
 export interface Content {
@@ -484,11 +484,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     about: {
       title: "Who we are",
       text:
-        "The UN estimates a $4 trillion annual financing gap between developing countries and the Sustainable Development Goals — and traditional aid alone cannot close it. AIABASD exists for exactly this gap: a multi-country alliance that connects governments, private capital, and operating partners into bankable PPP/BOT programs — energy, logistics, agriculture, digital infrastructure, and resilient cities — governed by ESIA/ESMS safeguards, KYC/AML screening, independent engineers and auditors, and success fees tied to verified milestones.",
+        "The African International Alliance for Business & Sustainable Development (AIABASD) is an international platform for economic, investment, and development cooperation — building strategic partnerships between Africa, the Arab world, and international markets, and converting economic opportunities and development projects into initiatives that can be developed, financed, and executed. We are not a networking platform or an opportunity directory: we are the strategic link between opportunity, capital, technology, market, and execution — grounded in the conviction that genuine sustainable development happens when economic partnerships become real projects with measurable impact.",
       bullets: [
-        { icon: <ShieldCheck className="w-5 h-5" />, text: "Strong governance & compliance (ESIA/ESMS, KYC/AML)." },
-        { icon: <Handshake className="w-5 h-5" />, text: "Government partnerships & PPP/BOT delivery capacity." },
-        { icon: <Leaf className="w-5 h-5" />, text: "Climate-positive, SDG-aligned development approach." },
+        { icon: <Target className="w-5 h-5" />, text: "Project & investment development — turning opportunities into bankable, executable investments." },
+        { icon: <Landmark className="w-5 h-5" />, text: "Government–private sector cooperation structures: PPP, BOT, EPC+F, joint ventures, and direct investment." },
+        { icon: <Banknote className="w-5 h-5" />, text: "Connecting promising projects to financial institutions, investment funds, and developers able to finance and deliver." },
+        { icon: <Factory className="w-5 h-5" />, text: "Technology transfer & industrial localization — building sustainable local industrial and technical capacity." },
+        { icon: <Globe2 className="w-5 h-5" />, text: "Advancing international trade and market linkage across strategic commodities, raw materials, and industrial and agricultural products." },
+        { icon: <Network className="w-5 h-5" />, text: "A China–Arab–Africa cooperation system spanning industry, infrastructure, technology, energy, and the digital economy." },
       ],
       metricsTitle: "Institutional_Legacy",
       metrics: [
@@ -497,22 +500,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "Civic Programs", value: "07", desc: "Flagship programs under institutional mandate", id: "PRG_CIV" },
         { label: "Jobs Enabled", value: "10,000+", desc: "Employment across active delivery corridors", id: "EMP_ENG" },
       ],
-      blueprintTitle: "Execution_Framework",
+      blueprintTitle: "Opportunity_to_Execution",
       blueprint: [
-        { t: "Program origination & deep strategy", id: "A01" },
-        { t: "PPP/BOT institutional risk allocation", id: "A02" },
-        { t: "ESMS & MRV auditing compliance", id: "A03" },
-        { t: "EPC+F rapid deployment mobilization", id: "A04" },
-        { t: "Local-content & capacity enablement", id: "A05" },
+        { t: "Identify the opportunity and the real need", id: "A01" },
+        { t: "Assess the project; build the vision and business model", id: "A02" },
+        { t: "Select the appropriate financing and delivery model", id: "A03" },
+        { t: "Connect the project to partners, investors, and technology providers", id: "A04" },
+        { t: "Negotiate, develop, execute, and follow through", id: "A05" },
       ],
-      ourStoryTitle: "Our Story",
-      ourStorySubtitle: "Bridging Continents through Bankable Alliances & Sustainable Development",
+      ourStoryTitle: "What sets us apart",
+      ourStorySubtitle: "From Opportunity to Execution",
       ourStoryText:
-        "Africa invests roughly 4% of its GDP in infrastructure against 14% in China, and the African Development Bank estimates the continent\u2019s annual infrastructure financing gap at up to $170 billion — a shortfall the Bank calculates is costing an estimated 2 percentage points of GDP growth every year. Founded at the convergence of the UN SDG 2030 Agenda and African Union Agenda 2063, AIABASD was established to convert that deficit into mandate: uniting sovereign governments, institutional investors, and operating partners to turn high-need regional corridors — from West Africa to the Middle East — into bankable, climate-resilient growth zones.",
+        "Our strength lies in uniting strategic vision, international relationships, business development, project understanding, finance, technology, and markets within a single framework. We build long-term relationships rather than short-term deals, and develop executable projects rather than ideas left on the table — convinced that the best international partnerships create value for all parties, strengthen local economies, and transfer knowledge and technology.",
       ourStoryMilestones: [
-        { year: "Origin", title: "Institutional Alliance Formation", desc: "Established multi-sovereign coalition bridging Arab capital with African growth markets under strict ESIA/ESMS governance." },
-        { year: "Expansion", title: "11 Sovereign Corridors", desc: "Expanded operational presence across Ghana, Sierra Leone, Gambia, Ivory Coast, Burkina Faso, Angola, Sudan, Egypt, Jordan, Syria, and Saudi Arabia." },
-        { year: "Impact", title: "+$550M Pipeline & Civic Recovery", desc: "Mobilized green energy, digital infrastructure, circular debris recycling, and flagship humanitarian recovery initiatives like Hama." }
+        { year: "01", title: "From Potential to Projects", desc: "We convert opportunities and resources into studied investment concepts with clear economic and commercial foundations." },
+        { year: "02", title: "From Projects to Partnerships", desc: "We bring governments, investors, corporations, and financial institutions together in durable cooperation structures." },
+        { year: "03", title: "From Partnerships to Investments", desc: "We turn partnerships into productive financing and delivered projects through PPP/BOT/EPC+F models." },
+        { year: "04", title: "From Investments to Sustainable Development", desc: "Measurable economic and developmental impact: jobs, local capacity, and lasting growth." }
       ],
     },
     programs: {
@@ -1177,11 +1181,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     about: {
       title: "من نحن",
       text:
-        "تقدّر الأمم المتحدة فجوة تمويل قدرها 4 تريليونات دولار سنوياً بين الدول النامية وأهداف التنمية المستدامة — وهي فجوة لا يمكن للمساعدات التقليدية وحدها سدّها. وُجد التحالف تحديداً لهذه الفجوة: تحالف متعدد الدول يربط الحكومات ورؤوس الأموال والشركاء التشغيلين في برامج PPP/BOT قابلة للتمويل — طاقة ولوجستيات وزراعة وبنية رقمية ومدن مرنة — تحت حوكمة صارمة (ESIA/ESMS، KYC/AML، مهندس ومدقق مستقل) وأتعاب نجاح مرتبطة بمعامل موثقة.",
+        "التحالف الدولي الأفريقي للأعمال والتنمية المستدامة (AIABASD) منصة دولية للتعاون الاقتصادي والاستثماري والتنموي، تبني شراكات استراتيجية بين أفريقيا والعالم العربي والأسواق الدولية، وتحوّل الفرص الاقتصادية والمشروعات التنموية إلى مبادرات ومشروعات قابلة للتطوير والتمويل والتنفيذ. لسنا مجرد منصة للتواصل أو التعريف بالفرص — بل حلقة وصل استراتيجية بين الفرصة ورأس المال والتكنولوجيا والسوق والتنفيذ، تقوم على قناعة راسخة بأن التنمية المستدامة الحقيقية تتحقق حين تتحول الشراكات الاقتصادية إلى مشروعات حقيقية ذات أثر اقتصادي وتنموي قابل للقياس.",
       bullets: [
-        { icon: <ShieldCheck className="w-5 h-5" />, text: "حوكمة وامتثال قويان (ESIA/ESMS، KYC/AML)." },
-        { icon: <Handshake className="w-5 h-5" />, text: "شراكات حكومية وقدرة تنفيذ ضمن صيغ PPP/BOT." },
-        { icon: <Leaf className="w-5 h-5" />, text: "نهج إيجابي للمناخ ومتوافق مع أهداف التنمية المستدامة." },
+        { icon: <Target className="w-5 h-5" />, text: "تطوير المشروعات والاستثمارات — تحويل الفرص إلى مشروعات استثمارية قابلة للتمويل والتنفيذ." },
+        { icon: <Landmark className="w-5 h-5" />, text: "هياكل تعاون فعّالة بين الحكومات والقطاع الخاص: PPP، BOT، EPC+F، والاستثمار المباشر والمشروعات المشتركة." },
+        { icon: <Banknote className="w-5 h-5" />, text: "ربط المشروعات الواعدة بالمؤسسات المالية وصناديق الاستثمار والمطورين القادرين على التمويل والتنفيذ." },
+        { icon: <Factory className="w-5 h-5" />, text: "نقل التكنولوجيا وتوطين الصناعة — بناء قدرات صناعية وتقنية محلية مستدامة تخلق الوظائف وتدعم سلاسل القيمة." },
+        { icon: <Globe2 className="w-5 h-5" />, text: "تعزيز التجارة الدولية وربط الأسواق في السلع الاستراتيجية والموارد الطبيعية والمنتجات الصناعية والزراعية." },
+        { icon: <Network className="w-5 h-5" />, text: "منظومة تعاون صيني–عربي–أفريقي في الصناعة والبنية التحتية والتكنولوجيا والطاقة والاقتصاد الرقمي." },
       ],
       metricsTitle: "الإرث_المؤوسسي",
       metrics: [
@@ -1190,22 +1197,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "البرامج المدنية", value: "07", desc: "برامج رائدة تحت التفويض المؤسسي", id: "PRG_CIV" },
         { label: "الوظائف الممكنة", value: "10,000+", desc: "فرص عمل عبر ممرات التنفيذ النشطة", id: "EMP_ENG" },
       ],
-      blueprintTitle: "إطار_التنفيذ",
+      blueprintTitle: "من_الفرصة_إلى_التنفيذ",
       blueprint: [
-        { t: "نشأة البرامج والاستراتيجية العميقة", id: "A01" },
-        { t: "تخصيص المخاطر المؤسسية PPP/BOT", id: "A02" },
-        { t: "امتثال تدقيق ESMS & MRV", id: "A03" },
-        { t: "تعبئة النشر السريع EPC+F", id: "A04" },
-        { t: "تمكين المحتوى المحلي والقدرات", id: "A05" },
+        { t: "تحديد الفرصة والاحتياج الحقيقي", id: "A01" },
+        { t: "تقييم المشروع وبناء الرؤية ونموذج الأعمال", id: "A02" },
+        { t: "اختيار نموذج التمويل والتنفيذ المناسب", id: "A03" },
+        { t: "ربط المشروع بالشركاء والمستثمرين ومزودي التكنولوجيا", id: "A04" },
+        { t: "المفاوضات والتطوير والتنفيذ والمتابعة", id: "A05" },
       ],
-      ourStoryTitle: "قصتنا",
-      ourStorySubtitle: "الربط بين القارات من خلال التحالفات القابلة للتمويل والتنمية المستدامة",
+      ourStoryTitle: "ما الذي يميزنا",
+      ourStorySubtitle: "من الفرصة إلى التنفيذ",
       ourStoryText:
-        "تستثمر إفريقيا نحو 4% من ناتجها المحلي في البنية التحتية مقابل 14% في الصين، ويقدّر بنك التنمية الأفريقي فجوة التمويل السنوية للبنية التحتية في القارة بما يصل إلى 170 مليار دولار — عجزٌ يحرم الاقتصادات من نحو نقطتين مئويتين من النمو سنوياً بتقدير البنك نفسه. تأسس التحالف عند تقاطع أهداف التنمية المستدامة 2030 وأجندة الاتحاد الأفريقي 2063 ليحوّل هذا العجز إلى تفويض: بتوحيد الحكومات السيادية والمستثمرين المؤسسيين والشركاء التشغيليين لتحويل الممرات الإقليمية عالية الاحتياج — من غرب إفريقيا إلى الشرق الأوسط — إلى مناطق نمو قابلة للتمويل ومرنة مناخياً.",
+        "تكمن قوة التحالف في الجمع بين الرؤية الاستراتيجية والعلاقات الدولية وتطوير الأعمال وفهم المشروعات والتمويل والتكنولوجيا والأسواق ضمن إطار واحد. نبني علاقات طويلة الأمد بدل الصفقات قصيرة المدى، ونطور مشروعات قابلة للتنفيذ بدل الاكتفاء بطرح الأفكار — ونؤمن بأن أفضل الشراكات الدولية هي التي تحقق قيمة لجميع الأطراف، وتدعم الاقتصاد المحلي، وتنقل المعرفة والتكنولوجيا، وتوفر أساسًا للنمو المستدام.",
       ourStoryMilestones: [
-        { year: "النشأة", title: "تأسيس التحالف المؤسسي", desc: "إنشاء تحالف متعدد السيادات يربط رأس المال العربي بأسواق النمو الإفريقية تحت حوكمة صارمة ESIA/ESMS." },
-        { year: "التوسع", title: "11 ممر سيادي", desc: "توسيع التواجد التشغيلي عبر غانا، سيراليون، غامبيا، ساحل العاج، بوركينا فاسو، أنغولا، السودان، مصر، الأردن، سوريا، والسعودية." },
-        { year: "التأثير", title: "مشاريع +550M$ والتعافي المدني", desc: "تعبئة الطاقة الخضراء، البنية التحتية الرقمية، إعادة تدوير الأنقاض الدائرية، ومبادرات التعافي الإنساني مثل حماة." }
+        { year: "01", title: "من الإمكانات إلى المشروعات", desc: "نحوّل الفرص والموارد إلى تصورات استثمارية مدروسة بأسس اقتصادية وتجارية واضحة." },
+        { year: "02", title: "من المشروعات إلى الشراكات", desc: "نجمع الحكومات والمستثمرين والشركات والمؤسسات المالية في هياكل تعاون طويلة الأمد." },
+        { year: "03", title: "من الشراكات إلى الاستثمارات", desc: "نحوّل الشراكات إلى تمويل منتج ومشروعات منفذة عبر نماذج PPP/BOT/EPC+F." },
+        { year: "04", title: "من الاستثمارات إلى التنمية المستدامة", desc: "أثر اقتصادي وتنموي قابل للقياس: وظائف، وقدرات محلية، ونمو مستدام." }
       ],
     },
     programs: {
@@ -1870,11 +1878,14 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
     about: {
       title: "Qui sommes-nous",
       text:
-        "L'ONU estime à 4 000 milliards de dollars par an l'écart de financement entre les pays en développement et les Objectifs de développement durable — un écart que l'aide traditionnelle seule ne peut combler. L'AIABASD existe précisément pour cet écart : une alliance multi-pays qui relie gouvernements, capitaux privés et partenaires opérationnels au sein de programmes PPP/BOT finançables — énergie, logistique, agriculture, infrastructures numériques et villes résilientes — sous gouvernance stricte (EISE/SGES, KYC/AML, ingénieur et auditeur indépendants) et frais de succès liés à des jalons vérifiés.",
+        "L'Alliance Internationale Africaine pour les Affaires et le Développement Durable (AIABASD) est une plateforme internationale de coopération économique, d'investissement et de développement — elle construit des partenariats stratégiques entre l'Afrique, le monde arabe et les marchés internationaux, et transforme les opportunités économiques et les projets de développement en initiatives finançables et réalisables. Nous ne sommes ni une simple plateforme de mise en relation ni un annuaire d'opportunités : nous sommes le lien stratégique entre l'opportunité, le capital, la technologie, le marché et l'exécution — convaincus que le véritable développement durable naît lorsque les partenariats économiques deviennent des projets réels à impact mesurable.",
       bullets: [
-        { icon: <ShieldCheck className="w-5 h-5" />, text: "Gouvernance et conformité solides (EISE/SGES, KYC/AML)." },
-        { icon: <Handshake className="w-5 h-5" />, text: "Partenariats gouvernementaux et capacité de mise en œuvre PPP/BOT." },
-        { icon: <Leaf className="w-5 h-5" />, text: "Approche positive pour le climat et alignée sur les ODD." },
+        { icon: <Target className="w-5 h-5" />, text: "Développement de projets et d'investissements — transformer les opportunités en investissements finançables et exécutables." },
+        { icon: <Landmark className="w-5 h-5" />, text: "Structures de coopération entre gouvernements et secteur privé : PPP, BOT, EPC+F, coentreprises et investissement direct." },
+        { icon: <Banknote className="w-5 h-5" />, text: "Relier les projets prometteurs aux institutions financières, fonds d'investissement et développeurs capables de financer et de réaliser." },
+        { icon: <Factory className="w-5 h-5" />, text: "Transfert de technologie et localisation industrielle — bâtir des capacités industrielles et techniques locales durables." },
+        { icon: <Globe2 className="w-5 h-5" />, text: "Renforcer le commerce international et relier les marchés : matières premières stratégiques, produits industriels et agricoles." },
+        { icon: <Network className="w-5 h-5" />, text: "Un système de coopération Chine–Monde arabe–Afrique couvrant l'industrie, les infrastructures, la technologie, l'énergie et l'économie numérique." },
       ],
       metricsTitle: "Héritage_Institutionnel",
       metrics: [
@@ -1883,22 +1894,23 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         { label: "Programmes Civiques", value: "07", desc: "Programmes phares sous mandat institutionnel", id: "PRG_CIV" },
         { label: "Emplois Activés", value: "10 000+", desc: "Emplois le long des corridors de réalisation actifs", id: "EMP_ENG" },
       ],
-      blueprintTitle: "Cadre_d_Exécution",
+      blueprintTitle: "Opportunité_vers_Exécution",
       blueprint: [
-        { t: "Origination de programme et stratégie approfondie", id: "A01" },
-        { t: "Allocation des risques institutionnels PPP/BOT", id: "A02" },
-        { t: "Conformité d'audit ESMS & MRV", id: "A03" },
-        { t: "Mobilisation et déploiement rapide EPC+F", id: "A04" },
-        { t: "Contenu local et renforcement des capacités", id: "A05" },
+        { t: "Identifier l'opportunité et le besoin réel", id: "A01" },
+        { t: "Évaluer le projet ; construire la vision et le modèle d'affaires", id: "A02" },
+        { t: "Choisir le modèle de financement et de réalisation approprié", id: "A03" },
+        { t: "Relier le projet aux partenaires, investisseurs et fournisseurs de technologie", id: "A04" },
+        { t: "Négocier, développer, exécuter et assurer le suivi", id: "A05" },
       ],
-      ourStoryTitle: "Notre Histoire",
-      ourStorySubtitle: "Rapprocher les Continents grâce à des Alliances Financables & le Développement Durable",
+      ourStoryTitle: "Ce qui nous distingue",
+      ourStorySubtitle: "De l'Opportunité à l'Exécution",
       ourStoryText:
-        "L'Afrique n'investit qu'environ 4% de son PIB dans les infrastructures contre 14% pour la Chine, et la Banque Africaine de Développement estime le déficit annuel de financement des infrastructures du continent jusqu'à 170 milliards de dollars — un manque à gagner évalué par la Banque à 2 points de croissance du PIB par an. Fondée à la convergence des ODD 2030 des Nations Unies et de l'Agenda 2063 de l'Union Africaine, l'AIABASD a été créée pour transformer ce déficit en mandat : unir gouvernements souverains, investisseurs institutionnels et partenaires opérationnels pour convertir les corridors régionaux à fort besoin — de l'Afrique de l'Ouest au Moyen-Orient — en zones de croissance finançables et résilientes au climat.",
+        "Notre force réside dans l'union de la vision stratégique, des relations internationales, du développement des affaires, de la compréhension des projets, de la finance, de la technologie et des marchés au sein d'un cadre unique. Nous construisons des relations durables plutôt que des transactions à court terme, et développons des projets réalisables plutôt que des idées restées lettre morte — convaincus que les meilleurs partenariats internationaux créent de la valeur pour toutes les parties, renforcent les économies locales et transfèrent le savoir et la technologie.",
       ourStoryMilestones: [
-        { year: "Origine", title: "Formation de l'Alliance Institutionnelle", desc: "Création d'une coalition multi-souveraine reliant le capital arabe aux marchés de croissance africains sous une gouvernance rigoureuse EISE/SGES." },
-        { year: "Expansion", title: "11 Corridors Souverains", desc: "Expansion de la présence opérationnelle au Ghana, en Sierra Leone, en Gambie, en Côte d'Ivoire, au Burkina Faso, en Angola, au Soudan, en Égypte, en Jordanie, en Syrie et en Arabie Saoudite." },
-        { year: "Impact", title: "Pipeline de +550M $ & Relèvement Civique", desc: "Mobilisation de l'énergie verte, des infrastructures numériques, du recyclage circulaire des décombres et des initiatives humanitaires phares comme Hama." }
+        { year: "01", title: "Du Potentiel aux Projets", desc: "Nous transformons les opportunités et les ressources en concepts d'investissement étudiés, dotés de fondements économiques et commerciaux clairs." },
+        { year: "02", title: "Des Projets aux Partenariats", desc: "Nous réunissons gouvernements, investisseurs, entreprises et institutions financières dans des structures de coopération durables." },
+        { year: "03", title: "Des Partenariats aux Investissements", desc: "Nous convertissons les partenariats en financement productif et en projets réalisés via les modèles PPP/BOT/EPC+F." },
+        { year: "04", title: "Des Investissements au Développement Durable", desc: "Un impact économique et développemental mesurable : emplois, capacités locales et croissance durable." }
       ],
     },
     programs: {
