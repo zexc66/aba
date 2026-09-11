@@ -23,6 +23,7 @@ interface FooterProps {
             services: string;
             intelligence: string;
             match: string;
+            governments: string;
         };
     };
     newsroom: {
@@ -62,6 +63,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                 ,{ label: data.links.services, href: "/services" }
                 ,{ label: data.links.intelligence, href: "/intelligence" }
                 ,{ label: data.links.match, href: "/match" }
+                ,{ label: data.links.governments, href: "/governments" }
             ]
         }
     ];

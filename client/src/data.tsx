@@ -54,6 +54,25 @@ export interface Content {
     note: string;
     items: { q: string; a: string }[];
   };
+  governments: {
+    metaTitle: string;
+    title: string;
+    eyebrow: string;
+    intro: string;
+    processTitle: string;
+    processNote: string;
+    process: { step: string; title: string; desc: string }[];
+    modelsTitle: string;
+    modelsNote: string;
+    models: { name: string; desc: string }[];
+    safeguardsTitle: string;
+    safeguardsNote: string;
+    safeguards: { title: string; desc: string }[];
+    ctaTitle: string;
+    ctaText: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+  };
   programs: {
     title: string;
     sectionEyebrow: string;
@@ -215,6 +234,7 @@ export interface Content {
       services: string;
       intelligence: string;
       match: string;
+      governments: string;
     };
   };
   testimonials: {
@@ -556,6 +576,42 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         },
       ],
     },
+    governments: {
+      metaTitle: "For Governments & Public Institutions",
+      title: "Partner with the Alliance",
+      eyebrow: "GOVERNMENT_PARTNERSHIPS",
+      intro:
+        "AIABASD works with ministries, municipalities, and public institutions to convert national development priorities into bankable, executable programs. We assemble the capital, technology, engineering, and delivery partners — governments retain ownership and oversight at every stage.",
+      processTitle: "From mandate to execution",
+      processNote: "A structured chain from the first letter of intent to operations and maintenance.",
+      process: [
+        { step: "01", title: "Mandate & needs assessment", desc: "We start from the government's stated priorities: a formal mandate, sector mapping, and a joint identification of the real need." },
+        { step: "02", title: "Feasibility & program vision", desc: "Projects are assessed on economic and commercial foundations — demand, tariff or revenue model, and delivery timeline — before any commitment is made." },
+        { step: "03", title: "Structuring & financing model", desc: "PPP, BOT, EPC+F, joint venture, or direct investment — the structure is selected to fit the project's risk profile and fiscal context." },
+        { step: "04", title: "Partner & technology assembly", desc: "We connect the program to vetted investors, contractors, and technology providers — including industrial localization and technology transfer commitments." },
+        { step: "05", title: "Execution & independent oversight", desc: "Delivery under independent engineer and auditor supervision, ESIA/ESMS safeguards, and success fees released only against verified milestones." },
+      ],
+      modelsTitle: "Cooperation models",
+      modelsNote: "Standard structures, adapted to each mandate.",
+      models: [
+        { name: "PPP — Public-Private Partnership", desc: "Long-term risk-sharing contracts between the public partner and private concessionaires." },
+        { name: "BOT — Build-Operate-Transfer", desc: "Private financing and operation for a defined term, then full transfer of the asset to the public partner." },
+        { name: "EPC+F — Engineering, Procurement, Construction with Finance", desc: "Turnkey delivery with financing arranged alongside engineering and construction." },
+        { name: "Joint ventures & direct investment", desc: "Shared-equity structures and co-developed industrial or infrastructure assets." },
+      ],
+      safeguardsTitle: "Governance you can audit",
+      safeguardsNote: "Every program operates under the Alliance's institutional safeguards.",
+      safeguards: [
+        { title: "ESIA/ESMS", desc: "Environmental and social impact assessment and management systems applied from mandate entry." },
+        { title: "KYC/AML", desc: "All counterparties screened against international banking norms." },
+        { title: "Independent engineer & auditor", desc: "Delivery and finance are verified by third parties, not by the Alliance." },
+        { title: "Non-custodial platform", desc: "No funds or deposits are handled through the Alliance — all financial engagements operate through authorized commercial banks." },
+      ],
+      ctaTitle: "Start a qualified conversation",
+      ctaText: "Send an official letter of interest or submit a priority project. The institutional team responds with a structured assessment path.",
+      ctaPrimary: "Submit a project",
+      ctaSecondary: "contact@aiabasd.org",
+    },
     programs: {
       title: "Flagship programs",
       sectionEyebrow: "Sovereign & Institutional Initiatives",
@@ -850,7 +906,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
          contact: "Executive Contact",
          services: "Commercial Services",
          intelligence: "Market Intelligence",
-         match: "Partner Matching",
+          match: "Partner Matching",
+          governments: "For Governments",
       },
     },
     testimonials: {
@@ -1284,6 +1341,42 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         },
       ],
     },
+    governments: {
+      metaTitle: "للحكومات والمؤسسات العامة",
+      title: "اشترك مع التحالف",
+      eyebrow: "الشراكات_الحكومية",
+      intro:
+        "يعمل التحالف مع الوزارات والبلديات والمؤسسات العامة لتحويل أولويات التنمية الوطنية إلى برامج قابلة للتمويل والتنفيذ. نحن نجمع رأس المال والتكنولوجيا والهندسة وشركاء التنفيذ — وتحتفظ الحكومة بالملكية والرقابة في كل مرحلة.",
+      processTitle: "من التفويض إلى التنفيذ",
+      processNote: "سلسلة منظمة من خطاب النوايا الأول إلى التشغيل والصيانة.",
+      process: [
+        { step: "01", title: "التفويض وتقييم الاحتياج", desc: "ننطلق من أولويات الحكومة المعلنة: تفويض رسمي، ورسم قطاعي، وتحديد مشترك للاحتياج الحقيقي." },
+        { step: "02", title: "الجدوى ورؤية البرنامج", desc: "تُقيَّم المشاريع على أسس اقتصادية وتجارية واضحة — الطلب، ونموذج التعرفة أو الإيراد، والجدول الزمني للتنفيذ — قبل أي التزام." },
+        { step: "03", title: "الهيكلة ونموذج التمويل", desc: "شراكة عامة-خاصة (PPP)، أو بناء وتشغيل ونقل (BOT)، أو هندسة وتوريد وإنشاء مع تمويل (EPC+F)، أو مشروع مشترك أو استثمار مباشر — ويُختار الهيكل الأنسب لملف مخاطر المشروع وسياقه المالي." },
+        { step: "04", title: "تجميع الشركاء والتكنولوجيا", desc: "نربط البرنامج بمستثمرين ومقاولين ومزودي تكنولوجيا تم فحصهم — مع التزامات توطين الصناعة ونقل التكنولوجيا." },
+        { step: "05", title: "التنفيذ والرقابة المستقلة", desc: "التنفيذ تحت إشراف مهندس ومدقق مستقلين، وضمانات ESIA/ESMS، وأتعاب نجاح تُصرف فقط عند تحقق معالم موثقة." },
+      ],
+      modelsTitle: "نماذج التعاون",
+      modelsNote: "هياكل معيارية تُكيَّف مع كل تفويض.",
+      models: [
+        { name: "PPP — الشراكة بين القطاعين العام والخاص", desc: "عقود طويلة الأمد لتقاسم المخاطر بين الشريك العام والامتيازيات الخاصة." },
+        { name: "BOT — البناء والتشغيل ونقل الملكية", desc: "تمويل وتشغيل خاص لمدة محددة، ثم نقل كامل للأصل إلى الشريك العام." },
+        { name: "EPC+F — الهندسة والتوريد والإنشاء مع التمويل", desc: "تنفيذ شامل مع ترتيب التمويل جنباً إلى جنب مع الهندسة والإنشاء." },
+        { name: "المشروعات المشتركة والاستثمار المباشر", desc: "هياكل ملكية مشتركة وأصول صناعية وبنية تحتية تُطوَّر بالشراكة." },
+      ],
+      safeguardsTitle: "حوكمة قابلة للتدقيق",
+      safeguardsNote: "كل برنامج يعمل تحت الضمانات المؤسسية للتحالف.",
+      safeguards: [
+        { title: "ESIA/ESMS", desc: "تقييم الأثر البيئي والاجتماعي ونظام إدارته، يُطبَّق منذ بداية التفويض." },
+        { title: "KYC/AML", desc: "فحص جميع الأطراف المقابلة وفق المعايير المصرفية الدولية." },
+        { title: "مهندس ومدقق مستقلان", desc: "التنفيذ والتمويل يُتحقق منهما من أطراف ثالثة، لا من التحالف." },
+        { title: "منصة غير حافظة للأموال", desc: "لا تُدار أي أموال أو ودائع عبر التحالف — تتم جميع التعاملات المالية عبر بنوك تجارية مرخصة." },
+      ],
+      ctaTitle: "ابدأ حواراً مؤسسياً مؤهلاً",
+      ctaText: "أرسل خطاب اهتمام رسمياً أو قدّم مشروعاً ذا أولوية، وسيرد الفريق المؤسسي بمسار تقييم منظم.",
+      ctaPrimary: "تقديم مشروع",
+      ctaSecondary: "contact@aiabasd.org",
+    },
     programs: {
       title: "البرامج الرئيسية",
       sectionEyebrow: "مبادرات سيادية ومؤسسية",
@@ -1579,6 +1672,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
          services: "الخدمات التجارية",
          intelligence: "استخبارات السوق",
          match: "مطابقة الشركاء",
+         governments: "للحكومات",
       },
     },
     testimonials: {
@@ -2012,6 +2106,42 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         },
       ],
     },
+    governments: {
+      metaTitle: "Pour les gouvernements et institutions publiques",
+      title: "Devenir partenaire de l'Alliance",
+      eyebrow: "PARTENARIATS_GOUVERNEMENTAUX",
+      intro:
+        "L'AIABASD travaille avec les ministères, les municipalités et les institutions publiques pour transformer les priorités de développement national en programmes finançables et réalisables. Nous réunissons le capital, la technologie, l'ingénierie et les partenaires de réalisation — les gouvernements conservent la propriété et la supervision à chaque étape.",
+      processTitle: "Du mandat à l'exécution",
+      processNote: "Une chaîne structurée, de la première lettre d'intention à l'exploitation et la maintenance.",
+      process: [
+        { step: "01", title: "Mandat & évaluation des besoins", desc: "Nous partons des priorités déclarées du gouvernement : mandat formel, cartographie sectorielle et identification conjointe du besoin réel." },
+        { step: "02", title: "Faisabilité & vision du programme", desc: "Les projets sont évalués sur des fondements économiques et commerciaux — demande, modèle tarifaire ou de revenus, calendrier de réalisation — avant tout engagement." },
+        { step: "03", title: "Structuration & modèle de financement", desc: "PPP, BOT, EPC+F, coentreprise ou investissement direct — la structure retenue correspond au profil de risque et au contexte budgétaire du projet." },
+        { step: "04", title: "Assemblage des partenaires & de la technologie", desc: "Nous relions le programme à des investisseurs, entrepreneurs et fournisseurs de technologie présélectionnés — avec des engagements de localisation industrielle et de transfert de technologie." },
+        { step: "05", title: "Exécution & supervision indépendante", desc: "Réalisation sous supervision d'un ingénieur et d'un auditeur indépendants, garanties EISE/SGES, et frais de succès versés uniquement contre des jalons vérifiés." },
+      ],
+      modelsTitle: "Modèles de coopération",
+      modelsNote: "Des structures standards, adaptées à chaque mandat.",
+      models: [
+        { name: "PPP — Partenariat Public-Privé", desc: "Contrats de partage des risques à long terme entre le partenaire public et les concessionnaires privés." },
+        { name: "BOT — Build-Operate-Transfer", desc: "Financement et exploitation privés pour une durée définie, puis transfert complet de l'actif au partenaire public." },
+        { name: "EPC+F — Ingénierie, Approvisionnement, Construction avec Financement", desc: "Réalisation clé en main avec financement arrangé parallèlement à l'ingénierie et à la construction." },
+        { name: "Coentreprises & investissement direct", desc: "Structures de capital partagé et actifs industriels ou d'infrastructure co-développés." },
+      ],
+      safeguardsTitle: "Une gouvernance vérifiable",
+      safeguardsNote: "Chaque programme opère sous les garanties institutionnelles de l'Alliance.",
+      safeguards: [
+        { title: "EISE/SGES", desc: "Évaluation et gestion de l'impact environnemental et social appliquées dès l'entrée du mandat." },
+        { title: "KYC/AML", desc: "Toutes les contreparties sont filtrées selon les normes bancaires internationales." },
+        { title: "Ingénieur & auditeur indépendants", desc: "La réalisation et le financement sont vérifiés par des tiers, non par l'Alliance." },
+        { title: "Plateforme non conservatrice", desc: "Aucun fonds ni dépôt n'est géré par l'Alliance — toutes les opérations financières passent par des banques commerciales agréées." },
+      ],
+      ctaTitle: "Ouvrir une conversation qualifiée",
+      ctaText: "Envoyez une lettre d'intention officielle ou soumettez un projet prioritaire. L'équipe institutionnelle répond avec un parcours d'évaluation structuré.",
+      ctaPrimary: "Soumettre un projet",
+      ctaSecondary: "contact@aiabasd.org",
+    },
     programs: {
       title: "Programmes phares",
       sectionEyebrow: "Initiatives Souveraines & Institutionnelles",
@@ -2306,7 +2436,8 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
          contact: "Contact Exécutif",
          services: "Services Commerciaux",
          intelligence: "Intelligence de Marché",
-         match: "Mise en relation",
+          match: "Mise en relation",
+          governments: "Pour les gouvernements",
       },
     },
     testimonials: {

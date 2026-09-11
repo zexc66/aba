@@ -32,6 +32,7 @@ import Corridor from "../client/src/pages/Corridor";
 import TeamMember from "../client/src/pages/TeamMember";
 import GovernanceArticle from "../client/src/pages/GovernanceArticle";
 import Services from "../client/src/pages/Services";
+import Governments from "../client/src/pages/Governments";
 import Intelligence from "../client/src/pages/Intelligence";
 import Match from "../client/src/pages/Match";
 import NotFound from "../client/src/pages/NotFound";
@@ -99,6 +100,7 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
     return { title: `${names[seg[1]] ?? "Governance"} | AIABASD`, description: t.governance.text };
   }
   if (clean === "/services") return { title: `${PLATFORM_COPY[locale].services.title} | AIABASD`, description: PLATFORM_COPY[locale].services.intro };
+  if (clean === "/governments") return { title: `${COPY[locale].governments.metaTitle} | AIABASD`, description: COPY[locale].governments.intro };
   if (clean === "/intelligence") return { title: `${PLATFORM_COPY[locale].intelligence.title} | AIABASD`, description: PLATFORM_COPY[locale].intelligence.intro };
   if (clean === "/match") return { title: `${PLATFORM_COPY[locale].match.title} | AIABASD`, description: PLATFORM_COPY[locale].match.intro };
   if (clean === "/privacy") return { title: `${LOCALIZED_COPY[locale].privacy.title} | AIABASD`, description: LOCALIZED_COPY[locale].privacy.description };
@@ -180,6 +182,7 @@ export function renderRoute(
                                   createElement(Route, { path: "/investor-portal/vault", component: Vault }),
                                   createElement(Route, { path: "/admin", component: Admin }),
                                  createElement(Route, { path: "/services", component: Services }),
+                                 createElement(Route, { path: "/governments", component: Governments }),
                                  createElement(Route, { path: "/intelligence", component: Intelligence }),
                                  createElement(Route, { path: "/match", component: Match })
                                  ,createElement(Route, { component: NotFound })

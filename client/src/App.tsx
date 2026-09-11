@@ -35,8 +35,9 @@ const Impact = lazy(() => import("./pages/Impact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const Terms = lazy(() => import("./pages/Terms"));
 const TrustCenter = lazy(() => import("./pages/TrustCenter"));
-const Visions = lazy(() => import("./pages/Visions"));
-const Services = lazy(() => import("./pages/Services"));
+  const Visions = lazy(() => import("./pages/Visions"));
+  const Services = lazy(() => import("./pages/Services"));
+  const Governments = lazy(() => import("./pages/Governments"));
 const Intelligence = lazy(() => import("./pages/Intelligence"));
 const Match = lazy(() => import("./pages/Match"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -83,6 +84,7 @@ function RouterSwitch() {
         <Route path={"/trust"} component={TrustCenter} />
         <Route path={"/visions"} component={Visions} />
         <Route path={"/services"} component={Services} />
+        <Route path={"/governments"} component={Governments} />
         <Route path={"/intelligence"} component={Intelligence} />
         <Route path={"/match"} component={Match} />
         <Route path={"/404"} component={NotFound} />

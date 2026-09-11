@@ -15,6 +15,7 @@
 - [/pipeline](https://aiabasd.org/pipeline): Active and staged project pipeline categorized by development status, corridor, and readiness.
 - [/visions](https://aiabasd.org/visions): Strategic reconstruction and sustainable development vision frameworks for post-conflict and emerging markets.
 - [/services](https://aiabasd.org/services): Advisory, consortium assembly, project structuring, and technical coordination services for institutional partners.
+- [/governments](https://aiabasd.org/governments): Government and public-institution partnership pathway — from mandate to execution under PPP/BOT/EPC+F structures with ESIA/ESMS, KYC/AML, and independent oversight.
 - [/intelligence](https://aiabasd.org/intelligence): Economic intelligence, corridor assessments, and regulatory analysis for regional reconstruction and infrastructure.
 - [/match](https://aiabasd.org/match): Institutional matching interface aligning project sponsors with qualified consortium partners and EPC contractors.
 - [/opportunity-map](https://aiabasd.org/opportunity-map): Interactive geographic visualization of infrastructure projects and investment opportunities across corridors.

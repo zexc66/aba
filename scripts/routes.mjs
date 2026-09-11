@@ -3,6 +3,7 @@ export const ALL_ROUTES = [
   "/pipeline",
   "/visions",
   "/services",
+  "/governments",
   "/intelligence",
   "/match",
   "/gallery",
