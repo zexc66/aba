@@ -132,3 +132,6 @@ data-room/*
 
 # Design-review evidence artifacts
 .impeccable/review/
+
+# Supabase CLI local state
+supabase/.temp/
