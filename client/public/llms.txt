@@ -79,6 +79,10 @@
 - [/projects/cross-border-trade-platform](https://aiabasd.org/projects/cross-border-trade-platform): Digital trade facilitation, customs compliance, and logistics tracking for intra-regional commerce across Arab and African states.
 - [/projects/advanced-technology-cooperation](https://aiabasd.org/projects/advanced-technology-cooperation): Technology transfer framework and digital infrastructure development program for sustainable industrial modernization.
 
+## Member Access
+
+- [/access](https://aiabasd.org/access): Member sign-in (one-time email link). Project rooms, documents, and tasks are private to invited collaboration teams and are not publicly indexed.
+
 ## Legal & Policies
 
 - [/privacy](https://aiabasd.org/privacy): Data privacy policy, zero third-party tracking disclosure, and data subject rights.

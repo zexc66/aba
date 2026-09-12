@@ -11,6 +11,7 @@ import { MotionConfig } from "framer-motion";
 import { TooltipProvider } from "../client/src/components/ui/tooltip";
 import { ThemeProvider } from "../client/src/contexts/ThemeContext";
 import { LanguageProvider } from "../client/src/contexts/LanguageContext";
+import { PlatformAuthProvider } from "../client/src/contexts/PlatformAuthContext";
 import { WatchlistProvider } from "../client/src/contexts/WatchlistContext";
 import GlobalLayout from "../client/src/components/layout/GlobalLayout";
 import Home from "../client/src/pages/Home";
@@ -40,6 +41,10 @@ import CompanyDetail from "../client/src/pages/CompanyDetail";
 import Introductions from "../client/src/pages/Introductions";
 import Preparation from "../client/src/pages/Preparation";
 import Knowledge, { KNOWLEDGE_COPY } from "../client/src/pages/Knowledge";
+import Access from "../client/src/pages/Access";
+import Rooms from "../client/src/pages/Rooms";
+import AcceptInvite from "../client/src/pages/AcceptInvite";
+import { ROOMS_COPY } from "../client/src/roomsCopy";
 import { PREPARATION_COPY } from "../client/src/preparation";
 import { companyBySlug } from "../client/src/companies";
 import { NETWORK_COPY } from "../client/src/networkCopy";
@@ -65,6 +70,9 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
   const seg = clean.split("/").filter(Boolean);
   if (clean === "/preparation") return { title: `${PREPARATION_COPY[locale].title} | AIABASD`, description: PREPARATION_COPY[locale].intro };
   if (clean === "/knowledge") return { title: `${KNOWLEDGE_COPY[locale].title} | AIABASD`, description: KNOWLEDGE_COPY[locale].intro };
+  if (clean === "/access") return { title: `${ROOMS_COPY[locale].accessTitle} | AIABASD`, description: ROOMS_COPY[locale].accessIntro };
+  if (clean === "/rooms") return { title: `${ROOMS_COPY[locale].roomsTitle} | AIABASD`, description: ROOMS_COPY[locale].roomsIntro };
+  if (clean === "/accept-invite") return { title: `${ROOMS_COPY[locale].inviteTitle} | AIABASD`, description: ROOMS_COPY[locale].inviteIntro };
   if (clean === "/companies") return { title: `${NETWORK_COPY[locale].directory} | AIABASD`, description: NETWORK_COPY[locale].intro };
   if (seg[0] === "companies" && seg[1]) {
     const company = companyBySlug(seg[1]);
@@ -157,10 +165,13 @@ export function renderRoute(
               {
                 defaultTheme: "light",
                 children: createElement(
-                  LanguageProvider,
-                  {
-                    initialLocale: locale,
-                     children: createElement(
+                  PlatformAuthProvider,
+                  null,
+                  createElement(
+                    LanguageProvider,
+                    {
+                      initialLocale: locale,
+                      children: createElement(
                        WatchlistProvider,
                        {
                          children: createElement(
@@ -206,6 +217,9 @@ export function renderRoute(
                                  ,createElement(Route, { path: "/introductions", component: Introductions })
                                  ,createElement(Route, { path: "/preparation", component: Preparation })
                                  ,createElement(Route, { path: "/knowledge", component: Knowledge })
+                                 ,createElement(Route, { path: "/access", component: Access })
+                                 ,createElement(Route, { path: "/rooms", component: Rooms })
+                                 ,createElement(Route, { path: "/accept-invite", component: AcceptInvite })
                                  ,createElement(Route, { component: NotFound })
                               )
                             ),
@@ -215,15 +229,16 @@ export function renderRoute(
                          ),
                        }
                      ),
-                  }
-                ),
-              }
-            ),
-          }
-        ),
-      }
-    )
-  );
+                   }
+                 ),
+                 )
+               }
+             ),
+           }
+         ),
+       }
+     )
+   );
 
   // Extract Helmet-rendered head fragments (JSON-LD schema scripts) so the
   // prerenderer can append them to its deterministic head injection.

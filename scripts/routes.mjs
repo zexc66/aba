@@ -7,6 +7,9 @@ export const ALL_ROUTES = [
   "/companies",
   "/introductions",
   "/preparation",
+  "/access",
+  "/rooms",
+  "/accept-invite",
   "/knowledge",
   ...["trilogy", "creation-design-group", "kaolin", "mauritanian-metallogistic", "adfat", "saudi-mauritanian-industrial", "global-agriculture", "saudi-mauritanian-trading", "saudi-mauritanian-investment", "adfat-gold", "nabt", "chemexa", "tyms-contracting"].map(slug => `/companies/${slug}`),
   "/intelligence",
@@ -83,7 +86,7 @@ export const publicRoutes = (isVercel) =>
 
 // Basic company records remain available to visitors but are not indexed until
 // approved substantive profiles are supplied. Introduction forms are utility pages.
-export const SITEMAP_ROUTES = ALL_ROUTES.filter((route) => route !== "/404" && route !== "/introductions" && route !== "/preparation" && !route.startsWith("/companies/") && !PRIVATE_ROUTES.has(route));
+export const SITEMAP_ROUTES = ALL_ROUTES.filter((route) => route !== "/404" && route !== "/introductions" && route !== "/preparation" && route !== "/access" && route !== "/rooms" && route !== "/accept-invite" && !route.startsWith("/companies/") && !PRIVATE_ROUTES.has(route));
 
 export const sitemapRoutes = (isVercel) =>
   isVercel ? SITEMAP_ROUTES.filter((route) => !PRIVATE_ROUTES.has(route)) : SITEMAP_ROUTES;

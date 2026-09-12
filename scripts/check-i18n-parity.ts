@@ -3,6 +3,7 @@ import { INTELLIGENCE_RECORDS, PLATFORM_COPY, SERVICE_PACKAGES } from "../client
 import { LOCALIZED_COPY } from "../client/src/localizedCopy";
 import { NETWORK_COPY } from "../client/src/networkCopy";
 import { PREPARATION_COPY } from "../client/src/preparation";
+import { ROOMS_COPY } from "../client/src/roomsCopy";
 
 type Shape = { [k: string]: Shape | "leaf" | "list" };
 
@@ -39,6 +40,8 @@ diffPaths(shape(NETWORK_COPY.en), shape(NETWORK_COPY.ar), "network.ar", problems
 diffPaths(shape(NETWORK_COPY.en), shape(NETWORK_COPY.fr), "network.fr", problems);
 diffPaths(shape(PREPARATION_COPY.en), shape(PREPARATION_COPY.ar), "preparation.ar", problems);
 diffPaths(shape(PREPARATION_COPY.en), shape(PREPARATION_COPY.fr), "preparation.fr", problems);
+diffPaths(shape(ROOMS_COPY.en), shape(ROOMS_COPY.ar), "rooms.ar", problems);
+diffPaths(shape(ROOMS_COPY.en), shape(ROOMS_COPY.fr), "rooms.fr", problems);
 diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.ar), "platform.ar", problems);
 diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.fr), "platform.fr", problems);
 

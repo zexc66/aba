@@ -5,6 +5,7 @@ import { deployAssetPath, localizedPath } from "@/localePath";
 import { LOCALIZED_COPY } from "@/localizedCopy";
 import { NETWORK_COPY } from "@/networkCopy";
 import { PREPARATION_COPY } from "@/preparation";
+import { ROOMS_COPY } from "@/roomsCopy";
 
 interface FooterProps {
     data: {
@@ -68,6 +69,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                 ,{ label: data.links.governments, href: "/governments" }
                 ,{ label: NETWORK_COPY[lang as "en" | "ar" | "fr"].footer, href: "/companies" }
                 ,{ label: PREPARATION_COPY[lang as "en" | "ar" | "fr"].guide, href: "/knowledge" }
+                ,{ label: ROOMS_COPY[lang as "en" | "ar" | "fr"].platform, href: "/access" }
             ]
         }
     ];

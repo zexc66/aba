@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Chatbot from "./components/Chatbot";
 import ConsentBanner from "./components/ConsentBanner";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { PlatformAuthProvider } from "./contexts/PlatformAuthContext";
 import { LanguageProvider, useLanguageContext } from "./contexts/LanguageContext";
 import { WatchlistProvider } from "./contexts/WatchlistContext";
 import PageLoader from "./components/PageLoader";
@@ -45,6 +46,10 @@ const CompanyDetail = lazy(() => import("./pages/CompanyDetail"));
 const Introductions = lazy(() => import("./pages/Introductions"));
 const Preparation = lazy(() => import("./pages/Preparation"));
 const Knowledge = lazy(() => import("./pages/Knowledge"));
+const Access = lazy(() => import("./pages/Access"));
+const Rooms = lazy(() => import("./pages/Rooms"));
+const RoomDetail = lazy(() => import("./pages/RoomDetail"));
+const AcceptInvite = lazy(() => import("./pages/AcceptInvite"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const InvestorLoginRoute = isVercelDeployment ? DeploymentUnavailable : InvestorLogin;
@@ -97,6 +102,10 @@ function RouterSwitch() {
         <Route path={"/introductions"} component={Introductions} />
         <Route path={"/preparation"} component={Preparation} />
         <Route path={"/knowledge"} component={Knowledge} />
+        <Route path={"/access"} component={Access} />
+        <Route path={"/rooms"} component={Rooms} />
+        <Route path={"/rooms/:id"} component={RoomDetail} />
+        <Route path={"/accept-invite"} component={AcceptInvite} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
@@ -128,6 +137,7 @@ function App() {
     <MotionConfig reducedMotion="user">
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
+        <PlatformAuthProvider>
         <LanguageProvider>
           <WatchlistProvider>
             <TooltipProvider>
@@ -141,6 +151,7 @@ function App() {
             </TooltipProvider>
           </WatchlistProvider>
         </LanguageProvider>
+        </PlatformAuthProvider>
       </ThemeProvider>
     </ErrorBoundary>
     </MotionConfig>

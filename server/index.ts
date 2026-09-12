@@ -12,6 +12,7 @@ import { notifyLead, acknowledgeLead } from "./notify";
 import { recordPageview, recordEvent, readAnalytics } from "./analytics";
 import { registerVaultRoutes } from "./vault";
 import { registerRssRoute } from "./rss";
+import { registerOrgRoutes } from "./orgRoutes";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -183,6 +184,7 @@ async function startServer() {
       .catch(() => res.status(500).json({ error: "Internal server error" }));
   });
 
+  registerOrgRoutes(app);
   registerVaultRoutes(app);
   app.patch("/api/admin/leads/:id", inquiryLimiter, async (req, res) => {
     const token = req.headers["x-admin-token"];
@@ -211,6 +213,11 @@ async function startServer() {
   app.get("/{*splat}", (req, res) => {
     if (req.path.startsWith("/api/")) {
       res.status(404).json({ error: "Not found" });
+      return;
+    }
+    // Client-only member surfaces: serve the SPA shell for deep links.
+    if (req.path === "/access" || req.path === "/accept-invite" || /^\/rooms\/[A-Za-z0-9-]+$/.test(req.path)) {
+      res.sendFile(path.join(staticPath, "index.html"));
       return;
     }
     const relativeRoute = req.path === "/"
