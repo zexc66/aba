@@ -10,6 +10,12 @@
 
 ## Core Platform
 
+- [/knowledge](https://aiabasd.org/knowledge): Trilingual cooperation-model guide based on the Alliance's published government and governance guidance.
+- [/preparation](https://aiabasd.org/preparation): Personal project-preparation checklist with optional local saving and a downloadable working note; not a verified readiness assessment.
+
+- [/companies](https://aiabasd.org/companies): Company directory with public profiles and explicit distinctions between a listing and documentary verification.
+- [/introductions](https://aiabasd.org/introductions): Structured requests to meet a company or discuss a published project need. Connections require team review.
+
 - [/](https://aiabasd.org/): Institutional overview, flagship programs, and the FAQ section (/#faq) answering the most common questions about coverage, models, governance, and partnership.
 - [/projects](https://aiabasd.org/projects): Multi-sector directory of capital, reconstruction, and development projects across African and Arab corridors.
 - [/pipeline](https://aiabasd.org/pipeline): Active and staged project pipeline categorized by development status, corridor, and readiness.

@@ -5,8 +5,9 @@ import { existsSync } from "fs";
 import { fileURLToPath } from "url";
 import { z } from "zod";
 import { generateChatResponse } from "./services/chatService";
-import { inquirySchema, projectSubmissionSchema } from "./inquirySchema";
-import { saveInquiry, listInquiries } from "./storage";
+import { inquirySchema, projectSubmissionSchema, introductionSchema } from "./inquirySchema";
+import { saveInquiry, listInquiries, updateInquiry } from "./storage";
+import { workflowSchema } from "./workflow";
 import { notifyLead, acknowledgeLead } from "./notify";
 import { recordPageview, recordEvent, readAnalytics } from "./analytics";
 import { registerVaultRoutes } from "./vault";
@@ -90,6 +91,14 @@ async function startServer() {
     }
 
     let data = parsed.data;
+    if (data.type === "INTRODUCTION") {
+      const introduction = introductionSchema.safeParse(req.body);
+      if (!introduction.success) {
+        res.status(400).json({ error: "Invalid introduction request.", fields: introduction.error.issues.map(issue => issue.path.join(".")) });
+        return;
+      }
+      data = introduction.data;
+    }
     if (data.type === "PROJECT_SUBMISSION") {
       const projectParsed = projectSubmissionSchema.safeParse(req.body);
       if (!projectParsed.success) {
@@ -175,6 +184,21 @@ async function startServer() {
   });
 
   registerVaultRoutes(app);
+  app.patch("/api/admin/leads/:id", inquiryLimiter, async (req, res) => {
+    const token = req.headers["x-admin-token"];
+    if (!process.env.ADMIN_TOKEN || typeof token !== "string" || token !== process.env.ADMIN_TOKEN) {
+      res.status(401).json({ error: "Unauthorized" }); return;
+    }
+    const parsed = workflowSchema.safeParse(req.body);
+    const id = req.params.id;
+    if (!parsed.success || typeof id !== "string" || !/^[a-f0-9]{8}$/.test(id)) {
+      res.status(400).json({ error: "Invalid workflow update" }); return;
+    }
+    const result = await updateInquiry(id, parsed.data);
+    if (result.status === "missing") { res.status(404).json({ error: "Inquiry not found" }); return; }
+    if (result.status === "conflict") { res.status(409).json({ error: "Inquiry changed. Reload before saving." }); return; }
+    res.json(result);
+  });
   registerRssRoute(app);
 
   const staticPath =

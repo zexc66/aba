@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { z } from "zod";
 import { allowConfiguredOrigin, requestClientIp } from "./cors.js";
-import { inquirySchema, projectSubmissionSchema } from "../server/inquirySchema.js";
+import { inquirySchema, projectSubmissionSchema, introductionSchema } from "../server/inquirySchema.js";
 
 interface ServerlessRequest {
   method?: string;
@@ -57,6 +57,8 @@ type InquiryDeliveryPayload = {
   capabilities?: string;
   capitalBand?: string;
   targetProject?: string;
+  targetCompany?: string;
+  needId?: string;
   targetService?: string;
   role?: string;
   interest?: string;
@@ -84,6 +86,8 @@ function deliveryPayload(id: string, data: z.infer<typeof inquirySchema>): Inqui
     capabilities: data.capabilities,
     capitalBand: data.capitalBand,
     targetProject: data.targetProject,
+    targetCompany: data.targetCompany,
+    needId: data.needId,
     targetService: data.targetService,
     role: data.role,
     interest: data.interest,
@@ -115,6 +119,7 @@ async function notifyByEmail(payload: InquiryDeliveryPayload): Promise<boolean> 
           `Email: ${payload.email}`,
           `Stage: ${payload.stage}`,
           `Priority: ${payload.priority}`,
+          `Correspondence language: ${payload.locale ?? "en"}`,
           `Name: ${payload.name ?? "—"}`,
           `Organization: ${payload.organization ?? "—"}`,
           `Sector: ${payload.sector ?? "—"}`,
@@ -129,6 +134,8 @@ async function notifyByEmail(payload: InquiryDeliveryPayload): Promise<boolean> 
           `Capabilities: ${payload.capabilities ?? "—"}`,
           `Capital band: ${payload.capitalBand ?? "—"}`,
           `Target project: ${payload.targetProject ?? "—"}`,
+          `Target company: ${payload.targetCompany ?? "—"}`,
+          `Published need index: ${payload.needId ?? "—"}`,
           `Target service: ${payload.targetService ?? "—"}`,
           "",
           payload.message ?? "",
@@ -259,6 +266,14 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
   }
 
   let data = parsed.data;
+  if (data.type === "INTRODUCTION") {
+    const introduction = introductionSchema.safeParse(body);
+    if (!introduction.success) {
+      res.status(400).json({ error: "Invalid introduction request.", fields: introduction.error.issues.map(issue => issue.path.join(".")) });
+      return;
+    }
+    data = introduction.data;
+  }
   if (data.type === "PROJECT_SUBMISSION") {
     const projectParsed = projectSubmissionSchema.safeParse(body);
     if (!projectParsed.success) {

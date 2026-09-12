@@ -3,6 +3,8 @@ import { useState, memo } from "react";
 import { useLocation } from "wouter";
 import { deployAssetPath, localizedPath } from "@/localePath";
 import { LOCALIZED_COPY } from "@/localizedCopy";
+import { NETWORK_COPY } from "@/networkCopy";
+import { PREPARATION_COPY } from "@/preparation";
 
 interface FooterProps {
     data: {
@@ -64,6 +66,8 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                 ,{ label: data.links.intelligence, href: "/intelligence" }
                 ,{ label: data.links.match, href: "/match" }
                 ,{ label: data.links.governments, href: "/governments" }
+                ,{ label: NETWORK_COPY[lang as "en" | "ar" | "fr"].footer, href: "/companies" }
+                ,{ label: PREPARATION_COPY[lang as "en" | "ar" | "fr"].guide, href: "/knowledge" }
             ]
         }
     ];

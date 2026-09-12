@@ -7,7 +7,7 @@ import { Section } from "@/components/ui/section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollToTop from "@/components/ScrollToTop";
 import { useLanguageContext } from "@/contexts/LanguageContext";
-import { localizedLinkPath } from "@/localePath";
+import { localizedPath } from "@/localePath";
 
 export default function Governments() {
   const { lang, isRTL, content } = useLanguageContext();
@@ -140,7 +140,7 @@ export default function Governments() {
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href={localizedLinkPath("/submit-project", lang)}
+                  href={localizedPath("/submit-project", lang)}
                   className="inline-flex items-center gap-2 bg-[#f2a007] text-[#0b0b10] px-6 py-3 t-meta font-medium hover:bg-[#fdfcfb] transition-colors"
                 >
                   <span>{t.ctaPrimary}</span>

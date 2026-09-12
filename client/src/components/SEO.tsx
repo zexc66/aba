@@ -8,6 +8,7 @@ interface SEOProps {
     image?: string;
     url?: string;
     lang?: string;
+    noindex?: boolean;
     /** Page-specific JSON-LD node(s) rendered alongside the Organization schema. */
     schema?: Record<string, unknown> | Record<string, unknown>[];
 }
@@ -84,7 +85,8 @@ export default function SEO({
     image = "/og-image.jpg",
     url,
     lang = "en",
-    schema
+    schema,
+    noindex = false
 }: SEOProps) {
     // Locale path prefix (/ar, /fr) for prerendered locale URLs
     const prefix = localePathPrefix();
@@ -105,6 +107,9 @@ export default function SEO({
     return (
         <Helmet>
             <html lang={lang} />
+            <title>{title}</title>
+            <meta name="description" content={description} />
+            {noindex && <meta name="robots" content="noindex, follow" />}
             {keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
 
             <meta property="og:type" content="website" />

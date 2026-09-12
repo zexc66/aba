@@ -6,6 +6,8 @@ import { useLocation } from "wouter";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { PROJECTS, PROJECTS_UI, COUNTRIES, type Locale3 } from "@/projects";
 import { LOCALIZED_COPY } from "@/localizedCopy";
+import { COMPANIES } from "@/companies";
+import { NETWORK_COPY } from "@/networkCopy";
 
 interface SearchCommandProps {
     open: boolean;
@@ -142,6 +144,11 @@ export default function SearchCommand({ open, onOpenChange, toggleLang, currentL
                     </Command.Group>
 
                     <Command.Separator className="my-2 h-px bg-[#0b0b10]/15" />
+
+                    <Command.Group heading={NETWORK_COPY[lang].directory}>
+                        <Command.Item value={NETWORK_COPY[lang].directory} onSelect={() => handleNavigate("/companies")} className={itemClassName}>{NETWORK_COPY[lang].directory}</Command.Item>
+                        {COMPANIES.map(company => <Command.Item key={company.slug} value={company.name} onSelect={() => handleNavigate(`/companies/${company.slug}`)} className={itemClassName}>{company.name}</Command.Item>)}
+                    </Command.Group>
 
                     <Command.Group heading={projectUI.headerTitle}>
                         <div className={groupLabelClassName}>{projectUI.headerTitle}</div>

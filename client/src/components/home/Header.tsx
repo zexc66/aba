@@ -8,6 +8,7 @@ import { deployAssetPath, localizedPath } from "@/localePath";
 import { isVercelDeployment } from "@/deployment";
 
 interface HeaderProps {
+    surface?: "light" | "dark";
     nav: {
         about: string;
         programs: string;
@@ -39,10 +40,11 @@ const LANG_OPTIONS = [
     { code: "fr", label: "Français", short: "FR" },
 ] as const;
 
-function HeaderComponent({ nav }: HeaderProps) {
+function HeaderComponent({ nav, surface = "dark" }: HeaderProps) {
     const { lang, setLang, isRTL } = useLanguageContext();
     const [location] = useLocation();
-    const [scrolled, setScrolled] = useState(false);
+    const [pastThreshold, setScrolled] = useState(false);
+    const scrolled = surface === "light" || pastThreshold;
     const [activeSection, setActiveSection] = useState("#hero");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);

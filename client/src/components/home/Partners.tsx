@@ -3,34 +3,20 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import { motion } from "framer-motion";
 import { type Content } from "@/data";
 import { memo } from "react";
-import { deployAssetPath } from "@/localePath";
+import { deployAssetPath, localizedLinkPath } from "@/localePath";
+import { Link } from "wouter";
+import { COMPANIES } from "@/companies";
+import { NETWORK_COPY } from "@/networkCopy";
+import type { Locale3 } from "@/projects";
 
 interface PartnersProps {
     data: Content['partners'];
     lang: string;
 }
 
-const ALLIANCE_SYNDICATE = [
-    { name: "Trilogy", logo: "/partners/trilogy.png" },
-    { name: "Creation Design Group", logo: "/partners/cdg.png" },
-    { name: "Kaolin International Company", logo: "/partners/kaolin.png" },
-    { name: "Mauritanian Metallogistic Service Company", logo: "/partners/mauritanian.png" },
-    { name: "Adfat Group of Companies Ltd.", logo: "/partners/adfat.jpg" },
-    { name: "Saudi Mauritanian Industrial Company", logo: "/partners/saudi_industrial.jpg" },
-    { name: "The Global Agriculture Company", logo: "/partners/global_agriculture.jpg" },
-    { name: "Saudi Mauritanian Trading Company", logo: "/partners/saudi_trading.jpg" },
-    { name: "Saudi Mauritanian Investment Company", logo: "/partners/sm_investment.jpg" },
-    { name: "Adfat Gold Trading", logo: "/partners/adfat_gold.png" },
-    { name: "NABT", logo: "/partners/nabt.jpg" },
-    { name: "Chemexa", logo: "/partners/chemexa.jpg" },
-];
-
-function PartnersComponent({ data }: PartnersProps) {
-    const partnerClusters = [
-        ALLIANCE_SYNDICATE.slice(0, 4),
-        ALLIANCE_SYNDICATE.slice(4, 8),
-        ALLIANCE_SYNDICATE.slice(8),
-    ];
+function PartnersComponent({ data, lang }: PartnersProps) {
+    const copy = NETWORK_COPY[lang as Locale3];
+    const partnerClusters = Array.from({ length: Math.ceil(COMPANIES.length / 4) }, (_, i) => COMPANIES.slice(i * 4, i * 4 + 4));
 
     return (
         <Section id="partners" className="relative py-20 bg-[#fdfcfb] border-b border-[#0b0b10]/10">
@@ -59,7 +45,7 @@ function PartnersComponent({ data }: PartnersProps) {
                                 {cluster.map((partner, i) => {
                                     const index = clusterIndex * 4 + i;
                                     return (
-                                        <div
+                                        <Link asChild href={localizedLinkPath(`/companies/${partner.slug}`, lang)} key={partner.slug}><a
                                             key={partner.name}
                                             className="bg-[#fdfcfb] p-6 flex flex-col items-center justify-center text-center space-y-4 group relative min-h-[150px]"
                                         >
@@ -82,7 +68,7 @@ function PartnersComponent({ data }: PartnersProps) {
                                             <span className="t-meta text-[#0b0b10]/65 group-hover:text-[#5a1f2e] transition-colors leading-normal">
                                                 {partner.name}
                                             </span>
-                                        </div>
+                                        </a></Link>
                                     );
                                 })}
                             </div>
@@ -91,8 +77,8 @@ function PartnersComponent({ data }: PartnersProps) {
                 </div>
 
                 <div className="mt-10 pt-6 border-t border-[#0b0b10]/10 flex flex-col sm:flex-row items-center justify-between gap-4 t-meta text-[#0b0b10]/65">
-                    <span>{data.vettedLabel}</span>
-                    <span className="text-[#5a1f2e]">{data.networkLabel}</span>
+                    <span>{copy.listing}</span>
+                    <Link asChild href={localizedLinkPath("/companies", lang)}><a className="inline-flex min-h-11 items-center text-[#5a1f2e] underline underline-offset-4">{copy.directory}</a></Link>
                 </div>
 
             </div>

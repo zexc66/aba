@@ -11,6 +11,7 @@ import {
   Terminal,
 } from "lucide-react";
 import SEO from "@/components/SEO";
+import LeadWorkflow from "@/components/LeadWorkflow";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 
 const ADMIN_TOKEN_KEY = "aiabasd-admin-token";
@@ -31,6 +32,8 @@ interface Lead {
   capabilities?: string;
   capitalBand?: string;
   targetProject?: string;
+  targetCompany?: string;
+  needId?: string;
   targetService?: string;
   consent?: boolean;
   role?: string;
@@ -39,6 +42,10 @@ interface Lead {
   priority?: string;
   message?: string;
   timestamp: string;
+  assignee?: string;
+  nextAction?: string;
+  revision?: number;
+  workflowHistory?: { at: string; stage: string; assignee: string; nextAction: string; revision: number }[];
 }
 
 type Stats = Record<string, Record<string, number>>;
@@ -386,6 +393,8 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
                           ["CAPABILITIES", lead.capabilities],
                           ["CAPITAL_BAND", lead.capitalBand],
                           ["TARGET_PROJECT", lead.targetProject],
+                          ["TARGET_COMPANY", lead.targetCompany],
+                          ["PROJECT_NEED", lead.needId],
                           ["TARGET_SERVICE", lead.targetService],
                           ["CONSENT", lead.consent === true ? "GRANTED" : "NOT_CAPTURED"],
                         ]
@@ -401,6 +410,8 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
                             </div>
                           ))}
                       </dl>
+
+                      <LeadWorkflow key={`${lead.id}-${lead.revision ?? 0}`} lead={lead} token={token} locale={lang} onUpdated={() => { void load(); }} />
 
                       {lead.message && (
                         <div className="pt-2">

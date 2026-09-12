@@ -10,6 +10,7 @@ import type { ReactNode } from "react";
 import { COPY } from "@/data";
 import { cms } from "@/services/cms";
 import { DEPLOY_BASE_PATH } from "@/localePath";
+import { IntroductionDraftProvider } from "./IntroductionDraftContext";
 
 export type Locale = "en" | "ar" | "fr";
 
@@ -149,7 +150,7 @@ export function LanguageProvider({
 
   return (
     <LanguageContext.Provider value={value}>
-      {children}
+      <IntroductionDraftProvider initialLocale={initial}>{children}</IntroductionDraftProvider>
     </LanguageContext.Provider>
   );
 }

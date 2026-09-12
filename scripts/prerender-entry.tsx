@@ -35,6 +35,14 @@ import Services from "../client/src/pages/Services";
 import Governments from "../client/src/pages/Governments";
 import Intelligence from "../client/src/pages/Intelligence";
 import Match from "../client/src/pages/Match";
+import Companies from "../client/src/pages/Companies";
+import CompanyDetail from "../client/src/pages/CompanyDetail";
+import Introductions from "../client/src/pages/Introductions";
+import Preparation from "../client/src/pages/Preparation";
+import Knowledge, { KNOWLEDGE_COPY } from "../client/src/pages/Knowledge";
+import { PREPARATION_COPY } from "../client/src/preparation";
+import { companyBySlug } from "../client/src/companies";
+import { NETWORK_COPY } from "../client/src/networkCopy";
 import NotFound from "../client/src/pages/NotFound";
 import Admin from "../client/src/pages/Admin";
 import Vault from "../client/src/pages/Vault";
@@ -55,6 +63,14 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
   const t: Copy = COPY[locale];
   const clean = path.split("?")[0];
   const seg = clean.split("/").filter(Boolean);
+  if (clean === "/preparation") return { title: `${PREPARATION_COPY[locale].title} | AIABASD`, description: PREPARATION_COPY[locale].intro };
+  if (clean === "/knowledge") return { title: `${KNOWLEDGE_COPY[locale].title} | AIABASD`, description: KNOWLEDGE_COPY[locale].intro };
+  if (clean === "/companies") return { title: `${NETWORK_COPY[locale].directory} | AIABASD`, description: NETWORK_COPY[locale].intro };
+  if (seg[0] === "companies" && seg[1]) {
+    const company = companyBySlug(seg[1]);
+    if (company) return { title: `${company.name} | AIABASD`, description: company.overview?.[locale] ?? NETWORK_COPY[locale].listingNote };
+  }
+  if (clean === "/introductions") return { title: `${NETWORK_COPY[locale].request} | AIABASD`, description: NETWORK_COPY[locale].requestIntro };
 
   if (clean === "/") {
     return { title: `${t.metaTitle}`, description: t.hero.subtitle };
@@ -185,6 +201,11 @@ export function renderRoute(
                                  createElement(Route, { path: "/governments", component: Governments }),
                                  createElement(Route, { path: "/intelligence", component: Intelligence }),
                                  createElement(Route, { path: "/match", component: Match })
+                                 ,createElement(Route, { path: "/companies", component: Companies })
+                                 ,createElement(Route, { path: "/companies/:slug", component: CompanyDetail })
+                                 ,createElement(Route, { path: "/introductions", component: Introductions })
+                                 ,createElement(Route, { path: "/preparation", component: Preparation })
+                                 ,createElement(Route, { path: "/knowledge", component: Knowledge })
                                  ,createElement(Route, { component: NotFound })
                               )
                             ),
@@ -206,8 +227,9 @@ export function renderRoute(
 
   // Extract Helmet-rendered head fragments (JSON-LD schema scripts) so the
   // prerenderer can append them to its deterministic head injection.
-  const helmet = (helmetContext as { helmet?: { script?: { toString(): string } } }).helmet;
-  const head = helmet?.script ? helmet.script.toString() : "";
+  const helmet = (helmetContext as { helmet?: { script?: { toString(): string }; meta?: { toString(): string } } }).helmet;
+  const robots = helmet?.meta?.toString().match(/<meta[^>]*name="robots"[^>]*>/g)?.join("") ?? "";
+  const head = (helmet?.script?.toString() ?? "") + robots;
 
   return { html, head };
 }

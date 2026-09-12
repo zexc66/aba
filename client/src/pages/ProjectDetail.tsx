@@ -10,6 +10,7 @@ import {
   FileText,
 } from "lucide-react";
 import SEO from "@/components/SEO";
+import ProjectNeeds from "@/components/projects/ProjectNeeds";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -384,27 +385,7 @@ export default function ProjectDetail({
                     </ul>
                   </div>
 
-                  <div>
-                    <h2 className="t-meta text-[#5a1f2e] border-b-2 border-[#0b0b10] pb-3 mb-5">
-                      {t.partnershipLabel}
-                    </h2>
-                    <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
-                      {project.partnership.map((o, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 border-s-2 border-[#5a1f2e]/25 ps-3.5 text-sm text-[#0b0b10]/75 leading-relaxed"
-                        >
-                          <Handshake
-                            size={16}
-                            strokeWidth={1.75}
-                            className="text-[#5a1f2e] shrink-0 mt-0.5"
-                            aria-hidden="true"
-                          />
-                          <span>{o[locale]}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <ProjectNeeds project={project} locale={locale} />
 
                   {/* Verification Record & Change History */}
                   <div className="border border-[#0b0b10]/10 bg-white p-7 shadow-premium space-y-6">

@@ -144,7 +144,10 @@ for (const locale of LOCALES) {
       `<link rel="canonical" href="${url}"/>` +
       jsonLdScripts.join("");
 
-    page = page.replace("</head>", `${head}</head>`);
+    const robotsMeta = (ssrHead || "").match(/<meta[^>]*name="robots"[^>]*>/g)?.join("") ?? "";
+
+    const managedHead = head.replace(/<(title|meta|link)(?=[\s>])/g, '<$1 data-rh="true"');
+    page = page.replace("</head>", `${managedHead}${robotsMeta}</head>`);
     page = page.replace(
       /<div id="root"><\/div>/,
       () => `<div id="root">${html}</div>`

@@ -129,3 +129,6 @@ data-room/*
 .refact/
 .claude/proven-config.json
 .claude/.proven-config-version
+
+# Design-review evidence artifacts
+.impeccable/review/

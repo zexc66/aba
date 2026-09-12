@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Bookmark, GitCompareArrows, Plus, Printer, ShieldAlert, X } from "lucide-react";
 import SEO from "@/components/SEO";
+import { NETWORK_COPY } from "@/networkCopy";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -104,6 +105,8 @@ export default function Projects() {
     { label: t.scaleLabel, get: (project) => project.scale?.[locale] ?? "—" },
     { label: t.modelLabel, get: (project) => project.model?.[locale] ?? "—" },
     { label: t.readinessProfileLabel, get: (project) => `${projectReadiness(project).score}%` },
+    { label: NETWORK_COPY[locale].reviewed, get: project => project.lastReviewed ?? "—" },
+    { label: NETWORK_COPY[locale].needsTitle, get: project => project.partnership[0]?.[locale] ?? NETWORK_COPY[locale].noNeeds },
     {
       label: t.objectivesLabel,
       get: (project) => <ul className="space-y-1">{project.objectives.map((item, index) => <li key={index}>{item[locale]}</li>)}</ul>,

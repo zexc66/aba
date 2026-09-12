@@ -40,6 +40,11 @@ const TrustCenter = lazy(() => import("./pages/TrustCenter"));
   const Governments = lazy(() => import("./pages/Governments"));
 const Intelligence = lazy(() => import("./pages/Intelligence"));
 const Match = lazy(() => import("./pages/Match"));
+const Companies = lazy(() => import("./pages/Companies"));
+const CompanyDetail = lazy(() => import("./pages/CompanyDetail"));
+const Introductions = lazy(() => import("./pages/Introductions"));
+const Preparation = lazy(() => import("./pages/Preparation"));
+const Knowledge = lazy(() => import("./pages/Knowledge"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const InvestorLoginRoute = isVercelDeployment ? DeploymentUnavailable : InvestorLogin;
@@ -87,6 +92,11 @@ function RouterSwitch() {
         <Route path={"/governments"} component={Governments} />
         <Route path={"/intelligence"} component={Intelligence} />
         <Route path={"/match"} component={Match} />
+        <Route path={"/companies"} component={Companies} />
+        <Route path={"/companies/:slug"} component={CompanyDetail} />
+        <Route path={"/introductions"} component={Introductions} />
+        <Route path={"/preparation"} component={Preparation} />
+        <Route path={"/knowledge"} component={Knowledge} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

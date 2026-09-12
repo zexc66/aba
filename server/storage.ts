@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 import fs from "fs/promises";
 import path from "path";
+import type { WorkflowEvent, WorkflowUpdate } from "./workflow";
 
 try {
   process.loadEnvFile(path.resolve(process.cwd(), ".env"));
@@ -27,6 +28,8 @@ export interface Inquiry {
   capabilities?: string;
   capitalBand?: string;
   targetProject?: string;
+  targetCompany?: string;
+  needId?: string;
   targetService?: string;
   role?: string;
   interest?: string;
@@ -36,6 +39,10 @@ export interface Inquiry {
   locale?: string;
   message?: string;
   timestamp: string;
+  assignee?: string;
+  nextAction?: string;
+  revision?: number;
+  workflowHistory?: WorkflowEvent[];
 }
 
 export type InquiryInput = Omit<Inquiry, "id" | "timestamp">;
@@ -122,5 +129,18 @@ export function saveInquiry(inquiry: InquiryInput): Promise<Inquiry> {
 }
 
 export function listInquiries(): Promise<Inquiry[]> {
-  return readAll();
+  return enqueue(readAll);
+}
+
+export function updateInquiry(id: string, patch: WorkflowUpdate): Promise<{ status: "updated"; lead: Inquiry } | { status: "missing" | "conflict" }> {
+  return enqueue(async () => {
+    const inquiries = await readAll();
+    const lead = inquiries.find(item => item.id === id);
+    if (!lead) return { status: "missing" as const };
+    if ((lead.revision ?? 0) !== patch.revision) return { status: "conflict" as const };
+    const event: WorkflowEvent = { at: new Date().toISOString(), stage: patch.stage, assignee: patch.assignee, nextAction: patch.nextAction, revision: patch.revision + 1 };
+    Object.assign(lead, { stage: event.stage, assignee: event.assignee, nextAction: event.nextAction, revision: event.revision, workflowHistory: [...(lead.workflowHistory ?? []), event] });
+    await writeAll(inquiries);
+    return { status: "updated" as const, lead };
+  });
 }

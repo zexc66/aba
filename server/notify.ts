@@ -18,12 +18,15 @@ interface LeadPayload {
   capabilities?: string;
   capitalBand?: string;
   targetProject?: string;
+  targetCompany?: string;
+  needId?: string;
   targetService?: string;
   role?: string;
   interest?: string;
   stage?: string;
   priority?: string;
   message?: string;
+  locale?: string;
 }
 
 export async function notifyByEmail(payload: LeadPayload): Promise<boolean> {
@@ -45,6 +48,7 @@ export async function notifyByEmail(payload: LeadPayload): Promise<boolean> {
         `Reference: ${payload.id}`,
         `Type: ${payload.type}`,
         `Email: ${payload.email}`,
+        `Correspondence language: ${payload.locale ?? "en"}`,
         `Name: ${payload.name ?? "—"}`,
         `Organization: ${payload.organization ?? "—"}`,
         `Sector: ${payload.sector ?? "—"}`,
@@ -59,6 +63,8 @@ export async function notifyByEmail(payload: LeadPayload): Promise<boolean> {
         `Capabilities: ${payload.capabilities ?? "—"}`,
         `Capital band: ${payload.capitalBand ?? "—"}`,
         `Target project: ${payload.targetProject ?? "—"}`,
+        `Target company: ${payload.targetCompany ?? "—"}`,
+        `Published need index: ${payload.needId ?? "—"}`,
         `Target service: ${payload.targetService ?? "—"}`,
         `Stage: ${payload.stage ?? "new"}`,
         `Priority: ${payload.priority ?? "normal"}`,
