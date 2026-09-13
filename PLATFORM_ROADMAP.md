@@ -1,5 +1,13 @@
 # AIABASD platform expansion
 
+## Status (updated after delivery)
+
+- Stage 1 (company network + introductions): shipped
+- Stage 2 (preparation workspace, knowledge guide, comparison enrichment): shipped
+- Stage 3 (workflow CRM, inquiry-to-room linking, invite console): shipped — self-hosted admin
+- Member access (Supabase auth, rooms, documents, tasks, invitations): shipped
+- Pending owner inputs: owner email for org-owner attachment, company profile content, durable-DB decision review once room usage grows, domain registration
+
 ## Delivery contract
 
 Deliver the brainstorm in connected, verified stages. Preserve EN/AR/FR, existing project statuses, private-route boundaries, and the logo-only company information currently supplied. No invented registration details, references, countries served, approvals, signed partnerships, events, or financial results.

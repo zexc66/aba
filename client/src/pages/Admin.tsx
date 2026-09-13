@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import LeadWorkflow from "@/components/LeadWorkflow";
+import AdminInvite from "@/components/AdminInvite";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 
 const ADMIN_TOKEN_KEY = "aiabasd-admin-token";
@@ -255,6 +256,8 @@ function AdminInner({ onLogout }: { onLogout: () => void }) {
                 </div>
               </div>
             </section>
+
+            <AdminInvite token={token} locale={lang} />
 
             {/* Operational Ledger Section */}
             <section className="space-y-3">
