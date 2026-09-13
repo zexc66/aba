@@ -77,3 +77,43 @@ export const inviteSchema = z.object({
   email: z.string().trim().email().max(254),
   role: z.enum(["coordinator", "member"]).default("member"),
 });
+
+/** Derives a URL-safe room slug from a lead's free-text target project.
+ *  Valid slugs pass through; anything else is slugified or generalized. */
+export function slugFromLead(targetProject: string | undefined | null): string {
+  const raw = (targetProject ?? "").trim().toLowerCase();
+  if (/^[a-z0-9-]{2,80}$/.test(raw)) return raw;
+  const slug = raw
+    .normalize("NFKD")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+  return slug.length >= 2 ? slug : "general";
+}
+
+export async function sendInvitationEmail(to: string, acceptUrl: string): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return;
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: process.env.LEAD_FROM_EMAIL || "onboarding@resend.dev",
+        to: [to],
+        subject: "AIABASD — Workspace invitation / دعوة مساحة العمل",
+        text: [
+          "You have been invited to the AIABASD project-room workspace.",
+          "Accept your invitation by opening this one-time link:",
+          acceptUrl,
+          "",
+          "تمت دعوتك إلى مساحة عمل غرف مشاريع التحالف. اقبل الدعوة عبر الرابط أعلاه.",
+          "",
+          "If you were not expecting this invitation, ignore this email.",
+        ].join("\n"),
+      }),
+    });
+  } catch {
+    // Best effort: the invite row exists and can be re-sent.
+  }
+}

@@ -4,6 +4,7 @@ import { existsSync } from "node:fs";
 import { COMPANIES, filterCompanies, introductionPath, type Company } from "../client/src/companies";
 import { PROJECTS } from "../client/src/projects";
 import { introductionSchema } from "../server/inquirySchema";
+import { slugFromLead } from "../server/org";
 import handler from "../api/inquiry";
 
 const request = { type: "INTRODUCTION", email: "test@example.org", name: "Test", organization: "Institution", role: "Project lead", interest: "We can provide project preparation support.", timeline: "This quarter", locale: "en", consent: true, targetCompany: "tyms-contracting", targetProject: PROJECTS[0].slug, needId: "0" };
@@ -40,6 +41,14 @@ test("deep links carry company, project and need independently", () => {
   const url = new URL(path, "https://example.org");
   assert.equal(url.searchParams.get("company"), "tyms-contracting");
   assert.equal(url.searchParams.get("need"), "0");
+});
+
+test("room slugs pass valid values through and generalize free text", () => {
+  assert.equal(slugFromLead("hama-solar-200mw"), "hama-solar-200mw");
+  assert.equal(slugFromLead("حماة — Solar 200 MW!"), "solar-200-mw");
+  assert.equal(slugFromLead(""), "general");
+  assert.equal(slugFromLead("///"), "general");
+  assert.equal(slugFromLead("x".repeat(200)).length, 80);
 });
 
 test("serverless introduction delivers validated context and fails honestly when unconfigured", async () => {

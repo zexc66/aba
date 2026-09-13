@@ -132,6 +132,10 @@ export function listInquiries(): Promise<Inquiry[]> {
   return enqueue(readAll);
 }
 
+export function getInquiry(id: string): Promise<Inquiry | null> {
+  return enqueue(async () => (await readAll()).find((item) => item.id === id) ?? null);
+}
+
 export function updateInquiry(id: string, patch: WorkflowUpdate): Promise<{ status: "updated"; lead: Inquiry } | { status: "missing" | "conflict" }> {
   return enqueue(async () => {
     const inquiries = await readAll();
