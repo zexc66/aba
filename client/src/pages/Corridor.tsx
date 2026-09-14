@@ -1,6 +1,6 @@
 import { Link, useParams } from "wouter";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, MapPin } from "lucide-react";
+import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
@@ -11,10 +11,12 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import {
   PROJECTS,
   PROJECTS_UI,
+  SECTORS,
   type CountryKey,
   type Locale3,
 } from "@/projects";
 import { COUNTRIES, type CountryNode } from "@/countries";
+import { MARKET_COPY } from "@/marketCopy";
 import { PROGRAM_META } from "@/intelligence";
 import { localizedLinkPath } from "@/localePath";
 
@@ -298,6 +300,27 @@ export default function Corridor() {
                 ))}
               </ul>
             </div>
+          </div>
+        </Section>
+
+        {/* Sector-by-corridor market pages */}
+        <Section className="py-12 border-b border-[#0b0b10]/10 bg-white">
+          <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
+            <h2 className="text-xl font-bold text-[#0b0b10] pb-4 border-b border-[#0b0b10]/10 mb-6">
+              {MARKET_COPY[lang as Locale3].relatedTitle.replace("{country}", localizedName)}
+            </h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#0b0b10]/10 border border-[#0b0b10]/10">
+              {Object.entries(SECTORS).map(([key, label]) => (
+                <li key={key} className="bg-white">
+                  <Link asChild href={localizedLinkPath(`/opportunities/${iso}/${key}`, lang)}>
+                    <a className="flex min-h-16 items-center justify-between gap-3 p-4 text-sm font-medium transition-colors hover:bg-[#5a1f2e]/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#5a1f2e] focus-visible:outline-offset-2">
+                      <span>{label[lang as Locale3]}</span>
+                      <ArrowRight size={14} className="shrink-0 text-[#5a1f2e] rtl:-scale-x-100" aria-hidden="true" />
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </Section>
       </div>

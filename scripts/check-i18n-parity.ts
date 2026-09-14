@@ -4,6 +4,7 @@ import { LOCALIZED_COPY } from "../client/src/localizedCopy";
 import { NETWORK_COPY } from "../client/src/networkCopy";
 import { PREPARATION_COPY } from "../client/src/preparation";
 import { ROOMS_COPY } from "../client/src/roomsCopy";
+import { MARKET_COPY } from "../client/src/marketCopy";
 
 type Shape = { [k: string]: Shape | "leaf" | "list" };
 
@@ -42,6 +43,8 @@ diffPaths(shape(PREPARATION_COPY.en), shape(PREPARATION_COPY.ar), "preparation.a
 diffPaths(shape(PREPARATION_COPY.en), shape(PREPARATION_COPY.fr), "preparation.fr", problems);
 diffPaths(shape(ROOMS_COPY.en), shape(ROOMS_COPY.ar), "rooms.ar", problems);
 diffPaths(shape(ROOMS_COPY.en), shape(ROOMS_COPY.fr), "rooms.fr", problems);
+diffPaths(shape(MARKET_COPY.en), shape(MARKET_COPY.ar), "market.ar", problems);
+diffPaths(shape(MARKET_COPY.en), shape(MARKET_COPY.fr), "market.fr", problems);
 diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.ar), "platform.ar", problems);
 diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.fr), "platform.fr", problems);
 

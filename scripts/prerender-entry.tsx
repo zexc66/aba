@@ -45,6 +45,9 @@ import Access from "../client/src/pages/Access";
 import Rooms from "../client/src/pages/Rooms";
 import AcceptInvite from "../client/src/pages/AcceptInvite";
 import { ROOMS_COPY } from "../client/src/roomsCopy";
+import Market from "../client/src/pages/Market";
+import { MARKET_COPY } from "../client/src/marketCopy";
+import { localizedCountryName, isValidMarketCombo, sectorName } from "../client/src/markets";
 import { PREPARATION_COPY } from "../client/src/preparation";
 import { companyBySlug } from "../client/src/companies";
 import { NETWORK_COPY } from "../client/src/networkCopy";
@@ -73,6 +76,14 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
   if (clean === "/access") return { title: `${ROOMS_COPY[locale].accessTitle} | AIABASD`, description: ROOMS_COPY[locale].accessIntro };
   if (clean === "/rooms") return { title: `${ROOMS_COPY[locale].roomsTitle} | AIABASD`, description: ROOMS_COPY[locale].roomsIntro };
   if (clean === "/accept-invite") return { title: `${ROOMS_COPY[locale].inviteTitle} | AIABASD`, description: ROOMS_COPY[locale].inviteIntro };
+  if (seg[0] === "opportunities" && seg[1] && seg[2]) {
+    if (!isValidMarketCombo(seg[1], seg[2])) return { title: LOCALIZED_COPY[locale].notFound.seoTitle, description: LOCALIZED_COPY[locale].notFound.seoDescription };
+    const sectorLabel = sectorName(locale, seg[2] as Parameters<typeof sectorName>[1]);
+    const countryName = localizedCountryName(COPY[locale].countries.list, seg[1]);
+    const mt = MARKET_COPY[locale];
+    const pageTitle = mt.titleTemplate.replace("{sector}", sectorLabel).replace("{country}", countryName);
+    return { title: `${pageTitle} | AIABASD`, description: mt.introTemplate.replace("{sector}", sectorLabel).replace("{country}", countryName) };
+  }
   if (clean === "/companies") return { title: `${NETWORK_COPY[locale].directory} | AIABASD`, description: NETWORK_COPY[locale].intro };
   if (seg[0] === "companies" && seg[1]) {
     const company = companyBySlug(seg[1]);
@@ -220,6 +231,7 @@ export function renderRoute(
                                  ,createElement(Route, { path: "/access", component: Access })
                                  ,createElement(Route, { path: "/rooms", component: Rooms })
                                  ,createElement(Route, { path: "/accept-invite", component: AcceptInvite })
+                                 ,createElement(Route, { path: "/opportunities/:iso/:sector", component: Market })
                                  ,createElement(Route, { component: NotFound })
                               )
                             ),

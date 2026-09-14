@@ -1,3 +1,6 @@
+const MARKET_SECTORS = ["housing", "energy", "infrastructure", "circular", "industry", "agriculture", "social", "multi"];
+const MARKET_ISOS = ["gm", "sl", "ci", "bf", "gh", "ao", "sd", "eg", "jo", "sy", "sa"];
+
 export const ALL_ROUTES = [
   "/",
   "/pipeline",
@@ -77,6 +80,7 @@ export const ALL_ROUTES = [
   "/projects/china-saudi-africa-gateway",
   "/projects/cross-border-trade-platform",
   "/projects/advanced-technology-cooperation",
+  ...MARKET_ISOS.flatMap((iso) => MARKET_SECTORS.map((sector) => `/opportunities/${iso}/${sector}`)),
 ];
 
 export const PRIVATE_ROUTES = new Set(["/admin", "/investor-portal", "/investor-portal/vault"]);

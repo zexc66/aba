@@ -26,6 +26,10 @@
 - [/match](https://aiabasd.org/match): Institutional matching interface aligning project sponsors with qualified consortium partners and EPC contractors.
 - [/opportunity-map](https://aiabasd.org/opportunity-map): Interactive geographic visualization of infrastructure projects and investment opportunities across corridors.
 
+## Market Pages
+
+- [/opportunities/{iso}/{sector}](https://aiabasd.org/opportunities/sy/energy): 88 sector-by-country market pages (11 corridors x 8 sectors) listing the published projects and partnership paths for each combination, in EN/AR/FR. Example: [/opportunities/sy/energy](https://aiabasd.org/opportunities/sy/energy).
+
 ## Governance & Trust
 
 - [/trust](https://aiabasd.org/trust): Centralized trust and verification repository detailing institutional oversight, data privacy practices, and contact directory.
