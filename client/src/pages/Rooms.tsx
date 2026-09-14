@@ -9,7 +9,7 @@ import { PROJECTS } from "@/projects";
 import { localizedLinkPath } from "@/localePath";
 
 type Room = { id: string; project_slug: string; title: string; created_at: string };
-type OrgGroup = { role: string; organizations: { id: string; name: string; slug: string } | null; rooms: Room[] | null };
+type OrgGroup = { role: string; organizations: { id: string; name: string; slug: string; rooms: Room[] | null } | null };
 
 export default function Rooms() {
   const { lang } = useLanguageContext();
@@ -24,7 +24,7 @@ export default function Rooms() {
     if (!supabase) return;
     const { data, error: e } = await supabase
       .from("memberships")
-      .select("role, organizations(id,name,slug), rooms(id,project_slug,title,created_at)")
+      .select("role, organizations(id,name,slug,rooms(id,project_slug,title,created_at))")
       .eq("status", "active");
     if (e) setError(true);
     else setGroups((data ?? []) as unknown as OrgGroup[]);
@@ -92,7 +92,7 @@ export default function Rooms() {
         <Link asChild href={localizedLinkPath("/access", lang)}><a className={networkLink}>{t.signOut}</a></Link>
       </p>
 
-      {error && <p role="alert" className="mb-6 max-w-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{t.inviteFailed}</p>}
+      {error && <p role="alert" className="mb-6 max-w-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">{t.loadFailed}</p>}
 
       {groups === null ? (
         <p className="text-sm text-[#0b0b10]/70">{t.loading}</p>
@@ -107,7 +107,7 @@ export default function Rooms() {
                 <span className="text-sm text-[#0b0b10]/70">{t.yourRole}: {roleLabel(group.role)}</span>
               </div>
               <ul className="divide-y divide-[#0b0b10]/10 border-b border-[#0b0b10]/10">
-                {(group.rooms ?? []).map((room) => (
+                {(group.organizations?.rooms ?? []).map((room) => (
                   <li key={room.id} className="flex min-w-0 flex-wrap items-center justify-between gap-3 py-5">
                     <div className="min-w-0">
                       <Link asChild href={localizedLinkPath(`/rooms/${room.id}`, lang)}>
@@ -120,7 +120,7 @@ export default function Rooms() {
                     </Link>
                   </li>
                 ))}
-                {(group.rooms ?? []).length === 0 && <li className="py-5 text-sm text-[#0b0b10]/70">{t.empty}</li>}
+                {(group.organizations?.rooms ?? []).length === 0 && <li className="py-5 text-sm text-[#0b0b10]/70">{t.empty}</li>}
               </ul>
             </section>
           ))}
