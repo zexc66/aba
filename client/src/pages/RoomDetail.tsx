@@ -79,7 +79,12 @@ export default function RoomDetail() {
   }
 
   async function log(action: string, detail: string) {
-    await supabase!.from("activity_log").insert({ room_id: id, action, detail, actor: session!.user.id });
+    const { data } = await supabase!
+      .from("activity_log")
+      .insert({ room_id: id, action, detail, actor: session!.user.id })
+      .select("id,action,detail,at")
+      .single();
+    if (data) setActivity((current) => [data as Activity, ...current]);
   }
 
   async function addTask(event: React.FormEvent) {
