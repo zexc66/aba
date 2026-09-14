@@ -4,7 +4,8 @@ import NetworkLayout, { networkButton, networkField, networkLink } from "@/compo
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { usePlatformAuth } from "@/contexts/PlatformAuthContext";
 import { ROOMS_COPY } from "@/roomsCopy";
-import { deployAssetPath, localizedLinkPath, localizedPath } from "@/localePath";
+import { localizedLinkPath, localizedPath } from "@/localePath";
+import { supabase } from "@/lib/supabase";
 
 type Outcome =
   | { kind: "idle" }
@@ -29,21 +30,21 @@ export default function AcceptInvite() {
     if (!session || !token || attempted.current) return;
     attempted.current = true;
     setBusy(true);
-    fetch(deployAssetPath("/api/org/accept"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${session.access_token}` },
-      body: JSON.stringify({ token }),
-    })
-      .then(async (response) => {
-        const body = (await response.json().catch(() => ({}))) as { error?: string; email?: string };
-        if (response.ok) setOutcome({ kind: "accepted" });
-        else if (response.status === 409) setOutcome({ kind: "already" });
-        else if (response.status === 404 || response.status === 400) setOutcome({ kind: "invalid" });
-        else if (response.status === 412) setOutcome({ kind: "mismatch", email: body.email ?? "" });
+    (async () => {
+      try {
+        const { data } = await supabase!.rpc("accept_my_invite", { p_token: token });
+        const result = typeof data === "string" ? data : "failed";
+        if (result === "accepted") setOutcome({ kind: "accepted" });
+        else if (result === "already") setOutcome({ kind: "already" });
+        else if (result === "invalid") setOutcome({ kind: "invalid" });
+        else if (result.startsWith("mismatch")) setOutcome({ kind: "mismatch", email: result.slice("mismatch:".length) });
         else setOutcome({ kind: "failed" });
-      })
-      .catch(() => setOutcome({ kind: "failed" }))
-      .finally(() => setBusy(false));
+      } catch {
+        setOutcome({ kind: "failed" });
+      } finally {
+        setBusy(false);
+      }
+    })();
   }, [session, token]);
 
   async function submit(event: React.FormEvent) {
