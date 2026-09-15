@@ -41,7 +41,7 @@ export default function Home() {
         <Header nav={t.nav} />
 
         <div>
-          <Hero data={t.hero} />
+          <Hero data={t.hero} stats={t.about.metrics.slice(1)} />
           <About data={t.about} />
           <Programs data={t.programs} />
           <FeaturedProjects />

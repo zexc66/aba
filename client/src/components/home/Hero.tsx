@@ -11,9 +11,11 @@ interface HeroProps {
         ctaPrimary: string;
         ctaSecondary: string;
     };
+    /** Owner-approved institutional figures (reused from about.metrics). */
+    stats?: { label: string; value: string; suffix?: string }[];
 }
 
-export default function Hero({ data }: HeroProps) {
+export default function Hero({ data, stats }: HeroProps) {
     return (
         <section className="relative bg-[#0b0b10] pt-24 lg:pt-28 pb-12 px-6 md:px-12 lg:px-24 border-b border-[#f2a007]/25 overflow-hidden">
             {/* Background: real event photograph, burgundy-scrimmed */}
@@ -21,11 +23,11 @@ export default function Hero({ data }: HeroProps) {
                 <img
                     src={deployAssetPath("/gallery/events/event-group.jpg")}
                     alt=""
-                    className="w-full h-full object-cover opacity-60"
+                    className="w-full h-full object-cover opacity-70"
                     loading="eager"
                     decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b10]/75 via-[#0b0b10]/55 to-[#0b0b10]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0b0b10]/70 via-[#0b0b10]/50 to-[#0b0b10]" />
                 <div className="absolute inset-0 bg-[#5a1f2e]/25 mix-blend-multiply" />
             </div>
 
@@ -69,7 +71,7 @@ export default function Hero({ data }: HeroProps) {
                         >
                             <a
                                 href="#programs"
-                                className="group inline-flex min-h-[46px] items-center gap-3 whitespace-nowrap bg-[#5a1f2e] hover:bg-[#f2a007] hover:text-[#0b0b10] text-[#fdfcfb] px-6 py-3 font-semibold text-sm transition-[color,background-color,transform] active:translate-y-px"
+                                className="group inline-flex min-h-[46px] items-center gap-3 whitespace-nowrap bg-[#f2a007] hover:bg-[#fdfcfb] text-[#0b0b10] px-6 py-3 font-semibold text-sm transition-[color,background-color,transform] active:translate-y-px"
                             >
                                 <span>{data.ctaPrimary}</span>
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl:rotate-180 rtl:group-hover:-translate-x-1" strokeWidth={1.5} />
@@ -82,6 +84,26 @@ export default function Hero({ data }: HeroProps) {
                                 <span>{data.ctaSecondary}</span>
                             </a>
                         </motion.div>
+
+                        {stats && stats.length > 0 && (
+                            <motion.div
+                                initial={false}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.55, delay: 0.26 }}
+                                className="mt-10 pt-6 border-t border-white/10 grid grid-cols-3 w-full max-w-md"
+                            >
+                                {stats.map((s) => (
+                                    <div key={s.label} className="border-s border-white/10 first:border-s-0 ps-4 first:ps-0 min-w-0">
+                                        <div className="t-data text-xl md:text-2xl font-semibold text-[#fdfcfb]" dir="ltr">
+                                            <bdi>{s.value}{s.suffix ?? ""}</bdi>
+                                        </div>
+                                        <div className="t-meta text-[9px] md:text-[10px] text-[#fdfcfb]/50 mt-1 leading-snug">
+                                            {s.label}
+                                        </div>
+                                    </div>
+                                ))}
+                            </motion.div>
+                        )}
                     </div>
 
                     <motion.div
