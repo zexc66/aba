@@ -144,20 +144,25 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             }
                         </p>
 
-                        <div className="flex items-center gap-3.5 pt-2">
+                        <a
+                            href="https://aacid.org/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-3.5 pt-2 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f2a007]"
+                        >
                             <img
                                 src={deployAssetPath("/partners/aacid.jpg")}
                                 alt="AACID — Arab-African Council for Integration & Development"
                                 width={56}
                                 height={56}
                                 loading="lazy"
-                                className="h-14 w-14 rounded-[2px] object-contain bg-white p-1 border border-white/15"
+                                className="h-14 w-14 rounded-[2px] object-contain bg-white p-1 border border-white/15 group-hover:border-[#f2a007]/50 transition-[border-color]"
                             />
                             <div className="min-w-0">
                                 <span className="t-meta text-[9px] text-[#fdfcfb]/45 block">
                                     {lang === "ar" ? "بالشراكة مع" : lang === "fr" ? "En partenariat avec" : "In partnership with"}
                                 </span>
-                                <span className="text-[11px] font-semibold text-[#fdfcfb]/70 block leading-snug mt-0.5">
+                                <span className="text-[11px] font-semibold text-[#fdfcfb]/70 block leading-snug mt-0.5 group-hover:text-[#f2a007] transition-colors">
                                     {lang === "ar"
                                         ? "المجلس العربي الإفريقي للتكامل والتنمية (AACID)"
                                         : lang === "fr"
@@ -165,7 +170,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                                         : "AACID — Arab-African Council for Integration & Development"}
                                 </span>
                             </div>
-                        </div>
+                        </a>
 
                         <div className="flex items-center gap-3 pt-2">
                             {socialLinks.map((social, i) => (
