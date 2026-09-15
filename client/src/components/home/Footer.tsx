@@ -144,6 +144,29 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                             }
                         </p>
 
+                        <div className="flex items-center gap-3.5 pt-2">
+                            <img
+                                src={deployAssetPath("/partners/aacid.jpg")}
+                                alt="AACID — Arab-African Council for Integration & Development"
+                                width={56}
+                                height={56}
+                                loading="lazy"
+                                className="h-14 w-14 rounded-[2px] object-contain bg-white p-1 border border-white/15"
+                            />
+                            <div className="min-w-0">
+                                <span className="t-meta text-[9px] text-[#fdfcfb]/45 block">
+                                    {lang === "ar" ? "بالشراكة مع" : lang === "fr" ? "En partenariat avec" : "In partnership with"}
+                                </span>
+                                <span className="text-[11px] font-semibold text-[#fdfcfb]/70 block leading-snug mt-0.5">
+                                    {lang === "ar"
+                                        ? "المجلس العربي الإفريقي للتكامل والتنمية (AACID)"
+                                        : lang === "fr"
+                                        ? "AACID — Conseil Arabe-Africain pour l'Intégration et le Développement"
+                                        : "AACID — Arab-African Council for Integration & Development"}
+                                </span>
+                            </div>
+                        </div>
+
                         <div className="flex items-center gap-3 pt-2">
                             {socialLinks.map((social, i) => (
                                 <a

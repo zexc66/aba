@@ -32,6 +32,7 @@ export const COMPANIES: Company[] = [
   listed("nabt", "NABT", "/partners/nabt.jpg"),
   listed("chemexa", "Chemexa", "/partners/chemexa.jpg"),
   listed("tyms-contracting", "TYMS Contracting", "/partners/tyms-contracting.jpg"),
+  listed("aacid", "AACID — Arab-African Council for Integration & Development", "/partners/aacid.jpg"),
 ];
 
 export const companyBySlug = (slug: string) => COMPANIES.find(company => company.slug === slug);
