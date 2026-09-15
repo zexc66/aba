@@ -26,6 +26,11 @@
 - [/match](https://aiabasd.org/match): Institutional matching interface aligning project sponsors with qualified consortium partners and EPC contractors.
 - [/opportunity-map](https://aiabasd.org/opportunity-map): Interactive geographic visualization of infrastructure projects and investment opportunities across corridors.
 
+## Knowledge & Tools
+
+- [/glossary](https://aiabasd.org/glossary): Trilingual glossary of 40 PPP/infrastructure-finance terms with plain-language definitions (educational reference).
+- [/templates](https://aiabasd.org/templates): Downloadable preparation templates — letter of intent and structured project brief — in EN/AR/FR (plain text, device-side download only).
+
 ## Market Pages
 
 - [/opportunities/{iso}/{sector}](https://aiabasd.org/opportunities/sy/energy): 88 sector-by-country market pages (11 corridors x 8 sectors) listing the published projects and partnership paths for each combination, in EN/AR/FR. Example: [/opportunities/sy/energy](https://aiabasd.org/opportunities/sy/energy).

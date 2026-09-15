@@ -34,7 +34,7 @@ Vercel env vars exist for `SUPABASE_*` **and** `VITE_SUPABASE_*` — Vite bakes 
 3. `scripts/prerender-entry.tsx` (direct import + Route + `routeMeta` case)
 4. `SITEMAP_ROUTES` filter in `routes.mjs` if the surface is private/noindex
 
-**i18n:** EN is bare (`/projects`), AR/FR prefixed (`/ar/projects`). Copy lives per-locale in `client/src/data.tsx` + `platform.ts` + `localizedCopy.ts` + `submissionCopy.ts` + `networkCopy.ts` + `roomsCopy.ts` + `marketCopy.ts` + `preparation.ts`. A new string exists 3× or `check:i18n` fails. `Contentful` overrides copy at runtime when configured; validation in `services/cms.ts` falls back to static per-section.
+**i18n:** EN is bare (`/projects`), AR/FR prefixed (`/ar/projects`). Copy lives per-locale in `client/src/data.tsx` + `platform.ts` + `localizedCopy.ts` + `submissionCopy.ts` + `networkCopy.ts` + `roomsCopy.ts` + `marketCopy.ts` + `glossary.ts` + `templates.ts` + `preparation.ts`. A new string exists 3× or `check:i18n` fails. `Contentful` overrides copy at runtime when configured; validation in `services/cms.ts` falls back to static per-section.
 - `<Link>` requires `asChild` and `localizedLinkPath()` (emits `~` escape); plain `<a>` anchors use `localizedPath()`.
 - Language switch remounts the whole Router (wouter base change) — page-local state dies unless hoisted above it (see `IntroductionDraftContext`).
 - Latin-only strings inside AR pages need `dir="ltr"`; don't fight the global Arabic tracking resets in `index.css`.

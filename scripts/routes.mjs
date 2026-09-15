@@ -13,6 +13,8 @@ export const ALL_ROUTES = [
   "/access",
   "/rooms",
   "/accept-invite",
+  "/glossary",
+  "/templates",
   "/knowledge",
   ...["trilogy", "creation-design-group", "kaolin", "mauritanian-metallogistic", "adfat", "saudi-mauritanian-industrial", "global-agriculture", "saudi-mauritanian-trading", "saudi-mauritanian-investment", "adfat-gold", "nabt", "chemexa", "tyms-contracting", "aacid"].map(slug => `/companies/${slug}`),
   "/intelligence",

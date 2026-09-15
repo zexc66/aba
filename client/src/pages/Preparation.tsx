@@ -6,6 +6,7 @@ import { PROJECTS, projectBySlug } from "@/projects";
 import { introductionPath } from "@/companies";
 import { localizedLinkPath } from "@/localePath";
 import { PREPARATION_COPY, PREPARATION_IDS, PREPARATION_KEY, parsePreparationStore, preparationNote, type PreparationDraft, type PreparationStatus } from "@/preparation";
+import { TEMPLATES_COPY } from "@/templates";
 
 export default function Preparation() {
   const { lang } = useLanguageContext();
@@ -51,6 +52,7 @@ export default function Preparation() {
         <p className="mt-5 text-sm leading-relaxed">{t.disclaimer}</p>
         <Link asChild href={localizedLinkPath(introductionPath("", slug), lang)}><a className={`${networkLink} mt-5`}>{t.next}</a></Link>
         <div><Link asChild href={localizedLinkPath("/knowledge", lang)}><a className={networkLink}>{t.guide}</a></Link></div>
+        <div><Link asChild href={localizedLinkPath("/templates", lang)}><a className={networkLink}>{TEMPLATES_COPY[lang].title}</a></Link></div>
       </aside>
     </div>}
   </NetworkLayout>;

@@ -163,6 +163,60 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://aiabasd.org/glossary</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/glossary"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/glossary"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/glossary"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/glossary"/>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/glossary</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/glossary"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/glossary"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/glossary"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/glossary"/>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/glossary</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/glossary"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/glossary"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/glossary"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/glossary"/>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/templates</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/templates"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/templates"/>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/ar/templates</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/templates"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/templates"/>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://aiabasd.org/fr/templates</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/templates"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/templates"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aiabasd.org/fr/templates"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aiabasd.org/templates"/>
+    <lastmod>2026-09-15</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://aiabasd.org/knowledge</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://aiabasd.org/knowledge"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://aiabasd.org/ar/knowledge"/>

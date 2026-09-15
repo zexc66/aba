@@ -51,6 +51,8 @@ const Rooms = lazy(() => import("./pages/Rooms"));
 const RoomDetail = lazy(() => import("./pages/RoomDetail"));
 const AcceptInvite = lazy(() => import("./pages/AcceptInvite"));
 const Market = lazy(() => import("./pages/Market"));
+const Glossary = lazy(() => import("./pages/Glossary"));
+const Templates = lazy(() => import("./pages/Templates"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const InvestorLoginRoute = isVercelDeployment ? DeploymentUnavailable : InvestorLogin;
@@ -108,6 +110,8 @@ function RouterSwitch() {
         <Route path={"/rooms/:id"} component={RoomDetail} />
         <Route path={"/accept-invite"} component={AcceptInvite} />
         <Route path={"/opportunities/:iso/:sector"} component={Market} />
+        <Route path={"/glossary"} component={Glossary} />
+        <Route path={"/templates"} component={Templates} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

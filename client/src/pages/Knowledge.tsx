@@ -3,6 +3,8 @@ import { useLanguageContext } from "@/contexts/LanguageContext";
 import { localizedLinkPath } from "@/localePath";
 import NetworkLayout, { networkLink } from "@/components/NetworkLayout";
 import { PREPARATION_COPY } from "@/preparation";
+import { TEMPLATES_COPY } from "@/templates";
+import { GLOSSARY_COPY } from "@/glossary";
 
 export const KNOWLEDGE_COPY = {
   en: { title: "Project cooperation guide", intro: "Understand the cooperation models described by AIABASD and prepare the questions to discuss with a project sponsor.", sources: "Related institutional guidance", notice: "Delivery models are proposed structures. Ownership, risk allocation, financing and approvals depend on the applicable law and the final project agreements." },
@@ -24,6 +26,8 @@ export default function Knowledge() {
       <h2 className="text-2xl font-semibold">{PREPARATION_COPY[lang].questions}</h2>
       <ol className="mt-6 list-decimal space-y-4 ps-6">{Object.values(PREPARATION_COPY[lang].items).map(item => <li key={item}>{item}</li>)}</ol>
       <Link asChild href={localizedLinkPath("/preparation", lang)}><a className={`${networkLink} my-8`}>{PREPARATION_COPY[lang].title}</a></Link>
+      <div><Link asChild href={localizedLinkPath("/templates", lang)}><a className={networkLink}>{TEMPLATES_COPY[lang].title}</a></Link></div>
+      <div className="mb-8"><Link asChild href={localizedLinkPath("/glossary", lang)}><a className={networkLink}>{GLOSSARY_COPY[lang].title}</a></Link></div>
       <h2 className="text-xl font-semibold">{t.sources}</h2>
       <ul className="mt-4">
         <li><Link asChild href={localizedLinkPath("/governments", lang)}><a className={networkLink}>{source.metaTitle}</a></Link></li>

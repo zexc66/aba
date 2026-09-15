@@ -5,6 +5,8 @@ import { NETWORK_COPY } from "../client/src/networkCopy";
 import { PREPARATION_COPY } from "../client/src/preparation";
 import { ROOMS_COPY } from "../client/src/roomsCopy";
 import { MARKET_COPY } from "../client/src/marketCopy";
+import { GLOSSARY_COPY } from "../client/src/glossary";
+import { TEMPLATES_COPY } from "../client/src/templates";
 
 type Shape = { [k: string]: Shape | "leaf" | "list" };
 
@@ -45,6 +47,10 @@ diffPaths(shape(ROOMS_COPY.en), shape(ROOMS_COPY.ar), "rooms.ar", problems);
 diffPaths(shape(ROOMS_COPY.en), shape(ROOMS_COPY.fr), "rooms.fr", problems);
 diffPaths(shape(MARKET_COPY.en), shape(MARKET_COPY.ar), "market.ar", problems);
 diffPaths(shape(MARKET_COPY.en), shape(MARKET_COPY.fr), "market.fr", problems);
+diffPaths(shape(GLOSSARY_COPY.en), shape(GLOSSARY_COPY.ar), "glossary.ar", problems);
+diffPaths(shape(GLOSSARY_COPY.en), shape(GLOSSARY_COPY.fr), "glossary.fr", problems);
+diffPaths(shape(TEMPLATES_COPY.en), shape(TEMPLATES_COPY.ar), "templates.ar", problems);
+diffPaths(shape(TEMPLATES_COPY.en), shape(TEMPLATES_COPY.fr), "templates.fr", problems);
 diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.ar), "platform.ar", problems);
 diffPaths(shape(PLATFORM_COPY.en), shape(PLATFORM_COPY.fr), "platform.fr", problems);
 
