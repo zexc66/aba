@@ -53,6 +53,7 @@ const AcceptInvite = lazy(() => import("./pages/AcceptInvite"));
 const Market = lazy(() => import("./pages/Market"));
 const Glossary = lazy(() => import("./pages/Glossary"));
 const Templates = lazy(() => import("./pages/Templates"));
+const Verify = lazy(() => import("./pages/Verify"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const InvestorLoginRoute = isVercelDeployment ? DeploymentUnavailable : InvestorLogin;
@@ -112,6 +113,7 @@ function RouterSwitch() {
         <Route path={"/opportunities/:iso/:sector"} component={Market} />
         <Route path={"/glossary"} component={Glossary} />
         <Route path={"/templates"} component={Templates} />
+        <Route path={"/verify"} component={Verify} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>

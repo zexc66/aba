@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from "wouter";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import SEO from "@/components/SEO";
+import { PROGRAM_SDGS, sdgTitle } from "@/sdg";
 import Header from "@/components/home/Header";
 import Footer from "@/components/home/Footer";
 import { Section } from "@/components/ui/section";
@@ -110,6 +111,16 @@ export default function ProgramDetail() {
                 <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-[#0b0b10] leading-tight">
                   {program.name}
                 </h1>
+                {PROGRAM_SDGS[program.slug] && (
+                  <div className="mt-4 flex flex-wrap items-center gap-2" role="list" aria-label="SDG">
+                    <span className="t-meta text-[10px] text-[#0b0b10]/60">SDG</span>
+                    {PROGRAM_SDGS[program.slug].map((n) => (
+                      <span key={n} role="listitem" className="t-data border border-[#5a1f2e]/25 bg-[#5a1f2e]/[0.06] px-2 py-1 text-[10px] font-semibold text-[#5a1f2e]" title={sdgTitle(n, lang as "en" | "ar" | "fr")}>
+                        {n}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 {program.logo && (
                   <img
                     src={program.logo}

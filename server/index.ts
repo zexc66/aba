@@ -13,6 +13,7 @@ import { recordPageview, recordEvent, readAnalytics } from "./analytics";
 import { registerVaultRoutes } from "./vault";
 import { registerRssRoute } from "./rss";
 import { registerOrgRoutes } from "./orgRoutes";
+import { publicProjects } from "./publicData";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -185,6 +186,16 @@ async function startServer() {
   });
 
   registerOrgRoutes(app);
+
+  // Public read-only catalog endpoint (same projection as /api/projects on Vercel)
+  app.get("/api/projects", (req, res) => {
+    const raw = typeof req.query.locale === "string" ? req.query.locale : "en";
+    const locale = (["en", "ar", "fr"] as const).includes(raw as "en") ? (raw as "en" | "ar" | "fr") : "en";
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
+    res.json(publicProjects(locale));
+  });
+
   registerVaultRoutes(app);
   app.patch("/api/admin/leads/:id", inquiryLimiter, async (req, res) => {
     const token = req.headers["x-admin-token"];

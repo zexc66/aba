@@ -51,6 +51,8 @@ import { localizedCountryName, isValidMarketCombo, sectorName } from "../client/
 import Glossary from "../client/src/pages/Glossary";
 import Templates from "../client/src/pages/Templates";
 import { GLOSSARY_COPY } from "../client/src/glossary";
+import Verify from "../client/src/pages/Verify";
+import { FRAUD_COPY } from "../client/src/fraudCopy";
 import { TEMPLATES_COPY } from "../client/src/templates";
 import { PREPARATION_COPY } from "../client/src/preparation";
 import { companyBySlug } from "../client/src/companies";
@@ -82,6 +84,7 @@ export function routeMeta(path: string, locale: PrerenderLocale): { title: strin
   if (clean === "/accept-invite") return { title: `${ROOMS_COPY[locale].inviteTitle} | AIABASD`, description: ROOMS_COPY[locale].inviteIntro };
   if (clean === "/glossary") return { title: `${GLOSSARY_COPY[locale].title} | AIABASD`, description: GLOSSARY_COPY[locale].intro };
   if (clean === "/templates") return { title: `${TEMPLATES_COPY[locale].title} | AIABASD`, description: TEMPLATES_COPY[locale].intro };
+  if (clean === "/verify") return { title: `${FRAUD_COPY[locale].title} | AIABASD`, description: FRAUD_COPY[locale].intro };
   if (seg[0] === "opportunities" && seg[1] && seg[2]) {
     if (!isValidMarketCombo(seg[1], seg[2])) return { title: LOCALIZED_COPY[locale].notFound.seoTitle, description: LOCALIZED_COPY[locale].notFound.seoDescription };
     const sectorLabel = sectorName(locale, seg[2] as Parameters<typeof sectorName>[1]);
@@ -240,6 +243,7 @@ export function renderRoute(
                                  ,createElement(Route, { path: "/opportunities/:iso/:sector", component: Market })
                                  ,createElement(Route, { path: "/glossary", component: Glossary })
                                  ,createElement(Route, { path: "/templates", component: Templates })
+                                 ,createElement(Route, { path: "/verify", component: Verify })
                                  ,createElement(Route, { component: NotFound })
                               )
                             ),

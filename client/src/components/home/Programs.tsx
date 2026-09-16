@@ -150,6 +150,34 @@ function ProgramsComponent({ data }: ProgramsProps) {
                         );
                     })}
                 </div>
+
+                {/* At-a-glance comparison across all programs */}
+                <details className="group mt-10 border border-[#0b0b10]/10 bg-white">
+                    <summary className="t-meta inline-flex min-h-14 w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[#5a1f2e] transition-colors hover:bg-[#5a1f2e]/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e]">
+                        <span>{data.countLabel} — AT_A_GLANCE</span>
+                        <span className="t-data text-[10px] text-[#0b0b10]/40" dir="ltr">[07]</span>
+                    </summary>
+                    <div className="overflow-x-auto border-t border-[#0b0b10]/10 scrollbar-sov-light" role="region" aria-label={data.countLabel} tabIndex={0}>
+                        <table className="w-full min-w-[720px] border-collapse text-start text-sm">
+                            <thead>
+                                <tr className="border-b border-[#0b0b10]/10 bg-[#fdfcfb]">
+                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.flagshipLabel}</th>
+                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.sectionNote.split(".")[0]}</th>
+                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.countLabel}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.list.map((program) => (
+                                    <tr key={program.slug} className="border-b border-[#0b0b10]/10 last:border-0">
+                                        <td className="p-4 font-semibold text-[#0b0b10] min-w-0 break-words">{program.name}</td>
+                                        <td className="p-4 text-[#0b0b10]/70 min-w-0 break-words">{program.tags.join(" \u00b7 ")}</td>
+                                        <td className="p-4"><span className="t-meta whitespace-nowrap">{program.status}</span></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
             </div>
         </Section>
     );

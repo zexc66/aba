@@ -2,6 +2,7 @@ import { useLanguageContext } from "@/contexts/LanguageContext";
 import SEO from "@/components/SEO";
 import Header from "@/components/home/Header";
 import Hero from "@/components/home/Hero";
+import ProgramTicker from "@/components/home/ProgramTicker";
 import About from "@/components/home/About";
 import Programs from "@/components/home/Programs";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
@@ -42,6 +43,7 @@ export default function Home() {
 
         <div>
           <Hero data={t.hero} stats={t.about.metrics.slice(1)} />
+          <ProgramTicker programs={t.programs.list} lang={lang} />
           <About data={t.about} />
           <Programs data={t.programs} />
           <FeaturedProjects />

@@ -70,6 +70,7 @@ function FooterComponent({ data, newsroom, lang }: FooterProps) {
                 ,{ label: NETWORK_COPY[lang as "en" | "ar" | "fr"].footer, href: "/companies" }
                 ,{ label: PREPARATION_COPY[lang as "en" | "ar" | "fr"].guide, href: "/knowledge" }
                 ,{ label: ROOMS_COPY[lang as "en" | "ar" | "fr"].platform, href: "/access" }
+                ,{ label: lang === "ar" ? "\u062a\u062d\u0642\u0642 \u0645\u0646 \u0627\u0644\u0631\u0633\u0627\u0626\u0644" : lang === "fr" ? "V\u00e9rifier les communications" : "Verify communications", href: "/verify" }
             ]
         }
     ];

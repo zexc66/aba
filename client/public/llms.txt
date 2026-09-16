@@ -92,6 +92,11 @@
 
 - [/access](https://aiabasd.org/access): Member sign-in (one-time email link). Project rooms, documents, and tasks are private to invited collaboration teams and are not publicly indexed.
 
+## Trust & Verification
+
+- [/verify](https://aiabasd.org/verify): Standing anti-fraud notice — how AIABASD communicates, what it never asks for, and its only official channels.
+- [/api/projects](https://aiabasd.org/api/projects): Public read-only JSON of the published project catalog (?locale=en|ar|fr).
+
 ## Legal & Policies
 
 - [/privacy](https://aiabasd.org/privacy): Data privacy policy, zero third-party tracking disclosure, and data subject rights.
