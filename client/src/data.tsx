@@ -81,6 +81,9 @@ export interface Content {
     exploreLabel: string;
     countLabel: string;
     pipelineCta: string;
+    compareProgramLabel: string;
+    compareFocusLabel: string;
+    compareStatusLabel: string;
     list: {
       icon: ReactNode;
       name: string;
@@ -620,6 +623,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       exploreLabel: "Explore Project Blueprint",
       countLabel: "PROGRAMS",
       pipelineCta: "PIPELINE // EXPLORER",
+      compareProgramLabel: "Program",
+      compareFocusLabel: "Focus areas",
+      compareStatusLabel: "Status",
 
       list: [
         {
@@ -1385,6 +1391,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       exploreLabel: "استكشف مخطط المشروع",
       countLabel: "برامج",
       pipelineCta: "محفظة // المستكشف",
+      compareProgramLabel: "البرنامج",
+      compareFocusLabel: "مجالات التركيز",
+      compareStatusLabel: "الحالة",
 
       list: [
         {
@@ -2150,6 +2159,9 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       exploreLabel: "Explorer le Plan du Projet",
       countLabel: "PROGRAMMES",
       pipelineCta: "PIPELINE // EXPLORATEUR",
+      compareProgramLabel: "Programme",
+      compareFocusLabel: "Axes prioritaires",
+      compareStatusLabel: "Statut",
 
       list: [
         {

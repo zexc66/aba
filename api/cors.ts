@@ -21,7 +21,10 @@ export function requestClientIp(req: CORSRequest): string {
   return "unknown";
 }
 
-/** Cross-origin access is opt-in for one explicitly configured origin. */
+/** Cross-origin access is opt-in for one explicitly configured origin.
+ *  EXCEPTION — public read-only data endpoints (e.g. api/projects.ts, the
+ *  Express /api/projects twin) deliberately set `Access-Control-Allow-Origin: *`
+ *  so the published catalog can be cited from anywhere. Do not "fix" those. */
 export function allowConfiguredOrigin(req: CORSRequest, res: CORSResponse): boolean {
   const value = req.headers.origin;
   const origin = typeof value === "string" ? value : "";

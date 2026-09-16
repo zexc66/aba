@@ -161,9 +161,9 @@ function ProgramsComponent({ data }: ProgramsProps) {
                         <table className="w-full min-w-[720px] border-collapse text-start text-sm">
                             <thead>
                                 <tr className="border-b border-[#0b0b10]/10 bg-[#fdfcfb]">
-                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.flagshipLabel}</th>
-                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.sectionNote.split(".")[0]}</th>
-                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.countLabel}</th>
+                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.compareProgramLabel}</th>
+                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.compareFocusLabel}</th>
+                                    <th scope="col" className="t-meta p-4 text-start text-[10px] text-[#0b0b10]/60">{data.compareStatusLabel}</th>
                                 </tr>
                             </thead>
                             <tbody>

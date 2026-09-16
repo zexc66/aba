@@ -6,13 +6,13 @@ export const PUBLIC_DATA_NOTE: Record<Locale3, string> = {
   fr: "Données publiées des programmes et projets. Les statuts sont factuels et indicatifs — ni offre, ni engagement de financement, ni certification technique.",
 };
 
-/** Public, read-only projection of the published catalog (JSX-free). */
+/** Public, read-only projection of the published catalog (JSX-free).
+ *  Programs (data.tsx, JSX) are intentionally excluded from this payload. */
 export function publicProjects(locale: Locale3) {
   return {
     source: "AIABASD published catalog — https://aiabasd.org/projects",
     note: PUBLIC_DATA_NOTE[locale],
     generatedForLocale: locale,
-    programs: [],
     projects: PROJECTS.filter((p) => p.type !== "initiative").map((p) => ({
       slug: p.slug,
       type: p.type,

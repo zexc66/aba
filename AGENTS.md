@@ -58,7 +58,7 @@ Company directory (`client/src/companies.ts`) carries **names + logos only** unl
 
 ## Gotchas
 
-- `routes.test.mjs` asserts every llms.txt URL exists in `ALL_ROUTES` — update both together.
+- `routes.test.mjs` asserts every llms.txt **page** URL exists in `ALL_ROUTES` — update both together. llms.txt may additionally reference non-page endpoints (e.g. `/api/projects`), which are exempt from that invariant.
 - `data.tsx` icons are ReactNode — CMS JSON cannot replace them (merge layer keeps static values).
 - CRLF warnings on commit are normal (repo has mixed endings); `.env` and `.impeccable/review/` are gitignored.
 - Express catch-all serves prerendered `index.html` dirs; client-only deep links (e.g. `/rooms/:id`) need an explicit SPA-shell fallback in `server/index.ts` and a `rewrites` entry in `vercel.json`.

@@ -4,18 +4,13 @@ import { memo } from "react";
 import { localizedLinkPath } from "@/localePath";
 import type { Content } from "@/data";
 import { COPY } from "@/data";
+import { programStatusTone } from "@/lib/utils";
 
 const STATUS_DOT: Record<string, string> = {
   active: "bg-[#5a1f2e] motion-reduce:animate-none motion-safe:animate-pulse",
   dev: "bg-[#f2a007]",
   pipeline: "bg-[#0b0b10]/40",
 };
-
-function programStatusTone(status: string): keyof typeof STATUS_DOT {
-  if (status.includes("نشط") || status.toLowerCase() === "active") return "active";
-  if (status.includes("التطوير") || status.toLowerCase().includes("development")) return "dev";
-  return "pipeline";
-}
 
 function ProgramTickerComponent({ programs, lang }: { programs: Content["programs"]["list"]; lang: string }) {
   const reduceMotion = useReducedMotion();
