@@ -3,6 +3,9 @@ import { Download } from "lucide-react";
 import NetworkLayout, { networkButton, networkLink } from "@/components/NetworkLayout";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { TEMPLATES, TEMPLATES_COPY } from "@/templates";
+import { GLOSSARY_COPY } from "@/glossary";
+import { KNOWLEDGE_COPY } from "@/pages/Knowledge";
+import { PREPARATION_COPY } from "@/preparation";
 import { localizedLinkPath } from "@/localePath";
 
 const LOCALES: { code: "en" | "ar" | "fr"; label: string }[] = [
@@ -58,8 +61,8 @@ export default function Templates() {
       <p className="mt-2 text-sm text-[#0b0b10]/70">{t.moreIntro}</p>
       <ul className="mt-4 space-y-2">
         <li><Link asChild href={localizedLinkPath("/preparation", lang)}><a className={networkLink}>{t.preparation}</a></Link></li>
-        <li><Link asChild href={localizedLinkPath("/knowledge", lang)}><a className={networkLink}>Knowledge</a></Link></li>
-        <li><Link asChild href={localizedLinkPath("/glossary", lang)}><a className={networkLink}>Glossary</a></Link></li>
+        <li><Link asChild href={localizedLinkPath("/knowledge", lang)}><a className={networkLink}>{KNOWLEDGE_COPY[lang].title}</a></Link></li>
+        <li><Link asChild href={localizedLinkPath("/glossary", lang)}><a className={networkLink}>{GLOSSARY_COPY[lang].title}</a></Link></li>
       </ul>
     </NetworkLayout>
   );

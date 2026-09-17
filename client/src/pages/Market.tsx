@@ -18,6 +18,7 @@ import {
   projectsForMarket,
 } from "@/markets";
 import { MARKET_COPY } from "@/marketCopy";
+import { NETWORK_COPY } from "@/networkCopy";
 import { localizedLinkPath } from "@/localePath";
 import NotFound from "./NotFound";
 
@@ -56,7 +57,7 @@ export default function Market() {
           ],
         }}
       />
-      <Header nav={content.nav} />
+      <Header nav={content.nav} surface="light" />
 
       <div className="pt-28 pb-24">
         <Section className="py-16 border-b border-[#0b0b10]/10 bg-white">
@@ -148,6 +149,14 @@ export default function Market() {
                     </Link>
                   </li>
                 ))}
+                <li className="bg-[#fdfcfb]">
+                  <Link asChild href={localizedLinkPath("/companies", locale)}>
+                    <a className="flex min-h-16 items-center justify-between gap-3 p-4 text-sm font-semibold text-[#5a1f2e] transition-colors hover:bg-[#5a1f2e]/[0.06]">
+                      <span>{NETWORK_COPY[locale].directory}</span>
+                      <ArrowRight size={14} className="shrink-0 rtl:-scale-x-100" aria-hidden="true" />
+                    </a>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

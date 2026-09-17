@@ -25,15 +25,15 @@ export default function CompanyDetail() {
         {company.website && <a href={company.website} rel="noreferrer" target="_blank" className={networkLink}>{t.website}</a>}
       </section>
       <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
-        <h2 className="text-xl font-semibold">{t.documents}</h2>
+        <Link asChild href={localizedLinkPath(introductionPath(company.slug), lang)}><a className={networkButton}>{t.request}</a></Link>
+        <h2 className="mt-8 text-xl font-semibold">{t.documents}</h2>
         <dl className="mt-4 divide-y divide-[#0b0b10]/10">
           {(["identity", "registration", "references"] as const).map(subject => {
             const review = company.reviews.find(r => r.subject === subject);
-            return <div key={subject} className="py-4"><dt className="text-sm font-semibold">{t[subject]}</dt><dd className="mt-1 text-sm text-[#0b0b10]/70">{review ? <><time dateTime={review.date}>{review.date}</time><a className={`${networkLink} ms-3`} href={review.source} rel="noreferrer" target="_blank">{t.source}</a></> : t.missing}</dd></div>;
+            return <div key={subject} className="py-4"><dt className="text-sm font-semibold">{t[subject]}</dt><dd className="mt-1 text-sm">{review ? <><time className="text-[#0b0b10]/70" dateTime={review.date}>{review.date}</time><a className={`${networkLink} ms-3`} href={review.source} rel="noreferrer" target="_blank">{t.source}</a></> : <span className="t-meta text-[10px] text-[#0b0b10]/50">{t.missing}</span>}</dd></div>;
           })}
         </dl>
         <p className="my-6 text-sm leading-relaxed text-[#0b0b10]/70">{t.reviewNote}</p>
-        <Link asChild href={localizedLinkPath(introductionPath(company.slug), lang)}><a className={networkButton}>{t.request}</a></Link>
       </aside>
     </div>
   </NetworkLayout>;

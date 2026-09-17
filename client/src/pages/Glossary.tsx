@@ -3,6 +3,8 @@ import { Link } from "wouter";
 import NetworkLayout, { networkField, networkLink } from "@/components/NetworkLayout";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { GLOSSARY, GLOSSARY_COPY } from "@/glossary";
+import { PREPARATION_COPY } from "@/preparation";
+import { KNOWLEDGE_COPY } from "@/pages/Knowledge";
 import { localizedLinkPath } from "@/localePath";
 
 export default function Glossary() {
@@ -49,9 +51,9 @@ export default function Glossary() {
       <h2 className="mt-12 text-xl font-semibold">{t.sources}</h2>
       <p className="mt-2 text-sm text-[#0b0b10]/70">{t.sourcesIntro}</p>
       <ul className="mt-4 space-y-2">
-        <li><Link asChild href={localizedLinkPath("/governments", lang)}><a className={networkLink}>For Governments</a></Link></li>
-        <li><Link asChild href={localizedLinkPath("/knowledge", lang)}><a className={networkLink}>Knowledge</a></Link></li>
-        <li><Link asChild href={localizedLinkPath("/preparation", lang)}><a className={networkLink}>Preparation</a></Link></li>
+        <li><Link asChild href={localizedLinkPath("/governments", lang)}><a className={networkLink}>{t.sourcesGovernments}</a></Link></li>
+        <li><Link asChild href={localizedLinkPath("/preparation", lang)}><a className={networkLink}>{PREPARATION_COPY[lang].title}</a></Link></li>
+        <li><Link asChild href={localizedLinkPath("/knowledge", lang)}><a className={networkLink}>{KNOWLEDGE_COPY[lang].title}</a></Link></li>
       </ul>
     </NetworkLayout>
   );

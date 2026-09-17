@@ -31,7 +31,7 @@ export const GLOSSARY: GlossaryTerm[] = [
   { id: "mezzanine", term: t("Mezzanine Debt", "الدين الأوسط", "Dette Mezzanine"), def: t("Financing ranked between senior debt and equity, carrying higher risk and return.", "تمويل يقع بين الدين الأول وحقوق الملكية، بمخاطر وعوائد أعلى.", "Financement placé entre la dette senior et les capitaux propres, plus risqué et plus rémunérateur.") },
   { id: "sovereign-guarantee", term: t("Sovereign Guarantee", "الضمان السيادي", "Garantie Souveraine"), def: t("A government commitment to cover specified payment obligations if the primary party defaults.", "التزام حكومي بتغطية التزامات دفع محددة إذا أخلّ الطرف الأساسي بالسداد.", "Engagement gouvernemental de couvrir des obligations de paiement définies en cas de défaillance.") },
   { id: "vgf", term: t("VGF — Viability Gap Funding", "VGF — تمويل فجوة الجدوى", "VGF — Financement de l'Écart de Viabilité"), def: t("One-time public capital support that makes a socially valuable project financially viable.", "دعم رأسمالي عام لمرة واحدة يجعل مشروعاً ذا قيمة اجتماعية مجدياً مالياً.", "Soutien en capital public ponctuel rendant financièrement viable un projet d'intérêt social.") },
-  { id: "availability-payment", term: t("Availability Payment", "دفاع التوفر", "Paiement de Disponibilité"), def: t("Regular public payments to a private operator for keeping an asset available to standard, independent of usage.", "مدفوعات دورية عامة للمشغل الخاص مقابل إبقاء الأصل متاحاً وفق المعيار، بغض النظر عن الاستخدام.", "Paiements publics réguliers à l'opérateur pour maintenir l'actif disponible au standard, indépendamment de l'usage.") },
+  { id: "availability-payment", term: t("Availability Payment", "دفعة التوفر", "Paiement de Disponibilité"), def: t("Regular public payments to a private operator for keeping an asset available to standard, independent of usage.", "مدفوعات دورية عامة للمشغل الخاص مقابل إبقاء الأصل متاحاً وفق المعيار، بغض النظر عن الاستخدام.", "Paiements publics réguliers à l'opérateur pour maintenir l'actif disponible au standard, indépendamment de l'usage.") },
   { id: "performance-bond", term: t("Performance Bond", "سند الأداء", "Caution de Bonne Exécution"), def: t("A bank guarantee compensating the client if the contractor fails to meet contractual obligations.", "ضمان بنكي يعوّض المالك إذا أخلّ المقاول بالتزاماته التعاقدية.", "Garantie bancaire compensant le client si l'entrepreneur ne respecte pas ses engagements.") },
   { id: "due-diligence", term: t("Due Diligence", "العناية الواجبة", "Diligence Raisonnable"), def: t("The structured investigation of a project's legal, financial, technical, and environmental standing before commitment.", "الفحص المنظم للوضع القانوني والمالي والفني والبيئي للمشروع قبل الالتزام.", "Examen structuré de la situation juridique, financière, technique et environnementale avant tout engagement.") },
   { id: "feasibility", term: t("Feasibility Study", "دراسة الجدوى", "Étude de Faisabilité"), def: t("An assessment of whether a project is technically possible, economically sound, and environmentally acceptable.", "تقييم ما إذا كان المشروع ممكناً تقنياً وسليماً اقتصادياً ومقبولاً بيئياً.", "Évaluation de la possibilité technique, de la solidité économique et de l'acceptabilité environnementale d'un projet.") },
@@ -55,24 +55,27 @@ export const GLOSSARY: GlossaryTerm[] = [
 
 export const GLOSSARY_COPY: Record<Locale3, {
   title: string; intro: string; search: string; count: string; noResults: string;
-  notice: string; sources: string; sourcesIntro: string;
+  notice: string; sources: string; sourcesIntro: string; sourcesGovernments: string;
 }> = {
   en: {
     title: "PPP & infrastructure glossary", intro: "Standard infrastructure-finance and partnership terms, explained plainly in three languages. Educational reference — not legal or investment advice.",
     search: "Search a term or definition", count: "terms", noResults: "No term matches this search.",
     notice: "Definitions describe common industry usage. Contracts may define terms differently — the signed agreement governs.",
     sources: "Deepen the context", sourcesIntro: "Related institutional pages:",
+    sourcesGovernments: "For Governments & Public Institutions",
   },
   ar: {
     title: "معجم مصطلحات الشراكات والبنية التحتية", intro: "مصطلحات قياسية لتمويل البنية التحتية والشراكات، مشروحة ببساطة بثلاث لغات. مرجع تعليمي — وليس استشارة قانونية أو استثمارية.",
     search: "ابحث عن مصطلح أو تعريف", count: "مصطلحاً", noResults: "لا يوجد مصطلح مطابق للبحث.",
     notice: "التعريفات توضح الاستخدام الصناعي الشائع. قد تُعرّف العقود المصطلحات بشكل مختلف — الاتفاق الموقع هو الحاكم.",
     sources: "تعمّق في السياق", sourcesIntro: "صفحات مؤسسية ذات صلة:",
+    sourcesGovernments: "للحكومات والمؤسسات العامة",
   },
   fr: {
     title: "Glossaire PPP & infrastructures", intro: "Termes standard du financement d'infrastructures et des partenariats, expliqués simplement en trois langues. Référence éducative — ni conseil juridique ni conseil en investissement.",
     search: "Rechercher un terme ou une définition", count: "termes", noResults: "Aucun terme ne correspond à cette recherche.",
     notice: "Les définitions décrivent l'usage courant du secteur. Les contrats peuvent les définir différemment — l'accord signé prévaut.",
     sources: "Approfondir le contexte", sourcesIntro: "Pages institutionnelles liées :",
+    sourcesGovernments: "Pour les gouvernements et institutions publiques",
   },
 };

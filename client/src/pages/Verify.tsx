@@ -20,7 +20,7 @@ export default function Verify() {
         lang={lang}
         url="/verify"
       />
-      <Header nav={content.nav} />
+      <Header nav={content.nav} surface="light" />
 
       <div className="pt-28 pb-24">
         <Section className="py-16 border-b border-[#0b0b10]/10 bg-white">
