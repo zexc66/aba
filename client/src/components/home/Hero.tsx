@@ -94,10 +94,10 @@ export default function Hero({ data, stats }: HeroProps) {
                             >
                                 {stats.map((s) => (
                                     <div key={s.label} className="border-s border-white/10 first:border-s-0 ps-4 first:ps-0 min-w-0">
-                                        <div className="t-data text-xl md:text-2xl font-semibold text-[#fdfcfb]" dir="ltr">
+                                        <div className="font-display text-2xl md:text-[28px] font-bold tracking-tight text-[#fdfcfb]" dir="ltr">
                                             <bdi>{s.value}{s.suffix ?? ""}</bdi>
                                         </div>
-                                        <div className="t-meta text-[9px] md:text-[10px] text-[#fdfcfb]/50 mt-1 leading-snug">
+                                        <div className="t-meta text-[9px] md:text-[10px] text-[#fdfcfb]/50 mt-1.5 leading-snug">
                                             {s.label}
                                         </div>
                                     </div>

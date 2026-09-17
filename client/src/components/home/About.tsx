@@ -67,7 +67,7 @@ function AboutComponent({ data }: AboutProps) {
                                     transition={{ duration: 0.5, delay: i * 0.08 }}
                                     className={`p-6 space-y-1.5 ${i % 2 === 0 ? "border-e border-[#0b0b10]/10" : ""} ${i < 2 ? "border-b border-[#0b0b10]/10" : ""}`}
                                 >
-                                    <div className="t-data text-2xl md:text-3xl font-semibold text-[#0b0b10]" dir="ltr">
+                                    <div className="font-display text-2xl md:text-3xl font-bold tracking-tight text-[#0b0b10]" dir="ltr">
                                         <bdi>{stat.value}{stat.suffix ?? ""}</bdi>
                                     </div>
                                     <div className="t-meta text-[#5a1f2e]">
