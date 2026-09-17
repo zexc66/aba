@@ -967,8 +967,30 @@ export const PROJECTS: Project[] = [
 
 /* ── Helpers ────────────────────────────────────────────────────────────── */
 
+/** Curated homepage order — professional narrative, not array order:
+ *  1. flagship energy project (largest, sticky card)
+ *  2. second corridor + sector (Sudan housing) to widen geography
+ *  3. investor-facing multi-sector portfolio (Côte d'Ivoire)
+ *  4. in-progress technical assessment (pipeline discipline proof)
+ *  5. actionable procurement opportunity
+ *  6. international cooperation framework closes the story.
+ *  Uncurated future `featured` projects append after this order. */
+const FEATURED_ORDER = [
+  "hama-solar-200mw",
+  "sudan-productive-housing",
+  "hama-debris-recycling",
+  "cci-investment-portfolio",
+  "smart-meters-syria",
+  "china-arab-africa-platform",
+];
+
 export const featuredProjects = (n?: number): Project[] => {
-  const list = PROJECTS.filter((p) => p.featured);
+  const bySlug = new Map(PROJECTS.filter((p) => p.featured).map((p) => [p.slug, p]));
+  const curated = FEATURED_ORDER.map((slug) => bySlug.get(slug)).filter(
+    (p): p is Project => Boolean(p)
+  );
+  const rest = Array.from(bySlug.values()).filter((p) => !FEATURED_ORDER.includes(p.slug));
+  const list = [...curated, ...rest];
   return n ? list.slice(0, n) : list;
 };
 

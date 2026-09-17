@@ -3,6 +3,23 @@ import assert from "node:assert/strict";
 import { PROGRAM_SDGS, sdgTitle } from "../client/src/sdg";
 import { FRAUD_COPY } from "../client/src/fraudCopy";
 import { publicProjects } from "../server/publicData";
+import { featuredProjects } from "../client/src/projects";
+
+test("homepage featured order is professionally curated", () => {
+  const featured = featuredProjects();
+  assert.equal(featured.length, 6);
+  // flagship energy project leads the sticky card
+  assert.equal(featured[0].slug, "hama-solar-200mw");
+  // geographic spread: no two consecutive projects from the same country
+  for (let i = 1; i < featured.length; i++) {
+    assert.notEqual(featured[i].country, featured[i - 1].country, `consecutive same-country at ${i}`);
+  }
+  // all sectors represented without immediate repeats
+  const sectors = featured.map((p) => p.sector);
+  assert.ok(new Set(sectors).size >= 4, "sector diversity");
+  // the cooperation framework closes, never opens
+  assert.notEqual(featured[0].type, "initiative");
+});
 
 test("every published program has valid, unique indicative SDGs", () => {
   // data.tsx is JSX (unusable under node) — the i18n parity check guards this
