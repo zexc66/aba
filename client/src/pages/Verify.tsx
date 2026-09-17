@@ -23,7 +23,7 @@ export default function Verify() {
       <Header nav={content.nav} surface="light" />
 
       <div className="pt-28 pb-24">
-        <Section className="py-16 border-b border-[#0b0b10]/10 bg-white">
+        <Section className="py-16 border-b border-[#0b0b10]/10 bg-[#fdfcfb]">
           <div className="mx-auto max-w-[1500px] px-6 md:px-12 lg:px-24">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-0.5 w-8 bg-[#5a1f2e]" aria-hidden="true" />

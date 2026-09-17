@@ -23,6 +23,8 @@ export default function Introductions() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
   const locked = useRef(false);
+  const successRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (reference) successRef.current?.focus(); }, [reference]);
   const requestVersion = useRef(0);
   const activeRequest = useRef<AbortController | null>(null);
   const selectedProject = projectBySlug(project);
@@ -61,8 +63,8 @@ export default function Introductions() {
     finally { clearTimeout(timeout); locked.current = false; setSending(false); }
   }
 
-  return <NetworkLayout title={t.request} description={t.requestIntro} path="/introductions" noindex>
-    {reference ? <section role="status" className="max-w-3xl border border-[#5a1f2e]/20 p-6 md:p-10">
+  return <NetworkLayout eyebrow={t.request} title={t.request} description={t.requestIntro} path="/introductions" noindex>
+    {reference ? <section ref={successRef} tabIndex={-1} role="status" className="max-w-3xl border border-[#5a1f2e]/20 p-6 outline-none md:p-10">
       <h2 className="text-2xl font-semibold">{t.success}</h2>
       <p className="mt-4">{t.reference}: <strong dir="ltr">{reference}</strong></p>
       <h3 className="mt-8 text-lg font-semibold">{t.nextTitle}</h3><p className="mt-3 leading-relaxed">{t.next}</p>

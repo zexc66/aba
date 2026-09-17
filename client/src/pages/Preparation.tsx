@@ -16,6 +16,7 @@ export default function Preparation() {
   const [drafts, setDrafts] = useState<Record<string, PreparationDraft>>({});
   const [message, setMessage] = useState<"saved" | "failed" | "">("");
   const [ready, setReady] = useState(false);
+  const [confirmClear, setConfirmClear] = useState(false);
   useEffect(() => {
     try { setDrafts(parsePreparationStore(JSON.parse(localStorage.getItem(PREPARATION_KEY) ?? "null"))); } catch {}
     setReady(true);
@@ -33,18 +34,23 @@ export default function Preparation() {
     const a = document.createElement("a"); a.href = url; a.download = `${slug}-preparation-${lang}.md`; a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  return <NetworkLayout title={t.title} description={t.intro} path="/preparation" noindex>
+  return <NetworkLayout eyebrow={t.title} title={t.title} description={t.intro} path="/preparation" noindex>
     <label className="block max-w-2xl space-y-2 text-sm font-medium">{t.select}<select className={networkField} value={slug} onChange={e => { setSlug(e.target.value); setMessage(""); }}><option value="">{t.choose}</option>{PROJECTS.map(p => <option key={p.slug} value={p.slug}>{p.title[lang]}</option>)}</select></label>
     {project && <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.5fr)]">
       <section>
         <h2 className="text-xl font-semibold">{t.questions}</h2>
         <p role="status" className="mt-3 text-sm text-[#0b0b10]/70">{Object.values(draft.checks).filter(v => v === "available").length}/7 {t.completed}</p>
+        <div className="mt-4 h-1.5 bg-[#0b0b10]/[0.06]" role="progressbar" aria-valuenow={Object.values(draft.checks).filter(v => v === "available").length} aria-valuemin={0} aria-valuemax={7} aria-label={t.questions}>
+          <div className="h-full bg-[#f2a007]" style={{ width: `${(Object.values(draft.checks).filter(v => v === "available").length / 7) * 100}%` }} />
+        </div>
         <fieldset disabled={!ready} className="mt-6 divide-y divide-[#0b0b10]/10 border-y border-[#0b0b10]/10">
           {PREPARATION_IDS.map(key => <label className="grid items-center gap-3 py-5 text-sm md:grid-cols-[1fr_12rem]" key={key}><span className="font-medium">{t.items[key]}</span><select aria-label={`${t.items[key]} — ${t.status}`} className={networkField} value={draft.checks[key] ?? "unknown"} onChange={e => update({ ...draft, checks: { ...draft.checks, [key]: e.target.value as PreparationStatus } })}>{(["unknown", "in-progress", "available"] as const).map(status => <option key={status} value={status}>{t[status]}</option>)}</select></label>)}
         </fieldset>
         <label className="mt-8 block space-y-3 font-medium">{t.notes}<textarea rows={5} maxLength={2000} value={draft.notes} className={networkField} onChange={e => update({ ...draft, notes: e.target.value })} /></label>
         <p className="mt-2 text-sm text-[#0b0b10]/70">{t.noteHint}</p>
-        <div className="mt-6 flex flex-wrap gap-5"><button className={networkButton} disabled={!ready} onClick={() => save()}>{t.save}</button><button className={networkLink} onClick={download}>{t.download}</button><button className={networkLink} onClick={() => { const next = { ...drafts }; delete next[slug]; setDrafts(next); save(next); }}>{t.reset}</button></div>
+        <div className="mt-6 flex flex-wrap items-center gap-5"><button className={networkButton} disabled={!ready} onClick={() => save()}>{t.save}</button><button className={networkLink} onClick={download}>{t.download}</button>
+          {confirmClear ? <span className="flex items-center gap-3 text-sm"><button className="min-h-11 border border-red-300 px-3 py-2 text-red-700" onClick={() => { const next = { ...drafts }; delete next[slug]; setDrafts(next); save(next); setConfirmClear(false); }}>{t.reset} ✓</button><button className={networkLink} onClick={() => setConfirmClear(false)}>{t.cancelClear}</button></span> : <button className={networkLink} onClick={() => setConfirmClear(true)}>{t.reset}</button>}
+        </div>
         {message && <p role={message === "failed" ? "alert" : "status"} className="mt-4 text-sm">{t[message]}</p>}
       </section>
       <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">

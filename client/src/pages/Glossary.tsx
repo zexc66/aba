@@ -23,7 +23,7 @@ export default function Glossary() {
   }, [query, lang]);
 
   return (
-    <NetworkLayout title={t.title} description={t.intro} path="/glossary">
+    <NetworkLayout eyebrow={t.title} title={t.title} description={t.intro} path="/glossary">
       <label className="mb-8 block max-w-xl space-y-2 text-sm font-medium">
         {t.search}
         <input type="search" className={networkField} value={query} onChange={(e) => setQuery(e.target.value)} />

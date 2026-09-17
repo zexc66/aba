@@ -31,7 +31,7 @@ export default function Templates() {
   }
 
   return (
-    <NetworkLayout title={t.title} description={t.intro} path="/templates">
+    <NetworkLayout eyebrow={t.title} title={t.title} description={t.intro} path="/templates">
       <div className="grid gap-px border border-[#0b0b10]/10 bg-[#0b0b10]/10 md:grid-cols-2">
         {TEMPLATES.map((template) => (
           <section key={template.id} className="bg-white p-7">

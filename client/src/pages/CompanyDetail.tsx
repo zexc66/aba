@@ -13,7 +13,7 @@ export default function CompanyDetail() {
   const t = NETWORK_COPY[lang];
   const company = companyBySlug(slug);
   if (!company) return <NotFound />;
-  return <NetworkLayout title={company.name} description={company.overview?.[lang] ?? t.listingNote} path={`/companies/${company.slug}`} noindex={!company.overview}>
+  return <NetworkLayout eyebrow={t.documents} title={company.name} description={company.overview?.[lang] ?? t.listingNote} path={`/companies/${company.slug}`} noindex={!company.overview}>
     <Link asChild href={localizedLinkPath("/companies", lang)}><a className={`${networkLink} mb-8`}>{t.returnDirectory}</a></Link>
     <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.6fr)]">
       <section className="min-w-0" aria-label={t.overview}>
