@@ -379,7 +379,7 @@ export default function Projects() {
                   {t.comparePrintFooter}
                 </div>
                 <footer className="brief-footer">
-                  <span>aiabasd.org · contact@aiabasd.org</span>
+                  <span>aiabasd.org · gs@aibasd.org</span>
                   <span>{t.compareTitle}</span>
                 </footer>
               </div>

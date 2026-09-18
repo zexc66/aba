@@ -575,7 +575,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         },
         {
           q: "How can an organization submit a project or partner with the Alliance?",
-          a: "Institutions can submit projects through the submit-project page or contact the Alliance directly at contact@aiabasd.org. Submissions are reviewed by the institutional team against feasibility and governance criteria.",
+          a: "Institutions can submit projects through the submit-project page or contact the Alliance directly at gs@aibasd.org. Submissions are reviewed by the institutional team against feasibility and governance criteria.",
         },
       ],
     },
@@ -613,7 +613,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ctaTitle: "Start a qualified conversation",
       ctaText: "Send an official letter of interest or submit a priority project. The institutional team responds with a structured assessment path.",
       ctaPrimary: "Submit a project",
-      ctaSecondary: "contact@aiabasd.org",
+      ctaSecondary: "gs@aibasd.org",
     },
     programs: {
       title: "Flagship programs",
@@ -872,7 +872,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       bookingNote: "Skip the queue — pick a slot with the partnerships team.",
       bookingCta: "OPEN CALENDAR",
 
-      error: "Submission failed. Please try again or email contact@aiabasd.org",
+      error: "Submission failed. Please try again or email gs@aibasd.org",
       audienceLabel: "I am enquiring as",
       audienceOptions: ["Government / Municipal", "Investor / DFI", "EPC / Operating partner", "NGO / Development agency", "Press / Research"],
       sectorLabel: "Sector of interest",
@@ -1343,7 +1343,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         },
         {
           q: "كيف يمكن تقديم مشروع أو الشراكة مع التحالف؟",
-          a: "يمكن للمؤسسات تقديم مشروعاتها عبر صفحة تقديم المشاريع أو التواصل مباشرة على contact@aiabasd.org، وتُراجع الطلبات من الفريق المؤسسي وفق معايير الجدوى والحوكمة.",
+          a: "يمكن للمؤسسات تقديم مشروعاتها عبر صفحة تقديم المشاريع أو التواصل مباشرة على gs@aibasd.org، وتُراجع الطلبات من الفريق المؤسسي وفق معايير الجدوى والحوكمة.",
         },
       ],
     },
@@ -1381,7 +1381,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ctaTitle: "ابدأ حواراً مؤسسياً مؤهلاً",
       ctaText: "أرسل خطاب اهتمام رسمياً أو قدّم مشروعاً ذا أولوية، وسيرد الفريق المؤسسي بمسار تقييم منظم.",
       ctaPrimary: "تقديم مشروع",
-      ctaSecondary: "contact@aiabasd.org",
+      ctaSecondary: "gs@aibasd.org",
     },
     programs: {
       title: "البرامج الرئيسية",
@@ -1640,7 +1640,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       bookingNote: "تجاوز الانتظار — اختر موعداً مع فريق الشراكات.",
       bookingCta: "فتح التقويم",
 
-      error: "تعذّر الإرسال. حاول مرة أخرى أو راسلنا على contact@aiabasd.org",
+      error: "تعذّر الإرسال. حاول مرة أخرى أو راسلنا على gs@aibasd.org",
       audienceLabel: "أستفسر بصفتي",
       audienceOptions: ["حكومة / بلدية", "مستثمر / مؤسسة تمويل", "شركة EPC / شريك تشغيلي", "منظمة / وكالة تنموية", "صحافة / بحث"],
       sectorLabel: "قطاع الاهتمام",
@@ -2111,7 +2111,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
         },
         {
           q: "Comment soumettre un projet ou devenir partenaire de l'Alliance ?",
-          a: "Les institutions peuvent soumettre leurs projets via la page de soumission ou contacter directement l'Alliance à contact@aiabasd.org. Les demandes sont examinées par l'équipe institutionnelle selon des critères de faisabilité et de gouvernance.",
+          a: "Les institutions peuvent soumettre leurs projets via la page de soumission ou contacter directement l'Alliance à gs@aibasd.org. Les demandes sont examinées par l'équipe institutionnelle selon des critères de faisabilité et de gouvernance.",
         },
       ],
     },
@@ -2149,7 +2149,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       ctaTitle: "Ouvrir une conversation qualifiée",
       ctaText: "Envoyez une lettre d'intention officielle ou soumettez un projet prioritaire. L'équipe institutionnelle répond avec un parcours d'évaluation structuré.",
       ctaPrimary: "Soumettre un projet",
-      ctaSecondary: "contact@aiabasd.org",
+      ctaSecondary: "gs@aibasd.org",
     },
     programs: {
       title: "Programmes phares",
@@ -2408,7 +2408,7 @@ export const COPY: Record<"en" | "ar" | "fr", Content> = {
       bookingNote: "Passez devant la file — choisissez un créneau avec l'équipe partenariats.",
       bookingCta: "OUVRIR LE CALENDRIER",
 
-      error: "Échec de l'envoi. Réessayez ou écrivez à contact@aiabasd.org",
+      error: "Échec de l'envoi. Réessayez ou écrivez à gs@aibasd.org",
       audienceLabel: "Je me renseigne en tant que",
       audienceOptions: ["Gouvernement / Municipalité", "Investisseur / IFD", "EPC / Partenaire opérationnel", "ONG / Agence de développement", "Presse / Recherche"],
       sectorLabel: "Secteur d'intérêt",

@@ -34,7 +34,7 @@ function localizedResponse(locale: Exclude<ChatLocale, "en">, topic: ChatTopic):
             regions: "نعمل في ممرات مستهدفة تشمل غانا، غامبيا، سيراليون، بوركينا فاسو، ساحل العاج، أنغولا، السودان، مصر، الأردن، سوريا، والسعودية.",
             governance: "تتضمن منظومة الحوكمة لدينا ESIA/ESMS، وفحص KYC/AML، ومهندساً ومدققاً مستقلاً لكل برنامج، ورسوم نجاح مرتبطة بالمعالم التي يتم التحقق منها بصورة مستقلة.",
             partnership: "ترتبط AIABASD بالمؤسسات العامة ورأس المال الخاص وشركاء التنفيذ. للاستفسارات، استخدم نموذج التواصل أو بوابة المستثمرين.",
-            contact: "للاستفسارات، استخدم نموذج التواصل في الموقع أو راسل contact@aiabasd.org أو gs@aiabasd.org أو fo@aiabasd.org.",
+            contact: "للاستفسارات، استخدم نموذج التواصل في الموقع أو راسل gs@aibasd.org أو gs@aiabasd.org أو fo@aiabasd.org.",
             sdg: "تتوافق مواقعنا وبرامجنا مع أهداف التنمية المستدامة للأمم المتحدة 2030 وأجندة الاتحاد الأفريقي 2063، مع مجالات تشمل الطاقة النظيفة والأمن الغذائي.",
             general: "أنا مساعد AIABASD. يمكنني الإجابة عن المعلومات المنشورة حول البرامج، فريق القيادة، مناطق العمل، الحوكمة، وطرق التواصل. إذا لم تكن المعلومة منشورة، استخدم نموذج التواصل."
         },
@@ -50,7 +50,7 @@ function localizedResponse(locale: Exclude<ChatLocale, "en">, topic: ChatTopic):
             regions: "Nous intervenons dans des corridors ciblés au Ghana, en Gambie, en Sierra Leone, au Burkina Faso, en Côte d'Ivoire, en Angola, au Soudan, en Égypte, en Jordanie, en Syrie et en Arabie saoudite.",
             governance: "Notre gouvernance comprend les cadres ESIA/ESMS, le filtrage KYC/AML, un ingénieur et un auditeur indépendants par programme, ainsi que des frais de succès liés à des jalons vérifiés indépendamment.",
             partnership: "L'AIABASD travaille avec des institutions publiques, des capitaux privés et des partenaires de mise en œuvre. Pour toute demande, utilisez le formulaire de contact ou le portail investisseurs.",
-            contact: "Pour nous joindre, utilisez le formulaire du site ou écrivez à contact@aiabasd.org, gs@aiabasd.org ou fo@aiabasd.org.",
+            contact: "Pour nous joindre, utilisez le formulaire du site ou écrivez à gs@aibasd.org, gs@aiabasd.org ou fo@aiabasd.org.",
             sdg: "Nos sites et programmes sont alignés sur les ODD de l'ONU à l'horizon 2030 et l'Agenda 2063 de l'Union africaine, avec des domaines comme l'énergie propre et la sécurité alimentaire.",
             general: "Je suis l'assistant AIABASD. Je peux répondre aux informations publiées sur nos programmes, notre équipe, nos zones d'intervention, notre gouvernance et nos moyens de contact. Si un détail n'est pas publié, utilisez le formulaire de contact."
         }
@@ -109,7 +109,7 @@ export function generateChatResponse(message: string, locale: ChatLocale = "en")
     }
 
     if (msg.includes("contact") || msg.includes("email") || msg.includes("reach") || msg.includes("join")) {
-        return "**Get in Touch**\n\nUse the Contact form or write to contact@aiabasd.org, gs@aiabasd.org, or fo@aiabasd.org.";
+        return "**Get in Touch**\n\nUse the Contact form or write to gs@aibasd.org, gs@aiabasd.org, or fo@aiabasd.org.";
     }
 
     if (msg.includes("sdg") || msg.includes("sustainable")) {

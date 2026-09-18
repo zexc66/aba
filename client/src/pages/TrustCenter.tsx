@@ -311,7 +311,7 @@ export default function TrustCenter() {
               <div className="lg:col-span-7">
                 <div className="border border-[#0b0b10]/10 bg-[#fdfcfb] divide-y divide-[#0b0b10]/10 shadow-premium">
                   {[
-                    { label: copy.emailGeneralLabel, email: "contact@aiabasd.org" },
+                    { label: copy.emailGeneralLabel, email: "gs@aibasd.org" },
                     { label: copy.emailSecretariatLabel, email: "gs@aiabasd.org" },
                     { label: copy.emailFieldOpsLabel, email: "fo@aiabasd.org" },
                   ].map((route) => (

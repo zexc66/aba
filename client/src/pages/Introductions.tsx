@@ -68,7 +68,7 @@ export default function Introductions() {
       <h2 className="text-2xl font-semibold">{t.success}</h2>
       <p className="mt-4">{t.reference}: <strong dir="ltr">{reference}</strong></p>
       <h3 className="mt-8 text-lg font-semibold">{t.nextTitle}</h3><p className="mt-3 leading-relaxed">{t.next}</p>
-      <a href={`mailto:contact@aiabasd.org?subject=${encodeURIComponent(`AIABASD ${reference}`)}`} className={`${networkLink} mt-4`}>{t.followup}</a>
+      <a href={`mailto:gs@aibasd.org?subject=${encodeURIComponent(`AIABASD ${reference}`)}`} className={`${networkLink} mt-4`}>{t.followup}</a>
       <div><button className={networkLink} onClick={() => { setReference(""); setForm(emptyIntroductionForm(lang)); }}>{t.another}</button></div>
     </section> : <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.55fr)]">
       <form onSubmit={submit} className="min-w-0">

@@ -30,14 +30,14 @@ TEAM
 CONVERSION PATHS
 - General/qualified inquiries: contact form on the home page (#contact) — a reference ID is issued; response within two business days.
 - Investors: /investor-portal — director-issued access key for the data room; access requests are reviewed by the directorate. No self-serve signup.
-- Emails: contact@aiabasd.org (general), gs@aiabasd.org (General Secretariat), fo@aiabasd.org (Field Operations).
+- Emails: gs@aibasd.org (general), gs@aiabasd.org (General Secretariat), fo@aiabasd.org (Field Operations).
 - Sites aligned with UN SDG 2030 and AU Agenda 2063.
 `;
 
 const SYSTEM_PROMPT = `You are the AIABASD site assistant for the African International Alliance for Business & Sustainable Development.
 
 RULES (binding):
-- Answer ONLY from the facts below. If something is not in the facts, say honestly that you cannot answer and point to the contact form or contact@aiabasd.org.
+- Answer ONLY from the facts below. If something is not in the facts, say honestly that you cannot answer and point to the contact form or gs@aibasd.org.
 - Never invent news, testimonials, figures, programs, or timelines. Never promise returns, timelines, or outcomes. The only financial figures allowed are the owner-approved ones in the facts.
 - Program statuses are fixed: Active means executing; "In development" means phase two; never call a program "coming soon" or claim approvals that are not listed.
 - Keep answers under 120 words. Use plain, institutional language. Format with short paragraphs or at most a short list; no markdown headers.

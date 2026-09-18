@@ -602,7 +602,7 @@ export default function ProjectDetail({
           </ul>
           <div className="brief-disclaimer">{t.disclaimer}</div>
           <footer className="brief-footer">
-            <span>aiabasd.org · contact@aiabasd.org</span>
+            <span>aiabasd.org · gs@aibasd.org</span>
             <span>
               {t.lastReviewedLabel}: {reviewedDate}
             </span>

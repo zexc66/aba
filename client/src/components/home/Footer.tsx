@@ -40,7 +40,7 @@ interface FooterProps {
 }
 
 const socialLinks = [
-    { icon: Mail, label: "Email", href: "mailto:contact@aiabasd.org" },
+    { icon: Mail, label: "Email", href: "mailto:gs@aibasd.org" },
 ];
 
 function FooterComponent({ data, newsroom, lang }: FooterProps) {

@@ -77,11 +77,11 @@ export default function Verify() {
                 </div>
                 <p className="mt-4 text-sm leading-relaxed text-[#0b0b10]/75">{t.reportBody}</p>
                 <a
-                  href="mailto:contact@aiabasd.org?subject=Fraud%20report"
+                  href="mailto:gs@aibasd.org?subject=Fraud%20report"
                   className="mt-6 inline-flex min-h-11 items-center gap-2 bg-[#5a1f2e] px-5 py-3 text-sm font-semibold text-[#fdfcfb] hover:bg-[#0b0b10] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e]"
                 >
                   <ShieldCheck size={15} aria-hidden="true" />
-                  contact@aiabasd.org
+                  gs@aibasd.org
                 </a>
               </div>
             </div>

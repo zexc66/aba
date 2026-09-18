@@ -301,7 +301,7 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
   ).some(Boolean);
   if (!delivered) {
     console.error("[PROTOCOL][FAILURE][DELIVERY_UNAVAILABLE]");
-    res.status(503).json({ error: "We could not receive this inquiry right now. Please email contact@aiabasd.org." });
+    res.status(503).json({ error: "We could not receive this inquiry right now. Please email gs@aibasd.org." });
     return;
   }
 

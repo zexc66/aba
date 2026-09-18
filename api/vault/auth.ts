@@ -20,13 +20,13 @@ export default async function handler(req: ServerlessRequest, res: ServerlessRes
   if (process.env.VERCEL === "1") { res.status(404).json({ error: "This private route is not available on the public deployment." }); return; }
   if (req.method !== "POST") { res.status(405).json({ error: "Method not allowed" }); return; }
   if (limited(requestClientIp(req))) { res.setHeader("Retry-After", "900"); res.status(429).json({ error: "Too many attempts. Please try again later." }); return; }
-  if (!(await vaultStorageAvailable())) { res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email contact@aiabasd.org." }); return; }
+  if (!(await vaultStorageAvailable())) { res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email gs@aibasd.org." }); return; }
 
   let body: unknown = req.body;
   if (typeof body === "string") { try { body = JSON.parse(body); } catch { body = null; } }
   const input = body as { email?: unknown; key?: unknown } | null;
   const result = authenticate(input?.email, input?.key);
-  if (result === "unconfigured") { res.status(503).json({ error: "Vault is not configured on this deployment. Please email contact@aiabasd.org." }); return; }
+  if (result === "unconfigured") { res.status(503).json({ error: "Vault is not configured on this deployment. Please email gs@aibasd.org." }); return; }
   if (result === "invalid") { res.status(400).json({ error: "Invalid credentials." }); return; }
   res.status(200).json({ token: result, expiresInMs: SESSION_TTL_MS });
 }

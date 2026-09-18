@@ -105,6 +105,6 @@
 ## Contact
 
 - [/trust#contacts](https://aiabasd.org/trust#contacts): Institutional directory and physical bureau coordinates (London & Dakar).
-- Primary Inquiries: contact@aiabasd.org
+- Primary Inquiries: gs@aibasd.org
 - General Secretariat: gs@aiabasd.org
 - Finance & Oversight Bureau: fo@aiabasd.org

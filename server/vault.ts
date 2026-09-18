@@ -33,12 +33,12 @@ export function registerVaultRoutes(app: express.Express): void {
 
   app.post("/api/vault/auth", authLimiter, async (req, res) => {
     if (!(await vaultStorageAvailable())) {
-      res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email contact@aiabasd.org." });
+      res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email gs@aibasd.org." });
       return;
     }
     const result = authenticate(req.body?.email, req.body?.key);
     if (result === "unconfigured") {
-      res.status(503).json({ error: "Vault is not configured on this deployment. Please email contact@aiabasd.org." });
+      res.status(503).json({ error: "Vault is not configured on this deployment. Please email gs@aibasd.org." });
       return;
     }
     if (result === "invalid") {
@@ -50,7 +50,7 @@ export function registerVaultRoutes(app: express.Express): void {
 
   app.get("/api/vault/documents", async (req, res) => {
     if (!(await vaultStorageAvailable())) {
-      res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email contact@aiabasd.org." });
+      res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email gs@aibasd.org." });
       return;
     }
     if (!verifyToken(bearerToken(req.headers.authorization))) {
@@ -62,7 +62,7 @@ export function registerVaultRoutes(app: express.Express): void {
 
   app.get("/api/vault/documents/:name", async (req, res) => {
     if (!(await vaultStorageAvailable())) {
-      res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email contact@aiabasd.org." });
+      res.status(503).json({ error: "Vault storage is not configured on this deployment. Please email gs@aibasd.org." });
       return;
     }
     if (!verifyToken(bearerToken(req.headers.authorization))) {

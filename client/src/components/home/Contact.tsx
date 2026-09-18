@@ -215,7 +215,7 @@ function ContactComponent({ data, lang }: ContactProps) {
 
                                 <div className="pt-2 border-t border-[#0b0b10]/10 space-y-1">
                                     {[
-                                        { label: data.sidebar.emailGeneralLabel, address: "contact@aiabasd.org" },
+                                        { label: data.sidebar.emailGeneralLabel, address: "gs@aibasd.org" },
                                         { label: data.sidebar.emailSecretariatLabel, address: "gs@aiabasd.org" },
                                         { label: data.sidebar.emailFieldOpsLabel, address: "fo@aiabasd.org" },
                                     ].map(({ label, address }) => (

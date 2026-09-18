@@ -24,7 +24,7 @@ const ORG_SCHEMA = {
     alternateName: ["AIABASD", "التحالف الدولي الأفريقي للأعمال والتنمية المستدامة", "Alliance Internationale Africaine pour les Affaires et le Développement Durable"],
     url: SITE_URL,
     logo: `${SITE_URL}/logo-512.png`,
-    email: "contact@aiabasd.org",
+    email: "gs@aibasd.org",
     description:
         "International platform for economic, investment, and development cooperation — building strategic partnerships between Africa, the Arab world, and international markets, and converting opportunities into bankable, executable projects (PPP/BOT/EPC+F) with technology transfer and industrial localization.",
     slogan: "Connecting Opportunities. Building Partnerships. Delivering Sustainable Development.",
@@ -60,7 +60,7 @@ const ORG_SCHEMA = {
         {
             "@type": "ContactPoint",
             contactType: "general inquiries",
-            email: "contact@aiabasd.org",
+            email: "gs@aibasd.org",
             availableLanguage: ["English", "Arabic", "French"],
         },
     ],
