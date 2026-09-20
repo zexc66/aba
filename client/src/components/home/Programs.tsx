@@ -153,7 +153,7 @@ function ProgramsComponent({ data }: ProgramsProps) {
 
                 {/* At-a-glance comparison across all programs */}
                 <details className="group mt-10 border border-[#0b0b10]/10 bg-white">
-                    <summary className="t-meta inline-flex min-h-14 w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[#5a1f2e] transition-colors hover:bg-[#5a1f2e]/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e]">
+                    <summary className="t-meta inline-flex min-h-14 w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[#5a1f2e] transition-colors hover:bg-[#5a1f2e]/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e] [&::-webkit-details-marker]:hidden">
                         <span>{data.countLabel} — AT_A_GLANCE</span>
                         <span className="t-data text-[10px] text-[#0b0b10]/40" dir="ltr">[07]</span>
                     </summary>

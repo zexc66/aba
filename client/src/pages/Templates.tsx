@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { Download } from "lucide-react";
+import { Check, Download } from "lucide-react";
+import { useState } from "react";
 import NetworkLayout, { networkButton, networkLink } from "@/components/NetworkLayout";
 import { useLanguageContext } from "@/contexts/LanguageContext";
 import { TEMPLATES, TEMPLATES_COPY } from "@/templates";
@@ -17,6 +18,7 @@ const LOCALES: { code: "en" | "ar" | "fr"; label: string }[] = [
 export default function Templates() {
   const { lang } = useLanguageContext();
   const t = TEMPLATES_COPY[lang];
+  const [downloaded, setDownloaded] = useState<string | null>(null);
 
   function download(templateId: string, locale: "en" | "ar" | "fr") {
     const template = TEMPLATES.find((tpl) => tpl.id === templateId);
@@ -28,6 +30,8 @@ export default function Templates() {
     a.download = `${template.filename}-${locale}.md`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setDownloaded(`${templateId}-${locale}`);
+    setTimeout(() => setDownloaded((current) => (current === `${templateId}-${locale}` ? null : current)), 2200);
   }
 
   return (
@@ -46,7 +50,7 @@ export default function Templates() {
                   onClick={() => download(template.id, l.code)}
                   className="inline-flex min-h-11 items-center gap-2 border border-[#0b0b10]/15 bg-[#fdfcfb] px-4 py-2 text-sm font-medium transition-colors hover:border-[#5a1f2e]/40 hover:text-[#5a1f2e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a1f2e]"
                 >
-                  <Download size={14} aria-hidden="true" />
+                  {downloaded === `${template.id}-${l.code}` ? <Check size={14} aria-hidden="true" /> : <Download size={14} aria-hidden="true" />}
                   {t.download} · {l.label}
                 </button>
               ))}
