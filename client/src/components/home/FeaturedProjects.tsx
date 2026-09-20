@@ -22,7 +22,7 @@ function FlagshipCard({ project, locale, t }: { project: Project; locale: Locale
   return (
     <Link asChild href={localizedLinkPath(`/projects/${project.slug}`, locale)}>
       <a className="group relative block border border-[#0b0b10]/10 bg-white transition-colors hover:border-[#5a1f2e]/40">
-        <span aria-hidden="true" className="absolute top-0 start-0 h-[2px] w-0 bg-[#f2a007] transition-all duration-500 group-hover:w-full" />
+        <span aria-hidden="true" className="absolute top-0 start-0 h-[2px] w-full origin-start scale-x-0 bg-[#f2a007] transition-transform duration-500 group-hover:scale-x-100" />
 
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
           <div className="flex flex-col justify-between gap-8 border-b lg:border-b-0 lg:border-e border-[#0b0b10]/10 p-7 md:p-9 min-w-0">
@@ -79,7 +79,7 @@ function FeaturedRow({ project, index, locale, t }: { project: Project; index: n
   return (
     <Link asChild href={localizedLinkPath(`/projects/${project.slug}`, locale)}>
       <a className="group relative grid grid-cols-1 lg:grid-cols-[4.5rem_minmax(0,1.15fr)_minmax(14rem,0.75fr)_auto] gap-4 lg:gap-8 items-start lg:items-center py-6 transition-colors hover:bg-[#5a1f2e]/[0.035] active:translate-y-px">
-        <span aria-hidden="true" className="absolute top-0 start-0 h-px w-0 bg-[#f2a007] transition-all duration-500 group-hover:w-full" />
+        <span aria-hidden="true" className="absolute top-0 start-0 h-px w-full origin-start scale-x-0 bg-[#f2a007] transition-transform duration-500 group-hover:scale-x-100" />
         <span className="t-data text-xs text-[#0b0b10]/40 ps-1" aria-hidden="true" dir="ltr">
           {String(index).padStart(2, "0")}
         </span>
